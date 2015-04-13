@@ -1,0 +1,23 @@
+﻿<Window x:Class="Csillamponi_Allatmenhely.CreateUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="CreateUser" Height="351" Width="501">
+    <Grid>
+        <Label Content="Név:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186" FontSize="18"/>
+        <Label Content="Irányítószám:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="129,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="117" FontSize="18"/>
+        <Label Content="Település:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="138" FontSize="18"/>
+        <Label Content="Utca,házszám:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="132,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" FontSize="18"/>
+        <Label Content="Adományozások száma:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="36" FontSize="18"/>
+        <Label Content="Örökbefogadott állatok:" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="109" Margin="263,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
+        <Label Content="Örökbeadott állatok:" HorizontalAlignment="Left" Margin="263,156,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="109" Margin="263,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,165,0,0" VerticalAlignment="Top" Width="75" FontSize="18"/>
+
+    </Grid>
+</Window>

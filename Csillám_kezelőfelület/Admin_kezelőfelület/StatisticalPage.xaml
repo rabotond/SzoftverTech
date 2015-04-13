@@ -1,0 +1,20 @@
+﻿<Window x:Class="Csillamponi_Allatmenhely.StatisticalPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="StatisticalPage" Height="295" Width="370">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Height="122" Margin="10,10,0,0" VerticalAlignment="Top" Width="221">
+            <Label Content="Kimutatás Tipusa:" FontSize="20"/>
+            <RadioButton Content="Pénzügyi" FontSize="20"/>
+            <RadioButton Content="Készletek" FontSize="20"/>
+            <RadioButton Content="Statisztika" FontSize="20"/>
+        </StackPanel>
+        <Label Content="Időszak Kezdete:" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="Időszak Kezdete:" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
+        <Button Content="Kimutatás Készítés xlsx" HorizontalAlignment="Left" Margin="199,177,0,0" VerticalAlignment="Top" Width="138" Height="29"/>
+        <Button Content="Kimutatás Készítés txt" HorizontalAlignment="Left" Margin="199,211,0,0" VerticalAlignment="Top" Width="138" Height="29"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="Csillamponi_Allatmenhely.AdoptionPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AdoptionPage" Height="401" Width="568">
+    <Grid>
+        <Label Content="Örökbefogadható állatok:" HorizontalAlignment="Left" Margin="11,6,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="315" Margin="11,40,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="213" FontSize="18"/>
+        <GroupBox Header="Szűrés" HorizontalAlignment="Left" Margin="251,40,0,0" VerticalAlignment="Top" Height="219" Width="293" FontSize="18">
+            <Grid>
+                <Label Content="Név:" HorizontalAlignment="Left" Margin="11,6,0,0" VerticalAlignment="Top" FontSize="18" Width="46"/>
+                <TextBox HorizontalAlignment="Left" Height="28" Margin="57,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="205" FontSize="18"/>
+                <Label Content="Fajta:" HorizontalAlignment="Left" Margin="11,82,0,0" VerticalAlignment="Top" FontSize="18" Width="65"/>
+                <Label Content="Állatfaj:" HorizontalAlignment="Left" Margin="11,43,0,0" VerticalAlignment="Top" FontSize="18" Width="70"/>
+                <ListBox HorizontalAlignment="Left" Height="33" Margin="81,43,0,0" VerticalAlignment="Top" FontSize="18" Width="181"/>
+                <ListBox HorizontalAlignment="Left" Height="33" Margin="81,82,0,0" VerticalAlignment="Top" FontSize="18" Width="181"/>
+                <CheckBox Content="Kötelező oltásokat megkapta" HorizontalAlignment="Left" Margin="11,121,0,0" VerticalAlignment="Top"/>
+                <Label Content="Szín:" HorizontalAlignment="Left" Margin="11,149,0,0" VerticalAlignment="Top" FontSize="18" Width="65"/>
+                <ListBox HorizontalAlignment="Left" Height="33" Margin="81,149,0,0" VerticalAlignment="Top" FontSize="18" Width="181"/>
+            </Grid>
+        </GroupBox>
+        <Button Content="Listáz" HorizontalAlignment="Left" Margin="406,289,0,0" VerticalAlignment="Top" Width="138" FontSize="18" Height="25"/>
+
+
+    </Grid>
+</Window>
