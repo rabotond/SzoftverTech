@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="csillamponimenhelyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ADOMANY">
+          <Key>
+            <PropertyRef Name="ADOMANYID" />
+          </Key>
+          <Property Name="ADOMANYID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TIPUS" Type="varchar" MaxLength="8" />
+          <Property Name="ADOMANYOZO" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MENNYISEG" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DATUM" Type="date" />
+        </EntityType>
+        <EntityType Name="ALLAT">
+          <Key>
+            <PropertyRef Name="ALLATID" />
+          </Key>
+          <Property Name="ALLATID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FAJTA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NEV" Type="varchar" MaxLength="20" />
+          <Property Name="SZULETESI_IDO" Type="date" />
+          <Property Name="IVARTALANITOTT" Type="bit" />
+          <Property Name="SZIN" Type="varchar" MaxLength="40" />
+          <Property Name="OLTVA" Type="bit" />
+          <Property Name="BETEGSEGEK" Type="varchar" MaxLength="40" />
+          <Property Name="NOSTENY" Type="bit" />
+          <Property Name="TOMEG" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="MERET" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="CHIPES" Type="bit" />
+          <Property Name="ELOJEGYZETT" Type="bit" />
+          <Property Name="ELOZO_TULAJ" Type="uniqueidentifier" />
+          <Property Name="KEP" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ELEDEL">
+          <Key>
+            <PropertyRef Name="FAJTA" />
+          </Key>
+          <Property Name="FAJTA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RAKTARON" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="KENNEL">
+          <Key>
+            <PropertyRef Name="TIPUS" />
+          </Key>
+          <Property Name="TIPUS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="SZABAD" Type="int" />
+          <Property Name="FOGLALT" Type="int" />
+          <Property Name="MAXDARAB" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UGYFEL">
+          <Key>
+            <PropertyRef Name="UGYFELID" />
+          </Key>
+          <Property Name="VEZETEKNEV" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="KERESZTNEV" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IRSZ" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="VAROS" Type="varchar" MaxLength="20" />
+          <Property Name="UTCA" Type="varchar" MaxLength="20" />
+          <Property Name="HAZSZAM" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="TELEFON" Type="numeric" Precision="11" Scale="0" />
+          <Property Name="UGYFELID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name=" isadmin" Type="bit" />
+        </EntityType>
+        <Association Name="ADOMANY_FOR_KEY">
+          <End Role="UGYFEL" Type="Self.UGYFEL" Multiplicity="1" />
+          <End Role="ADOMANY" Type="Self.ADOMANY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UGYFEL">
+              <PropertyRef Name="UGYFELID" />
+            </Principal>
+            <Dependent Role="ADOMANY">
+              <PropertyRef Name="ADOMANYOZO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ALLAT_FOR_KEY">
+          <End Role="UGYFEL" Type="Self.UGYFEL" Multiplicity="0..1" />
+          <End Role="ALLAT" Type="Self.ALLAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UGYFEL">
+              <PropertyRef Name="UGYFELID" />
+            </Principal>
+            <Dependent Role="ALLAT">
+              <PropertyRef Name="ELOZO_TULAJ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ALLAT_FOR_KEY1">
+          <End Role="KENNEL" Type="Self.KENNEL" Multiplicity="1" />
+          <End Role="ALLAT" Type="Self.ALLAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KENNEL">
+              <PropertyRef Name="TIPUS" />
+            </Principal>
+            <Dependent Role="ALLAT">
+              <PropertyRef Name="FAJTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="csillamponimenhelyDBModelStoreContainer">
+          <EntitySet Name="ADOMANY" EntityType="Self.ADOMANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ALLAT" EntityType="Self.ALLAT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ELEDEL" EntityType="Self.ELEDEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KENNEL" EntityType="Self.KENNEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UGYFEL" EntityType="Self.UGYFEL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="ADOMANY_FOR_KEY" Association="Self.ADOMANY_FOR_KEY">
+            <End Role="UGYFEL" EntitySet="UGYFEL" />
+            <End Role="ADOMANY" EntitySet="ADOMANY" />
+          </AssociationSet>
+          <AssociationSet Name="ALLAT_FOR_KEY" Association="Self.ALLAT_FOR_KEY">
+            <End Role="UGYFEL" EntitySet="UGYFEL" />
+            <End Role="ALLAT" EntitySet="ALLAT" />
+          </AssociationSet>
+          <AssociationSet Name="ALLAT_FOR_KEY1" Association="Self.ALLAT_FOR_KEY1">
+            <End Role="KENNEL" EntitySet="KENNEL" />
+            <End Role="ALLAT" EntitySet="ALLAT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="csillamponimenhelyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ADOMANY">
+          <Key>
+            <PropertyRef Name="ADOMANYID" />
+          </Key>
+          <Property Name="ADOMANYID" Type="Guid" Nullable="false" />
+          <Property Name="TIPUS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="ADOMANYOZO" Type="Guid" Nullable="false" />
+          <Property Name="MENNYISEG" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DATUM" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="UGYFEL" Relationship="Self.ADOMANY_FOR_KEY" FromRole="ADOMANY" ToRole="UGYFEL" />
+        </EntityType>
+        <EntityType Name="ALLAT">
+          <Key>
+            <PropertyRef Name="ALLATID" />
+          </Key>
+          <Property Name="ALLATID" Type="Guid" Nullable="false" />
+          <Property Name="FAJTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NEV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SZULETESI_IDO" Type="DateTime" Precision="0" />
+          <Property Name="IVARTALANITOTT" Type="Boolean" />
+          <Property Name="SZIN" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="OLTVA" Type="Boolean" />
+          <Property Name="BETEGSEGEK" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="NOSTENY" Type="Boolean" />
+          <Property Name="TOMEG" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="MERET" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="CHIPES" Type="Boolean" />
+          <Property Name="ELOJEGYZETT" Type="Boolean" />
+          <Property Name="ELOZO_TULAJ" Type="Guid" />
+          <Property Name="KEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UGYFEL" Relationship="Self.ALLAT_FOR_KEY" FromRole="ALLAT" ToRole="UGYFEL" />
+          <NavigationProperty Name="KENNEL" Relationship="Self.ALLAT_FOR_KEY1" FromRole="ALLAT" ToRole="KENNEL" />
+        </EntityType>
+        <EntityType Name="ELEDEL">
+          <Key>
+            <PropertyRef Name="FAJTA" />
+          </Key>
+          <Property Name="FAJTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RAKTARON" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KENNEL">
+          <Key>
+            <PropertyRef Name="TIPUS" />
+          </Key>
+          <Property Name="TIPUS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SZABAD" Type="Int32" />
+          <Property Name="FOGLALT" Type="Int32" />
+          <Property Name="MAXDARAB" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ALLAT" Relationship="Self.ALLAT_FOR_KEY1" FromRole="KENNEL" ToRole="ALLAT" />
+        </EntityType>
+        <EntityType Name="UGYFEL">
+          <Key>
+            <PropertyRef Name="UGYFELID" />
+          </Key>
+          <Property Name="VEZETEKNEV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KERESZTNEV" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IRSZ" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="VAROS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="UTCA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HAZSZAM" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="TELEFON" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="UGYFELID" Type="Guid" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ADOMANY" Relationship="Self.ADOMANY_FOR_KEY" FromRole="UGYFEL" ToRole="ADOMANY" />
+          <NavigationProperty Name="ALLAT" Relationship="Self.ALLAT_FOR_KEY" FromRole="UGYFEL" ToRole="ALLAT" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="C_isadmin" Type="Boolean" />
+        </EntityType>
+        <Association Name="ADOMANY_FOR_KEY">
+          <End Role="UGYFEL" Type="Self.UGYFEL" Multiplicity="1" />
+          <End Role="ADOMANY" Type="Self.ADOMANY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UGYFEL">
+              <PropertyRef Name="UGYFELID" />
+            </Principal>
+            <Dependent Role="ADOMANY">
+              <PropertyRef Name="ADOMANYOZO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ALLAT_FOR_KEY">
+          <End Role="UGYFEL" Type="Self.UGYFEL" Multiplicity="0..1" />
+          <End Role="ALLAT" Type="Self.ALLAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UGYFEL">
+              <PropertyRef Name="UGYFELID" />
+            </Principal>
+            <Dependent Role="ALLAT">
+              <PropertyRef Name="ELOZO_TULAJ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ALLAT_FOR_KEY1">
+          <End Role="KENNEL" Type="Self.KENNEL" Multiplicity="1" />
+          <End Role="ALLAT" Type="Self.ALLAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KENNEL">
+              <PropertyRef Name="TIPUS" />
+            </Principal>
+            <Dependent Role="ALLAT">
+              <PropertyRef Name="FAJTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="csillamponimenhelyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ADOMANY" EntityType="Self.ADOMANY" />
+          <EntitySet Name="ALLAT" EntityType="Self.ALLAT" />
+          <EntitySet Name="ELEDEL" EntityType="Self.ELEDEL" />
+          <EntitySet Name="KENNEL" EntityType="Self.KENNEL" />
+          <EntitySet Name="UGYFEL" EntityType="Self.UGYFEL" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <AssociationSet Name="ADOMANY_FOR_KEY" Association="Self.ADOMANY_FOR_KEY">
+            <End Role="UGYFEL" EntitySet="UGYFEL" />
+            <End Role="ADOMANY" EntitySet="ADOMANY" />
+          </AssociationSet>
+          <AssociationSet Name="ALLAT_FOR_KEY" Association="Self.ALLAT_FOR_KEY">
+            <End Role="UGYFEL" EntitySet="UGYFEL" />
+            <End Role="ALLAT" EntitySet="ALLAT" />
+          </AssociationSet>
+          <AssociationSet Name="ALLAT_FOR_KEY1" Association="Self.ALLAT_FOR_KEY1">
+            <End Role="KENNEL" EntitySet="KENNEL" />
+            <End Role="ALLAT" EntitySet="ALLAT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="csillamponimenhelyDBModelStoreContainer" CdmEntityContainer="csillamponimenhelyDBEntities">
+          <EntitySetMapping Name="ADOMANY">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.ADOMANY">
+              <MappingFragment StoreEntitySet="ADOMANY">
+                <ScalarProperty Name="ADOMANYID" ColumnName="ADOMANYID" />
+                <ScalarProperty Name="TIPUS" ColumnName="TIPUS" />
+                <ScalarProperty Name="ADOMANYOZO" ColumnName="ADOMANYOZO" />
+                <ScalarProperty Name="MENNYISEG" ColumnName="MENNYISEG" />
+                <ScalarProperty Name="DATUM" ColumnName="DATUM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALLAT">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.ALLAT">
+              <MappingFragment StoreEntitySet="ALLAT">
+                <ScalarProperty Name="ALLATID" ColumnName="ALLATID" />
+                <ScalarProperty Name="FAJTA" ColumnName="FAJTA" />
+                <ScalarProperty Name="NEV" ColumnName="NEV" />
+                <ScalarProperty Name="SZULETESI_IDO" ColumnName="SZULETESI_IDO" />
+                <ScalarProperty Name="IVARTALANITOTT" ColumnName="IVARTALANITOTT" />
+                <ScalarProperty Name="SZIN" ColumnName="SZIN" />
+                <ScalarProperty Name="OLTVA" ColumnName="OLTVA" />
+                <ScalarProperty Name="BETEGSEGEK" ColumnName="BETEGSEGEK" />
+                <ScalarProperty Name="NOSTENY" ColumnName="NOSTENY" />
+                <ScalarProperty Name="TOMEG" ColumnName="TOMEG" />
+                <ScalarProperty Name="MERET" ColumnName="MERET" />
+                <ScalarProperty Name="CHIPES" ColumnName="CHIPES" />
+                <ScalarProperty Name="ELOJEGYZETT" ColumnName="ELOJEGYZETT" />
+                <ScalarProperty Name="ELOZO_TULAJ" ColumnName="ELOZO_TULAJ" />
+                <ScalarProperty Name="KEP" ColumnName="KEP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ELEDEL">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.ELEDEL">
+              <MappingFragment StoreEntitySet="ELEDEL">
+                <ScalarProperty Name="FAJTA" ColumnName="FAJTA" />
+                <ScalarProperty Name="RAKTARON" ColumnName="RAKTARON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KENNEL">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.KENNEL">
+              <MappingFragment StoreEntitySet="KENNEL">
+                <ScalarProperty Name="TIPUS" ColumnName="TIPUS" />
+                <ScalarProperty Name="SZABAD" ColumnName="SZABAD" />
+                <ScalarProperty Name="FOGLALT" ColumnName="FOGLALT" />
+                <ScalarProperty Name="MAXDARAB" ColumnName="MAXDARAB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UGYFEL">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.UGYFEL">
+              <MappingFragment StoreEntitySet="UGYFEL">
+                <ScalarProperty Name="VEZETEKNEV" ColumnName="VEZETEKNEV" />
+                <ScalarProperty Name="KERESZTNEV" ColumnName="KERESZTNEV" />
+                <ScalarProperty Name="IRSZ" ColumnName="IRSZ" />
+                <ScalarProperty Name="VAROS" ColumnName="VAROS" />
+                <ScalarProperty Name="UTCA" ColumnName="UTCA" />
+                <ScalarProperty Name="HAZSZAM" ColumnName="HAZSZAM" />
+                <ScalarProperty Name="TELEFON" ColumnName="TELEFON" />
+                <ScalarProperty Name="UGYFELID" ColumnName="UGYFELID" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="csillamponimenhelyDBModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="C_isadmin" ColumnName=" isadmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

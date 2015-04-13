@@ -1,0 +1,54 @@
+﻿<Window x:Class="Csillamponi_Allatmenhely.NewAnimal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NewAnimal" Height="496" Width="618">
+    <Grid>
+        <Label Content="Név:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <Label Content="Kor:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18"/>
+        <Label Content="Fajta:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <Label Content="Nem:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <Label Content="Eledel tipusa:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="22" Margin="129,126,0,0" VerticalAlignment="Top" Width="117" FontSize="18">
+            <Grid Height="100" Width="100"/>
+        </ListBox>
+        <Label Content="Előző tulajdonos:" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="22" Margin="155,154,0,0" VerticalAlignment="Top" Width="117" FontSize="18">
+            <Grid Height="100" Width="100"/>
+        </ListBox>
+        <Label Content="Eredete:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="22" Margin="89,181,0,0" VerticalAlignment="Top" Width="117" FontSize="18">
+            <Grid Height="100" Width="100"/>
+        </ListBox>
+        <GroupBox Header="Kötelező oltások" HorizontalAlignment="Left" Margin="10,211,0,0" VerticalAlignment="Top" Height="112" Width="185">
+            <Grid>
+                <RadioButton Content="Megkapta" HorizontalAlignment="Left" Margin="10,7,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <RadioButton Content="Nem kapta meg" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" FontSize="18"/>
+                <RadioButton Content="Nincs infromáció" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" FontSize="18"/>
+
+            </Grid>
+        </GroupBox>
+        <Label Content="Chippeztetve van?" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="22" Margin="165,340,0,0" VerticalAlignment="Top" Width="117" FontSize="18">
+            <Grid Height="100" Width="100"/>
+        </ListBox>
+        <Label Content="Tömeg(kg):" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="110,367,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18"/>
+        <Label Content="Szín:" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,395,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" FontSize="18"/>
+        <Label Content="Előjegyezve:" HorizontalAlignment="Left" Margin="10,416,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListBox HorizontalAlignment="Left" Height="22" Margin="117,423,0,0" VerticalAlignment="Top" Width="129" FontSize="18">
+            <Grid Height="100" Width="100"/>
+        </ListBox>
+        <Image HorizontalAlignment="Left" Height="211" Margin="308,10,0,0" VerticalAlignment="Top" Width="277"/>
+        <Label Content="Fotó feltöltése" HorizontalAlignment="Left" Margin="308,226,0,0" VerticalAlignment="Top" Width="123" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="436,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="146" FontSize="18"/>
+        <Label Content="Megjegyzés" HorizontalAlignment="Left" Margin="311,266,0,0" VerticalAlignment="Top" Width="123" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="95" Margin="314,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="271" FontSize="18"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="474,411,0,0" VerticalAlignment="Top" Width="108" Height="34" FontSize="18"/>
+
+    </Grid>
+</Window>
