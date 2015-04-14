@@ -18,6 +18,7 @@ namespace AdatKezelő
         public Admin()
         {
             adminkezelo = new Admin_kezelő();
+            //admin
         }
 
     }//end Admin
