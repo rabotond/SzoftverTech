@@ -124,6 +124,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="adatgeneralosql.sql" />
     <Content Include="csillamponimenhelyDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
