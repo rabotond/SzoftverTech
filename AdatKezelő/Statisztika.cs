@@ -21,7 +21,7 @@ namespace AdatKezelő
 
         public Statisztika()
         {
-
+            //asd
         }
 
         ~Statisztika()
