@@ -23,5 +23,11 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
         }
+
+        private void UjallatClick(object sender, RoutedEventArgs e)
+        {
+            NewAnimal page = new NewAnimal();
+            page.Show();
+        }
     }
 }

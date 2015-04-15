@@ -5,7 +5,7 @@
     <Grid>
         <Label Content="Állatfaj:" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" FontSize="18" Height="32"/>
         <ListBox HorizontalAlignment="Left" Height="23" Margin="80,15,0,0" VerticalAlignment="Top" Width="154"/>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="75" FontSize="18"/>
+        <Button Content="OK" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Button_Click"/>
 
     </Grid>
 </Window>

@@ -23,5 +23,22 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
         }
+
+        private void AdminClick(object sender, RoutedEventArgs e)
+        {
+            AdministrationPage page = new AdministrationPage();
+            page.ShowDialog();
+        
+        }
+
+        private void OrokbeadClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OrokbefogadClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
