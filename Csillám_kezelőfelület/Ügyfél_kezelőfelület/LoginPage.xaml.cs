@@ -22,6 +22,15 @@ namespace Csillamponi_Allatmenhely
         public LoginPage()
         {
             InitializeComponent();
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            PutInAnimal putWindow = new PutInAnimal();
+            this.Close();
+            putWindow.Show();
+            
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Csillamponi_Allatmenhely;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,11 @@ namespace Csillám_kezelőfelület
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            //add some bootstrap or startup logic 
+            LoginPage loginpage = new LoginPage();
+            loginpage.Show();
+        }
     }
 }

@@ -74,6 +74,7 @@
     <Compile Include="Ügyfél_kezelőfelület\QueriePlaces.xaml.cs">
       <DependentUpon>QueriePlaces.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ügyfél_kezelőfelület\QueriePlacesViewModel.cs" />
     <Compile Include="Ügyfél_kezelőfelület\ReservationPage.xaml.cs">
       <DependentUpon>ReservationPage.xaml</DependentUpon>
     </Compile>

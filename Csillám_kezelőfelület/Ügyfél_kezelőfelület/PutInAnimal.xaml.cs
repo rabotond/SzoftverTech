@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdatKezelő;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,17 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class PutInAnimal : Window
     {
+        Ugyfelkezelo ugyfelkezelo;
         public PutInAnimal()
         {
             InitializeComponent();
+            ugyfelkezelo = new Ugyfelkezelo();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            QueriePlaces querieWindow = new QueriePlaces(ugyfelkezelo);
+            querieWindow.Show();
         }
     }
 }

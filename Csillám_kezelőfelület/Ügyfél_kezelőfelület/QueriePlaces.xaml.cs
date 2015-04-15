@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdatKezelő;
+using Csillám_kezelőfelület.Ügyfél_kezelőfelület;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,16 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class QueriePlaces : Window
     {
-        public QueriePlaces()
+        public QueriePlaces(IUgyfelkezelo kezelo)
         {
             InitializeComponent();
+            QueriePlacesViewModel vm = new QueriePlacesViewModel(kezelo);
+            DataContext = vm.AllatFajok;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -92,7 +92,7 @@
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
     <Compile Include="IAdminKezelő.cs" />
-    <Compile Include="IÜgyfélkezelő.cs" />
+    <Compile Include="IUgyfelkezelo.cs" />
     <Compile Include="KENNEL.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
@@ -104,7 +104,7 @@
     <Compile Include="user.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ÜgyfélKezelő.cs" />
+    <Compile Include="Ugyfelkezelo.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace AdatKezelő
 {
-    public interface IÜgyfél_kezelő
+    public interface IUgyfelkezelo
     {
 
         /// 
@@ -56,6 +56,8 @@ namespace AdatKezelő
         /// 
         /// <param name="melyik_állat_számára"></param>
         bool Van_e_üres_kennel(ALLAT melyik_állat_számára);
+
+        IEnumerable<string> GetAllatfajok();
     }//end IÜgyfél_kezelő
 
 }//end namespace AdatKezelő

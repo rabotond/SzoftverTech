@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="PutInAnimal" Height="220" Width="260">
     <Grid>
-        <Button Content="Üres helyek lekérdezés" HorizontalAlignment="Left" Margin="34,35,0,0" VerticalAlignment="Top" Width="183" FontSize="18" Height="29"/>
+        <Button Content="Üres helyek lekérdezés" HorizontalAlignment="Left" Margin="34,35,0,0" VerticalAlignment="Top" Width="183" FontSize="18" Height="29" Click="Button_Click"/>
         <Button Content="Adatfelvitel" HorizontalAlignment="Left" Margin="34,80,0,0" VerticalAlignment="Top" Width="183" FontSize="18" Height="29"/>
         <Button Content="Támogatás" HorizontalAlignment="Left" Margin="34,124,0,0" VerticalAlignment="Top" Width="183" FontSize="18" Height="29"/>
 

@@ -4,7 +4,7 @@
         Title="LoginPage" Height="177" Width="274">
     <Grid>
         <Button Content="Belépés Adminisztrátorként" HorizontalAlignment="Left" Margin="55,19,0,0" VerticalAlignment="Top" Width="156" Height="32"/>
-        <Button Content="Örökbeadnék" HorizontalAlignment="Left" Margin="55,56,0,0" VerticalAlignment="Top" Width="156" Height="32"/>
+        <Button Content="Örökbeadnék" HorizontalAlignment="Left" Margin="55,56,0,0" VerticalAlignment="Top" Width="156" Height="32" Click="Button_Click"/>
         <Button Content="Örökbefogadnék" HorizontalAlignment="Left" Margin="55,93,0,0" VerticalAlignment="Top" Width="156" Height="32"/>
 
     </Grid>
