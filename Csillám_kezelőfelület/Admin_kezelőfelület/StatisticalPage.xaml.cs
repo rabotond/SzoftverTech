@@ -23,5 +23,32 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
         }
+        
+	internal Button buttonKimuatásXLS;
+	internal DatePicker datePickerKezdet;
+	internal DatePicker datePickerVég;
+	internal System.Windows.Controls.Label label1;
+	internal System.Windows.Controls.Label label2;
+	internal RadioButton radioButtonPénzügyi;
+	internal RadioButton radioButtonStatisztika;
+
+
+	/// 
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void ButtonKimutatásTXT_Click(object sender, RoutedEventArgs e){
+
+	}
+
+	/// 
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+	private void ButtonKimutatásXLS_Click(object sender, RoutedEventArgs e){
+
+	}
+
+	public void Statisztika_készítő(){
+
+	}
     }
 }
