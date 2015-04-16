@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
-
+using System.IO;
+using System.Windows.Forms;
+using System.Collections.ObjectModel;
 namespace Csillamponi_Allatmenhely
 {
     /// <summary>
@@ -20,12 +22,17 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class NewAnimal : Window
     {
+        string képutja = null;
         NewAnimalViewModel VM;
+       
         public NewAnimal()
         {
-            InitializeComponent();
-            VM = new NewAnimalViewModel();
-            DataContext = VM;
+        
+                InitializeComponent();
+                VM = new NewAnimalViewModel();
+                DataContext = VM;
+          
+            //ItemsSource="{Binding Path=ChipElojegyezLista}"
             
         }
 
@@ -38,21 +45,91 @@ namespace Csillamponi_Allatmenhely
             VM.Tomeg = tomeg.ToString();
             VM.Szin = szin.ToString();
             VM.Megjegyzes = megjegyzes.ToString();
+            
            //VM.Eledeltipus
             //VM.Chipelojegyez   chip igazhamis
             //VM.Chipelojegyez   elojegyez igazhamis
+           // SaveClipboardImageToFile(képutja);
 
         }
 
         private void Foto_feltolt(object sender, RoutedEventArgs e)
         {
+            
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
+            // Set filter for file extension and default file extension
+            //dlg.DefaultExt = ".txt";
+            //dlg.Filter = "Text documents (.txt)|*.txt";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
+            {
+                // Open document
+                BitmapImage bi = new BitmapImage();
+                
+
+                string filename = dlg.FileName;
+                képutja = dlg.FileName;
+                bi.BeginInit();
+                bi.UriSource = new Uri(filename, UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                var uriSource = new Uri(filename, UriKind.Relative);
+                //VM.Kép.Source = new BitmapImage(uriSource);
+                if (bi!= null)
+                {
+                    VM.Kép = bi;    
+                }
+                //
+
+            }
         }
+        public static void SaveClipboardImageToFile(string picturepath)
+        {
+            BitmapImage bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(picturepath, UriKind.RelativeOrAbsolute);
+            bi.EndInit();
+            string allatpath = @"\..állatok\" ;
+            allatpath = ".\allat";
+            string gesturefile = System.IO.Path.Combine(Environment.CurrentDirectory, allatpath);
+            gesturefile = "állatok";
+            using (var fileStream = new FileStream(allatpath, FileMode.Create))
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                
+                encoder.Frames.Add(BitmapFrame.Create(bi));
+                encoder.Save(fileStream);
+                //fullPath =System.IO.Path.GetFullPath(fullPath);
+                
+            }
+        }
+       
     }
 
-    class NewAnimalViewModel :  INotifyPropertyChanged
+
+
+     class NewAnimalViewModel :  INotifyPropertyChanged
     {
-       
+        public NewAnimalViewModel ()
+        {
+            /*chipElojegyezLista = new ObservableCollection<string>();
+            chipElojegyezLista.Add("Igen");
+            chipElojegyezLista.Add("Nem");
+            chipElojegyezLista.Add("Nincs Info");*/
+        }
+
+
+        BitmapImage kép;
+
+        public BitmapImage Kép
+        {
+            get { return kép; }
+            set { kép = value; OnPropertyChanged("Kép"); }
+        }  
         string neve;
 
         public string Neve
@@ -134,16 +211,13 @@ namespace Csillamponi_Allatmenhely
             get { return chipelojegyez; }
             set { chipelojegyez = value; OnPropertyChanged("Chipelojegyez"); }
         }
-       
-        /*
+      
         public Array ChipElojegyezLista
         {
             get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
             set { }
         }
-       
-      
-        */
+     
 
         public bool Megkapta
         {
@@ -172,13 +246,13 @@ namespace Csillamponi_Allatmenhely
             get { return ételek; }
             set { ételek = value; OnPropertyChanged("Ételek"); }
         }
-        /*
+        
         public Array Étellista
         {
             get { return Enum.GetValues(typeof(ételek)); }
             set { }
         }
-        */
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string name)
@@ -218,7 +292,7 @@ namespace Csillamponi_Allatmenhely
             }
             else
             {
-                return Binding.DoNothing;
+                return System.Windows.Data.Binding.DoNothing;
             }
         }
     }

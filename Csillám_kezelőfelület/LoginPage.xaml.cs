@@ -26,8 +26,11 @@ namespace Csillamponi_Allatmenhely
 
         private void AdminClick(object sender, RoutedEventArgs e)
         {
+            
             AdministrationPage page = new AdministrationPage();
+            this.Close();
             page.ShowDialog();
+            
         
         }
 

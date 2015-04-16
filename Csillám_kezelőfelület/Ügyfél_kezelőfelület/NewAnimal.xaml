@@ -24,17 +24,15 @@
             <RadioButton IsChecked="{Binding Nincsinfo}" Content="nincs infó" FontSize="18"/>
         </StackPanel>
         <Label Content="Chippeztetve van?" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="165,340,0,0" VerticalAlignment="Top" Width="117" FontSize="18">
-            <Grid Height="100" Width="100"/>
-        </ComboBox>
+        <ComboBox Name="chipe" ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="165,340,0,0" VerticalAlignment="Top" Width="117" FontSize="18"/>
+        
         <Label Content="Tömeg(kg):" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="tomeg" HorizontalAlignment="Left" Height="23" Margin="110,367,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18"/>
         <Label Content="Szín:" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox  Name="szin" HorizontalAlignment="Left" Height="23" Margin="60,395,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" FontSize="18"/>
         <Label Content="Előjegyezve:" HorizontalAlignment="Left" Margin="10,416,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="117,423,0,0" VerticalAlignment="Top" Width="129" FontSize="18">
-            <Grid Height="100" Width="100"/>
-        </ComboBox>
+        <ComboBox ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="117,423,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
+        
         
         <Image HorizontalAlignment="Left" Height="211" Margin="308,10,0,0" VerticalAlignment="Top" Width="277" Source="{Binding Path=Kép}" />
         <Label Content="Megjegyzés" HorizontalAlignment="Left" Margin="311,266,0,0" VerticalAlignment="Top" Width="123" FontSize="18"/>
