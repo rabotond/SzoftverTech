@@ -7,15 +7,32 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
 
-    namespace AdatKezelő
-    {
+  namespace AdatKezelő
+  {
         public class Admin_kezelő : IAdmin_kezelő
         {
-            public AdatbázisKezelő AdatbázisKezelő;
+            csillamponimenhelyDBEntities db;
+
+            public csillamponimenhelyDBEntities Db
+            {
+                get { return db; }
+                set { db = value; }
+            }
+
+           public List<ALLAT> getAllAllat()
+            {
+                return db.ALLAT.Where(x=>x.ALLATID!=null).ToList();
+            }
+
+           public List<UGYFEL> getAllÜgyfél()
+           {
+               return db.UGYFEL.Where(x => x.UGYFELID != null).ToList();
+           }
+
 
             public Admin_kezelő()
             {
-                AdatbázisKezelő = new AdatbázisKezelő();
+                db=new csillamponimenhelyDBEntities();
             }
 
             public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus mit)
@@ -26,34 +43,105 @@ using System.Xml.Linq;
                 a.DATUM = DateTime.Now;
                 a.MENNYISEG = mennyit;
                 a.TIPUS = mit.ToString();
-                AdatbázisKezelő.Adományt_hozzáad(a);
-            }
-
-            public void Database_communication()//ez miaf...
-            {
-
+                db.ADOMANY.Add(a);
+                db.SaveChanges();
+                
             }
 
             public bool Előjegyzést_végez(ALLAT allat)
             {
-                if(allat.ELOJEGYZETT==true)
+                ALLAT a = db.ALLAT.Find(allat.ALLATID);
+                if(a.ELOJEGYZETT==true)
                 {
                     return false;
                 }
                 else
                 {
-                    allat.ELOJEGYZETT =true;
-                    AdatbázisKezelő.Állatot_módosít(allat);
+                    a.ELOJEGYZETT =true;
+                    Állatot_módosít(a);
                     return true;
                 }
                 
             }
 
-
             public Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
             {
-                throw new NotImplementedException();
+                Statisztika stat = new Statisztika();
+                return stat;
             }
+
+            public bool Állatot_hozzáad(ALLAT állat)
+            {
+                db.ALLAT.Add(állat);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+
+            public bool Állatot_módosít(ALLAT állat)//lecserélem az egészet..id marad
+            {
+                ALLAT a = db.ALLAT.Find(állat.ALLATID);
+                db.ALLAT.Remove(a);
+                db.ALLAT.Add(állat);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+
+            public bool Állatot_töröl(ALLAT állat)
+            {
+                var a = db.ALLAT.Where(x => x.ALLATID == állat.ALLATID);
+                db.ALLAT.Remove((ALLAT)a);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+
+            public bool Ügyfelet_hozzáad(UGYFEL ügyfél)
+            {
+                db.UGYFEL.Add(ügyfél);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+
+            public bool Ügyfelet_módosít(UGYFEL ügyfél)
+            {
+                UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
+                db.UGYFEL.Remove(a);
+                db.UGYFEL.Add(ügyfél);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+
+            public bool Ügyfelet_töröl(UGYFEL ügyfél)
+            {
+                var a = db.UGYFEL.Where(x => x.UGYFELID == ügyfél.UGYFELID);
+                db.UGYFEL.Remove((UGYFEL)a);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
+        
         }//end Admin_kezelő
 
     }//end namespace AdatKezelő
