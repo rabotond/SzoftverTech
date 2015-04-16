@@ -13,6 +13,23 @@ using System.Xml.Linq;
         {
             csillamponimenhelyDBEntities db;
 
+            public csillamponimenhelyDBEntities Db
+            {
+                get { return db; }
+                set { db = value; }
+            }
+
+           public List<ALLAT> getAllAllat()
+            {
+                return db.ALLAT.Where(x=>x.ALLATID!=null).ToList();
+            }
+
+           public List<UGYFEL> getAllÜgyfél()
+           {
+               return db.UGYFEL.Where(x => x.UGYFELID != null).ToList();
+           }
+
+
             public Admin_kezelő()
             {
                 db=new csillamponimenhelyDBEntities();

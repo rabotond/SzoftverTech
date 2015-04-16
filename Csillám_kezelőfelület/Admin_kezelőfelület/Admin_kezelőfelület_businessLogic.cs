@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using AdatKezelő;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
@@ -14,14 +15,14 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         List<UGYFEL> ugyfellista;
         public Admin_kezelőfelület_businessLogic()
         {
-            allatlista=kezelo.
+             allatlista = kezelo.getAllAllat() ;
+             ugyfellista = kezelo.getAllÜgyfél();
         }
 
         public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus)
         {
             kezelo.Adományoz(ki, mikor, mennyit, tipus);
         }
-
 
         public bool Előjegyzést_végez(ALLAT állat)
         {
