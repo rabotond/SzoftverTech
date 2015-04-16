@@ -22,7 +22,7 @@ namespace Csillamponi_Allatmenhely
     {
         public ReservationPage()
         {
-            InitializeComponent();
+            InitializeComponent();//
         }
 
         private void Előjegyzés(object sender, RoutedEventArgs e)
