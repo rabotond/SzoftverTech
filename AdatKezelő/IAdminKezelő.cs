@@ -11,9 +11,20 @@ namespace AdatKezelő
 {
     public interface IAdmin_kezelő
     {
-        void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus);
+        
+         bool Állatot_hozzáad(ALLAT állat);
 
-        void Database_communication();
+         bool Állatot_módosít(ALLAT állat);
+
+         bool Állatot_töröl(ALLAT állat);
+
+         bool Ügyfelet_hozzáad(UGYFEL ügyfél);
+
+         bool Ügyfelet_módosít(ALLAT ügyfél);
+
+         bool Ügyfelet_töröl(UGYFEL ügyfél);
+        
+        void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus);
 
         bool Előjegyzést_végez(ALLAT állat);
 

@@ -50,5 +50,15 @@ namespace Csillamponi_Allatmenhely
 	public void Statisztika_készítő(){
 
 	}
+
+    private void Button_Click(object sender, RoutedEventArgs e)//kimutatás készítés xls
+    {
+
+    }
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)//kimutatás készít txt
+    {
+
+    }
     }
 }
