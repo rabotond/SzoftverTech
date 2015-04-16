@@ -41,7 +41,9 @@ namespace Csillamponi_Allatmenhely
 
         private void OrokbefogadClick(object sender, RoutedEventArgs e)
         {
-
+            PutInAnimal other = new PutInAnimal();
+            this.Close();
+            other.Show();
         }
     }
 }

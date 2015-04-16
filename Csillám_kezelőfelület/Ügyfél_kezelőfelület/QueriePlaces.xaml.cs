@@ -19,14 +19,35 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class QueriePlaces : Window
     {
+        QueueuPlacesViewModel VM;
         public QueriePlaces()
         {
             InitializeComponent();
+            VM = new QueueuPlacesViewModel();
         }
+       
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Search(object sender, RoutedEventArgs e)
         {
-
+            // Válaszott alapján  Select adatbázisban és mondjuk Messageboxba kiírni a db számot.
         }
     }
+    class QueueuPlacesViewModel
+    {
+        List<string> fajok;
+
+        public List<string> Fajok
+        {
+            get { return fajok; }
+            set { fajok = value; }
+        }
+        string selectedFaj;
+
+        public string SelectedFaj
+        {
+            get { return selectedFaj; }
+            set { selectedFaj = value; }
+        }
+    }
+    
 }

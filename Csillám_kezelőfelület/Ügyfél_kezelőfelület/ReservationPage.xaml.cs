@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -24,14 +25,34 @@ namespace Csillamponi_Allatmenhely
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Előjegyzés(object sender, RoutedEventArgs e)
+        {
+            //asd
+        }
+
+        private void Regisztráció(object sender, RoutedEventArgs e)
         {
 
         }
+    }
+    class ReservationPageViewModel {
+        BitmapImage kép;
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        public BitmapImage Kép
         {
-
+            get { return kép; }
+            set { kép = value; OnPropertyChanged("Kép"); }
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+    
     }
 }

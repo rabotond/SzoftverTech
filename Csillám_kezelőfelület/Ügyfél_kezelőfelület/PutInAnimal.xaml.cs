@@ -24,19 +24,25 @@ namespace Csillamponi_Allatmenhely
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ÜreshelyekLekérdezése(object sender, RoutedEventArgs e)
         {
-
+            QueriePlaces other = new QueriePlaces();
+            this.Close();
+            other.Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Adatfelvétel(object sender, RoutedEventArgs e)
         {
-
+            NewAnimal other = new NewAnimal();
+            this.Close();
+            other.Show();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Támogatás(object sender, RoutedEventArgs e)
         {
-
+            DonationPage oter = new DonationPage();
+            this.Close();
+            oter.Show();
         }
     }
 }

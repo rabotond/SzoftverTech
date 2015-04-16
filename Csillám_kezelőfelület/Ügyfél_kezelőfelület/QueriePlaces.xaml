@@ -4,8 +4,9 @@
         Title="QueriePlaces" Height="84" Width="352">
     <Grid>
         <Label Content="Állatfaj:" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" FontSize="18" Height="32"/>
-        <ListBox HorizontalAlignment="Left" Height="23" Margin="80,15,0,0" VerticalAlignment="Top" Width="154"/>
-        <Button Content="OK" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Button_Click"/>
+        
+        <Button Content="OK" HorizontalAlignment="Left" Margin="249,10,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Search"/>
+        <ComboBox ItemsSource="{Binding Path=Fajok}" SelectedItem="{Binding Path=SelectedFaj}" HorizontalAlignment="Left" Margin="80,16,0,0" VerticalAlignment="Top" Width="152"/>
 
     </Grid>
 </Window>

@@ -8,15 +8,15 @@ using AdatKezelő;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
-    class Admin_kezelőfelület_businessLogic:IAdmin_kezelő
+    class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
     {
         Admin_kezelő kezelo;
         List<ALLAT> allatlista;
         List<UGYFEL> ugyfellista;
         public Admin_kezelőfelület_businessLogic()
         {
-             allatlista = kezelo.getAllAllat() ;
-             ugyfellista = kezelo.getAllÜgyfél();
+            allatlista = kezelo.getAllAllat();
+            ugyfellista = kezelo.getAllÜgyfél();
         }
 
         public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus)
