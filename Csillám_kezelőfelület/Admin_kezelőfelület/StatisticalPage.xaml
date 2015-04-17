@@ -5,16 +5,16 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="122" Margin="10,10,0,0" VerticalAlignment="Top" Width="221">
             <Label Content="Kimutatás Típusa:" FontSize="20"/>
-            <RadioButton Content="Pénzügyi" FontSize="20"/>
-            <RadioButton Content="Készletek" FontSize="20"/>
-            <RadioButton Content="Statisztika" FontSize="20"/>
+            <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20"/>
+            <RadioButton x:Name="állományos" Content="Állatállomány" FontSize="20"/>
+            <RadioButton x:Name="összetett" Content="Összetett" FontSize="20"/>
         </StackPanel>
         <Label Content="Időszak Kezdete:" HorizontalAlignment="Left" Margin="10,144,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="kezdet" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top"/>
         <Label Content="Időszak Kezdete:" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
-        <Button Content="Kimutatás Készítés xlsx" HorizontalAlignment="Left" Margin="199,177,0,0" VerticalAlignment="Top" Width="138" Height="29" Click="Button_Click"/>
-        <Button Content="Kimutatás Készítés txt" HorizontalAlignment="Left" Margin="199,211,0,0" VerticalAlignment="Top" Width="138" Height="29" Click="Button_Click_1"/>
+        <DatePicker x:Name="vege" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
+        <Button Content="Kimutatás Készítés xml" HorizontalAlignment="Left" Margin="199,177,0,0" VerticalAlignment="Top" Width="138" Height="29" Click="statisztikaToXML_Click"/>
+        <Button Content="Kimutatás megtekintése" HorizontalAlignment="Left" Margin="199,211,0,0" VerticalAlignment="Top" Width="138" Height="29" Click="statisztikaOnGUI_Click"/>
 
     </Grid>
 </Window>

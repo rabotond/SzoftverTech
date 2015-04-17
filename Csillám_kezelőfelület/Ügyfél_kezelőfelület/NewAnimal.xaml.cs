@@ -16,6 +16,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using AdatKezelő;
+
 namespace Csillamponi_Allatmenhely
 {
     /// <summary>
@@ -37,6 +38,16 @@ namespace Csillamponi_Allatmenhely
             //ItemsSource="{Binding Path=ChipElojegyezLista}"
             
         }
+        public NewAnimal(ALLAT modositando)//ezt az ablakot hazsnáljuk módosításra is , csak ilyenkro már előre feltöltjük adatokkal
+        {
+
+            InitializeComponent();
+            VM = new NewAnimalViewModel();
+            DataContext = VM;
+
+            //ItemsSource="{Binding Path=ChipElojegyezLista}"
+
+        }
 
         private void Mentes(object sender, RoutedEventArgs e)
         {
@@ -55,8 +66,9 @@ namespace Csillamponi_Allatmenhely
 
             Ügyfél_Kezelő ügyfél = new Ügyfél_Kezelő();
             UGYFEL kicsoda = new UGYFEL();
-            ALLAT allat = new ALLAT();
+            ALLAT allat = new ALLAT();          
             allat.BETEGSEGEK = VM.Betegség;
+
             if (VM.Chip==chip_es_elojegyez.igen)
             {
                 allat.CHIPES = true;    
@@ -168,9 +180,7 @@ namespace Csillamponi_Allatmenhely
                 //fullPath =System.IO.Path.GetFullPath(fullPath);
                 
             }
-        }
-
-      
+        }  
        
     }
 

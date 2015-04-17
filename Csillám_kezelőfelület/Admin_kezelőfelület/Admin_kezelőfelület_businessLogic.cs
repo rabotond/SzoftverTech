@@ -11,12 +11,19 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
     {
         Admin_kezelő kezelo;
-        List<ALLAT> allatlista;
-        List<UGYFEL> ugyfellista;
+
         public Admin_kezelőfelület_businessLogic()
         {
-            allatlista = kezelo.getAllAllat();
-            ugyfellista = kezelo.getAllÜgyfél();
+            kezelo = new Admin_kezelő();
+
+        }
+        public List<ALLAT> FrissitAllat()
+        {
+            return kezelo.getAllAllat();
+        }
+        public List<UGYFEL> FrissitÜgyfel()
+        {
+            return kezelo.getAllÜgyfél();
         }
 
         public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus)
@@ -26,8 +33,8 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         public bool Előjegyzést_végez(ALLAT állat)
         {
-            kezelo.Előjegyzést_végez(állat);
-            return true;
+           return kezelo.Előjegyzést_végez(állat);
+            
         }
 
         public Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
@@ -37,32 +44,33 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         public bool Állatot_hozzáad(ALLAT állat)
         {
-            throw new NotImplementedException();
+            return kezelo.Állatot_hozzáad(állat);
         }
 
         public bool Állatot_módosít(ALLAT állat)
         {
-            throw new NotImplementedException();
+            return kezelo.Állatot_módosít(állat);
         }
 
         public bool Állatot_töröl(ALLAT állat)
         {
-            throw new NotImplementedException();
+            return kezelo.Állatot_töröl(állat);
         }
 
         public bool Ügyfelet_hozzáad(UGYFEL ügyfél)
         {
-            throw new NotImplementedException();
+            return kezelo.Ügyfelet_hozzáad(ügyfél);
         }
 
         public bool Ügyfelet_módosít(UGYFEL ügyfél)
         {
-            throw new NotImplementedException();
+            return kezelo.Ügyfelet_módosít(ügyfél);
         }
 
         public bool Ügyfelet_töröl(UGYFEL ügyfél)
         {
-            throw new NotImplementedException();
+            return kezelo.Ügyfelet_töröl(ügyfél);
+
         }
     }
 }

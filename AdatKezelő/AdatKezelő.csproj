@@ -63,7 +63,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdatbázisKezelő.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="AdminKezelő.cs" />
     <Compile Include="ADOMANY.cs">

@@ -11,54 +11,43 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AdatKezelő;
+using Csillám_kezelőfelület.Admin_kezelőfelület;
 
 namespace Csillamponi_Allatmenhely
 {
-    /// <summary>
-    /// Interaction logic for StatisticalPage.xaml
-    /// </summary>
+   
     public partial class StatisticalPage : Window
     {
+        Admin_kezelőfelület_businessLogic bl;
+        Statisztika stat;
         public StatisticalPage()
         {
             InitializeComponent();
         }
-        
-	internal Button buttonKimuatásXLS;
-	internal DatePicker datePickerKezdet;
-	internal DatePicker datePickerVég;
-	internal System.Windows.Controls.Label label1;
-	internal System.Windows.Controls.Label label2;
-	internal RadioButton radioButtonPénzügyi;
-	internal RadioButton radioButtonStatisztika;
 
 
-	/// 
-	/// <param name="sender"></param>
-	/// <param name="e"></param>
-	private void ButtonKimutatásTXT_Click(object sender, RoutedEventArgs e){
+        private void statisztikaToXML_Click(object sender, RoutedEventArgs e)//kimutatás készítés xml
+        {
+            string fajta;
+            if(adomanyos.IsChecked==true)
+            {
+                fajta="adomány";
+            }
+            else if(állományos.IsChecked==true)
+            {
+                 fajta="állomány";
+            }
+            else
+            {
+                 fajta="összetett";
+            }
+           stat= bl.Statisztikát_készít(fajta,(DateTime)kezdet.SelectedDate,(DateTime)vege.SelectedDate);
+        }
 
-	}
-
-	/// 
-	/// <param name="sender"></param>
-	/// <param name="e"></param>
-	private void ButtonKimutatásXLS_Click(object sender, RoutedEventArgs e){
-
-	}
-
-	public void Statisztika_készítő(){
-
-	}
-
-    private void Button_Click(object sender, RoutedEventArgs e)//kimutatás készítés xls
-    {
-
-    }
-
-    private void Button_Click_1(object sender, RoutedEventArgs e)//kimutatás készít txt
-    {
-
-    }
+        private void statisztikaOnGUI_Click(object sender, RoutedEventArgs e)
+        {
+            //új ablak ahol látszik a statisztika amit elkészítettünk
+        }
     }
 }
