@@ -3,20 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="AdministrationPage" Height="834.853" Width="1026.978">
     <Grid>
-        <DataGrid x:Name="ugyfelgrid" ItemsSource="{Binding Ügyfelek}" Margin="22,28,137,478" />
-
-        <DataGrid x:Name="állatgrid" ItemsSource="{Binding Allatok}"  SelectedItem="{Binding ValasztottElem}" HorizontalAlignment="Left" Height="325" Margin="15,437,0,0" VerticalAlignment="Top" Width="867"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="337*"/>
+            <RowDefinition Height="468*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="ugyfelgrid" ItemsSource="{Binding Ügyfelek}" SelectedItem="{Binding ValasztottUgyfel}" Margin="22,28,137,9.689" />
+        <DataGrid x:Name="állatgrid" ItemsSource="{Binding Allatok}"  SelectedItem="{Binding ValasztottAllat}" HorizontalAlignment="Left" Height="325" Margin="15,100.311,0,0" VerticalAlignment="Top" Width="867" Grid.Row="1"/>
         <Label Content="Ügyfelek" HorizontalAlignment="Left" Margin="22,2,0,0" VerticalAlignment="Top"/>
-        <Label Content="Állatok" HorizontalAlignment="Left" Margin="10,411,0,0" VerticalAlignment="Top"/>
-        <Button Content="Kimutatás Készítés" HorizontalAlignment="Left" Margin="887,329,0,0" VerticalAlignment="Top" Width="112" Height="26" Click="Kimutatas_Click"/>
-        <Button Content="Eledelek Kezelése" HorizontalAlignment="Left" Margin="887,407,0,0" VerticalAlignment="Top" Width="112" Height="23"/>
+        <Label Content="Állatok" HorizontalAlignment="Left" Margin="10,74.311,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+        <Button Content="Kimutatás Készítés" HorizontalAlignment="Left" Margin="887,329,0,0" VerticalAlignment="Top" Width="112" Height="26" Click="Kimutatas_Click" Grid.RowSpan="2"/>
+        <Button Content="Eledelek Kezelése" HorizontalAlignment="Left" Margin="887,70.311,0,0" VerticalAlignment="Top" Width="112" Height="23" Grid.Row="1"/>
         <Button Content="Új Ügyfél" HorizontalAlignment="Left" Margin="887,29,0,0" VerticalAlignment="Top" Width="75" Click="Ujugyfel_Click"/>
         <Button Content="Törlés" HorizontalAlignment="Left" Margin="887,83,0,0" VerticalAlignment="Top" Width="75" Click="UgyfeletTöröl_Click"/>
         <Button Content="Módosítás" HorizontalAlignment="Left" Margin="887,56,0,0" VerticalAlignment="Top" Width="75" Click="uygfelmodosit_Click"/>
-        <Button Content="Új Állat" HorizontalAlignment="Left" Margin="887,713,0,0" VerticalAlignment="Top" Width="75" Click="UjallatClick"/>
-        <Button Content="Törlés" HorizontalAlignment="Left" Margin="887,686,0,0" VerticalAlignment="Top" Width="75" Click="AllatTöröl_Click"/>
-        <Button Content="Módosítás" HorizontalAlignment="Left" Margin="887,740,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Frissítés" HorizontalAlignment="Left" Margin="22,360,0,0" VerticalAlignment="Top" Width="977" Height="42" Click="Frissit_Click"/>
+        <Button Content="Új Állat" HorizontalAlignment="Left" Margin="887,376.311,0,0" VerticalAlignment="Top" Width="75" Click="UjallatClick" Grid.Row="1"/>
+        <Button Content="Törlés" HorizontalAlignment="Left" Margin="887,349.311,0,0" VerticalAlignment="Top" Width="75" Click="AllatTöröl_Click" Grid.Row="1"/>
+        <Button Content="Módosítás" HorizontalAlignment="Left" Margin="887,403.311,0,0" VerticalAlignment="Top" Width="75" Grid.Row="1" Click="allatmodosit_Click"/>
+        <Button Content="Frissítés" HorizontalAlignment="Left" Margin="22,23.311,0,0" VerticalAlignment="Top" Width="977" Height="42" Click="Frissit_Click" Grid.Row="1"/>
 
     </Grid>
 </Window>

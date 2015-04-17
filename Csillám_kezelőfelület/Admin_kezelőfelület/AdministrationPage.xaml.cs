@@ -68,13 +68,13 @@ namespace Csillamponi_Allatmenhely
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
         {
-            CreateUser page = new CreateUser((UGYFEL)ugyfelgrid.SelectedItem);
+            CreateUser page = new CreateUser(VM.ValasztottUgyfel);
             this.Close();
             page.Show();
         }
         private void allatmodosit_Click(object sender, RoutedEventArgs e)
         {
-            NewAnimal page = new NewAnimal((ALLAT)állatgrid.SelectedItem);
+            NewAnimal page = new NewAnimal(VM.ValasztottAllat);
             this.Close();
              page.Show();
         }

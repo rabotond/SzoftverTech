@@ -14,18 +14,25 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     {
         List<ALLAT> allatok;
         List<UGYFEL> ugyfelek;
-        string valasztottElem;
+        ALLAT valasztottAllat;
+        UGYFEL valasztottUgyfel;
+
+        public ALLAT ValasztottAllat
+        {
+            get { return valasztottAllat; }
+            set { valasztottAllat = value; onPropChanged("ValasztottAllat"); }
+        }
+
+        public UGYFEL ValasztottUgyfel
+        {
+            get { return valasztottUgyfel; }
+            set { valasztottUgyfel = value; onPropChanged("ValasztottUgyfel"); }
+        }
         
         public Admin_kezelőfelület_viewmodel()
         {
 
         }    
-
-        public string ValasztottElem
-        {
-            get { return valasztottElem; }
-            set { valasztottElem = value; onPropChanged("ValasztottElem"); }
-        }
 
         public List<ALLAT> Allatok
         {

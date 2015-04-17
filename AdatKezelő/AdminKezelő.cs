@@ -96,8 +96,8 @@ using System.Xml.Linq;
 
             public bool Állatot_töröl(ALLAT állat)
             {
-                var a = db.ALLAT.Where(x => x.ALLATID == állat.ALLATID);
-                db.ALLAT.Remove((ALLAT)a);
+                ALLAT a = db.ALLAT.Where(x => x.ALLATID == állat.ALLATID).FirstOrDefault();
+                db.ALLAT.Remove(a);
                 if (db.SaveChanges() == 0)
                 {
                     return true;
