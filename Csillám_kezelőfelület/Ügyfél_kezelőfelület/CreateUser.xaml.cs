@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -22,6 +23,15 @@ namespace Csillamponi_Allatmenhely
         public CreateUser()
         {
             InitializeComponent();
+        }
+        public CreateUser(UGYFEL modositando)
+        {
+            InitializeComponent();
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

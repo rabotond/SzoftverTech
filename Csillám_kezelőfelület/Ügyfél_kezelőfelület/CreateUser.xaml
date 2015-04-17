@@ -17,7 +17,7 @@
         <TextBox HorizontalAlignment="Left" Height="109" Margin="263,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
         <Label Content="Örökbeadott állatok:" HorizontalAlignment="Left" Margin="263,156,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox HorizontalAlignment="Left" Height="109" Margin="263,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
-        <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,165,0,0" VerticalAlignment="Top" Width="75" FontSize="18"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,165,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Mentes_Click"/>
 
     </Grid>
 </Window>
