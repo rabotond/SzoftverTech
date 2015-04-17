@@ -34,5 +34,35 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         {
             return kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
         }
+
+        public bool Állatot_hozzáad(ALLAT állat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Állatot_módosít(ALLAT állat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Állatot_töröl(ALLAT állat)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Ügyfelet_hozzáad(UGYFEL ügyfél)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Ügyfelet_módosít(UGYFEL ügyfél)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Ügyfelet_töröl(UGYFEL ügyfél)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

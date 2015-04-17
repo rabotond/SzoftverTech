@@ -117,18 +117,7 @@ using System.Xml.Linq;
                 { return false; }
             }
 
-            public bool Ügyfelet_módosít(UGYFEL ügyfél)
-            {
-                UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
-                db.UGYFEL.Remove(a);
-                db.UGYFEL.Add(ügyfél);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
-            }
+           
 
             public bool Ügyfelet_töröl(UGYFEL ügyfél)
             {
@@ -141,7 +130,21 @@ using System.Xml.Linq;
                 else
                 { return false; }
             }
-        
+
+
+
+            public bool Ügyfelet_módosít(UGYFEL ügyfél)
+            {
+                UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
+                db.UGYFEL.Remove(a);
+                db.UGYFEL.Add(ügyfél);
+                if (db.SaveChanges() == 0)
+                {
+                    return true;
+                }
+                else
+                { return false; }
+            }
         }//end Admin_kezelő
 
     }//end namespace AdatKezelő

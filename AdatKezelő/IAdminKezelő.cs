@@ -20,7 +20,7 @@ namespace AdatKezelő
 
          bool Ügyfelet_hozzáad(UGYFEL ügyfél);
 
-         bool Ügyfelet_módosít(ALLAT ügyfél);
+         bool Ügyfelet_módosít(UGYFEL ügyfél);
 
          bool Ügyfelet_töröl(UGYFEL ügyfél);
         
