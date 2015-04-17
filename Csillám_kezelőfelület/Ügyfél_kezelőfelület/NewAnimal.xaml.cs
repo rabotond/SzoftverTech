@@ -58,6 +58,7 @@ namespace Csillamponi_Allatmenhely
             VM.Szin = szin.ToString();
             VM.Megjegyzes = megjegyzes.ToString();
             VM.Betegség = Betegségek.ToString();
+            
            //VM.Eledeltipus
             //VM.Chipelojegyez   chip igazhamis
             //VM.Chipelojegyez   elojegyez igazhamis

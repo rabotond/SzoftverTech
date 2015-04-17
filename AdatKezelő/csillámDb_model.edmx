@@ -28,7 +28,7 @@
           <Property Name="OLTVA" Type="bit" />
           <Property Name="BETEGSEGEK" Type="varchar" MaxLength="40" />
           <Property Name="NOSTENY" Type="bit" />
-          <Property Name="TOMEG" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="TOMEG" Type="numeric" Precision="18" Scale="0" />
           <Property Name="MERET" Type="numeric" Precision="4" Scale="0" />
           <Property Name="CHIPES" Type="bit" />
           <Property Name="ELOJEGYZETT" Type="bit" />
@@ -157,7 +157,7 @@
           <Property Name="OLTVA" Type="Boolean" />
           <Property Name="BETEGSEGEK" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="NOSTENY" Type="Boolean" />
-          <Property Name="TOMEG" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="TOMEG" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="MERET" Type="Decimal" Precision="4" Scale="0" />
           <Property Name="CHIPES" Type="Boolean" />
           <Property Name="ELOJEGYZETT" Type="Boolean" />

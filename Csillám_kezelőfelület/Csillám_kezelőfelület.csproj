@@ -63,6 +63,9 @@
     </ApplicationDefinition>
     <Compile Include="Admin_kezelőfelület\Admin_kezelőfelület_businessLogic.cs" />
     <Compile Include="Admin_kezelőfelület\Admin_kezelőfelület_viewmodel.cs" />
+    <Compile Include="Admin_kezelőfelület\Statistic.xaml.cs">
+      <DependentUpon>Statistic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
@@ -94,6 +97,10 @@
     <Page Include="Admin_kezelőfelület\MaterialManagement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Admin_kezelőfelület\Statistic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Admin_kezelőfelület\StatisticalPage.xaml">
       <Generator>MSBuild:Compile</Generator>

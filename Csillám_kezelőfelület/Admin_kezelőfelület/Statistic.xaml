@@ -1,0 +1,12 @@
+﻿<Window x:Class="Csillám_kezelőfelület.Admin_kezelőfelület.Statistic"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Statistic" Height="361" Width="733">
+    <Grid>
+        <Grid.ColumnDefinitions>
+           
+        </Grid.ColumnDefinitions>
+        <DataGrid  HorizontalAlignment="Left" Margin="192,72,0,0" VerticalAlignment="Top" Width="219" Height="201"/>
+
+    </Grid>
+</Window>

@@ -21,7 +21,7 @@ using System.Xml.Linq;
 
            public List<ALLAT> getAllAllat()
             {
-                return db.ALLAT.Where(x=>x.ALLATID!=null).ToList();
+                return db.ALLAT.Where(x=>x.ALLATID!=null && x.NEV!=null).ToList();
             }
 
            public List<UGYFEL> getAllÜgyfél()

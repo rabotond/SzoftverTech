@@ -31,13 +31,14 @@ namespace Csillamponi_Allatmenhely
             BL = new Admin_kezelőfelület_businessLogic();
             VM = new Admin_kezelőfelület_viewmodel();
             DataContext = VM;
-            BL.FrissitAllat(); BL.FrissitÜgyfel();
+            VM.Allatok= BL.FrissitAllat();
+            VM.Ügyfelek = BL.FrissitÜgyfel();
         }
 
         private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a listboxokat a friss adatbázis adatokkal
         {
             VM.Allatok = BL.FrissitAllat();
-            VM.Ügyfelek = BL.FrissitÜgyfel();
+            VM.Ügyfelek= BL.FrissitÜgyfel();
         }
 
         private void UjallatClick(object sender, RoutedEventArgs e)
@@ -56,24 +57,24 @@ namespace Csillamponi_Allatmenhely
 
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Állatot_töröl((ALLAT)állatok.SelectedItem);
-            VM.Allatok.Remove((ALLAT)állatok.SelectedItem);
+            BL.Állatot_töröl((ALLAT)állatgrid.SelectedItem);
+            VM.Allatok.Remove((ALLAT)állatgrid.SelectedItem);
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Ügyfelet_töröl((UGYFEL)ügyfelek.SelectedItem);
-            VM.Ügyfelek.Remove((UGYFEL)ügyfelek.SelectedItem);
+            BL.Ügyfelet_töröl((UGYFEL)ugyfelgrid.SelectedItem);
+            VM.Ügyfelek.Remove((UGYFEL)ugyfelgrid.SelectedItem);
         }
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
         {
-            CreateUser page = new CreateUser((UGYFEL)ügyfelek.SelectedItem);
+            CreateUser page = new CreateUser((UGYFEL)ugyfelgrid.SelectedItem);
             this.Close();
             page.Show();
         }
         private void allatmodosit_Click(object sender, RoutedEventArgs e)
         {
-            NewAnimal page = new NewAnimal((ALLAT)állatok.SelectedItem);
+            NewAnimal page = new NewAnimal((ALLAT)állatgrid.SelectedItem);
             this.Close();
              page.Show();
         }

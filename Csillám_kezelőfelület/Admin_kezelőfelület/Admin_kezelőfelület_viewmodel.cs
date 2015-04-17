@@ -5,14 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using AdatKezelő;
 using System.ComponentModel;
+using System.Data;
 
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
     class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged
     {
-        List<ALLAT> allatok;
-        List<UGYFEL> ugyfelek;
+        List<object> allatok;
+        List<object> ugyfelek;
+
         string valasztottElem;
         
         public Admin_kezelőfelület_viewmodel()
@@ -26,13 +28,13 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             set { valasztottElem = value; onPropChanged("ValasztottElem"); }
         }
 
-        public List<ALLAT> Allatok
+        public List<object> Allatok
         {
             get { return allatok; }
             set { allatok = value; onPropChanged("Allatok"); }
         }
 
-        public List<UGYFEL> Ügyfelek
+        public List<object> Ügyfelek
         {
             get { return ugyfelek; }
             set { ugyfelek = value; onPropChanged("Ügyfelek"); }

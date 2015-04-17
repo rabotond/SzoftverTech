@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="csillamponimenhelyDBModel.ELEDEL" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="csillamponimenhelyDBModel.KENNEL" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="csillamponimenhelyDBModel.UGYFEL" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="csillamponimenhelyDBModel.user" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponimenhelyDBModel.user" Width="1.5" PointX="8.75" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="csillamponimenhelyDBModel.ADOMANY_FOR_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="csillamponimenhelyDBModel.ALLAT_FOR_KEY" ManuallyRouted="false" />
         <AssociationConnector Association="csillamponimenhelyDBModel.ALLAT_FOR_KEY1" ManuallyRouted="false" />
