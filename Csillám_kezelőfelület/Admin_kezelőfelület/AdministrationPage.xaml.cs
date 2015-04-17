@@ -31,6 +31,7 @@ namespace Csillamponi_Allatmenhely
             BL = new Admin_kezelőfelület_businessLogic();
             VM = new Admin_kezelőfelület_viewmodel();
             DataContext = VM;
+            BL.FrissitAllat(); BL.FrissitÜgyfel();
         }
 
         private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a listboxokat a friss adatbázis adatokkal

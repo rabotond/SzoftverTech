@@ -12,40 +12,72 @@ namespace AdatKezelő
 {
     public class Statisztika
     {
-
-        private DateTime meddig;
         private DateTime mettől;
-        private string név;
+        private DateTime meddig;
         private string tipus;
-        public Admin_kezelő m_Admin_kezelő;
+        List<DateTime> napok;
 
-        public Statisztika()
+        public List<DateTime> Napok
         {
-            //asdsasdasd
+            get { return napok; }
+            set { napok = value; }
         }
 
-        ~Statisztika()
+        public DateTime Meddig
         {
-
+            get { return meddig; }
+            set { meddig = value; }
         }
 
-        public virtual void Dispose()
+        public DateTime Mettől
         {
-
+            get { return mettől; }
+            set { mettől = value; }
+        }
+       
+        public string Tipus
+        {
+            get { return tipus; }
+            set { tipus = value; }
         }
 
-        /// 
-        /// <param name="dátum"></param>
-        /// <param name="tipus"></param>
-        /// <param name="név"></param>
-        public Statisztika(string dátum, string tipus, string név)
+        public Statisztika( string ujtipus,DateTime ujmettől,DateTime ujmeddig)
         {
+            mettől = ujmettől; meddig = ujmeddig; tipus = ujtipus;
+            napok = new List<DateTime>();
 
+            for (int i = 0; i < (meddig - mettől).TotalDays;i++ )
+            {
+                napok.Add(mettől.AddDays(i));
+            }
         }
 
-        public void Nyomtat()
+        public int elvittAllatDb()
         {
+            return 0;
+        }
+        public int hozottAlaltDb()
+        {
+            return 0;
+        }
 
+        public double befolyPenz()
+        {
+            return 0;
+        }
+
+        public double kapottEledel()
+        {
+            return 0;
+        }
+        public int szabadKennelDb()
+        {
+            return 0;
+        }
+
+        public int elojegyzesDb()
+        {
+            return 0;
         }
 
     }//end Statisztika

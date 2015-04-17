@@ -66,7 +66,7 @@ using System.Xml.Linq;
 
             public Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
             {
-                Statisztika stat = new Statisztika();
+                Statisztika stat = new Statisztika( fajta,  idoszak_kezdet,  idoszak_vege);
                 return stat;
             }
 
