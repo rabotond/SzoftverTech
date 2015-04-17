@@ -15,7 +15,7 @@ namespace AdatKezelő
 
         /// 
         /// <param name="adomány"></param>
-        void Adományoz(ADOMANY adomány);
+        void Adományoz(Adomány_típus típus, int mennyiség, string ki);
 
         /// 
         /// <param name="állat"></param>

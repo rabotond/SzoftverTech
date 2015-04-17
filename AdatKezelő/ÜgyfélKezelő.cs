@@ -12,10 +12,10 @@ namespace AdatKezelő
 {
     public class Ügyfél_Kezelő : IÜgyfél_kezelő
     {
-
+        Admin_kezelő adminKezelő;
         public Ügyfél_Kezelő()
         {
-
+            adminKezelő = new Admin_kezelő();
         }
 
         public virtual void Dispose()
@@ -25,8 +25,16 @@ namespace AdatKezelő
 
         /// 
         /// <param name="adomány"></param>
-        public void Adományoz(ADOMANY adomány)
+        public void Adományoz(Adomány_típus típus, int mennyiség, string ki)
         {
+            var q = from x in adminKezelő.Db.UGYFEL
+                    where x.EMAIL == ki
+                    select x.UGYFELID;
+            if (q.Count() != 0)
+            {
+                Guid userGuid = q.First();
+                adminKezelő.Adományoz(userGuid, "wtf", mennyiség, típus);
+            }
 
         }
 

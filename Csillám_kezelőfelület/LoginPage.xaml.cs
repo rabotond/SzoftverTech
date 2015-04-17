@@ -47,5 +47,12 @@ namespace Csillamponi_Allatmenhely
             this.Close();
             other.Show();
         }
+
+        private void AdományozClick(object sender, RoutedEventArgs e)
+        {
+            DonationPage donationPage = new DonationPage();
+            donationPage.Show();
+            this.Close();
+        }
     }
 }
