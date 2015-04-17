@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -27,12 +28,16 @@ namespace Csillamponi_Allatmenhely
 
         private void Előjegyzés(object sender, RoutedEventArgs e)
         {
-            //asd
+            ALLAT allat = new ALLAT();
+            // melyiket is ?
+            allat.ELOJEGYZETT=true;   
         }
 
         private void Regisztráció(object sender, RoutedEventArgs e)
         {
-
+            CreateUser other = new CreateUser();
+            this.Close();
+            other.Show();
         }
     }
     class ReservationPageViewModel {

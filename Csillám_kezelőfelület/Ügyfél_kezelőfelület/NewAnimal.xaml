@@ -1,45 +1,50 @@
 ﻿<Window x:Class="Csillamponi_Allatmenhely.NewAnimal"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NewAnimal" Height="496" Width="618"
+        Title="NewAnimal" Height="617.181" Width="637.728"
         >
     <Grid>
         <Label Content="Név:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="név" HorizontalAlignment="Left" Height="23" Margin="60,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <Label Content="Kor:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox Name="kor" HorizontalAlignment="Left" Height="23" Margin="60,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18"/>
+        <Label Content="Születési idő(yyyy:mm:dd)" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Name="kor" HorizontalAlignment="Left" Height="23" Margin="230,48,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18" />
         <Label Content="Fajta:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="fajta" HorizontalAlignment="Left" Height="23" Margin="60,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
         <Label Content="Nem:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox Name="nem" HorizontalAlignment="Left" Height="23" Margin="60,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
         <Label Content="Eledel tipusa:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ComboBox  ItemsSource="{Binding Path=Étellista}" SelectedItem="{Binding Path=Ételek}"  HorizontalAlignment="Left" Height="22" Margin="129,126,0,0" VerticalAlignment="Top" Width="117" FontSize="18"/>
-        <Label Content="Előző tulajdonos:" HorizontalAlignment="Left" Margin="10,142,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox Name="elozotulaj" HorizontalAlignment="Left" Height="23" Margin="160,154,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <Label Content="Előző tulajdonos:" HorizontalAlignment="Left" Margin="12,518,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Name="elozotulaj" HorizontalAlignment="Left" Height="23" Margin="162,530,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
         <Label Content="Eredete:" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="eredete" HorizontalAlignment="Left" Height="23" Margin="110,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
-        <StackPanel HorizontalAlignment="Left" Height="72" Margin="20,251,0,0" VerticalAlignment="Top" Width="160">
+        <StackPanel HorizontalAlignment="Left" Height="49" Margin="20,251,0,0" VerticalAlignment="Top" Width="160">
             <RadioButton IsChecked="{Binding Megkapta}" Content="Megkapta" FontSize="18"/>
             <RadioButton IsChecked="{Binding Nemkaptameg}" Content="Nem kapta meg" FontSize="18"/>
-            <RadioButton IsChecked="{Binding Nincsinfo}" Content="nincs infó" FontSize="18"/>
         </StackPanel>
         <Label Content="Chippeztetve van?" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox Name="chipe" ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="165,340,0,0" VerticalAlignment="Top" Width="117" FontSize="18"/>
-        
+        <ComboBox Name="chipe" ItemsSource="{Binding Path=ChipLista}" SelectedItem="{Binding Path=Chip}" HorizontalAlignment="Left" Height="22" Margin="165,340,0,0" VerticalAlignment="Top" Width="117" FontSize="18"/>
+
         <Label Content="Tömeg(kg):" HorizontalAlignment="Left" Margin="10,361,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox Name="tomeg" HorizontalAlignment="Left" Height="23" Margin="110,367,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55" FontSize="18"/>
         <Label Content="Szín:" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox  Name="szin" HorizontalAlignment="Left" Height="23" Margin="60,395,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="105" FontSize="18"/>
         <Label Content="Előjegyezve:" HorizontalAlignment="Left" Margin="10,416,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ComboBox ItemsSource="{Binding Path=ChipElojegyezLista}" SelectedItem="{Binding Path=Chipelojegyez}" HorizontalAlignment="Left" Height="22" Margin="117,423,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
-        
-        
+        <ComboBox ItemsSource="{Binding Path=ElojegyezLista}" SelectedItem="{Binding Path=Elojegyez}" HorizontalAlignment="Left" Height="22" Margin="117,423,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
+
+
         <Image HorizontalAlignment="Left" Height="211" Margin="308,10,0,0" VerticalAlignment="Top" Width="277" Source="{Binding Path=Kép}" />
         <Label Content="Megjegyzés" HorizontalAlignment="Left" Margin="311,266,0,0" VerticalAlignment="Top" Width="123" FontSize="18"/>
         <TextBox Name="megjegyzes" HorizontalAlignment="Left" Height="95" Margin="314,300,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="271" FontSize="18"/>
         <Button Content="Mentés" HorizontalAlignment="Left" Margin="474,411,0,0" VerticalAlignment="Top" Width="108" Height="34" FontSize="18" Click="Mentes"/>
         <Label Content="Oltások" HorizontalAlignment="Left" Margin="20,212,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button Content="Fotó feltöltése" HorizontalAlignment="Left" Margin="359,226,0,0" VerticalAlignment="Top" Width="160" FontSize="18" Click="Foto_feltolt"/>
+        <Label Content="Betegségek:" HorizontalAlignment="Left" Margin="10,451,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Name="Betegségek" HorizontalAlignment="Left" Height="23" Margin="121,462,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <Label Content="Ivartalanított:" HorizontalAlignment="Left" Margin="14,483,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ComboBox ItemsSource="{Binding Path=IvarLista}" SelectedItem="{Binding Path=Ivar}" HorizontalAlignment="Left" Height="22" Margin="121,490,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
+        <Label Content="Méret(cm):" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Name="Méret" HorizontalAlignment="Left" Height="23" Margin="111,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" FontSize="18"/>
+        <ComboBox  ItemsSource="{Binding Path=Fiulanylista}" SelectedItem="{Binding Path=Fiulany}" HorizontalAlignment="Left" Height="22" Margin="85,99,0,0" VerticalAlignment="Top" Width="117" FontSize="18"/>
 
     </Grid>
 </Window>

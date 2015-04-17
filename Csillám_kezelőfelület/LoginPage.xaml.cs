@@ -36,12 +36,14 @@ namespace Csillamponi_Allatmenhely
 
         private void OrokbeadClick(object sender, RoutedEventArgs e)
         {
-
+            PutInAnimal other = new PutInAnimal();
+            this.Close();
+            other.Show();
         }
 
         private void OrokbefogadClick(object sender, RoutedEventArgs e)
         {
-            PutInAnimal other = new PutInAnimal();
+            AdoptionPage other = new AdoptionPage();
             this.Close();
             other.Show();
         }

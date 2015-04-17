@@ -36,12 +36,12 @@ namespace AdatKezelő
             return false;
         }
 
-        public void Örökbe_ad(string mikor, string mit, int ki)
+        public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)
         {
 
         }
 
-        public void Örökbe_fogad(string mikor, int melyik_állatot, int Ki)
+        public void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda)
         {
 
         }

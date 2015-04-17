@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
+using AdatKezelő;
 namespace Csillamponi_Allatmenhely
 {
     /// <summary>
@@ -24,6 +25,7 @@ namespace Csillamponi_Allatmenhely
     {
         string képutja = null;
         NewAnimalViewModel VM;
+        string képforrás;
        
         public NewAnimal()
         {
@@ -41,15 +43,75 @@ namespace Csillamponi_Allatmenhely
             VM.Neve = név.ToString();
             VM.Kor = kor.ToString();
             VM.Fajta = fajta.ToString();
-            VM.Nem = nem.ToString();
             VM.Tomeg = tomeg.ToString();
             VM.Szin = szin.ToString();
             VM.Megjegyzes = megjegyzes.ToString();
-            
+            VM.Betegség = Betegségek.ToString();
            //VM.Eledeltipus
             //VM.Chipelojegyez   chip igazhamis
             //VM.Chipelojegyez   elojegyez igazhamis
            // SaveClipboardImageToFile(képutja);
+
+
+            Ügyfél_Kezelő ügyfél = new Ügyfél_Kezelő();
+            UGYFEL kicsoda = new UGYFEL();
+            ALLAT allat = new ALLAT();
+            allat.BETEGSEGEK = VM.Betegség;
+            if (VM.Chip==chip_es_elojegyez.igen)
+            {
+                allat.CHIPES = true;    
+            }
+            else
+            {
+                allat.CHIPES = false;    
+            }
+            if (VM.Elojegyez==chip_es_elojegyez.igen)
+            {
+                allat.ELOJEGYZETT = true;    
+            }
+            else
+            {
+                allat.ELOJEGYZETT = false;
+            }
+            //allat.ELOZO_TULAJ = 12;  ?? GUID
+            allat.FAJTA = VM.Fajta;
+            if(VM.Ivar == chip_es_elojegyez.igen )
+            {
+                allat.IVARTALANITOTT = true;
+            }
+            else
+            {
+                allat.IVARTALANITOTT = false;
+            }
+            //allat.KENNEL = true; //  ?????????????????
+            allat.KEP = képforrás;
+            allat.MERET =decimal.Parse( VM.Méret);
+            allat.NEV = VM.Neve;
+            
+            if (VM.Fiulany==fiu_lany.hím)
+            {
+                allat.NOSTENY = false;
+            }
+            else
+            {
+                allat.NOSTENY=true;
+            }
+            if (VM.Oltasok==oltas.igen)
+            {
+                allat.OLTVA = true;    
+            }
+            else
+            {
+                allat.OLTVA = false;
+            }
+            allat.SZIN = VM.Szin;
+            allat.SZULETESI_IDO = Convert.ToDateTime( VM.Kor);
+            allat.TOMEG = decimal.Parse( VM.Tomeg);
+            //allat.UGYFEL = "asd"; ????????????????
+
+
+
+            ügyfél.Örökbe_ad(allat, kicsoda);
 
         }
 
@@ -70,7 +132,7 @@ namespace Csillamponi_Allatmenhely
             {
                 // Open document
                 BitmapImage bi = new BitmapImage();
-                
+                képforrás = dlg.FileName;
 
                 string filename = dlg.FileName;
                 képutja = dlg.FileName;
@@ -107,6 +169,8 @@ namespace Csillamponi_Allatmenhely
                 
             }
         }
+
+      
        
     }
 
@@ -114,12 +178,20 @@ namespace Csillamponi_Allatmenhely
 
      class NewAnimalViewModel :  INotifyPropertyChanged
     {
-        public NewAnimalViewModel ()
+        string méret;
+
+        public string Méret
         {
-            /*chipElojegyezLista = new ObservableCollection<string>();
-            chipElojegyezLista.Add("Igen");
-            chipElojegyezLista.Add("Nem");
-            chipElojegyezLista.Add("Nincs Info");*/
+            get { return méret; }
+            set { méret = value; }
+        }
+
+        string betegség;
+
+        public string Betegség
+        {
+            get { return betegség; }
+            set { betegség = value; }
         }
 
 
@@ -204,20 +276,56 @@ namespace Csillamponi_Allatmenhely
             get { return megjegyzes; }
             set { megjegyzes = value; }
         }
-        chip_es_elojegyez chipelojegyez;
+        chip_es_elojegyez chip;
 
-        public chip_es_elojegyez Chipelojegyez
+        public chip_es_elojegyez Chip
         {
-            get { return chipelojegyez; }
-            set { chipelojegyez = value; OnPropertyChanged("Chipelojegyez"); }
+            get { return chip; }
+            set { chip = value; OnPropertyChanged("Chip"); }
         }
       
-        public Array ChipElojegyezLista
+        public Array ChipLista
         {
             get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
             set { }
         }
-     
+        chip_es_elojegyez elojegyez;
+
+        public chip_es_elojegyez Elojegyez
+        {
+            get { return elojegyez; }
+            set { elojegyez = value; OnPropertyChanged("Elojegyez"); }
+        }
+
+        public Array ElojegyezLista
+        {
+            get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
+            set { }
+        }
+        chip_es_elojegyez ivar;
+
+        public chip_es_elojegyez Ivar
+        {
+            get { return ivar; }
+            set { ivar = value; OnPropertyChanged("Ivar"); }
+        }
+        public Array IvarLista
+        {
+            get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
+            set { }
+        }
+        fiu_lany fiulany;
+
+        public fiu_lany Fiulany
+        {
+            get { return fiulany; }
+            set { fiulany = value; OnPropertyChanged("Fiulany"); }
+        }
+        public Array Fiulanylista
+        {
+            get { return Enum.GetValues(typeof(fiu_lany)); }
+            set { }
+        }
 
         public bool Megkapta
         {
@@ -229,11 +337,7 @@ namespace Csillamponi_Allatmenhely
             get { return oltasok == oltas.nem; }  // from form
             set { if (value) { Oltasok = oltas.nem; } } // if changes
         }
-        public bool Nincsinfo
-        {
-            get { return oltasok == oltas.info; }  // from form
-            set { if (value) { Oltasok = oltas.info; } } // if changes
-        }
+       
         public oltas Oltasok
         {
             get { return oltasok; }
@@ -265,7 +369,7 @@ namespace Csillamponi_Allatmenhely
     }
     enum oltas
     {
-        igen,nem,info
+        igen,nem
     }
     enum ételek
     {
@@ -274,6 +378,10 @@ namespace Csillamponi_Allatmenhely
     enum chip_es_elojegyez
     {
         igen,nem
+    }
+    enum fiu_lany
+    {
+        hím,nőstény
     }
 
     class  EnumToRadioButtonConverter:IValueConverter

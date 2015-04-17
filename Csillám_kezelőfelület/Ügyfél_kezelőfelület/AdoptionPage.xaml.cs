@@ -27,5 +27,18 @@ namespace Csillamponi_Allatmenhely
             
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            // ide egy állatra való kattintáskor kéne az ID alapján azzal meghívni az előjegyez ( Reservation page) -et. Ami abból már kitudja listázni az állatnak az adatait.
+        }
+       
+
+            
     }
 }

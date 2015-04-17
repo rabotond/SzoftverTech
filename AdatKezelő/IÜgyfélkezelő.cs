@@ -33,20 +33,12 @@ namespace AdatKezelő
         /// <param name="mikor"></param>
         /// <param name="mit"></param>
         /// <param name="ki"></param>
-        void Örökbe_ad(string mikor, string mit, int ki);
+        void Örökbe_ad(ALLAT allat,UGYFEL kicsoda);
 
-        /// 
-        /// <param name="mikor"></param>
-        /// <param name="melyik_állatot"></param>
-        /// <param name="Ki"></param>
-        void Örökbe_fogad(string mikor, int melyik_állatot, int Ki);
+       // változtattam
+        void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda);
 
-        /// 
-        /// <param name="sterilizált"></param>
-        /// <param name="nem"></param>
-        /// <param name="kor"></param>
-        /// <param name="szín"></param>
-        /// <param name="fajta"></param>
+      // változtatva
         ALLAT Összetett_keresés(bool sterilizált, bool nem, int kor, string szín, string fajta);
 
         /// 

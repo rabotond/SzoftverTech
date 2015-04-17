@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -25,6 +26,8 @@ namespace Csillamponi_Allatmenhely
             InitializeComponent();
             VM = new QueueuPlacesViewModel();
         }
+
+
        
 
         private void Search(object sender, RoutedEventArgs e)
@@ -47,6 +50,12 @@ namespace Csillamponi_Allatmenhely
         {
             get { return selectedFaj; }
             set { selectedFaj = value; }
+        }
+        void feltolt ()
+        {
+            Ügyfél_Kezelő a = new Ügyfél_Kezelő();
+            
+            
         }
     }
     
