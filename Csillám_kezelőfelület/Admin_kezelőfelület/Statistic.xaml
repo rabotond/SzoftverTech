@@ -4,9 +4,9 @@
         Title="Statistic" Height="361" Width="733">
     <Grid>
         <Grid.ColumnDefinitions>
-           
+
         </Grid.ColumnDefinitions>
-        <DataGrid  HorizontalAlignment="Left" Margin="192,72,0,0" VerticalAlignment="Top" Width="219" Height="201"/>
+        <DataGrid x:Name="statgrid"  HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="617" Height="201"/>
 
     </Grid>
 </Window>

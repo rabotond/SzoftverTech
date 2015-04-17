@@ -12,9 +12,8 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
     class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged
     {
-        List<object> allatok;
-        List<object> ugyfelek;
-
+        List<ALLAT> allatok;
+        List<UGYFEL> ugyfelek;
         string valasztottElem;
         
         public Admin_kezelőfelület_viewmodel()
@@ -28,13 +27,13 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             set { valasztottElem = value; onPropChanged("ValasztottElem"); }
         }
 
-        public List<object> Allatok
+        public List<ALLAT> Allatok
         {
             get { return allatok; }
             set { allatok = value; onPropChanged("Allatok"); }
         }
 
-        public List<object> Ügyfelek
+        public List<UGYFEL> Ügyfelek
         {
             get { return ugyfelek; }
             set { ugyfelek = value; onPropChanged("Ügyfelek"); }

@@ -33,24 +33,14 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
             return stat;
         }
-
-        public List<object> FrissitAllat()
-        {
-           // return kezelo.getAllAllat();
-            var q =
-           from allat in kezelo.Db.ALLAT
-           select new { név = allat.NEV, fajta=allat.FAJTA,oltva = allat.OLTVA, elojegyzett = allat.ELOJEGYZETT,ivartalanított=allat.IVARTALANITOTT,chipezett=allat.CHIPES,született=allat.SZULETESI_IDO,színe=allat.SZIN };
-            return q.ToList<object>();
+        public List<ALLAT> FrissitAllat()
+        { 
+            return kezelo.getAllAllat();
         }
-
-        public List<object> FrissitÜgyfel()
+      
+        public List<UGYFEL> FrissitÜgyfel()
         {
-            var q =
-            from ugyfel in kezelo.Db.UGYFEL
-            select new { név = ugyfel.VEZETEKNEV+" "+ugyfel.KERESZTNEV, város = ugyfel.VAROS, email = ugyfel.EMAIL };
-            return q.ToList<object>();
-
-           
+            return kezelo.getAllÜgyfél();
         }
 
         public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus)
