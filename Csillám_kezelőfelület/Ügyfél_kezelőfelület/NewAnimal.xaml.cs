@@ -16,6 +16,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using AdatKezelő;
+using System.Globalization;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -58,17 +59,15 @@ namespace Csillamponi_Allatmenhely
             VM.Szin = szin.ToString();
             VM.Megjegyzes = megjegyzes.ToString();
             VM.Betegség = Betegségek.ToString();
+            VM.Méret = Méret.ToString();
             
-           //VM.Eledeltipus
-            //VM.Chipelojegyez   chip igazhamis
-            //VM.Chipelojegyez   elojegyez igazhamis
            // SaveClipboardImageToFile(képutja);
 
 
             Ügyfél_Kezelő ügyfél = new Ügyfél_Kezelő();
             UGYFEL kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();          
-            allat.BETEGSEGEK = VM.Betegség;
+            
 
             if (VM.Chip==chip_es_elojegyez.igen)
             {
@@ -87,7 +86,7 @@ namespace Csillamponi_Allatmenhely
                 allat.ELOJEGYZETT = false;
             }
             //allat.ELOZO_TULAJ = 12;  ?? GUID
-            allat.FAJTA = VM.Fajta;
+            
             if(VM.Ivar == chip_es_elojegyez.igen )
             {
                 allat.IVARTALANITOTT = true;
@@ -96,9 +95,11 @@ namespace Csillamponi_Allatmenhely
             {
                 allat.IVARTALANITOTT = false;
             }
-            //allat.KENNEL = true; //  ?????????????????
+            //allat.KENNEL = ""; //  ???????  nem értem , ez egy másik tábla nem is állat
+
             allat.KEP = képforrás;
-            allat.MERET =decimal.Parse( VM.Méret);
+            //allat.MERET =decimal.Parse(VM.Méret);
+            //allat.UGYFEL = "asd"; ????????????????
             allat.NEV = VM.Neve;
             
             if (VM.Fiulany==fiu_lany.hím)
@@ -117,12 +118,25 @@ namespace Csillamponi_Allatmenhely
             {
                 allat.OLTVA = false;
             }
-            allat.SZIN = VM.Szin;
-            allat.SZULETESI_IDO = Convert.ToDateTime( VM.Kor);
-            allat.TOMEG = decimal.Parse( VM.Tomeg);
-            //allat.UGYFEL = "asd"; ????????????????
+            SaveClipboardImageToFile(képforrás); 
+            if (VM.Szin!=null && VM.Tomeg!= null && VM.Fajta!= null && VM.Betegség!=null && képforrás!=null)
+            {
 
-
+                SaveClipboardImageToFile(képforrás); 
+                allat.SZIN = VM.Szin;
+                allat.FAJTA = VM.Fajta;
+                //allat.SZULETESI_IDO = DateTime.ParseExact(VM.Kor, "yyyy.MM.dd", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                allat.TOMEG = decimal.Parse(VM.Tomeg);
+                allat.BETEGSEGEK = VM.Betegség;
+                
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Üres mező");
+            }
+            
+            
+            
 
             ügyfél.Örökbe_ad(allat, kicsoda);
 
@@ -132,10 +146,6 @@ namespace Csillamponi_Allatmenhely
         {
             
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Set filter for file extension and default file extension
-            //dlg.DefaultExt = ".txt";
-            //dlg.Filter = "Text documents (.txt)|*.txt";
 
             // Display OpenFileDialog by calling ShowDialog method
             Nullable<bool> result = dlg.ShowDialog();
@@ -168,11 +178,9 @@ namespace Csillamponi_Allatmenhely
             bi.BeginInit();
             bi.UriSource = new Uri(picturepath, UriKind.RelativeOrAbsolute);
             bi.EndInit();
-            string allatpath = @"\..állatok\" ;
-            allatpath = ".\allat";
-            string gesturefile = System.IO.Path.Combine(Environment.CurrentDirectory, allatpath);
-            gesturefile = "állatok";
-            using (var fileStream = new FileStream(allatpath, FileMode.Create))
+            string allatpath = @"...\állatok\" ;
+            string gesturefile = System.IO.Path.Combine(Environment.CurrentDirectory, allatpath);// fos
+            using (var fileStream = new FileStream(gesturefile, FileMode.Create))
             {
                 BitmapEncoder encoder = new PngBitmapEncoder();
                 
