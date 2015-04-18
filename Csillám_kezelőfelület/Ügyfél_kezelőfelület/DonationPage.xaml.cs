@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AdatKezelő;
+using System.ComponentModel;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -21,10 +22,12 @@ namespace Csillamponi_Allatmenhely
     public partial class DonationPage : Window
     {
         DonationPageBusinessLogic donationPageBusinessLogic;
+        DonationPageViewModel donationPageViewModel;
         public DonationPage()
         {
             InitializeComponent();
             donationPageBusinessLogic = new DonationPageBusinessLogic();
+            donationPageViewModel = new DonationPageViewModel();
         }
 
         private void AdományozClick(object sender, RoutedEventArgs e)
@@ -33,13 +36,11 @@ namespace Csillamponi_Allatmenhely
             {
                 if (radioButtonÉtel.IsChecked == true)
                 {
-                    donationPageBusinessLogic.Adományoz(Adomány_típus.Étel, int.Parse(textBoxMennyiség.Text),
-                textBoxMennyiség.Text);
+                    donationPageViewModel.Adományoz(Adomány_típus.Étel);
                 }
                 else if (radioButtonPénz.IsChecked == true)
                 {
-                    donationPageBusinessLogic.Adományoz(Adomány_típus.Pénz, int.Parse(textBoxMennyiség.Text),
-                textBoxMennyiség.Text);
+                    donationPageViewModel.Adományoz(Adomány_típus.Pénz);
                 }
                 else
                 {
@@ -58,6 +59,16 @@ namespace Csillamponi_Allatmenhely
             loginPage.Show();
             this.Close();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Binding mennyiségBinding = new Binding("Mennyiség");
+            mennyiségBinding.Source = donationPageViewModel.Mennyiség;
+            textBoxMennyiség.SetBinding(TextBox.TextProperty, mennyiségBinding);
+            Binding usernameBinding = new Binding("Username");
+            usernameBinding.Source = donationPageViewModel.Username;
+            textBoxUsername.SetBinding(TextBox.TextProperty, usernameBinding);
+        }
     }
     class DonationPageBusinessLogic
     {
@@ -70,6 +81,44 @@ namespace Csillamponi_Allatmenhely
         {
             ügyfélKezelő.Adományoz(típus, mennyiség, ki);
             MessageBox.Show("Köszönjük!");
+        }
+    }
+    class DonationPageViewModel : INotifyPropertyChanged
+    {
+        Adomány_típus típus;
+        public Adomány_típus Típus
+        {
+            get { return típus; }
+            set { típus = value; }
+        }
+        string username;
+        public string Username
+        {
+            get { return username; }
+            set { username = value; OnPropertyChanged("Username"); }
+        }
+        int mennyiség;
+        public int Mennyiség
+        {
+            get { return mennyiség; }
+            set { mennyiség = value; OnPropertyChanged("Mennyiség"); }
+        }
+        DonationPageBusinessLogic donationPageBusinessLogic;
+        public DonationPageViewModel()
+        {
+            donationPageBusinessLogic = new DonationPageBusinessLogic();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        public void Adományoz(Adomány_típus típus)
+        {
+            donationPageBusinessLogic.Adományoz(típus, this.mennyiség, this.username);
         }
     }
 }

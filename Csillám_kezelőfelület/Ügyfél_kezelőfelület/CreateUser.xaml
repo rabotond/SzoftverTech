@@ -1,23 +1,32 @@
 ﻿<Window x:Class="Csillamponi_Allatmenhely.CreateUser"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="CreateUser" Height="351" Width="501">
+        Title="CreateUser" Height="433.09" Width="501">
     <Grid>
-        <Label Content="Név:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="60,14,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="186" FontSize="18"/>
-        <Label Content="Irányítószám:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="129,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="117" FontSize="18"/>
-        <Label Content="Település:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="108,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="138" FontSize="18"/>
-        <Label Content="Utca,házszám:" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="132,98,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="114" FontSize="18"/>
-        <Label Content="Adományozások száma:" HorizontalAlignment="Left" Margin="10,117,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,126,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="36" FontSize="18"/>
+        <Label Content="Vezetéknév:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxVezetéknév" HorizontalAlignment="Left" Height="23" Margin="115,14,0,0" TextWrapping="Wrap" Text="{Binding VEZETEKNEV}" VerticalAlignment="Top" Width="131" FontSize="18"/>
+        <Label Content="Irányítószám:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxIrszám" HorizontalAlignment="Left" Height="23" Margin="129,85,0,0" TextWrapping="Wrap" Text="{Binding IRSZ}" VerticalAlignment="Top" Width="117" FontSize="18"/>
+        <Label Content="Település:" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxTelepülés" HorizontalAlignment="Left" Height="23" Margin="108,113,0,0" TextWrapping="Wrap" Text="{Binding VAROS}" VerticalAlignment="Top" Width="138" FontSize="18"/>
+        <Label Content="Utca:" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxUtca" HorizontalAlignment="Left" Height="23" Margin="65,141,0,0" TextWrapping="Wrap" Text="{Binding UTCA}" VerticalAlignment="Top" Width="181" FontSize="18"/>
+        <Label Content="Adományozások száma:" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="36" FontSize="18"/>
         <Label Content="Örökbefogadott állatok:" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="109" Margin="263,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
+        <TextBox x:Name="textBoxÖrökbefogadott" HorizontalAlignment="Left" Height="109" Margin="263,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
         <Label Content="Örökbeadott állatok:" HorizontalAlignment="Left" Margin="263,156,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="109" Margin="263,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
-        <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,165,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Mentes_Click"/>
+        <TextBox x:Name="textBoxÖrökbeadott" HorizontalAlignment="Left" Height="109" Margin="263,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,314,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Mentes_Click"/>
+        <Label Content="Keresztnév:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxKeresztnév" HorizontalAlignment="Left" Height="23" Margin="115,49,0,0" TextWrapping="Wrap" Text="{Binding KERESZTNEV}" VerticalAlignment="Top" Width="131" FontSize="18"/>
+        <Label Content="Házszám:" HorizontalAlignment="Left" Margin="10,162,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxHszam" HorizontalAlignment="Left" Height="23" Margin="99,171,0,0" TextWrapping="Wrap" Text="{Binding HAZSZAM}" VerticalAlignment="Top" Width="147" FontSize="18"/>
+        <Label Content="Telefon:" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxTelefon" HorizontalAlignment="Left" Height="23" Margin="88,199,0,0" TextWrapping="Wrap" Text="{Binding TELEFON}" VerticalAlignment="Top" Width="158" FontSize="18"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox x:Name="textBoxEmail" HorizontalAlignment="Left" Height="23" Margin="71,238,0,0" TextWrapping="Wrap" Text="{Binding EMAIL}" VerticalAlignment="Top" Width="175" FontSize="18"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="408,372,0,0" VerticalAlignment="Top" Width="75" Click="VisszaClick"/>
 
     </Grid>
 </Window>
