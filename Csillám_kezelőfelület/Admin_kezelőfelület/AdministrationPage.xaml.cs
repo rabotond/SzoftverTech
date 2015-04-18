@@ -44,7 +44,8 @@ namespace Csillamponi_Allatmenhely
         private void UjallatClick(object sender, RoutedEventArgs e)
         {
             NewAnimal page = new NewAnimal();
-            this.Close();
+            page.Owner = this;
+            
             page.Show();
         }
 
@@ -75,13 +76,14 @@ namespace Csillamponi_Allatmenhely
         private void allatmodosit_Click(object sender, RoutedEventArgs e)
         {
             NewAnimal page = new NewAnimal(VM.ValasztottAllat);
-            this.Close();
+            page.Owner = this;
              page.Show();
         }
 
         private void Kimutatas_Click(object sender, RoutedEventArgs e)
         {
             StatisticalPage page = new StatisticalPage();
+            page.Owner = this;
             page.Show();
         }
     }

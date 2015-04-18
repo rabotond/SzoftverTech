@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,13 +73,34 @@ using System.Xml.Linq;
 
             public bool Állatot_hozzáad(ALLAT állat)
             {
-                db.ALLAT.Add(állat);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
+                try 
+                {   
+                    db.ALLAT.Add(állat);
+
+                    if (db.SaveChanges() == 0)
+                    {
+                        return true;
+                    }
+                    else
+                    { return false; }
                 }
-                else
-                { return false; }
+                catch (DbEntityValidationException ex)
+                {
+                    // Retrieve the error messages as a list of strings.
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    // Join the list to a single string.
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+
+                    // Combine the original exception message with the new one.
+                    var exceptionMessage = string.Concat(ex.Message, " The validation errors are: ", fullErrorMessage);
+
+                    // Throw a new DbEntityValidationException with the improved exception message.
+                    throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
+                }
+              
             }
 
             public bool Állatot_módosít(ALLAT állat)//lecserélem az egészet..id marad
@@ -96,7 +118,7 @@ using System.Xml.Linq;
 
             public bool Állatot_töröl(ALLAT állat)
             {
-                ALLAT a = db.ALLAT.Where(x => x.ALLATID == állat.ALLATID).FirstOrDefault();
+                ALLAT a = db.ALLAT.Find(állat);
                 db.ALLAT.Remove(a);
                 if (db.SaveChanges() == 0)
                 {
