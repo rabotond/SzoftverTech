@@ -13,18 +13,26 @@ namespace AdatKezelő
     public class Ügyfél_Kezelő : IÜgyfél_kezelő
     {
         Admin_kezelő adminKezelő;
+        csillamponimenhelyDBEntities db;
+
+        public Admin_kezelő AdminKezelő
+        {
+            get { return adminKezelő; }
+            set { adminKezelő = value; }
+        }     
+
+        public csillamponimenhelyDBEntities Db
+        {
+            get { return db; }
+            set { db = value; }
+        }
+       
         public Ügyfél_Kezelő()
         {
             adminKezelő = new Admin_kezelő();
+            db = new csillamponimenhelyDBEntities();
         }
 
-        public virtual void Dispose()
-        {
-
-        }
-
-        /// 
-        /// <param name="adomány"></param>
         public void Adományoz(Adomány_típus típus, int mennyiség, string ki)
         {
             var q = from x in adminKezelő.Db.UGYFEL
