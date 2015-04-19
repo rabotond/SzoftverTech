@@ -24,6 +24,8 @@ namespace Csillamponi_Allatmenhely
         public StatisticalPage()
         {
             InitializeComponent();
+            bl = new Admin_kezelőfelület_businessLogic();
+           
         }
 
 

@@ -12,7 +12,7 @@
           <Property Name="ADOMANYID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TIPUS" Type="varchar" MaxLength="8" />
           <Property Name="ADOMANYOZO" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="MENNYISEG" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="MENNYISEG" Type="int" />
           <Property Name="DATUM" Type="date" />
         </EntityType>
         <EntityType Name="ALLAT">
@@ -34,6 +34,8 @@
           <Property Name="ELOJEGYZETT" Type="bit" />
           <Property Name="ELOZO_TULAJ" Type="uniqueidentifier" />
           <Property Name="KEP" Type="varchar" MaxLength="50" />
+          <Property Name="OROKBEFOGADVA" Type="date" />
+          <Property Name="BEADVA" Type="date" />
         </EntityType>
         <EntityType Name="ELEDEL">
           <Key>
@@ -140,7 +142,7 @@
           <Property Name="ADOMANYID" Type="Guid" Nullable="false" />
           <Property Name="TIPUS" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="ADOMANYOZO" Type="Guid" Nullable="false" />
-          <Property Name="MENNYISEG" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MENNYISEG" Type="Int32" />
           <Property Name="DATUM" Type="DateTime" Precision="0" />
           <NavigationProperty Name="UGYFEL" Relationship="Self.ADOMANY_FOR_KEY" FromRole="ADOMANY" ToRole="UGYFEL" />
         </EntityType>
@@ -165,6 +167,8 @@
           <Property Name="KEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UGYFEL" Relationship="Self.ALLAT_FOR_KEY" FromRole="ALLAT" ToRole="UGYFEL" />
           <NavigationProperty Name="KENNEL" Relationship="Self.ALLAT_FOR_KEY1" FromRole="ALLAT" ToRole="KENNEL" />
+          <Property Name="OROKBEFOGADVA" Type="DateTime" Precision="0" />
+          <Property Name="BEADVA" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="ELEDEL">
           <Key>
@@ -283,6 +287,8 @@
           <EntitySetMapping Name="ALLAT">
             <EntityTypeMapping TypeName="csillamponimenhelyDBModel.ALLAT">
               <MappingFragment StoreEntitySet="ALLAT">
+                <ScalarProperty Name="BEADVA" ColumnName="BEADVA" />
+                <ScalarProperty Name="OROKBEFOGADVA" ColumnName="OROKBEFOGADVA" />
                 <ScalarProperty Name="ALLATID" ColumnName="ALLATID" />
                 <ScalarProperty Name="FAJTA" ColumnName="FAJTA" />
                 <ScalarProperty Name="NEV" ColumnName="NEV" />

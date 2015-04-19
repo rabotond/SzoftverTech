@@ -65,9 +65,12 @@ using System.Xml.Linq;
                 
             }
 
-            public Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
+            public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
             {
-                Statisztika stat = new Statisztika( fajta,  idoszak_kezdet,  idoszak_vege);
+                Statisztika stat = new Statisztika( fajta, idoszak_kezdet,  idoszak_vege);
+                stat.MakeStatistic();
+              
+                XDocument xdoc = new XDocument();
                 return stat;
             }
 
@@ -140,7 +143,6 @@ using System.Xml.Linq;
             }
 
            
-
             public bool Ügyfelet_töröl(UGYFEL ügyfél)
             {
                 var a = db.UGYFEL.Where(x => x.UGYFELID == ügyfél.UGYFELID);

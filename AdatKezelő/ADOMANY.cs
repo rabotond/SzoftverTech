@@ -17,7 +17,7 @@ namespace AdatKezelő
         public System.Guid ADOMANYID { get; set; }
         public string TIPUS { get; set; }
         public System.Guid ADOMANYOZO { get; set; }
-        public Nullable<decimal> MENNYISEG { get; set; }
+        public Nullable<int> MENNYISEG { get; set; }
         public Nullable<System.DateTime> DATUM { get; set; }
     
         public virtual UGYFEL UGYFEL { get; set; }

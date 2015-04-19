@@ -96,6 +96,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statisztika.cs" />
+    <Compile Include="Statisztika_típus.cs" />
     <Compile Include="UGYFEL.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
