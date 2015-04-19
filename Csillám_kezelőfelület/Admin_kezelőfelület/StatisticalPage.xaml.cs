@@ -45,11 +45,29 @@ namespace Csillamponi_Allatmenhely
                  fajta=Statisztika_típus.összetett;
             }
            stat= bl.Statisztikát_készít(fajta,(DateTime)kezdet.SelectedDate,(DateTime)vege.SelectedDate);
+           stat.xDoc.Save("statisztika.xml");
+           MessageBox.Show("az xml fájl elkészült statisztika néven");
         }
 
-        private void statisztikaOnGUI_Click(object sender, RoutedEventArgs e)
+        private void statisztikaOnGUI_Click(object sender, RoutedEventArgs e)//új ablak ahol látszik a statisztika amit elkészítettünk
         {
-            //új ablak ahol látszik a statisztika amit elkészítettünk
+            Statisztika_típus fajta;
+            if (adomanyos.IsChecked == true)
+            {
+                fajta = Statisztika_típus.adomány;
+            }
+            else if (állományos.IsChecked == true)
+            {
+                fajta = Statisztika_típus.állatállomány;
+            }
+            else
+            {
+                fajta = Statisztika_típus.összetett;
+            }
+            stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
+
+            Statistic statgui = new Statistic(stat);
+            statgui.Show();
         }
     }
 }

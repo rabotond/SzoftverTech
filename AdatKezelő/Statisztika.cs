@@ -18,6 +18,14 @@ namespace AdatKezelő
         List<DateTime> napok;
         csillamponimenhelyDBEntities db;
         Dictionary<string, List<object>> stat_listak;
+        List<Task> tasklist;
+        XDocument xdoc;
+
+        public XDocument xDoc
+        {
+            get { return xdoc; }
+            set { xdoc = value; }
+        }
 
         public void MakeStatistic()
         {
@@ -29,16 +37,16 @@ namespace AdatKezelő
             }
             else if(tipus==Statisztika_típus.adomány)
             {
-               stat_listak.Add("pénzadomány",befolyPenz());
-               stat_listak.Add( "eledel-adomány",kapottEledel());
+               stat_listak.Add("penzadomany",befolyPenz());
+               stat_listak.Add( "eledeladomany",kapottEledel());
             }
             else
             {
                 stat_listak.Add("elvittAllatok", elvittAllatDb());
                 stat_listak.Add("hozottAllatok", hozottAllatDb());
                 stat_listak.Add("szabadKennelek", szabadKennelDb());
-                stat_listak.Add("pénzadomány", befolyPenz());
-                stat_listak.Add("eledel-adomány", kapottEledel());
+                stat_listak.Add("penzadomany", befolyPenz());
+                stat_listak.Add("eledeladomany", kapottEledel());
             }
         }
 
@@ -78,7 +86,7 @@ namespace AdatKezelő
             napok = new List<DateTime>();
             db = new csillamponimenhelyDBEntities();
             stat_listak = new Dictionary<string, List<object>>();
-
+            tasklist = new List<Task>();
             for (int i = 0; i < (meddig - mettől).TotalDays;i++ )
             {
                 napok.Add(mettől.AddDays(i));

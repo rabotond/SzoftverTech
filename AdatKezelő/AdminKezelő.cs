@@ -161,6 +161,8 @@ using System.Xml.Linq;
             {
                 Statisztika stat = new Statisztika(fajta, idoszak_kezdet, idoszak_vege);
                 stat.MakeStatistic();
+               // Task.WaitAll(stat.Tasklist.ToArray());
+
                 List<XElement> elements = new List<XElement>();
                 for (int i = 0; i < stat.Napok.Count;i++ )
                 {
@@ -173,8 +175,7 @@ using System.Xml.Linq;
                     elements.Add(nap);
                 }
                    
-                XDocument xdoc = new XDocument(fajta.ToString()+"_stat",elements);
-                xdoc.Save("statisztika");
+                //stat.xDoc = new XDocument(fajta.ToString(),new XElement("napok",elements));
                 return stat;
             }
         

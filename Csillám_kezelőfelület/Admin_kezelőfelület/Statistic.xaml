@@ -6,7 +6,14 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="statgrid"  HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="617" Height="201"/>
+        <DataGrid  x:Name="statgrid"  HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="617" Height="201">
+            
+            <ColumnDefinition x:Name="1" Width="10" />
+            <ColumnDefinition x:Name="2" Width="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="10" />
+        </DataGrid>
 
     </Grid>
 </Window>

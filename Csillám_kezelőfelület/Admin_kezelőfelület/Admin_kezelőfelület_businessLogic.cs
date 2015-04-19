@@ -22,10 +22,9 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
         {
-            Statisztika stat = kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
-
-            return stat;
+           return  kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
         }
+        
         public List<ALLAT> FrissitAllat()
         { 
             return kezelo.getAllAllat();
