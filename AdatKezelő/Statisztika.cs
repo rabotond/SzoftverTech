@@ -17,40 +17,35 @@ namespace AdatKezelő
         private Statisztika_típus tipus;
         List<DateTime> napok;
         csillamponimenhelyDBEntities db;
-        List<int> elvittAllatlista;
-        List<int> hozottAllatlista;
-        List<int> befolyPenzlista;
-        List<int> kapottEledellista;
-        List<int> szabadKennelek;
+        Dictionary<string, List<object>> stat_listak;
 
-
-        public List<List<int>> MakeStatistic()
+        public void MakeStatistic()
         {
-            List<List<int>> listaklistaja=new List<List<int>>();
-
             if(tipus==Statisztika_típus.állatállomány)
             {
-                listaklistaja.Add( elvittAllatlista = elvittAllatDb());
-                listaklistaja.Add(hozottAllatlista = hozottAllatDb());
-                listaklistaja.Add(szabadKennelek = szabadKennelDb());
-                return listaklistaja;
+               stat_listak.Add( "elvittAllatok", elvittAllatDb());
+               stat_listak.Add("hozottAllatok", hozottAllatDb());
+               stat_listak.Add("szabadKennelek", szabadKennelDb());
             }
             else if(tipus==Statisztika_típus.adomány)
             {
-                listaklistaja.Add(befolyPenzlista = befolyPenz());
-                listaklistaja.Add( kapottEledellista = kapottEledel());
-                return listaklistaja;
+               stat_listak.Add("pénzadomány",befolyPenz());
+               stat_listak.Add( "eledel-adomány",kapottEledel());
             }
             else
             {
-               listaklistaja.Add( elvittAllatlista = elvittAllatDb());
-               listaklistaja.Add(  hozottAllatlista = hozottAllatDb());
-               listaklistaja.Add(  szabadKennelek = szabadKennelDb());
-               listaklistaja.Add(befolyPenzlista = befolyPenz());
-               listaklistaja.Add(kapottEledellista = kapottEledel());
-               return listaklistaja;
+                stat_listak.Add("elvittAllatok", elvittAllatDb());
+                stat_listak.Add("hozottAllatok", hozottAllatDb());
+                stat_listak.Add("szabadKennelek", szabadKennelDb());
+                stat_listak.Add("pénzadomány", befolyPenz());
+                stat_listak.Add("eledel-adomány", kapottEledel());
             }
-            
+        }
+
+        public Dictionary<string, List<object>> Stat_listak
+        {
+            get { return stat_listak; }
+            set { stat_listak = value; }
         }
 
         public List<DateTime> Napok
@@ -70,8 +65,8 @@ namespace AdatKezelő
             get { return mettől; }
             set { mettől = value; }
         }
-       
-        public string Tipus
+
+        public Statisztika_típus Tipus
         {
             get { return tipus; }
             set { tipus = value; }
@@ -82,6 +77,7 @@ namespace AdatKezelő
             mettől = ujmettől; meddig = ujmeddig; tipus = ujtipus;
             napok = new List<DateTime>();
             db = new csillamponimenhelyDBEntities();
+            stat_listak = new Dictionary<string, List<object>>();
 
             for (int i = 0; i < (meddig - mettől).TotalDays;i++ )
             {
@@ -89,18 +85,18 @@ namespace AdatKezelő
             }
         }
 
-        public List<int> elvittAllatDb()
+        public List<object> elvittAllatDb()
         {
-            List<int> list = new List<int>();
+            List<object> list = new List<object>();
             foreach(DateTime akt in napok)
             {
                 list.Add(db.ALLAT.Count(x => x.OROKBEFOGADVA==akt));
             }
             return list;
         }
-        public List<int> hozottAllatDb()
+        public List<object> hozottAllatDb()
         {
-            List<int> list = new List<int>();
+            List<object> list = new List<object>();
             foreach (DateTime akt in napok)
             {
                 list.Add(db.ALLAT.Count(x => x.BEADVA == akt));
@@ -108,9 +104,9 @@ namespace AdatKezelő
             return list;
         }
 
-        public List<int> befolyPenz()
+        public List<object> befolyPenz()
         {
-            List<int> list = new List<int>();
+            List<object> list = new List<object>();
             foreach (DateTime akt in napok)
             {  
                 list.Add( (int)db.ADOMANY.Where(x => x.DATUM == akt && x.TIPUS == "pénz").Sum(x => x.MENNYISEG));
@@ -118,18 +114,18 @@ namespace AdatKezelő
             return list;
         }
 
-        public List<int> kapottEledel()
+        public List<object> kapottEledel()
         {
-            List<int> list = new List<int>();
+            List<object> list = new List<object>();
             foreach (DateTime akt in napok)
             {
                 list.Add((int)db.ADOMANY.Where(x => x.DATUM == akt && x.TIPUS == "eledel").Sum(x => x.MENNYISEG));
             }
             return list;
         }
-        public List<int> szabadKennelDb()
+        public List<object> szabadKennelDb()
         {
-            List<int> list = new List<int>();
+            List<object> list = new List<object>();
             int aznapiAllatDb = 0;
             int szabadkennelDb = 0;
             foreach (DateTime akt in napok)

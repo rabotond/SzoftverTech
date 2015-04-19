@@ -28,7 +28,7 @@ namespace AdatKezelő
 
         bool Előjegyzést_végez(ALLAT állat);
 
-        Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet,DateTime idoszak_vege);
+        Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet,DateTime idoszak_vege);
     
     }//end IAdmin_kezelő
 

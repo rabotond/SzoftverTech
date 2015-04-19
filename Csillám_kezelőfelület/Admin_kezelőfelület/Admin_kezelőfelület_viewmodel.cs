@@ -29,10 +29,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             set { valasztottUgyfel = value; onPropChanged("ValasztottUgyfel"); }
         }
         
-        public Admin_kezelőfelület_viewmodel()
-        {
-
-        }    
+        public Admin_kezelőfelület_viewmodel() {  }    
 
         public List<ALLAT> Allatok
         {

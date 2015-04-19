@@ -31,18 +31,18 @@ namespace Csillamponi_Allatmenhely
 
         private void statisztikaToXML_Click(object sender, RoutedEventArgs e)//kimutatás készítés xml
         {
-            string fajta;
+            Statisztika_típus fajta;
             if(adomanyos.IsChecked==true)
             {
-                fajta="adomány";
+                fajta = Statisztika_típus.adomány;
             }
             else if(állományos.IsChecked==true)
             {
-                 fajta="állomány";
+                 fajta=Statisztika_típus.állatállomány;
             }
             else
             {
-                 fajta="összetett";
+                 fajta=Statisztika_típus.összetett;
             }
            stat= bl.Statisztikát_készít(fajta,(DateTime)kezdet.SelectedDate,(DateTime)vege.SelectedDate);
         }

@@ -20,16 +20,9 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             kezelo = new Admin_kezelő();
         }
 
-        public Statisztika Statisztikát_készít(string fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
+        public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
         {
             Statisztika stat = kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
-
-            XDocument doc = new XDocument();
-            foreach (DateTime datum in stat.Napok)
-            {
-                XElement date = new XElement("Dátum", datum);
-
-            }
 
             return stat;
         }

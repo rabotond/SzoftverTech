@@ -13,11 +13,16 @@ using System.Xml.Linq;
         public class Admin_kezelő : IAdmin_kezelő
         {
             csillamponimenhelyDBEntities db;
-
+            
             public csillamponimenhelyDBEntities Db
             {
                 get { return db; }
                 set { db = value; }
+            }
+
+            public Admin_kezelő()
+            {
+                db = new csillamponimenhelyDBEntities();
             }
 
            public List<ALLAT> getAllAllat()
@@ -29,12 +34,6 @@ using System.Xml.Linq;
            {
                return db.UGYFEL.Where(x => x.UGYFELID != null).ToList();
            }
-
-
-            public Admin_kezelő()
-            {
-                db=new csillamponimenhelyDBEntities();
-            }
 
             public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus mit)
             {
@@ -63,15 +62,6 @@ using System.Xml.Linq;
                     return true;
                 }
                 
-            }
-
-            public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
-            {
-                Statisztika stat = new Statisztika( fajta, idoszak_kezdet,  idoszak_vege);
-                stat.MakeStatistic();
-              
-                XDocument xdoc = new XDocument();
-                return stat;
             }
 
             public bool Állatot_hozzáad(ALLAT állat)
@@ -142,7 +132,6 @@ using System.Xml.Linq;
                 { return false; }
             }
 
-           
             public bool Ügyfelet_töröl(UGYFEL ügyfél)
             {
                 var a = db.UGYFEL.Where(x => x.UGYFELID == ügyfél.UGYFELID);
@@ -154,8 +143,6 @@ using System.Xml.Linq;
                 else
                 { return false; }
             }
-
-
 
             public bool Ügyfelet_módosít(UGYFEL ügyfél)
             {
@@ -169,6 +156,28 @@ using System.Xml.Linq;
                 else
                 { return false; }
             }
+
+            public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
+            {
+                Statisztika stat = new Statisztika(fajta, idoszak_kezdet, idoszak_vege);
+                stat.MakeStatistic();
+                List<XElement> elements = new List<XElement>();
+                for (int i = 0; i < stat.Napok.Count;i++ )
+                {
+                    XElement nap = new XElement("Nap");
+                    nap.SetAttributeValue("Dátum",stat.Napok[i]);
+                    foreach (KeyValuePair<string, List<object>> lista in stat.Stat_listak)
+                    {
+                        nap.Add(new XElement(lista.Key, lista.Value[i]));
+                    }
+                    elements.Add(nap);
+                }
+                   
+                XDocument xdoc = new XDocument(fajta.ToString()+"_stat",elements);
+                xdoc.Save("statisztika");
+                return stat;
+            }
+        
         }//end Admin_kezelő
 
     }//end namespace AdatKezelő
