@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Csillám_kezelőfelület;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -26,7 +27,17 @@ namespace Csillamponi_Allatmenhely
 
         private void AdminClick(object sender, RoutedEventArgs e)
         {
-            
+            /*
+             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
+             * */
+            //LoginWindow loginWindow = new LoginWindow("admin");
+            //if (loginWindow.ShowDialog() == true)
+            //{
+            //    AdministrationPage page = new AdministrationPage();
+            //    this.Close();
+            //    page.ShowDialog();
+            //}
+
             AdministrationPage page = new AdministrationPage();
             this.Close();
             page.ShowDialog();
@@ -36,6 +47,16 @@ namespace Csillamponi_Allatmenhely
 
         private void OrokbeadClick(object sender, RoutedEventArgs e)
         {
+            /*
+             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
+             * */
+            //LoginWindow loginWindow = new LoginWindow("ügyfél");
+            //if (loginWindow.ShowDialog() == true)
+            //{
+            //    PutInAnimal other = new PutInAnimal();
+            //    this.Close();
+            //    other.Show();
+            //}
             PutInAnimal other = new PutInAnimal();
             this.Close();
             other.Show();
@@ -43,6 +64,16 @@ namespace Csillamponi_Allatmenhely
 
         private void OrokbefogadClick(object sender, RoutedEventArgs e)
         {
+            /*
+             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
+             * */
+            //LoginWindow loginWindow = new LoginWindow("ügyfél");
+            //if (loginWindow.ShowDialog() == true)
+            //{
+            //    AdoptionPage other = new AdoptionPage();
+            //    this.Close();
+            //    other.Show();
+            //}
             AdoptionPage other = new AdoptionPage();
             this.Close();
             other.Show();
