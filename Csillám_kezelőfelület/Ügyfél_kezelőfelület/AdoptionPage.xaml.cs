@@ -44,7 +44,8 @@ namespace Csillamponi_Allatmenhely
             else
             {
                 MessageBox.Show("Nincs ilyen állat. Kérlek adj meg más feltételeket");
-            }   
+            }
+            VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString());
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

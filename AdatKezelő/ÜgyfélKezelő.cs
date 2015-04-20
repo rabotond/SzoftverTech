@@ -76,7 +76,7 @@ namespace AdatKezelő
         {
             List<ALLAT> allatok = new List<ALLAT>();
             var q = from x in adminKezelő.Db.ALLAT
-                    where x.FAJTA==fajta
+                    where x.FAJTA == fajta.ToUpper()
                     select x;
             foreach (var item in q)
             {
@@ -104,7 +104,7 @@ namespace AdatKezelő
         {
             List<ALLAT> allatok = new List<ALLAT>();
             var q = from x in adminKezelő.Db.ALLAT
-                    where x.NEV == név && x.SZIN == szín && x.FAJTA == fajta && x.NOSTENY == nem && x.OLTVA == sterilizált
+                    where x.NEV == név.ToUpper() && x.SZIN == szín.ToUpper() && x.FAJTA == fajta.ToUpper() && x.NOSTENY == nem && x.OLTVA == sterilizált
                     select x;
             foreach (var item in q)
             {
@@ -118,7 +118,7 @@ namespace AdatKezelő
         {
             List<ALLAT> allatok = new List<ALLAT>();
             var q = from x in adminKezelő.Db.ALLAT
-                    where  x.SZIN == szín
+                    where x.SZIN == szín.ToUpper()
                     select x;
             foreach (var item in q)
             {
