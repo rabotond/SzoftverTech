@@ -48,8 +48,11 @@ namespace AdatKezelő
 
         public bool Előjegyeztet(ALLAT állat)
         {
+            var q = from x in adminKezelő.Db.ALLAT
+                    where x == állat
+                    select x.ELOJEGYZETT==true;
 
-            return false;
+            return true;
         }
 
         public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)
@@ -69,24 +72,61 @@ namespace AdatKezelő
             return false;
         }
 
-        ALLAT IÜgyfél_kezelő.Fajtára_keres(string fajta)
+        List<ALLAT>  IÜgyfél_kezelő.Fajtára_keres(string fajta)
         {
-            throw new NotImplementedException();
+            List<ALLAT> allatok = new List<ALLAT>();
+            var q = from x in adminKezelő.Db.ALLAT
+                    where x.FAJTA==fajta
+                    select x;
+            foreach (var item in q)
+            {
+                allatok.Add(item);
+            }
+
+            return allatok;
         }
 
-        ALLAT IÜgyfél_kezelő.Méretre_keres(int kilogramm)
+        List<ALLAT> IÜgyfél_kezelő.Méretre_keres(int kilogramm)
         {
-            throw new NotImplementedException();
+            List<ALLAT> allatok = new List<ALLAT>();
+            var q = from x in adminKezelő.Db.ALLAT
+                    where x.TOMEG==kilogramm
+                    select x;
+            foreach (var item in q)
+            {
+                allatok.Add(item);
+            }
+
+            return allatok;
         }
 
-        ALLAT IÜgyfél_kezelő.Összetett_keresés(bool sterilizált, bool nem, int kor, string szín, string fajta)
+        List< ALLAT> IÜgyfél_kezelő.Összetett_keresés(bool sterilizált, bool nem, string szín, string fajta,string név)
         {
-            throw new NotImplementedException();
+            List<ALLAT> allatok = new List<ALLAT>();
+            var q = from x in adminKezelő.Db.ALLAT
+                    where x.NEV == név && x.SZIN == szín && x.FAJTA == fajta && x.NOSTENY == nem && x.OLTVA == sterilizált
+                    select x;
+            foreach (var item in q)
+            {
+                allatok.Add(item);
+            }
+
+            return allatok;
         }
 
-        ALLAT IÜgyfél_kezelő.Színre_keres(string szín)
+        List<ALLAT> IÜgyfél_kezelő.Színre_keres(string szín)
         {
-            throw new NotImplementedException();
+            List<ALLAT> allatok = new List<ALLAT>();
+            var q = from x in adminKezelő.Db.ALLAT
+                    where  x.SZIN == szín
+                    select x;
+            foreach (var item in q)
+            {
+                allatok.Add(item);
+            }
+
+            return allatok;
+            
         }
     }//end Ügyfél_Kezelő
 

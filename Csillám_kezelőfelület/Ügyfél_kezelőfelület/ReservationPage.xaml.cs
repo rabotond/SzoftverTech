@@ -19,18 +19,28 @@ namespace Csillamponi_Allatmenhely
     /// <summary>
     /// Interaction logic for ReservationPage.xaml
     /// </summary>
+    
+    
     public partial class ReservationPage : Window
     {
-        public ReservationPage()
+        ReservationPageViewModel VM;
+        ALLAT allat = new ALLAT();
+        Ügyfél_Kezelő kezelo;
+        public ReservationPage(ALLAT kapottallat)
         {
-            InitializeComponent();//
+            kezelo = new Ügyfél_Kezelő();
+            VM = new ReservationPageViewModel(); 
+            allat = kapottallat;
+            InitializeComponent();
+            Adatfeltölt();
+            DataContext = VM;
+            KépBetöltés();
         }
 
         private void Előjegyzés(object sender, RoutedEventArgs e)
         {
-            ALLAT allat = new ALLAT();
-            // melyiket is ?
-            allat.ELOJEGYZETT=true;   
+            kezelo.Előjegyeztet(allat);
+            MessageBox.Show("Az állatodat sikeresen előjegyeztük örökbefogadáshoz. A staff felfogja feled venni a kapcsolatot a részletekkel kapcsolatban");
         }
 
         private void Regisztráció(object sender, RoutedEventArgs e)
@@ -38,6 +48,28 @@ namespace Csillamponi_Allatmenhely
             CreateUser other = new CreateUser();
             this.Close();
             other.Show();
+        }
+        string Adatfeltölt ()
+        {
+            string animal = "név: " +allat.NEV+ Environment.NewLine+
+                "Fajta: "+allat.FAJTA+Environment.NewLine+
+                "Szül. Idő: "+ allat.SZULETESI_IDO +Environment.NewLine+
+                "Oltva: "+allat.OLTVA+Environment.NewLine+
+                "Nőstény: "+allat.NOSTENY+Environment.NewLine+
+                "oltott: "+allat.OLTVA+Environment.NewLine+
+                "Méret: "+allat.MERET+Environment.NewLine+
+                "Ivartalanított: "+allat.IVARTALANITOTT;
+
+            return animal;
+        }
+        void KépBetöltés ()
+        {
+            BitmapImage bmi = new BitmapImage();
+            Uri uri = new Uri(allat.KEP);
+            bmi.BeginInit();
+            bmi.UriSource = uri;
+            bmi.EndInit();
+            VM.Kép = bmi;
         }
     }
     class ReservationPageViewModel {

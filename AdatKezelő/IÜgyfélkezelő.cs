@@ -23,11 +23,11 @@ namespace AdatKezelő
 
         /// 
         /// <param name="fajta"></param>
-        ALLAT Fajtára_keres(string fajta);
+        List<ALLAT> Fajtára_keres(string fajta);
 
         /// 
         /// <param name="kilogramm"></param>
-        ALLAT Méretre_keres(int kilogramm);
+        List<ALLAT> Méretre_keres(int kilogramm);
 
         /// 
         /// <param name="mikor"></param>
@@ -39,11 +39,11 @@ namespace AdatKezelő
         void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda);
 
       // változtatva
-        ALLAT Összetett_keresés(bool sterilizált, bool nem, int kor, string szín, string fajta);
+        List< ALLAT> Összetett_keresés(bool sterilizált, bool nem, string szín, string fajta,string név);
 
         /// 
         /// <param name="szín"></param>
-        ALLAT Színre_keres(string szín);
+       List< ALLAT> Színre_keres(string szín);
 
         /// 
         /// <param name="melyik_állat_számára"></param>

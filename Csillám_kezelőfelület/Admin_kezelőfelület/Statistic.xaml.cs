@@ -25,9 +25,9 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         {
             InitializeComponent();
             stat = ujstat;
-            statgrid.ItemsSource = stat.Stat_listak;
-            statgrid.set
-            statgrid.ColumnFromDisplayIndex(0).SetValue(ColumnDefinition.NameProperty, stat.Stat_listak.ElementAt(0).Key.ToString());
+            //statgrid.ItemsSource = stat.Stat_listak;
+            //statgrid.set
+            //statgrid.ColumnFromDisplayIndex(0).SetValue(ColumnDefinition.NameProperty, stat.Stat_listak.ElementAt(0).Key.ToString());
         }
     }
 }
