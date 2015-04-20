@@ -47,7 +47,7 @@ namespace AdatKezelő
 
         /// 
         /// <param name="melyik_állat_számára"></param>
-        bool Van_e_üres_kennel(ALLAT melyik_állat_számára);
+        int Van_e_üres_kennel(string allatfaj);
     }//end IÜgyfél_kezelő
 
 }//end namespace AdatKezelő

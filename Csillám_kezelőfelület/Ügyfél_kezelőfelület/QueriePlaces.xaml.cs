@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AdatKezelő;
+using System.Collections.ObjectModel;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -25,21 +26,50 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
             VM = new QueueuPlacesViewModel();
+            DataContext = VM;
         }
 
 
        
 
-        private void Search(object sender, RoutedEventArgs e)
+     
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            // Válaszott alapján  Select adatbázisban és mondjuk Messageboxba kiírni a db számot.
+            PutInAnimal piWindow = new PutInAnimal();
+            piWindow.Show();
+            this.Close();
+        }
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(VM.SelectedFaj))
+            {
+                MessageBox.Show("Válassza ki a beadni kívánt állat fajtáját!");
+            }
+            else
+            {
+                Ügyfél_Kezelő a = new Ügyfél_Kezelő();
+                int uresHelyekSzama = a.Van_e_üres_kennel(VM.SelectedFaj);
+                EmptySpaceWindowViewModel vm = new EmptySpaceWindowViewModel();
+                vm.EmptySpaces = uresHelyekSzama;
+                EmptySpacesWindow esWindow = new EmptySpacesWindow(vm);
+                esWindow.Show();
+                this.Close();
+            }
         }
     }
     class QueueuPlacesViewModel
     {
-        List<string> fajok;
+        public QueueuPlacesViewModel()
+        {
+            fajok = new ObservableCollection<string>();
+            feltolt();
 
-        public List<string> Fajok
+        }
+        ObservableCollection<string> fajok;
+
+        public ObservableCollection<string> Fajok
         {
             get { return fajok; }
             set { fajok = value; }
@@ -53,9 +83,14 @@ namespace Csillamponi_Allatmenhely
         }
         void feltolt ()
         {
-            Ügyfél_Kezelő a = new Ügyfél_Kezelő();
-            
-            
+            csillamponimenhelyDBEntities db = new csillamponimenhelyDBEntities();
+            var lekerdezettFajok = from allat in db.ALLAT
+                        select allat.FAJTA;
+
+            foreach (var faj in lekerdezettFajok.ToList())
+            {
+                fajok.Add(faj);
+            }
         }
     }
     

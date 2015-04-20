@@ -81,6 +81,10 @@
     <Compile Include="Ügyfél_kezelőfelület\DonationPage.xaml.cs">
       <DependentUpon>DonationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ügyfél_kezelőfelület\EmptySpacesWindow.xaml.cs">
+      <DependentUpon>EmptySpacesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ügyfél_kezelőfelület\EmptySpaceWindowViewModel.cs" />
     <Compile Include="Ügyfél_kezelőfelület\NewAnimal.xaml.cs">
       <DependentUpon>NewAnimal.xaml</DependentUpon>
     </Compile>
@@ -141,6 +145,10 @@
     <Page Include="Ügyfél_kezelőfelület\DonationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ügyfél_kezelőfelület\EmptySpacesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ügyfél_kezelőfelület\NewAnimal.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -66,10 +66,20 @@ namespace AdatKezelő
         }
 
 
-        public bool Van_e_üres_kennel(ALLAT melyik_állat_számára)
+        public int Van_e_üres_kennel(string allatfaj)
         {
+            var uresHelyek = from karam in db.KENNEL
+                             where karam.ALLAT.FirstOrDefault() == db.ALLAT.Where(x => x.FAJTA == allatfaj).FirstOrDefault()
+                             select karam.SZABAD;
 
-            return false;
+            if (uresHelyek != null)
+            {
+                return (int)uresHelyek.FirstOrDefault();
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         List<ALLAT>  IÜgyfél_kezelő.Fajtára_keres(string fajta)
