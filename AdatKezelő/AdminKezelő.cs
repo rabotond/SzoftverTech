@@ -13,7 +13,8 @@ using System.Xml.Linq;
         public class Admin_kezelő : IAdmin_kezelő
         {
             csillamponimenhelyDBEntities db;
-            
+            static readonly object loadlock = new object();
+
             public csillamponimenhelyDBEntities Db
             {
                 get { return db; }
@@ -25,14 +26,48 @@ using System.Xml.Linq;
                 db = new csillamponimenhelyDBEntities();
             }
 
-           public List<ALLAT> getAllAllat()
+            public List<AllatVM> getAllAllat()
             {
-                return db.ALLAT.Where(x=>x.ALLATID!=null && x.NEV!=null).ToList();
+                lock (loadlock)
+                {
+                    return db.ALLAT.Where(x => x.NEV != null).Select(x => new AllatVM()
+                    {
+                        ALLATID = x.ALLATID,
+                        BEADVA = x.BEADVA,
+                        OROKBEFOGADVA = x.OROKBEFOGADVA,
+                        CHIPES = x.CHIPES,
+                        NEV = x.NEV,
+                        ELOZO_TULAJ = x.ELOZO_TULAJ,
+                        IVARTALANITOTT = x.IVARTALANITOTT,
+                        FAJTA = x.FAJTA,
+                        NOSTENY = x.NOSTENY,
+                        BETEGSEGEK = x.BETEGSEGEK,
+                        ELOJEGYZETT = x.ELOJEGYZETT,
+                        OLTVA = x.OLTVA,
+                        SZIN = x.SZIN,
+                        SZULETESI_IDO = x.SZULETESI_IDO,
+                        TOMEG = x.TOMEG,
+                        MERET = x.MERET
+                    }).ToList();
+                }
             }
 
-           public List<UGYFEL> getAllÜgyfél()
+            public List<UgyfelVM> getAllÜgyfél()
            {
-               return db.UGYFEL.Where(x => x.UGYFELID != null).ToList();
+               lock (loadlock)
+               {
+                   return db.UGYFEL.Where(x => x.VEZETEKNEV != null).Select(x => new UgyfelVM()
+                   {
+                       UGYFELID=x.UGYFELID,
+                       VEZETEKNEV=x.VEZETEKNEV,
+                       KERESZTNEV=x.KERESZTNEV,
+                       VAROS=x.VAROS,
+                        UTCA=x.UTCA,
+                        HAZSZAM=x.HAZSZAM,
+                        EMAIL=x.EMAIL,
+                        TELEFON=x.TELEFON
+                   }).ToList();
+               }
            }
 
             public void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus mit)

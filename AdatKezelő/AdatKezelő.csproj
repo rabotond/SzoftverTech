@@ -71,6 +71,7 @@
     <Compile Include="ALLAT.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="AllatVM.cs" />
     <Compile Include="csillámDb_model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,10 +97,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statisztika.cs" />
+    <Compile Include="Statisztika_adatrecord.cs" />
     <Compile Include="Statisztika_típus.cs" />
     <Compile Include="UGYFEL.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UgyfelVM.cs" />
     <Compile Include="user.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>

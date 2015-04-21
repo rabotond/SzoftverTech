@@ -25,12 +25,12 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
            return  kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
         }
         
-        public List<ALLAT> FrissitAllat()
+        public List<AllatVM> FrissitAllat()
         { 
             return kezelo.getAllAllat();
         }
       
-        public List<UGYFEL> FrissitÜgyfel()
+        public List<UgyfelVM> FrissitÜgyfel()
         {
             return kezelo.getAllÜgyfél();
         }

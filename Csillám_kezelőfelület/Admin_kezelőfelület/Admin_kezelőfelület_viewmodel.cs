@@ -12,8 +12,8 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
     class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged
     {
-        List<ALLAT> allatok;
-        List<UGYFEL> ugyfelek;
+        List<AllatVM> allatok;
+        List<UgyfelVM> ugyfelek;
         ALLAT valasztottAllat;
         UGYFEL valasztottUgyfel;
 
@@ -29,15 +29,15 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             set { valasztottUgyfel = value; onPropChanged("ValasztottUgyfel"); }
         }
         
-        public Admin_kezelőfelület_viewmodel() {  }    
+        public Admin_kezelőfelület_viewmodel() {  }
 
-        public List<ALLAT> Allatok
+        public List<AllatVM> Allatok
         {
             get { return allatok; }
             set { allatok = value; onPropChanged("Allatok"); }
         }
 
-        public List<UGYFEL> Ügyfelek
+        public List<UgyfelVM> Ügyfelek
         {
             get { return ugyfelek; }
             set { ugyfelek = value; onPropChanged("Ügyfelek"); }

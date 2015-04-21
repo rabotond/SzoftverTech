@@ -31,8 +31,20 @@ namespace Csillamponi_Allatmenhely
             BL = new Admin_kezelőfelület_businessLogic();
             VM = new Admin_kezelőfelület_viewmodel();
             DataContext = VM;
-            VM.Allatok= BL.FrissitAllat();
-            VM.Ügyfelek = BL.FrissitÜgyfel();
+
+            Task.Factory.StartNew(() =>
+            {
+
+                var allatok = BL.FrissitAllat();
+                Dispatcher.Invoke(new Action(() => VM.Allatok = allatok));
+            });
+
+            Task.Factory.StartNew(() =>
+            {
+                var ugyfelek = BL.FrissitÜgyfel();
+                Dispatcher.Invoke(new Action(() => VM.Ügyfelek = ugyfelek));
+
+            });
         }
 
         private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a listboxokat a friss adatbázis adatokkal
@@ -45,7 +57,6 @@ namespace Csillamponi_Allatmenhely
         {
             NewAnimal page = new NewAnimal();
             page.Owner = this;
-            
             page.Show();
         }
 
@@ -59,12 +70,12 @@ namespace Csillamponi_Allatmenhely
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
         {
             BL.Állatot_töröl((ALLAT)állatgrid.SelectedItem);
-            VM.Allatok.Remove((ALLAT)állatgrid.SelectedItem);
+            VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
         {
             BL.Ügyfelet_töröl((UGYFEL)ugyfelgrid.SelectedItem);
-            VM.Ügyfelek.Remove((UGYFEL)ugyfelgrid.SelectedItem);
+            VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
         }
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
