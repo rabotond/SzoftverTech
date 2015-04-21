@@ -11,7 +11,7 @@
 
             </Grid>
         </GroupBox>
-        <TextBox x:Name="textBoxMennyiség" HorizontalAlignment="Left" Height="34" Margin="149,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192" FontSize="17"/>
+        <TextBox x:Name="textBoxMennyiség" HorizontalAlignment="Left" Height="34" Margin="149,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192" FontSize="17" PreviewKeyDown="textBoxMennyiség_PreviewKeyDown"/>
         <Label Content="Felhasználónév:" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox x:Name="textBoxUsername" HorizontalAlignment="Left" Height="30" Margin="149,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192" FontSize="14"/>
         <Button Content="Adományoz" HorizontalAlignment="Left" Margin="359,164,0,0" VerticalAlignment="Top" Width="138" FontSize="18" Height="34" Click="AdományozClick"/>

@@ -69,6 +69,17 @@ namespace Csillamponi_Allatmenhely
             usernameBinding.Source = donationPageViewModel.Username;
             textBoxUsername.SetBinding(TextBox.TextProperty, usernameBinding);
         }
+
+        private void textBoxMennyiség_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            bool jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
+                || e.Key == Key.Back
+                || e.Key == Key.Tab
+                || e.Key == Key.Left
+                || e.Key == Key.Right
+                || e.Key == Key.Delete;
+            e.Handled = !jo;
+        }
     }
     class DonationPageBusinessLogic
     {
