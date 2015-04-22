@@ -34,6 +34,7 @@ namespace Csillamponi_Allatmenhely
         }
         public CreateUser(UGYFEL modositando, user bejelentkezettUser)
         {
+            // modosítandó null-al érkezik helyből ott a hiba. már hívásnál a ValaszottUgyfel Nem Ugyfel típusú vagy mi ezért null de nekem még nagyon idegen az adminkezelő sorry nem találtam meg hol a hiba :)
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;
             this.módosítandó = modositando;

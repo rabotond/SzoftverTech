@@ -13,7 +13,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged
     {
         List<AllatVM> allatok;
-        List<UgyfelVM> ugyfelek;
+        List<UgyfelVM> ugyfelek; // help Fanninak:  Ha ez UgyfelVM akkor hogyan lesz belőle Ugyfel amit átadsz majd mint válaszottugyfel a NewUsernek. Módosításra. Szerintem ezért Null a NewUser Konstruktora
         ALLAT valasztottAllat;
         UGYFEL valasztottUgyfel;
 
