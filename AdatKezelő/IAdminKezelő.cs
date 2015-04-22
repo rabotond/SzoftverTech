@@ -11,8 +11,12 @@ namespace AdatKezelő
 {
     public interface IAdmin_kezelő
     {
+        void KennelTablaSync();
+
+        void KennelTablaHelyKarbanTartas(string tipus);
         
         void Eledelt_hozzáad(ELEDEL e, int mennyit);
+        
         void Állatot_hozzáad(ALLAT állat);
 
         void Állatot_módosít(ALLAT állat);

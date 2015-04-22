@@ -69,7 +69,7 @@ namespace AdatKezelő
         public int Van_e_üres_kennel(string allatfaj)
         {
             var uresHelyek = from karam in db.KENNEL
-                             where karam.ALLAT.FirstOrDefault() == db.ALLAT.Where(x => x.FAJTA == allatfaj).FirstOrDefault()
+                             where karam.TIPUS == allatfaj
                              select karam.SZABAD;
 
             if (uresHelyek != null)

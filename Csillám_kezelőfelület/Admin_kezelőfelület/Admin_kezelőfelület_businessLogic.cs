@@ -20,6 +20,16 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             kezelo = new Admin_kezelő();
         }
 
+        public void KennelTablaHelyKarbanTartas(string faj)
+        {
+            kezelo.KennelTablaHelyKarbanTartas(faj);
+        }
+
+        public void KennelTablaSync()
+        {
+            kezelo.KennelTablaSync();
+        }
+
         public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
         {
            return  kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);

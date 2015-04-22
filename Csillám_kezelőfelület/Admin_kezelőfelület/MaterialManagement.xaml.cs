@@ -28,7 +28,7 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
             BL = ujbl;
-            thi
+            
         }
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {

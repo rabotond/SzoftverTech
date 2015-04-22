@@ -116,5 +116,18 @@ namespace Csillamponi_Allatmenhely
             page.Owner = this;
             page.Show();
         }
+
+        private void KennelSyn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                BL.KennelTablaSync();
+                MessageBox.Show("Kennel tábla frissítve!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Nem sikerült szinkronizálni a kennel táblát. \n Hiba részletei: " + ex.ToString());
+            }
+        }
     }
 }
