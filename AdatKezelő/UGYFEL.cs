@@ -29,6 +29,10 @@ namespace AdatKezelő
         public Nullable<decimal> TELEFON { get; set; }
         public System.Guid UGYFELID { get; set; }
         public string EMAIL { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
+        public Nullable<bool> ISADMIN { get; set; }
+        public Nullable<System.DateTime> REGDATUM { get; set; }
     
         public virtual ICollection<ADOMANY> ADOMANY { get; set; }
         public virtual ICollection<ALLAT> ALLAT { get; set; }
