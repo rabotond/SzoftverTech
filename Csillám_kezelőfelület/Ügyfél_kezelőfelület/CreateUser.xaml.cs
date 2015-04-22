@@ -23,8 +23,8 @@ namespace Csillamponi_Allatmenhely
     {
         CreateUserViewModel createUserViewModel;
         UGYFEL módosítandó;
-        user bejelentkezettUser;
-        public CreateUser(user bejelentkezettUser)
+        UGYFEL bejelentkezettUser;
+        public CreateUser(UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;
@@ -32,7 +32,7 @@ namespace Csillamponi_Allatmenhely
             this.DataContext = createUserViewModel;
             this.módosítandó = null;
         }
-        public CreateUser(UGYFEL modositando, user bejelentkezettUser)
+        public CreateUser(UGYFEL modositando, UGYFEL bejelentkezettUser)
         {
             // modosítandó null-al érkezik helyből ott a hiba. már hívásnál a ValaszottUgyfel Nem Ugyfel típusú vagy mi ezért null de nekem még nagyon idegen az adminkezelő sorry nem találtam meg hol a hiba :)
             InitializeComponent();

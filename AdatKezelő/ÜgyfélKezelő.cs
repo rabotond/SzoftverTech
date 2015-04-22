@@ -36,7 +36,7 @@ namespace AdatKezelő
         public void Adományoz(Adomány_típus típus, int mennyiség, string ki)
         {
             var q = from x in adminKezelő.Db.UGYFEL
-                    where x.EMAIL == ki
+                    where x.USERNAME == ki
                     select x.UGYFELID;
             if (q.Count() != 0)
             {

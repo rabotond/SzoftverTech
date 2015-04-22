@@ -20,8 +20,8 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class PutInAnimal : Window
     {
-        user bejelentkezettUser;
-        public PutInAnimal(user bejelentkezettUser)
+        UGYFEL bejelentkezettUser;
+        public PutInAnimal(UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;
@@ -43,17 +43,17 @@ namespace Csillamponi_Allatmenhely
 
         private void Támogatás(object sender, RoutedEventArgs e)
         {
-            DonationPage oter = new DonationPage();
+            DonationPage oter = new DonationPage(this.bejelentkezettUser);
             this.Close();
             oter.Show();
         }
 
         private void BackButtonClick(object sender, RoutedEventArgs e)
         {
-            //LoginPage qpWindow = new LoginPage(bejelentkezettUser);
-            //qpWindow.Show();
-            //this.Close();
-            MessageBox.Show("ha lesz authentikáció akkor uncomment");
+            LoginPage qpWindow = new LoginPage();
+            qpWindow.Show();
+            this.Close();
+            //MessageBox.Show("ha lesz authentikáció akkor uncomment");
         }
     }
 }

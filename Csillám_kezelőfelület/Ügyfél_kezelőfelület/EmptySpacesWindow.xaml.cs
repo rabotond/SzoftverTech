@@ -20,8 +20,8 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class EmptySpacesWindow : Window
     {
-        user bejelentkezettUser;
-        public EmptySpacesWindow(EmptySpaceWindowViewModel vm, user bejelentkezettUser)
+        UGYFEL bejelentkezettUser;
+        public EmptySpacesWindow(EmptySpaceWindowViewModel vm, UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;

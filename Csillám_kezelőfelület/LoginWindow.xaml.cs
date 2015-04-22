@@ -22,7 +22,7 @@ namespace Csillám_kezelőfelület
     public partial class LoginWindow : Window
     {
         LoginWindowViewModel loginWindowViewModel;
-        public user bejelentkezettFelhasználó;
+        public UGYFEL bejelentkezettFelhasználó;
         string hova;
         public LoginWindow(string hova)
         {
@@ -63,7 +63,7 @@ namespace Csillám_kezelőfelület
             get { return jelszó; }
             set { jelszó = value; }
         }
-        public bool Belépés(string hova, out user felhasználó)
+        public bool Belépés(string hova, out UGYFEL felhasználó)
         {
             if (hova == "admin")
             {
@@ -83,9 +83,9 @@ namespace Csillám_kezelőfelület
         {
             adminKezelő = new Admin_kezelő();
         }
-        public bool BelépésAdmin(string username, string jelszó, out user felhasználó)
+        public bool BelépésAdmin(string username, string jelszó, out UGYFEL felhasználó)
         {
-            var a = adminKezelő.Db.user.Where(x => x.name == username);
+            var a = adminKezelő.Db.UGYFEL.Where(x => x.USERNAME == username);
             felhasználó = a.First();
             if (a.Count() == 0)
             {
@@ -93,12 +93,12 @@ namespace Csillám_kezelőfelület
                 return false;
             }
             
-            if (felhasználó.C_isadmin == false)
+            if (felhasználó.ISADMIN == false)
             {
                 MessageBox.Show("Ide csak adminisztrációs fiókkal léphet be!");
                 return false;
             }
-            else if (felhasználó.C_isadmin == true && felhasználó.password == jelszó)
+            else if (felhasználó.ISADMIN == true && felhasználó.PASSWORD == jelszó)
             {
                 return true;
             }
@@ -107,16 +107,16 @@ namespace Csillám_kezelőfelület
                 return false;
             }
         }
-        public bool BelépésÜgyfél(string username, string jelszó, out user felhasználó)
+        public bool BelépésÜgyfél(string username, string jelszó, out UGYFEL felhasználó)
         {
-            var a = adminKezelő.Db.user.Where(x => x.name == username);
+            var a = adminKezelő.Db.UGYFEL.Where(x => x.USERNAME == username);
             felhasználó = a.First();
             if (a.Count() == 0)
             {
                 MessageBox.Show("Nincs ilyen felhasználó!");
                 return false;
             }
-            if (felhasználó.password == jelszó)
+            if (felhasználó.PASSWORD == jelszó)
             {
                 return true;
             }

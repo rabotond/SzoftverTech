@@ -13,17 +13,19 @@ namespace Csillamponi_Allatmenhely
     public partial class DonationPage : Window
     {
         private readonly DonationPageViewModel donationPageViewModel;
-
-        public DonationPage()
+        UGYFEL bejelentkezettFelhasználó;
+        public DonationPage(UGYFEL bejelentkezettFelhasználó)
         {
             InitializeComponent();
+            this.bejelentkezettFelhasználó = bejelentkezettFelhasználó;
             donationPageViewModel = new DonationPageViewModel();
         }
 
         private void AdományozClick(object sender, RoutedEventArgs e)
         {
-            if (textBoxMennyiség.Text != "" && textBoxUsername.Text != "")
+            if (textBoxMennyiség.Text != "")
             {
+                donationPageViewModel.Username = this.bejelentkezettFelhasználó.USERNAME;
                 if (radioButtonÉtel.IsChecked == true)
                 {
                     donationPageViewModel.Adományoz(Adomány_típus.Étel);
@@ -55,9 +57,6 @@ namespace Csillamponi_Allatmenhely
             var mennyiségBinding = new Binding("Mennyiség");
             mennyiségBinding.Source = donationPageViewModel.Mennyiség;
             textBoxMennyiség.SetBinding(TextBox.TextProperty, mennyiségBinding);
-            var usernameBinding = new Binding("Username");
-            usernameBinding.Source = donationPageViewModel.Username;
-            textBoxUsername.SetBinding(TextBox.TextProperty, usernameBinding);
         }
 
         private void textBoxMennyiség_PreviewKeyDown(object sender, KeyEventArgs e)
