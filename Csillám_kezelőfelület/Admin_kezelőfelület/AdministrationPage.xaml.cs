@@ -98,5 +98,12 @@ namespace Csillamponi_Allatmenhely
             page.Owner = this;
             page.Show();
         }
+
+        private void Eledelek_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialManagement page = new MaterialManagement();
+            page.Owner = this;
+            page.Show();
+        }
     }
 }

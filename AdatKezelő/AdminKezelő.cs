@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+//készítette Molnár Fanni
+
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -26,7 +30,7 @@ using System.Xml.Linq;
                 db = new csillamponimenhelyDBEntities();
             }
 
-            public List<AllatVM> getAllAllat()
+            public List<AllatVM> getAllAllat()// datagrid megjelenítéshez
             {
                 lock (loadlock)
                 {
@@ -52,7 +56,7 @@ using System.Xml.Linq;
                 }
             }
 
-            public List<UgyfelVM> getAllÜgyfél()
+            public List<UgyfelVM> getAllÜgyfél()//datagrid megjeleítéshez
            {
                lock (loadlock)
                {
@@ -195,22 +199,6 @@ using System.Xml.Linq;
             public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
             {
                 Statisztika stat = new Statisztika(fajta, idoszak_kezdet, idoszak_vege);
-                stat.MakeStatistic();
-               // Task.WaitAll(stat.Tasklist.ToArray());
-
-                List<XElement> elements = new List<XElement>();
-                for (int i = 0; i < stat.Napok.Count;i++ )
-                {
-                    XElement nap = new XElement("Nap");
-                    nap.SetAttributeValue("Dátum",stat.Napok[i]);
-                    foreach (KeyValuePair<string, List<object>> lista in stat.Stat_listak)
-                    {
-                        nap.Add(new XElement(lista.Key, lista.Value[i]));
-                    }
-                    elements.Add(nap);
-                }
-                   
-                //stat.xDoc = new XDocument(fajta.ToString(),new XElement("napok",elements));
                 return stat;
             }
         

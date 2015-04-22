@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="csillamponimenhelyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="csillamponimenhelyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ADOMANY">
           <Key>
             <PropertyRef Name="ADOMANYID" />
@@ -66,6 +66,10 @@
           <Property Name="TELEFON" Type="numeric" Precision="11" Scale="0" />
           <Property Name="UGYFELID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="50" />
+          <Property Name="ISADMIN" Type="bit" />
+          <Property Name="REGDATUM" Type="date" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -202,6 +206,10 @@
           <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ADOMANY" Relationship="Self.ADOMANY_FOR_KEY" FromRole="UGYFEL" ToRole="ADOMANY" />
           <NavigationProperty Name="ALLAT" Relationship="Self.ALLAT_FOR_KEY" FromRole="UGYFEL" ToRole="ALLAT" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ISADMIN" Type="Boolean" />
+          <Property Name="REGDATUM" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -328,6 +336,10 @@
           <EntitySetMapping Name="UGYFEL">
             <EntityTypeMapping TypeName="csillamponimenhelyDBModel.UGYFEL">
               <MappingFragment StoreEntitySet="UGYFEL">
+                <ScalarProperty Name="REGDATUM" ColumnName="REGDATUM" />
+                <ScalarProperty Name="ISADMIN" ColumnName="ISADMIN" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
                 <ScalarProperty Name="VEZETEKNEV" ColumnName="VEZETEKNEV" />
                 <ScalarProperty Name="KERESZTNEV" ColumnName="KERESZTNEV" />
                 <ScalarProperty Name="IRSZ" ColumnName="IRSZ" />

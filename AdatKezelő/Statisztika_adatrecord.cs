@@ -22,6 +22,9 @@ namespace AdatKezelő
         public int befolytEledelAdomany { get; set; }
         public int befolytPenzaomany { get; set; }
 
+        public int regisztraltDarab { get; set; }
+        public int tamogattaEmenhelyünket { get; set; }
+
         public Statisztika_adatrecord(DateTime ujnap)
         {
             nap = ujnap;

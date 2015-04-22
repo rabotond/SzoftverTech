@@ -1,15 +1,15 @@
 ﻿<Window x:Class="Csillamponi_Allatmenhely.AdministrationPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="AdministrationPage" Height="834.853" Width="1567.276">
+        Title="AdministrationPage" Height="687.092" Width="1567.276">
     <Grid>
 
-        <DataGrid x:Name="ugyfelgrid" ItemsSource="{Binding Ügyfelek}" SelectedItem="{Binding ValasztottUgyfel}" Margin="41,83,250,495" />
-        <DataGrid x:Name="állatgrid" ItemsSource="{Binding Allatok}"  SelectedItem="{Binding ValasztottAllat}" Margin="41,382,250,176"  />
+        <DataGrid x:Name="ugyfelgrid" ItemsSource="{Binding Ügyfelek}" SelectedItem="{Binding ValasztottUgyfel}" Margin="41,83,250,331" />
+        <DataGrid x:Name="állatgrid" ItemsSource="{Binding Allatok}"  SelectedItem="{Binding ValasztottAllat}" Margin="41,382,250,28"  />
         <Label Content="Ügyfelek" HorizontalAlignment="Left" Margin="41,52,0,0" VerticalAlignment="Top" Width="99" FontSize="16"/>
         <Label Content="Állatok" HorizontalAlignment="Left" Margin="41,348,0,0" VerticalAlignment="Top" Width="99" Height="29" FontSize="16"/>
         <Button Content="Kimutatás Készítés" HorizontalAlignment="Left" Margin="1354,514,0,0" VerticalAlignment="Top" Width="184" Height="47" Click="Kimutatas_Click" FontSize="18" TextOptions.TextFormattingMode="Display"/>
-        <Button Content="Eledelek Kezelése" HorizontalAlignment="Left" Margin="1354,587,0,0" VerticalAlignment="Top" Width="184" Height="42" FontSize="18" TextOptions.TextFormattingMode="Display"/>
+        <Button Content="Eledelek Kezelése" HorizontalAlignment="Left" Margin="1354,587,0,0" VerticalAlignment="Top" Width="184" Height="42" FontSize="18" TextOptions.TextFormattingMode="Display" Click="Eledelek_Click"/>
         <Button Content="Új Ügyfél" HorizontalAlignment="Left" Margin="1236,52,0,0" VerticalAlignment="Top" Width="75" Click="Ujugyfel_Click"/>
         <Button Content="Törlés" HorizontalAlignment="Left" Margin="1076,52,0,0" VerticalAlignment="Top" Width="75" Click="UgyfeletTöröl_Click"/>
         <Button Content="Módosítás" HorizontalAlignment="Left" Margin="1156,52,0,0" VerticalAlignment="Top" Width="75" Click="uygfelmodosit_Click"/>

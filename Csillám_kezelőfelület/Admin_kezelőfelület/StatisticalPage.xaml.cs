@@ -69,5 +69,10 @@ namespace Csillamponi_Allatmenhely
             Statistic statgui = new Statistic(stat);
             statgui.Show();
         }
+
+        private void Visssza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+//készítette Molnár Fanni
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,62 +14,21 @@ namespace AdatKezelő
 {
     public class Statisztika
     {
+//adattagok
         private DateTime mettől;
         private DateTime meddig;
         private Statisztika_típus tipus;
-        List<Statisztika_adatrecord> napok;
+        List<Statisztika_adatrecord> napok; //ide fog elkészülni az egész statisztika, minden elem, egy adatsor, a típus szerint lekért stzatisztikai információkkal
         csillamponimenhelyDBEntities db;
-        Dictionary<string, List<object>> stat_listak;
         List<Task> tasklist;
         XDocument xdoc;
+
+//tulajdonságok
 
         public XDocument xDoc
         {
             get { return xdoc; }
             set { xdoc = value; }
-        }
-
-        public void MakeStatistic()
-        {
-
-
-
-            if (tipus == Statisztika_típus.állatállomány)
-            {
-                var asdf = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
-                            group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
-                            select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
-                       .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
-
-                napok = (from a in napok
-                         join b in asdf
-                         on a.Nap equals b.date into gj
-                         from item in gj.DefaultIfEmpty()
-                         select new Statisztika_adatrecord(a.Nap) { elvittAllat = item == null ? 0 : item.count }).ToList();
-
-                stat_listak.Add("elvittAllatok", elvittAllatDb());
-                stat_listak.Add("hozottAllatok", hozottAllatDb());
-                stat_listak.Add("szabadKennelek", szabadKennelDb());
-            }
-            else if (tipus == Statisztika_típus.adomány)
-            {
-                stat_listak.Add("penzadomany", befolyPenz());
-                stat_listak.Add("eledeladomany", kapottEledel());
-            }
-            else
-            {
-                stat_listak.Add("elvittAllatok", elvittAllatDb());
-                stat_listak.Add("hozottAllatok", hozottAllatDb());
-                stat_listak.Add("szabadKennelek", szabadKennelDb());
-                stat_listak.Add("penzadomany", befolyPenz());
-                stat_listak.Add("eledeladomany", kapottEledel());
-            }
-        }
-
-        public Dictionary<string, List<object>> Stat_listak
-        {
-            get { return stat_listak; }
-            set { stat_listak = value; }
         }
 
         public List<Statisztika_adatrecord> Napok
@@ -93,87 +54,143 @@ namespace AdatKezelő
             get { return tipus; }
             set { tipus = value; }
         }
+ 
+        
+//konstruktor   
 
         public Statisztika(Statisztika_típus ujtipus, DateTime ujmettől, DateTime ujmeddig)
         {
             mettől = ujmettől; meddig = ujmeddig; tipus = ujtipus;
             napok = new List<Statisztika_adatrecord>();
             db = new csillamponimenhelyDBEntities();
-            stat_listak = new Dictionary<string, List<object>>();
             tasklist = new List<Task>();
             for (int i = 0; i < (meddig - mettől).TotalDays; i++)
             {
                 napok.Add(new Statisztika_adatrecord(mettől.AddDays(i)));
             }
+            MakeStatistic();
         }
 
-        public List<object> elvittAllatDb()
-        {
-            List<object> list = new List<object>();
+// stat készítő eljárás
 
-
-
-
-
-            //foreach(DateTime akt in napok)
-            //{
-            //    list.Add(db.ALLAT.Count(x => x.OROKBEFOGADVA==akt));
-            //}
-            return list;
-        }
-        public List<object> hozottAllatDb()
-        {
-            List<object> list = new List<object>();
-            //foreach (DateTime akt in napok)
-            //{
-            //    list.Add(db.ALLAT.Count(x => x.BEADVA == akt));
-            //}
-            return list;
-        }
-
-        public List<object> befolyPenz()
-        {
-            List<object> list = new List<object>();
-            //foreach (DateTime akt in napok)
-            //{
-            //    list.Add((int)db.ADOMANY.Where(x => x.DATUM == akt && x.TIPUS == "pénz").Sum(x => x.MENNYISEG));
-            //}
-            return list;
-        }
-
-        public List<object> kapottEledel()
-        {
-            List<object> list = new List<object>();
-            //foreach (DateTime akt in napok)
-            //{
-            //    list.Add((int)db.ADOMANY.Where(x => x.DATUM == akt && x.TIPUS == "eledel").Sum(x => x.MENNYISEG));
-            //}
-            return list;
-        }
-        public List<object> szabadKennelDb()
-        {
-            List<object> list = new List<object>();
-            int aznapiAllatDb = 0;
-            int szabadkennelDb = 0;
-            //foreach (DateTime akt in napok)
-            //{
-            //    szabadkennelDb = db.KENNEL.Sum(x => x.MAXDARAB);
-            //    aznapiAllatDb = db.ALLAT.Count(x => x.BEADVA < akt && x.OROKBEFOGADVA > akt);
-            //    list.Add(szabadkennelDb - aznapiAllatDb);
-            //}
-            return list;
-        }
-
-        //public List<int> elojegyzesDb()
+        //public makeXmlfromStat()
         //{
-        //    List<int> list = new List<int>();
-        //    //foreach (DateTime akt in napok)
-        //    //{
-        //    //    list.Add((int)db.ALLAT.Count(x=>x.)(x => x.DATUM == akt && x.TIPUS == "eledel").Sum(x => x.MENNYISEG));
-        //    //}
-        //    return list;
+        //    foreach()
+        //    {
+
+        //    }
+        //    xdoc=new XDocument();
+
         //}
 
+
+        public void MakeStatistic()// a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
+                                     //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
+        {
+
+            if (tipus == Statisztika_típus.állatállomány)
+            {
+                var elvittDarab = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
+                            group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
+                            select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                       .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
+
+                var hozottDarab = (from a in db.ALLAT.Where(x => x.BEADVA != null && x.BEADVA >= mettől && x.BEADVA <= meddig)
+                                   group a by new { a.BEADVA.Value.Year, a.BEADVA.Value.Month, a.BEADVA.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                     .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
+
+                //var szabadKennel = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
+                //                   group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
+                //                   select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                //     .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
+
+                napok = (from a in napok
+                         join b in elvittDarab on a.Nap equals b.date into e
+                         join c in hozottDarab on a.Nap equals c.date into h
+                         from item1 in e.DefaultIfEmpty()
+                         from item2 in h.DefaultIfEmpty()
+                         select new Statisztika_adatrecord(a.Nap) { elvittAllat = item1 == null ? 0 : item1.count ,hozottAllat=item2==null? 0 : item2.count}).ToList();
+            }
+
+            else if (tipus == Statisztika_típus.adomány)
+            {
+
+                var befolytPenz = (from a in db.ADOMANY.Where(x => x.TIPUS=="PÉNZ" && x.DATUM >= mettől && x.DATUM <= meddig)
+                                   group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
+                                    select new { g.Key.Year, g.Key.Month, g.Key.Day, Posszeg = g.Sum(x=>x.MENNYISEG) }).ToList()
+                   .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Posszeg });
+
+                var befolytEledel = (from a in db.ADOMANY.Where(x => x.TIPUS == "ELEDEL" && x.DATUM >= mettől && x.DATUM <= meddig)
+                                     group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
+                                    select new { g.Key.Year, g.Key.Month, g.Key.Day, Eosszeg = g.Sum(x=>x.MENNYISEG) }).ToList()
+                   .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Eosszeg });
+
+                napok = (from a in napok
+                         join b in befolytPenz on a.Nap equals b.date into p
+                         join c in befolytEledel on a.Nap equals c.date into e
+                         from item1 in p.DefaultIfEmpty()
+                         from item2 in e.DefaultIfEmpty()
+                         select new Statisztika_adatrecord(a.Nap) { befolytPenzaomany = (int)(item1 == null ? 0 : item1.Posszeg) , befolytEledelAdomany=(int)(item2==null?0:item2.Eosszeg )}).ToList();
+
+            }
+            else if (tipus == Statisztika_típus.ügyfélállomány)
+            {
+
+                //var regisztralt = (from a in db.UGYFEL.Where(x => x.regisztracio >= mettől && x.regisztracio <= meddig)
+                //                   group a by new { a.regisztracio.Value.Year, a.regisztracio.Value.Month, a.regisztracio.Value.Day } into g
+                //                   select new { g.Key.Year, g.Key.Month, g.Key.Day, regisztraltDB = g.Count() }).ToList()
+                // .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.regisztraltDB });
+
+                //var tamogatottE = (from a in db.UGYFEL.Where(x => x.regisztracio >= mettől && x.regisztracio <= meddig)
+                                   
+                //                  group a by new { a.regisztracio.Value.Year, a.regisztracio.Value.Month, a.regisztracio.Value.Day ,a.UGYFELID } into g
+                //                  select new { g.Key.Year, g.Key.Month, g.Key.Day,  tamogatott =where g.Key.UGYFELID==d ,id=g.Key.UGYFELID
+                //                  }).ToList()
+                // .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.tamogatott});
+
+                //napok = (from a in napok
+                //         join b in regisztralt on a.Nap equals b.date into p
+                //         join c in tamogatottE on a.Nap equals c.date into e
+                //         from item1 in p.DefaultIfEmpty()
+                //         from item2 in e.DefaultIfEmpty()
+                //         select new Statisztika_adatrecord(a.Nap) { regisztraltDarab = (int)(item1 == null ? 0 : item1.regisztraltDB), tamogattaEmenhelyünket = (int)(item2 == null ? 0 : item2.tamogatott) }).ToList();
+
+
+            }
+            else//összetettbe mindent
+            {
+                var elvittDarab = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
+                                   group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                      .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
+
+                var hozottDarab = (from a in db.ALLAT.Where(x => x.BEADVA != null && x.BEADVA >= mettől && x.BEADVA <= meddig)
+                                   group a by new { a.BEADVA.Value.Year, a.BEADVA.Value.Month, a.BEADVA.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                     .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
+
+                var befolytPenz = (from a in db.ADOMANY.Where(x => x.TIPUS == "PÉNZ" && x.DATUM >= mettől && x.DATUM <= meddig)
+                                   group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, Posszeg = g.Sum(x => x.MENNYISEG) }).ToList()
+                  .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Posszeg });
+
+                var befolytEledel = (from a in db.ADOMANY.Where(x => x.TIPUS == "ELEDEL" && x.DATUM >= mettől && x.DATUM <= meddig)
+                                     group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
+                                     select new { g.Key.Year, g.Key.Month, g.Key.Day, Eosszeg = g.Sum(x => x.MENNYISEG) }).ToList()
+                   .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Eosszeg });
+
+                //napok = (from a in napok
+                //         join b in regisztralt on a.Nap equals b.date into p
+                //         join c in befolytEledel on a.Nap equals c.date into e
+                //         from item1 in p.DefaultIfEmpty()
+                //         from item2 in e.DefaultIfEmpty()
+                //         select new Statisztika_adatrecord(a.Nap) { befolytPenzaomany = (int)(item1 == null ? 0 : item1.Posszeg), befolytEledelAdomany = (int)(item2 == null ? 0 : item2.Eossze) }).ToList();
+            
+            }
+        }
+       
+        
     }//end Statisztika
 
 }//end namespace AdatKezelő

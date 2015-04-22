@@ -14,7 +14,7 @@ namespace AdatKezelő
     {
         Admin_kezelő adminKezelő;
         csillamponimenhelyDBEntities db;
-
+        
         public Admin_kezelő AdminKezelő
         {
             get { return adminKezelő; }
