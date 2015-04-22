@@ -30,10 +30,10 @@ namespace Csillamponi_Allatmenhely
         NewAnimalViewModel VM;
         string képforrás;
         Admin_kezelőfelület_businessLogic bl;
-
-        public NewAnimal()
+        user bejelentkezettUser;
+        public NewAnimal(user bennvan)
         {
-        
+            bejelentkezettUser = bennvan;
                 InitializeComponent();
             VM = new NewAnimalViewModel();
             bl = new Admin_kezelőfelület_businessLogic();
@@ -209,6 +209,13 @@ namespace Csillamponi_Allatmenhely
                 //fullPath =System.IO.Path.GetFullPath(fullPath);
                 
             }
+        }
+
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            PutInAnimal piaWindow = new PutInAnimal(this.bejelentkezettUser);
+            piaWindow.Show();
+            this.Close();
         }  
        
     }

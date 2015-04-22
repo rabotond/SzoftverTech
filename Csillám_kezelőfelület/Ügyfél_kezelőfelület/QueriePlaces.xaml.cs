@@ -1,28 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using AdatKezelő;
-using System.Collections.ObjectModel;
 
 namespace Csillamponi_Allatmenhely
 {
     /// <summary>
-    /// Interaction logic for QueriePlaces.xaml
+    ///     Interaction logic for QueriePlaces.xaml
     /// </summary>
     public partial class QueriePlaces : Window
     {
-        QueueuPlacesViewModel VM;
-        user bejelentkezettUser;
+        private readonly user bejelentkezettUser;
+        private readonly Ügyfél_Kezelő dbhozzáférés = new Ügyfél_Kezelő();
+        private readonly QueueuPlacesViewModel VM;
+
         public QueriePlaces(user bejelentkezettUser)
         {
             InitializeComponent();
@@ -31,16 +23,11 @@ namespace Csillamponi_Allatmenhely
             DataContext = VM;
         }
 
-
-       
-
-     
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            PutInAnimal piWindow = new PutInAnimal(this.bejelentkezettUser);
+            var piWindow = new PutInAnimal(bejelentkezettUser);
             piWindow.Show();
-            this.Close();
+            Close();
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -51,49 +38,65 @@ namespace Csillamponi_Allatmenhely
             }
             else
             {
-                Ügyfél_Kezelő a = new Ügyfél_Kezelő();
-                int uresHelyekSzama = a.Van_e_üres_kennel(VM.SelectedFaj);
-                EmptySpaceWindowViewModel vm = new EmptySpaceWindowViewModel();
+                var a = new Ügyfél_Kezelő();
+                var uresHelyekSzama = a.Van_e_üres_kennel(VM.SelectedFaj);
+                var vm = new EmptySpaceWindowViewModel();
                 vm.EmptySpaces = uresHelyekSzama;
-                EmptySpacesWindow esWindow = new EmptySpacesWindow(vm, this.bejelentkezettUser);
+                var esWindow = new EmptySpacesWindow(vm, bejelentkezettUser);
                 esWindow.Show();
-                this.Close();
+                Close();
             }
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            var nodup = dbhozzáférés.Db.ALLAT.Select(item => item.FAJTA).ToList();
+            nodup = nodup.ConvertAll(d => d.ToLower());
+            VM.Fajok = nodup.Distinct().ToList();
+        }
     }
-    class QueueuPlacesViewModel
+
+    internal class QueueuPlacesViewModel : INotifyPropertyChanged
     {
+        private List<string> fajok;
+
         public QueueuPlacesViewModel()
         {
-            fajok = new ObservableCollection<string>();
+            fajok = new List<string>();
             feltolt();
-
         }
-        ObservableCollection<string> fajok;
 
-        public ObservableCollection<string> Fajok
+        public List<string> Fajok
         {
             get { return fajok; }
-            set { fajok = value; }
+            set
+            {
+                fajok = value;
+                OnPropertyChanged("Fajok");
+            }
         }
-        string selectedFaj;
 
-        public string SelectedFaj
+        public string SelectedFaj { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void feltolt()
         {
-            get { return selectedFaj; }
-            set { selectedFaj = value; }
-        }
-        void feltolt ()
-        {
-            csillamponimenhelyDBEntities db = new csillamponimenhelyDBEntities();
+            var db = new csillamponimenhelyDBEntities();
             var lekerdezettFajok = from allat in db.ALLAT
-                        select allat.FAJTA;
+                select allat.FAJTA;
 
             foreach (var faj in lekerdezettFajok.ToList())
             {
                 fajok.Add(faj);
             }
         }
+
+        private void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
     }
-    
 }

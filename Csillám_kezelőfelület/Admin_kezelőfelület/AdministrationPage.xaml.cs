@@ -56,7 +56,7 @@ namespace Csillamponi_Allatmenhely
 
         private void UjallatClick(object sender, RoutedEventArgs e)
         {
-            NewAnimal page = new NewAnimal();
+            NewAnimal page = new NewAnimal(bejelentkezettUser);
             page.Owner = this;
             page.Show();
         }
