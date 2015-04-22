@@ -16,9 +16,9 @@ namespace Csillamponi_Allatmenhely
         private readonly IÜgyfél_kezelő ügyfél = new Ügyfél_Kezelő();
         private readonly AdaptionPageViewModel VM;
         private ALLAT atadommajdallat;
-        private user bejelentkezettUser;
+        private UGYFEL bejelentkezettUser;
 
-        public AdoptionPage(user bejelentkezettUser)
+        public AdoptionPage(UGYFEL bejelentkezettUser)
         {
             VM = new AdaptionPageViewModel();
             atadommajdallat = new ALLAT();
@@ -84,9 +84,9 @@ namespace Csillamponi_Allatmenhely
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            //LoginPage piaWindow = new LoginPage(this.bejelentkezettUser);
-            //piaWindow.Show();
-            MessageBox.Show("végén ha lesz authentikáció akkor cooomment out");
+            LoginPage piaWindow = new LoginPage();
+            piaWindow.Show();
+            //MessageBox.Show("végén ha lesz authentikáció akkor cooomment out");
             this.Close();
         }
     }

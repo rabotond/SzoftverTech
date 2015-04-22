@@ -23,9 +23,9 @@ namespace Csillamponi_Allatmenhely
     {
         Admin_kezelőfelület_businessLogic BL;
         Admin_kezelőfelület_viewmodel VM;
-        user bejelentkezettUser;
+        UGYFEL bejelentkezettUser;
 
-        public AdministrationPage(user bejelentkezettUser)
+        public AdministrationPage(UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;

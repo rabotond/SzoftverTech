@@ -27,63 +27,46 @@ namespace Csillamponi_Allatmenhely
 
         private void AdminClick(object sender, RoutedEventArgs e)
         {
-            /*
-             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
-             * */
-            //LoginWindow loginWindow = new LoginWindow("admin");
-            //if (loginWindow.ShowDialog() == true)
-            //{
-            //    AdministrationPage page = new AdministrationPage(loginWindow.bejelentkezettFelhasználó);
-            //    this.Close();
-            //    page.ShowDialog();
-            //}
-
-            AdministrationPage page = new AdministrationPage(null);
-            this.Close();
-            page.ShowDialog();
-            
-        
+            LoginWindow loginWindow = new LoginWindow("admin");
+            if (loginWindow.ShowDialog() == true)
+            {
+                AdministrationPage page = new AdministrationPage(loginWindow.bejelentkezettFelhasználó);
+                this.Close();
+                page.ShowDialog();
+            }   
         }
 
         private void OrokbeadClick(object sender, RoutedEventArgs e)
         {
-            /*
-             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
-             * */
-            //LoginWindow loginWindow = new LoginWindow("ügyfél");
-            //if (loginWindow.ShowDialog() == true)
-            //{
-            //    PutInAnimal other = new PutInAnimal(loginWindow.bejelentkezettFelhasználó);
-            //    this.Close();
-            //    other.Show();
-            //}
-            PutInAnimal other = new PutInAnimal(null);
-            this.Close();
-            other.Show();
+            LoginWindow loginWindow = new LoginWindow("ügyfél");
+            if (loginWindow.ShowDialog() == true)
+            {
+                PutInAnimal other = new PutInAnimal(loginWindow.bejelentkezettFelhasználó);
+                this.Close();
+                other.Show();
+            }
         }
 
         private void OrokbefogadClick(object sender, RoutedEventArgs e)
         {
-            /*
-             * BEJELENTKEZÉS RÉSZHEZ, NE TÖRÖLD!!!
-             * */
-            //LoginWindow loginWindow = new LoginWindow("ügyfél");
-            //if (loginWindow.ShowDialog() == true)
-            //{
-            //    AdoptionPage other = new AdoptionPage(loginWindow.bejelentkezettFelhasználó);
-            //    this.Close();
-            //    other.Show();
-            //}
-            AdoptionPage other = new AdoptionPage(null);
-            this.Close();
-            other.Show();
+            LoginWindow loginWindow = new LoginWindow("ügyfél");
+            if (loginWindow.ShowDialog() == true)
+            {
+                AdoptionPage other = new AdoptionPage(loginWindow.bejelentkezettFelhasználó);
+                this.Close();
+                other.Show();
+            }
         }
 
         private void AdományozClick(object sender, RoutedEventArgs e)
         {
-            DonationPage donationPage = new DonationPage();
-            donationPage.Show();
-            this.Close();
+            LoginWindow loginWindow = new LoginWindow("ügyfél");
+            if (loginWindow.ShowDialog() == true)
+            {
+                DonationPage donationPage = new DonationPage(loginWindow.bejelentkezettFelhasználó);
+                donationPage.Show();
+                this.Close();
+            }
         }
     }
 }

@@ -30,8 +30,8 @@ namespace Csillamponi_Allatmenhely
         NewAnimalViewModel VM;
         string képforrás;
         Admin_kezelőfelület_businessLogic bl;
-        user bejelentkezettUser;
-        public NewAnimal(user bennvan)
+        UGYFEL bejelentkezettUser;
+        public NewAnimal(UGYFEL bennvan)
         {
             bejelentkezettUser = bennvan;
                 InitializeComponent();

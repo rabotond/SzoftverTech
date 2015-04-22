@@ -11,11 +11,11 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class QueriePlaces : Window
     {
-        private readonly user bejelentkezettUser;
+        private readonly UGYFEL bejelentkezettUser;
         private readonly Ügyfél_Kezelő dbhozzáférés = new Ügyfél_Kezelő();
         private readonly QueueuPlacesViewModel VM;
 
-        public QueriePlaces(user bejelentkezettUser)
+        public QueriePlaces(UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;
