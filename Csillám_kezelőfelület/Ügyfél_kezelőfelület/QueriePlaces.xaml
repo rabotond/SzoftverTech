@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Csillamponi_Allatmenhely.QueriePlaces"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="QueriePlaces" Height="120" Width="352">
+        Title="QueriePlaces" Height="120" Width="352"  Loaded="Window_Loaded">
     <Grid>
         <Label Content="Állatfaj:" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" FontSize="18" Height="32"/>
 

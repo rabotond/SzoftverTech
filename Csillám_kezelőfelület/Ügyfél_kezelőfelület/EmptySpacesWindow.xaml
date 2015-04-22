@@ -4,8 +4,8 @@
         Title="EmptySpacesWindow" Height="128.155" Width="216.991">
     <Grid Margin="0,0,2,8">
 
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="120,61,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button Content="Új lekérdezés" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="91" Click="Button_Click_1"/>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="120,61,0,0" VerticalAlignment="Top" Width="75" Click="BackClick"/>
+        <Button Content="Új lekérdezés" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="91" Click="QueueButtonClick"/>
         <Label Name="DbLabel" Content="{Binding Path=EmptySpaces}"  HorizontalAlignment="Left" Margin="23,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.392,1.567"/>
         <Label Content="darab szabad kernel van!" HorizontalAlignment="Left" Margin="52,25,0,0" VerticalAlignment="Top"/>
 
