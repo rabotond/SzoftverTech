@@ -1,32 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
     /// <summary>
-    /// Interaction logic for AdoptionPage.xaml
+    ///     Interaction logic for AdoptionPage.xaml
     /// </summary>
     public partial class AdoptionPage : Window
     {
-        AdaptionPageViewModel VM;
-        IÜgyfél_kezelő ügyfél = new Ügyfél_Kezelő();
-        Ügyfél_Kezelő dbhozzáférés = new Ügyfél_Kezelő();
-        ALLAT atadommajdallat;
-        user bejelentkezettUser;
+        private readonly Ügyfél_Kezelő dbhozzáférés = new Ügyfél_Kezelő();
+        private readonly IÜgyfél_kezelő ügyfél = new Ügyfél_Kezelő();
+        private readonly AdaptionPageViewModel VM;
+        private ALLAT atadommajdallat;
+        private user bejelentkezettUser;
+
         public AdoptionPage(user bejelentkezettUser)
         {
             VM = new AdaptionPageViewModel();
@@ -38,39 +29,42 @@ namespace Csillamponi_Allatmenhely
 
         private void Keresés(object sender, RoutedEventArgs e)
         {
-            if (  ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj,név.ToString()).Any()==true)
+            if (ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString()).Any())
             {
-                VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString());
-                
+                VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj,
+                    név.ToString());
             }
             else
             {
                 MessageBox.Show("Nincs ilyen állat. Kérlek adj meg más feltételeket");
             }
-            VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString());
+            VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj,
+                név.ToString());
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (VM.Selectedallat!=null)
+            if (VM.Selectedallat != null)
             {
                 atadommajdallat = VM.Selectedallat;
-                ReservationPage other = new ReservationPage(atadommajdallat);
-                this.Close();
-                other.Show();    
+                var other = new ReservationPage(atadommajdallat);
+                Close();
+                other.Show();
             }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            List<String> nodup = new List<string>();
+            var nodup = new List<string>();
             foreach (var item in dbhozzáférés.Db.ALLAT)
             {
                 nodup.Add(item.FAJTA);
             }
+            nodup = nodup.ConvertAll(d => d.ToLower());
             VM.Faj = nodup.Distinct().ToList();
         }
-        bool fiuvagylany ()
+
+        private bool fiuvagylany()
         {
             if (VM.Fiu == "nőstény")
             {
@@ -78,70 +72,54 @@ namespace Csillamponi_Allatmenhely
             }
             return false;
         }
-        bool steril ()
+
+        private bool steril()
         {
-            if (oltas.IsChecked ==true)
+            if (oltas.IsChecked == true)
             {
                 return true;
             }
             return false;
         }
-       
 
-            
+        private void BackClick(object sender, RoutedEventArgs e)
+        {
+            //LoginPage piaWindow = new LoginPage(this.bejelentkezettUser);
+            //piaWindow.Show();
+            MessageBox.Show("végén ha lesz authentikáció akkor cooomment out");
+            this.Close();
+        }
     }
-    class AdaptionPageViewModel : INotifyPropertyChanged
-    {
-        ALLAT selectedallat;
-        
-        public ALLAT Selectedallat
-        {
-            get { return selectedallat; }
-            set { selectedallat = value; }
-        }
-        List<ALLAT> allatok;
 
-        public List<ALLAT> Allatok
+    internal class AdaptionPageViewModel : INotifyPropertyChanged
+    {
+        private List<string> faj;
+
+        public AdaptionPageViewModel()
         {
-            get { return allatok; }
-            set { allatok = value; }
-        }
-        public AdaptionPageViewModel ()
-        {
-            allatok = new List<ALLAT>();
+            Allatok = new List<ALLAT>();
             faj = new List<string>();
-            fiulany = new List<string>();
-            fiulany.Add("hím");
-            fiulany.Add("nőstény");
+            Fiulany = new List<string>();
+            Fiulany.Add("hím");
+            Fiulany.Add("nőstény");
         }
-        List<string> faj;
+
+        public ALLAT Selectedallat { get; set; }
+        public List<ALLAT> Allatok { get; set; }
 
         public List<string> Faj
         {
             get { return faj; }
-            set { faj = value; OnPropertyChanged("Faj"); }
+            set
+            {
+                faj = value;
+                OnPropertyChanged("Faj");
+            }
         }
-        string selectedFaj;
 
-        public string SelectedFaj
-        {
-            get { return selectedFaj; }
-            set { selectedFaj = value; }
-        }
-        List<string> fiulany;
-
-        public List<string> Fiulany
-        {
-            get { return fiulany; }
-            set { fiulany = value; }
-        }
-        string fiu;
-
-        public string Fiu
-        {
-            get { return fiu; }
-            set { fiu = value; }
-        }
+        public string SelectedFaj { get; set; }
+        public List<string> Fiulany { get; set; }
+        public string Fiu { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string name)
@@ -151,6 +129,5 @@ namespace Csillamponi_Allatmenhely
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-       
     }
 }

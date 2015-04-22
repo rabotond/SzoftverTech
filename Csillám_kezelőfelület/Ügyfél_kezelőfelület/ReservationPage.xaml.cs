@@ -71,6 +71,8 @@ namespace Csillamponi_Allatmenhely
             bmi.EndInit();
             VM.Kép = bmi;
         }
+
+       
     }
     class ReservationPageViewModel {
         BitmapImage kép;

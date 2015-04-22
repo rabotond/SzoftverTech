@@ -84,7 +84,6 @@
     <Compile Include="Ügyfél_kezelőfelület\EmptySpacesWindow.xaml.cs">
       <DependentUpon>EmptySpacesWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Ügyfél_kezelőfelület\EmptySpaceWindowViewModel.cs" />
     <Compile Include="Ügyfél_kezelőfelület\NewAnimal.xaml.cs">
       <DependentUpon>NewAnimal.xaml</DependentUpon>
     </Compile>

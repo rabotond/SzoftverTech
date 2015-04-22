@@ -28,18 +28,25 @@ namespace Csillamponi_Allatmenhely
             DataContext = vm;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BackClick(object sender, RoutedEventArgs e)
         {
             PutInAnimal piaWindow = new PutInAnimal(this.bejelentkezettUser);
             piaWindow.Show();
             this.Close();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void QueueButtonClick(object sender, RoutedEventArgs e)
         {
             QueriePlaces qpWindow = new QueriePlaces(this.bejelentkezettUser);
             qpWindow.Show();
             this.Close();
         }
+    }
+    public class EmptySpaceWindowViewModel
+    {
+        public EmptySpaceWindowViewModel()
+        {
+        }
+        public int EmptySpaces { get; set; }
     }
 }

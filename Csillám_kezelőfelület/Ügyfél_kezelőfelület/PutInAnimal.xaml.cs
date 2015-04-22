@@ -36,7 +36,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Adatfelvétel(object sender, RoutedEventArgs e)
         {
-            NewAnimal other = new NewAnimal();
+            NewAnimal other = new NewAnimal(bejelentkezettUser);
             this.Close();
             other.Show();
         }
@@ -46,6 +46,14 @@ namespace Csillamponi_Allatmenhely
             DonationPage oter = new DonationPage();
             this.Close();
             oter.Show();
+        }
+
+        private void BackButtonClick(object sender, RoutedEventArgs e)
+        {
+            //LoginPage qpWindow = new LoginPage(bejelentkezettUser);
+            //qpWindow.Show();
+            //this.Close();
+            MessageBox.Show("ha lesz authentikáció akkor uncomment");
         }
     }
 }
