@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -19,14 +20,16 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class PutInAnimal : Window
     {
-        public PutInAnimal()
+        user bejelentkezettUser;
+        public PutInAnimal(user bejelentkezettUser)
         {
             InitializeComponent();
+            this.bejelentkezettUser = bejelentkezettUser;
         }
 
         private void ÜreshelyekLekérdezése(object sender, RoutedEventArgs e)
         {
-            QueriePlaces other = new QueriePlaces();
+            QueriePlaces other = new QueriePlaces(this.bejelentkezettUser);
             this.Close();
             other.Show();
         }

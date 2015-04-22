@@ -23,15 +23,19 @@ namespace Csillamponi_Allatmenhely
     {
         CreateUserViewModel createUserViewModel;
         UGYFEL módosítandó;
-        public CreateUser()
+        user bejelentkezettUser;
+        public CreateUser(user bejelentkezettUser)
         {
             InitializeComponent();
+            this.bejelentkezettUser = bejelentkezettUser;
             createUserViewModel = new CreateUserViewModel();
             this.DataContext = createUserViewModel;
+            this.módosítandó = null;
         }
-        public CreateUser(UGYFEL modositando)
+        public CreateUser(UGYFEL modositando, user bejelentkezettUser)
         {
             InitializeComponent();
+            this.bejelentkezettUser = bejelentkezettUser;
             this.módosítandó = modositando;
             this.DataContext = modositando;
         }
@@ -40,19 +44,26 @@ namespace Csillamponi_Allatmenhely
         {
             if (this.DataContext is UGYFEL)
             {
-                createUserViewModel.ÜgyfélMódosítás(módosítandó); //még nem jó
-                //UGYFEL módosítandó = (UGYFEL)this.DataContext;
-                //createUserViewModel.ÜgyfélMódosítás(módosítandó);
+                createUserViewModel.ÜgyfélMódosítás(this.módosítandó); //még nem jó
+                UGYFEL módosítandó = (UGYFEL)this.DataContext;
+                createUserViewModel.ÜgyfélMódosítás(this.módosítandó);
             }
             if (this.DataContext is CreateUserViewModel)
             {
-                createUserViewModel.ÚjÜgyfél();
+                if (textBoxEmail.Text != "" && textBoxHszam.Text != "" && textBoxIrszám.Text != "" && textBoxKeresztnév.Text != "" && textBoxTelefon.Text != "" && textBoxTelepülés.Text != "" && textBoxUtca.Text != "" && textBoxVezetéknév.Text != "")
+                {
+                    createUserViewModel.ÚjÜgyfél();
+                }
+                else
+                {
+                    MessageBox.Show("Minden adatot meg kell adni!");
+                }
             }
         }
 
         private void VisszaClick(object sender, RoutedEventArgs e)
         {
-            AdministrationPage administrationPage = new AdministrationPage();
+            AdministrationPage administrationPage = new AdministrationPage(bejelentkezettUser);
             administrationPage.Show();
             this.Close();
         }

@@ -26,11 +26,13 @@ namespace Csillamponi_Allatmenhely
         IÜgyfél_kezelő ügyfél = new Ügyfél_Kezelő();
         Ügyfél_Kezelő dbhozzáférés = new Ügyfél_Kezelő();
         ALLAT atadommajdallat;
-        public AdoptionPage()
+        user bejelentkezettUser;
+        public AdoptionPage(user bejelentkezettUser)
         {
             VM = new AdaptionPageViewModel();
             atadommajdallat = new ALLAT();
             DataContext = VM;
+            this.bejelentkezettUser = bejelentkezettUser;
             InitializeComponent();
         }
 

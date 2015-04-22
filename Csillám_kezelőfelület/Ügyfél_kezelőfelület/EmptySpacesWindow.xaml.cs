@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -19,22 +20,24 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class EmptySpacesWindow : Window
     {
-        public EmptySpacesWindow(EmptySpaceWindowViewModel vm)
+        user bejelentkezettUser;
+        public EmptySpacesWindow(EmptySpaceWindowViewModel vm, user bejelentkezettUser)
         {
             InitializeComponent();
+            this.bejelentkezettUser = bejelentkezettUser;
             DataContext = vm;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            PutInAnimal piaWindow = new PutInAnimal();
+            PutInAnimal piaWindow = new PutInAnimal(this.bejelentkezettUser);
             piaWindow.Show();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            QueriePlaces qpWindow = new QueriePlaces();
+            QueriePlaces qpWindow = new QueriePlaces(this.bejelentkezettUser);
             qpWindow.Show();
             this.Close();
         }

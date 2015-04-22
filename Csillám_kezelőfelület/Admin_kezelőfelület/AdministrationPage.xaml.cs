@@ -23,11 +23,12 @@ namespace Csillamponi_Allatmenhely
     {
         Admin_kezelőfelület_businessLogic BL;
         Admin_kezelőfelület_viewmodel VM;
+        user bejelentkezettUser;
 
-        public AdministrationPage()
+        public AdministrationPage(user bejelentkezettUser)
         {
             InitializeComponent();
-
+            this.bejelentkezettUser = bejelentkezettUser;
             BL = new Admin_kezelőfelület_businessLogic();
             VM = new Admin_kezelőfelület_viewmodel();
             DataContext = VM;
@@ -62,7 +63,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Ujugyfel_Click(object sender, RoutedEventArgs e)
         {
-            CreateUser page = new CreateUser();
+            CreateUser page = new CreateUser(this.bejelentkezettUser);
             this.Close();
              page.Show();
         }
@@ -80,7 +81,7 @@ namespace Csillamponi_Allatmenhely
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
         {
-            CreateUser page = new CreateUser(VM.ValasztottUgyfel);
+            CreateUser page = new CreateUser(VM.ValasztottUgyfel, this.bejelentkezettUser);
             this.Close();
             page.Show();
         }
@@ -88,7 +89,7 @@ namespace Csillamponi_Allatmenhely
         {
             NewAnimal page = new NewAnimal(VM.ValasztottAllat);
             page.Owner = this;
-             page.Show();
+            page.Show();
         }
 
         private void Kimutatas_Click(object sender, RoutedEventArgs e)

@@ -22,6 +22,7 @@ namespace Csillám_kezelőfelület
     public partial class LoginWindow : Window
     {
         LoginWindowViewModel loginWindowViewModel;
+        public user bejelentkezettFelhasználó;
         string hova;
         public LoginWindow(string hova)
         {
@@ -38,7 +39,9 @@ namespace Csillám_kezelőfelület
 
         private void BelépésClick(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = loginWindowViewModel.Belépés(hova);
+            this.loginWindowViewModel.Jelszó = passwordBoxJelszó.Password;
+            bool sikeres = loginWindowViewModel.Belépés(hova, out this.bejelentkezettFelhasználó);
+            this.DialogResult = sikeres;
         }
     }
     class LoginWindowViewModel
@@ -60,17 +63,18 @@ namespace Csillám_kezelőfelület
             get { return jelszó; }
             set { jelszó = value; }
         }
-        public bool Belépés(string hova)
+        public bool Belépés(string hova, out user felhasználó)
         {
             if (hova == "admin")
             {
-                return loginWindowBusinessLogic.BelépésAdmin(this.username, this.jelszó);
+                return loginWindowBusinessLogic.BelépésAdmin(this.username, this.jelszó, out felhasználó);
             }
             else
             {
-                return loginWindowBusinessLogic.BelépésÜgyfél(this.username, this.jelszó);
+                return loginWindowBusinessLogic.BelépésÜgyfél(this.username, this.jelszó, out felhasználó);
             }
         }
+
     }
     class LoginWindowBusinessLogic
     {
@@ -79,21 +83,22 @@ namespace Csillám_kezelőfelület
         {
             adminKezelő = new Admin_kezelő();
         }
-        public bool BelépésAdmin(string username, string jelszó)
+        public bool BelépésAdmin(string username, string jelszó, out user felhasználó)
         {
             var a = adminKezelő.Db.user.Where(x => x.name == username);
+            felhasználó = a.First();
             if (a.Count() == 0)
             {
                 MessageBox.Show("Nincs ilyen felhasználó!");
                 return false;
             }
-            user User = a.First();
-            if (User.C_isadmin == false)
+            
+            if (felhasználó.C_isadmin == false)
             {
                 MessageBox.Show("Ide csak adminisztrációs fiókkal léphet be!");
                 return false;
             }
-            else if (User.C_isadmin == true && User.password == jelszó)
+            else if (felhasználó.C_isadmin == true && felhasználó.password == jelszó)
             {
                 return true;
             }
@@ -102,16 +107,16 @@ namespace Csillám_kezelőfelület
                 return false;
             }
         }
-        public bool BelépésÜgyfél(string username, string jelszó)
+        public bool BelépésÜgyfél(string username, string jelszó, out user felhasználó)
         {
             var a = adminKezelő.Db.user.Where(x => x.name == username);
+            felhasználó = a.First();
             if (a.Count() == 0)
             {
                 MessageBox.Show("Nincs ilyen felhasználó!");
                 return false;
             }
-            user User = a.First();
-            if (User.password == jelszó)
+            if (felhasználó.password == jelszó)
             {
                 return true;
             }

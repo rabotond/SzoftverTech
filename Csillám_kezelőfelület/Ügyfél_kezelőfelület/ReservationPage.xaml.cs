@@ -45,7 +45,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Regisztráció(object sender, RoutedEventArgs e)
         {
-            CreateUser other = new CreateUser();
+            CreateUser other = new CreateUser(null);
             this.Close();
             other.Show();
         }

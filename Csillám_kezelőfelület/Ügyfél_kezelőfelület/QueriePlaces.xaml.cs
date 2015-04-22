@@ -22,9 +22,11 @@ namespace Csillamponi_Allatmenhely
     public partial class QueriePlaces : Window
     {
         QueueuPlacesViewModel VM;
-        public QueriePlaces()
+        user bejelentkezettUser;
+        public QueriePlaces(user bejelentkezettUser)
         {
             InitializeComponent();
+            this.bejelentkezettUser = bejelentkezettUser;
             VM = new QueueuPlacesViewModel();
             DataContext = VM;
         }
@@ -36,7 +38,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            PutInAnimal piWindow = new PutInAnimal();
+            PutInAnimal piWindow = new PutInAnimal(this.bejelentkezettUser);
             piWindow.Show();
             this.Close();
         }
@@ -53,7 +55,7 @@ namespace Csillamponi_Allatmenhely
                 int uresHelyekSzama = a.Van_e_üres_kennel(VM.SelectedFaj);
                 EmptySpaceWindowViewModel vm = new EmptySpaceWindowViewModel();
                 vm.EmptySpaces = uresHelyekSzama;
-                EmptySpacesWindow esWindow = new EmptySpacesWindow(vm);
+                EmptySpacesWindow esWindow = new EmptySpacesWindow(vm, this.bejelentkezettUser);
                 esWindow.Show();
                 this.Close();
             }

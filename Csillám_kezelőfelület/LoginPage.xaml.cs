@@ -33,12 +33,12 @@ namespace Csillamponi_Allatmenhely
             //LoginWindow loginWindow = new LoginWindow("admin");
             //if (loginWindow.ShowDialog() == true)
             //{
-            //    AdministrationPage page = new AdministrationPage();
+            //    AdministrationPage page = new AdministrationPage(loginWindow.bejelentkezettFelhasználó);
             //    this.Close();
             //    page.ShowDialog();
             //}
 
-            AdministrationPage page = new AdministrationPage();
+            AdministrationPage page = new AdministrationPage(null);
             this.Close();
             page.ShowDialog();
             
@@ -53,11 +53,11 @@ namespace Csillamponi_Allatmenhely
             //LoginWindow loginWindow = new LoginWindow("ügyfél");
             //if (loginWindow.ShowDialog() == true)
             //{
-            //    PutInAnimal other = new PutInAnimal();
+            //    PutInAnimal other = new PutInAnimal(loginWindow.bejelentkezettFelhasználó);
             //    this.Close();
             //    other.Show();
             //}
-            PutInAnimal other = new PutInAnimal();
+            PutInAnimal other = new PutInAnimal(null);
             this.Close();
             other.Show();
         }
@@ -70,11 +70,11 @@ namespace Csillamponi_Allatmenhely
             //LoginWindow loginWindow = new LoginWindow("ügyfél");
             //if (loginWindow.ShowDialog() == true)
             //{
-            //    AdoptionPage other = new AdoptionPage();
+            //    AdoptionPage other = new AdoptionPage(loginWindow.bejelentkezettFelhasználó);
             //    this.Close();
             //    other.Show();
             //}
-            AdoptionPage other = new AdoptionPage();
+            AdoptionPage other = new AdoptionPage(null);
             this.Close();
             other.Show();
         }
