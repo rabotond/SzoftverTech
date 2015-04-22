@@ -19,9 +19,19 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class MaterialManagement : Window
     {
+
         public MaterialManagement()
         {
             InitializeComponent();
+        }
+        private void Visssza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Mentés_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

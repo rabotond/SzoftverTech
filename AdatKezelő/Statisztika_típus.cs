@@ -10,6 +10,7 @@ namespace AdatKezelő
     {
         adomány,
         állatállomány,
+        ügyfélállomány,
         összetett
     }
 }
