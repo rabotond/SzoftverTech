@@ -1,19 +1,14 @@
 ﻿<Window x:Class="Csillám_kezelőfelület.Admin_kezelőfelület.Statistic"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Statistic" Height="361" Width="733">
+        Title="Statistic" Height="392.158" Width="1029.536">
     <Grid>
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-        <DataGrid  x:Name="statgrid"  HorizontalAlignment="Left" Margin="60,72,0,0" VerticalAlignment="Top" Width="617" Height="201">
-            
-            <ColumnDefinition x:Name="a" Width="10" />
-            <ColumnDefinition x:Name="b" Width="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="10" />
-        </DataGrid>
+        <DataGrid  x:Name="statgrid" Margin="36,58,48,0" VerticalAlignment="Top" Height="276"/>
+        <Label Content="Statisztika" HorizontalAlignment="Left" Margin="36,20,0,0" VerticalAlignment="Top" Width="319" Height="33"/>
+        <Button Content="vissza" HorizontalAlignment="Left" Margin="881,22,0,0" VerticalAlignment="Top" Width="93" Click="Button_Click"/>
 
     </Grid>
 </Window>

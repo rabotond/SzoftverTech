@@ -20,12 +20,12 @@ namespace Csillamponi_Allatmenhely
     public partial class StatisticalPage : Window
     {
         Admin_kezelőfelület_businessLogic bl;
-        Statisztika stat;
-        public StatisticalPage()
+        Admin_kezelőfelület_viewmodel vm;
+        public StatisticalPage( Admin_kezelőfelület_viewmodel ujvm)
         {
             InitializeComponent();
+            vm = ujvm;
             bl = new Admin_kezelőfelület_businessLogic();
-           
         }
 
 
@@ -44,8 +44,9 @@ namespace Csillamponi_Allatmenhely
             {
                 fajta = Statisztika_típus.összetett;
             }
-            stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
-            stat.xDoc.Save("statisztika.xml");
+            vm.Stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
+            vm.Stat.makeXmlfromStat();
+            vm.Stat.xDoc.Save("statisztika.xml");
             MessageBox.Show("az xml fájl elkészült statisztika néven");
         }
 
@@ -64,9 +65,9 @@ namespace Csillamponi_Allatmenhely
             {
                 fajta = Statisztika_típus.összetett;
             }
-            stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
+            vm.Stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
 
-            Statistic statgui = new Statistic(stat);
+            Statistic statgui = new Statistic(vm);
             statgui.Show();
         }
 

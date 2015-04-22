@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AdatKezelő;
+using System.Collections;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
@@ -20,14 +21,20 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     /// </summary>
     public partial class Statistic : Window
     {
-        Statisztika stat;
-        public Statistic(Statisztika ujstat)
+        Admin_kezelőfelület_viewmodel VM;
+        public Statistic(Admin_kezelőfelület_viewmodel vm)
         {
             InitializeComponent();
-            stat = ujstat;
-            //statgrid.ItemsSource = stat.Stat_listak;
-            //statgrid.set
-            //statgrid.ColumnFromDisplayIndex(0).SetValue(ColumnDefinition.NameProperty, stat.Stat_listak.ElementAt(0).Key.ToString());
+            VM = vm;
+            IEnumerable stat_adatok = VM.Stat.Napok;
+            statgrid.ItemsSource =null;
+            statgrid.ItemsSource = stat_adatok;
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

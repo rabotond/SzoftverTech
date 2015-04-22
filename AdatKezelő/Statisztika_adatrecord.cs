@@ -20,7 +20,7 @@ namespace AdatKezelő
         public int elvittAllat { get; set; }
         public int szabadKennelDarab { get; set; }
         public int befolytEledelAdomany { get; set; }
-        public int befolytPenzaomany { get; set; }
+        public int befolytPenzadomany { get; set; }
 
         public int regisztraltDarab { get; set; }
         public int tamogattaEmenhelyünket { get; set; }

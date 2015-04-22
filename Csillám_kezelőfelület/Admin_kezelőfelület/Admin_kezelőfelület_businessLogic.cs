@@ -11,7 +11,7 @@ using System.Data.Entity;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
-    class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
+   public  class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
     {
         Admin_kezelő kezelo;
 
@@ -40,40 +40,45 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             kezelo.Adományoz(ki, mikor, mennyit, tipus);
         }
 
-        public bool Előjegyzést_végez(ALLAT állat)
+        public void Előjegyzést_végez(ALLAT állat)
         {
-           return kezelo.Előjegyzést_végez(állat);       
+            kezelo.Előjegyzést_végez(állat);       
         }
 
-        public bool Állatot_hozzáad(ALLAT állat)
+        public void Állatot_hozzáad(ALLAT állat)
         {
-            return kezelo.Állatot_hozzáad(állat);
+             kezelo.Állatot_hozzáad(állat);
         }
 
-        public bool Állatot_módosít(ALLAT állat)
+        public void Állatot_módosít(ALLAT állat)
         {
-            return kezelo.Állatot_módosít(állat);
+             kezelo.Állatot_módosít(állat);
         }
 
-        public bool Állatot_töröl(ALLAT állat)
+        public void Állatot_töröl(ALLAT állat)
         {
-            return kezelo.Állatot_töröl(állat);
+             kezelo.Állatot_töröl(állat);
         }
 
-        public bool Ügyfelet_hozzáad(UGYFEL ügyfél)
+        public void Ügyfelet_hozzáad(UGYFEL ügyfél)
         {
-            return kezelo.Ügyfelet_hozzáad(ügyfél);
+             kezelo.Ügyfelet_hozzáad(ügyfél);
         }
 
-        public bool Ügyfelet_módosít(UGYFEL ügyfél)
+        public void Ügyfelet_módosít(UGYFEL ügyfél)
         {
-            return kezelo.Ügyfelet_módosít(ügyfél);
+             kezelo.Ügyfelet_módosít(ügyfél);
         }
 
-        public bool Ügyfelet_töröl(UGYFEL ügyfél)
+        public void Ügyfelet_töröl(UGYFEL ügyfél)
         {
-            return kezelo.Ügyfelet_töröl(ügyfél);
+             kezelo.Ügyfelet_töröl(ügyfél);
 
+        }
+
+        public void Eledelt_hozzáad(ELEDEL e,int mennyit)
+        {
+            kezelo.Eledelt_hozzáad(e,mennyit);
         }
     }
 }

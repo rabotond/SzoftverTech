@@ -87,34 +87,26 @@ using System.Xml.Linq;
                 
             }
 
-            public bool Előjegyzést_végez(ALLAT allat)
+            public void Eledelt_hozzáad(ELEDEL e,int mennyit)
             {
-                ALLAT a = db.ALLAT.Find(allat.ALLATID);
-                if(a.ELOJEGYZETT==true)
-                {
-                    return false;
-                }
-                else
-                {
-                    a.ELOJEGYZETT =true;
-                    Állatot_módosít(a);
-                    return true;
-                }
-                
+                ELEDEL a=db.ELEDEL.Find(e.FAJTA);
+                a.RAKTARON = a.RAKTARON + mennyit;
+                db.SaveChanges();
             }
 
-            public bool Állatot_hozzáad(ALLAT állat)
+            public void Előjegyzést_végez(ALLAT allat)
+            {
+                ALLAT a = db.ALLAT.Find(allat.ALLATID);
+                    a.ELOJEGYZETT =true;
+                    Állatot_módosít(a);
+            }
+
+            public void Állatot_hozzáad(ALLAT állat)
             {
                 try 
                 {   
                     db.ALLAT.Add(állat);
-
-                    if (db.SaveChanges() == 0)
-                    {
-                        return true;
-                    }
-                    else
-                    { return false; }
+                    db.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -135,65 +127,40 @@ using System.Xml.Linq;
               
             }
 
-            public bool Állatot_módosít(ALLAT állat)//lecserélem az egészet..id marad
+            public void Állatot_módosít(ALLAT állat)//lecserélem az egészet..id marad
             {
                 ALLAT a = db.ALLAT.Find(állat.ALLATID);
                 db.ALLAT.Remove(a);
                 db.ALLAT.Add(állat);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
+                db.SaveChanges();
             }
 
-            public bool Állatot_töröl(ALLAT állat)
+            public void Állatot_töröl(ALLAT állat)
             {
                 ALLAT a = db.ALLAT.Find(állat);
                 db.ALLAT.Remove(a);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
+                db.SaveChanges();
             }
 
-            public bool Ügyfelet_hozzáad(UGYFEL ügyfél)
+            public void Ügyfelet_hozzáad(UGYFEL ügyfél)
             {
                 db.UGYFEL.Add(ügyfél);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
+                db.SaveChanges();
             }
 
-            public bool Ügyfelet_töröl(UGYFEL ügyfél)
+            public void Ügyfelet_töröl(UGYFEL ügyfél)
             {
                 var a = db.UGYFEL.Where(x => x.UGYFELID == ügyfél.UGYFELID);
                 db.UGYFEL.Remove((UGYFEL)a);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
+                db.SaveChanges();
             }
 
-            public bool Ügyfelet_módosít(UGYFEL ügyfél)
+            public void Ügyfelet_módosít(UGYFEL ügyfél)
             {
                 UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
                 db.UGYFEL.Remove(a);
                 db.UGYFEL.Add(ügyfél);
-                if (db.SaveChanges() == 0)
-                {
-                    return true;
-                }
-                else
-                { return false; }
+                db.SaveChanges();
             }
 
             public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)

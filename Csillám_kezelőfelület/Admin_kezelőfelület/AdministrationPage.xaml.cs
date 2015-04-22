@@ -48,10 +48,21 @@ namespace Csillamponi_Allatmenhely
             });
         }
 
-        private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a listboxokat a friss adatbázis adatokkal
+        private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a datagrideket a friss adatbázis adatokkal
         {
-            VM.Allatok = BL.FrissitAllat();
-            VM.Ügyfelek= BL.FrissitÜgyfel();
+            Task.Factory.StartNew(() =>
+            {
+
+                var allatok = BL.FrissitAllat();
+                Dispatcher.Invoke(new Action(() => VM.Allatok = allatok));
+            });
+
+            Task.Factory.StartNew(() =>
+            {
+                var ugyfelek = BL.FrissitÜgyfel();
+                Dispatcher.Invoke(new Action(() => VM.Ügyfelek = ugyfelek));
+
+            });
         }
 
         private void UjallatClick(object sender, RoutedEventArgs e)
@@ -94,14 +105,14 @@ namespace Csillamponi_Allatmenhely
 
         private void Kimutatas_Click(object sender, RoutedEventArgs e)
         {
-            StatisticalPage page = new StatisticalPage();
+            StatisticalPage page = new StatisticalPage(VM);
             page.Owner = this;
             page.Show();
         }
 
         private void Eledelek_Click(object sender, RoutedEventArgs e)
         {
-            MaterialManagement page = new MaterialManagement();
+            MaterialManagement page = new MaterialManagement(BL);
             page.Owner = this;
             page.Show();
         }

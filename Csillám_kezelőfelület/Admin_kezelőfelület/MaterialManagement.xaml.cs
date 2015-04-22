@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Csillám_kezelőfelület.Admin_kezelőfelület;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -19,10 +21,14 @@ namespace Csillamponi_Allatmenhely
     /// </summary>
     public partial class MaterialManagement : Window
     {
-
-        public MaterialManagement()
+        Admin_kezelőfelület_businessLogic BL;
+        ELEDEL eledel;
+        
+        public MaterialManagement(Admin_kezelőfelület_businessLogic ujbl)
         {
             InitializeComponent();
+            BL = ujbl;
+            thi
         }
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {
@@ -31,7 +37,10 @@ namespace Csillamponi_Allatmenhely
 
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            //eledel = new ELEDEL();
+            //eledel.FAJTA = 
+            //BL.Eledelt_hozzáad(eledel);
         }
     }
 }

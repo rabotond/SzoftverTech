@@ -12,21 +12,22 @@ namespace AdatKezelő
     public interface IAdmin_kezelő
     {
         
-        bool Állatot_hozzáad(ALLAT állat);
+        void Eledelt_hozzáad(ELEDEL e, int mennyit);
+        void Állatot_hozzáad(ALLAT állat);
 
-        bool Állatot_módosít(ALLAT állat);
+        void Állatot_módosít(ALLAT állat);
 
-        bool Állatot_töröl(ALLAT állat);
+        void Állatot_töröl(ALLAT állat);
 
-        bool Ügyfelet_hozzáad(UGYFEL ügyfél);
+        void Ügyfelet_hozzáad(UGYFEL ügyfél);
 
-        bool Ügyfelet_módosít(UGYFEL ügyfél);
+        void Ügyfelet_módosít(UGYFEL ügyfél);
 
-        bool Ügyfelet_töröl(UGYFEL ügyfél);
+        void Ügyfelet_töröl(UGYFEL ügyfél);
         
         void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus);
 
-        bool Előjegyzést_végez(ALLAT állat);
+        void Előjegyzést_végez(ALLAT állat);
 
         Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet,DateTime idoszak_vege);
     

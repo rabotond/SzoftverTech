@@ -73,15 +73,54 @@ namespace AdatKezelő
 
 // stat készítő eljárás
 
-        //public makeXmlfromStat()
-        //{
-        //    foreach()
-        //    {
+        public  void makeXmlfromStat()
+        {
+            List<XElement> elements = new List<XElement>();
+            foreach(Statisztika_adatrecord akt in napok)
+            {
+                XElement e;
+                if (tipus == Statisztika_típus.állatállomány)
+                {
+                        e = new XElement("nap",
+                        new XAttribute("datum",akt.Nap),
+                        new XElement("elvitt_allat",akt.elvittAllat), 
+                        new XElement("hozott_allat",akt.hozottAllat)
+                      );
+                }
+                else if (tipus == Statisztika_típus.adomány)
+                {
+                        e = new XElement("nap",
+                        new XAttribute("datum",akt.Nap),
+                        new XElement("befolyt_penzadomany",akt.befolytPenzadomany), 
+                        new XElement("befolyt_eledeladomany",akt.befolytEledelAdomany)
+                      );
+                }
+                else if (tipus == Statisztika_típus.ügyfélállomány)
+                {
+                        e = new XElement("nap",
+                        new XAttribute("dátum",akt.Nap),
+                        new XElement("regisztraltak",akt.regisztraltDarab)
+                      );
+                }
+                else
+                {  
+                        e=new XElement("nap",
+                        new XAttribute("datum",akt.Nap),
+                        new XElement("elvitt_allat",akt.elvittAllat), 
+                        new XElement("hozott_allat",akt.hozottAllat),
+                        new XElement("befolyt_penzadomany", akt.befolytPenzadomany),
+                        new XElement("befolyt_eledeladomany", akt.befolytEledelAdomany),
+                        new XElement("regisztraltak", akt.regisztraltDarab)
+                        );
+                }
 
-        //    }
-        //    xdoc=new XDocument();
+              
+                elements.Add(e);
 
-        //}
+            }
+            xdoc=new XDocument("statisztika",new XElement("root",elements));
+
+        }
 
 
         public void MakeStatistic()// a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
@@ -131,7 +170,7 @@ namespace AdatKezelő
                          join c in befolytEledel on a.Nap equals c.date into e
                          from item1 in p.DefaultIfEmpty()
                          from item2 in e.DefaultIfEmpty()
-                         select new Statisztika_adatrecord(a.Nap) { befolytPenzaomany = (int)(item1 == null ? 0 : item1.Posszeg) , befolytEledelAdomany=(int)(item2==null?0:item2.Eosszeg )}).ToList();
+                         select new Statisztika_adatrecord(a.Nap) { befolytPenzadomany = (int)(item1 == null ? 0 : item1.Posszeg), befolytEledelAdomany = (int)(item2 == null ? 0 : item2.Eosszeg) }).ToList();
 
             }
             else if (tipus == Statisztika_típus.ügyfélállomány)
