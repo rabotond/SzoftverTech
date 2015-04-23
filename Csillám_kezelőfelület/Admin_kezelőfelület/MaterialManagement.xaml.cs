@@ -28,7 +28,7 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
             BL = ujbl;
-            thi
+            
         }
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {
@@ -37,10 +37,10 @@ namespace Csillamponi_Allatmenhely
 
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
-            
-            //eledel = new ELEDEL();
-            //eledel.FAJTA = 
-            //BL.Eledelt_hozzáad(eledel);
+
+            eledel = new ELEDEL();
+            eledel.FAJTA = tipusok.SelectedItem.ToString();
+            BL.Eledelt_hozzáad(eledel,int.Parse(mennyitAD.Text));
         }
     }
 }
