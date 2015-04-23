@@ -83,7 +83,6 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         public void Ügyfelet_töröl(UGYFEL ügyfél)
         {
              kezelo.Ügyfelet_töröl(ügyfél);
-
         }
 
         public void Eledelt_hozzáad(ELEDEL e,int mennyit)

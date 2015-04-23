@@ -11,12 +11,6 @@
         <TextBox x:Name="textBoxTelepülés" HorizontalAlignment="Left" Height="23" Margin="108,113,0,0" TextWrapping="Wrap" Text="{Binding VAROS}" VerticalAlignment="Top" Width="138" FontSize="18"/>
         <Label Content="Utca:" HorizontalAlignment="Left" Margin="10,137,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox x:Name="textBoxUtca" HorizontalAlignment="Left" Height="23" Margin="65,141,0,0" TextWrapping="Wrap" Text="{Binding UTCA}" VerticalAlignment="Top" Width="181" FontSize="18"/>
-        <Label Content="Adományozások száma:" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="210,275,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="36" FontSize="18" IsReadOnly="True"/>
-        <Label Content="Örökbefogadott állatok:" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="textBoxÖrökbefogadott" HorizontalAlignment="Left" Height="109" Margin="263,42,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18" IsReadOnly="True"/>
-        <Label Content="Örökbeadott állatok:" HorizontalAlignment="Left" Margin="263,156,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="textBoxÖrökbeadott" HorizontalAlignment="Left" Height="109" Margin="263,188,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" FontSize="18" IsReadOnly="True"/>
         <Button Content="Mentés" HorizontalAlignment="Left" Margin="171,461,0,0" VerticalAlignment="Top" Width="75" FontSize="18" Click="Mentes_Click"/>
         <Label Content="Keresztnév:" HorizontalAlignment="Left" Margin="10,44,0,0" VerticalAlignment="Top" FontSize="18"/>
         <TextBox x:Name="textBoxKeresztnév" HorizontalAlignment="Left" Height="23" Margin="115,49,0,0" TextWrapping="Wrap" Text="{Binding KERESZTNEV}" VerticalAlignment="Top" Width="131" FontSize="18"/>
