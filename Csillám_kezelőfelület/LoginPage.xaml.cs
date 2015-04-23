@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Csillám_kezelőfelület;
+using AdatKezelő;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -67,6 +68,12 @@ namespace Csillamponi_Allatmenhely
                 donationPage.Show();
                 this.Close();
             }
+        }
+
+        private void RegisztrációClick(object sender, RoutedEventArgs e)
+        {
+            CreateUser createUser = new CreateUser(new UGYFEL());
+            createUser.Show();
         }
     }
 }

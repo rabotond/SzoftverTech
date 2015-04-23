@@ -75,8 +75,7 @@ namespace Csillamponi_Allatmenhely
         private void Ujugyfel_Click(object sender, RoutedEventArgs e)
         {
             CreateUser page = new CreateUser(this.bejelentkezettUser);
-            this.Close();
-             page.Show();
+            page.Show();
         }
 
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
@@ -93,7 +92,6 @@ namespace Csillamponi_Allatmenhely
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
         {
             CreateUser page = new CreateUser(VM.ValasztottUgyfel, this.bejelentkezettUser); // Viewmodelben Fanni egy kis ötlet, help neked
-            this.Close();
             page.Show();
         }
         private void allatmodosit_Click(object sender, RoutedEventArgs e)

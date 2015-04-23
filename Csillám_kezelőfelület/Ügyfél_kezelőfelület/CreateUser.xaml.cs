@@ -51,9 +51,30 @@ namespace Csillamponi_Allatmenhely
             }
             if (this.DataContext is CreateUserViewModel)
             {
-                if (textBoxEmail.Text != "" && textBoxHszam.Text != "" && textBoxIrszám.Text != "" && textBoxKeresztnév.Text != "" && textBoxTelefon.Text != "" && textBoxTelepülés.Text != "" && textBoxUtca.Text != "" && textBoxVezetéknév.Text != "")
+                if (textBoxEmail.Text != "" &&
+                    textBoxHszam.Text != "" &&
+                    textBoxIrszám.Text != "" &&
+                    textBoxKeresztnév.Text != "" &&
+                    textBoxTelefon.Text != "" &&
+                    textBoxTelepülés.Text != "" &&
+                    textBoxUtca.Text != "" &&
+                    textBoxVezetéknév.Text != "" &&
+                    textBoxUsername.Text != "" &&
+                    passwordBoxPassword1.Password != "" &&
+                    passwordBoxPassword2.Password != "")
                 {
-                    createUserViewModel.ÚjÜgyfél();
+                    if (passwordBoxPassword1.Password == passwordBoxPassword2.Password)
+                    {
+                        createUserViewModel.PASSWORD = passwordBoxPassword1.Password;
+                        if (createUserViewModel.ÚjÜgyfél())
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("A két jelszó mezőnek egyeznie kell!");
+                    }
                 }
                 else
                 {
@@ -64,8 +85,6 @@ namespace Csillamponi_Allatmenhely
 
         private void VisszaClick(object sender, RoutedEventArgs e)
         {
-            AdministrationPage administrationPage = new AdministrationPage(bejelentkezettUser);
-            administrationPage.Show();
             this.Close();
         }
     }
@@ -119,6 +138,19 @@ namespace Csillamponi_Allatmenhely
             get { return email; }
             set { email = value; OnPropertyChanged("EMAIL"); }
         }
+        string username;
+        public string USERNAME
+        {
+            get { return username; }
+            set { username = value; OnPropertyChanged("USERNAME"); }
+        }
+        string password;
+        public string PASSWORD
+        {
+            get { return password; }
+            set { password = value; OnPropertyChanged("PASSWORD"); }
+        }
+
         CreateUserBusinessLogic createUserBusinessLogic;
         public CreateUserViewModel()
         {
@@ -132,7 +164,7 @@ namespace Csillamponi_Allatmenhely
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
             }
         }
-        public void ÚjÜgyfél()
+        public bool ÚjÜgyfél()
         {
             UGYFEL ügyfél = new UGYFEL();
             ügyfél.EMAIL = this.EMAIL;
@@ -143,8 +175,12 @@ namespace Csillamponi_Allatmenhely
             ügyfél.UGYFELID = Guid.NewGuid();
             ügyfél.UTCA = this.UTCA;
             ügyfél.VAROS = this.VAROS;
+            ügyfél.USERNAME = this.username;
+            ügyfél.PASSWORD = this.password;
+            ügyfél.REGDATUM = DateTime.Now;
             ügyfél.VEZETEKNEV = this.VEZETEKNEV;
-            createUserBusinessLogic.Mentés("új", ügyfél);
+            ügyfél.ISADMIN = false;
+            return createUserBusinessLogic.Mentés("új", ügyfél);
         }
         public void ÜgyfélMódosítás(UGYFEL ügyfél)
         {
@@ -154,20 +190,36 @@ namespace Csillamponi_Allatmenhely
     class CreateUserBusinessLogic
     {
         IAdmin_kezelő adminKezelő;
+        Admin_kezelő dbCheck;
         public CreateUserBusinessLogic()
         {
             adminKezelő = new Admin_kezelő();
+            dbCheck = new Admin_kezelő();
         }
-        public void Mentés(string mit, UGYFEL ügyfél)
+        public bool Mentés(string mit, UGYFEL ügyfél)
         {
-            if (mit == "új")
+            var a = dbCheck.Db.UGYFEL.Where(x => x.USERNAME == ügyfél.USERNAME);
+            if (a.Count() == 0)
             {
-                adminKezelő.Ügyfelet_hozzáad(ügyfél);
+                if (mit == "új")
+                {
+                    adminKezelő.Ügyfelet_hozzáad(ügyfél);
+                    MessageBox.Show("Regisztráció kész!");
+                    return true;
+                    
+                }
+                if (mit == "módosít")
+                {
+                    adminKezelő.Ügyfelet_módosít(ügyfél);
+                    return true;
+                }
             }
-            if (mit == "módosít")
+            else
             {
-                adminKezelő.Ügyfelet_módosít(ügyfél);
+                MessageBox.Show("Ezzel a felhasználónévvel már létezik felhasználó!\nKérlek válassz másik felhasználónevet!");
+                return false;
             }
+            return false;
         }
     }
 }
