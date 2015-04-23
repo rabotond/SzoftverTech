@@ -40,6 +40,10 @@ namespace Csillamponi_Allatmenhely
             {
                 fajta = Statisztika_típus.állatállomány;
             }
+            else if (ügyféles.IsChecked == true)
+            {
+                fajta = Statisztika_típus.ügyfélállomány;
+            }
             else
             {
                 fajta = Statisztika_típus.összetett;
@@ -60,6 +64,10 @@ namespace Csillamponi_Allatmenhely
             else if (állományos.IsChecked == true)
             {
                 fajta = Statisztika_típus.állatállomány;
+            }
+            else if (ügyféles.IsChecked == true)
+            {
+                fajta = Statisztika_típus.ügyfélállomány;
             }
             else
             {

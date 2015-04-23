@@ -7,8 +7,8 @@
             <Label Content="Kimutatás Típusa:" FontSize="20"/>
             <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20"/>
             <RadioButton x:Name="állományos" Content="Állatállomány" FontSize="20"/>
+            <RadioButton x:Name="ügyféles" Content="Ügyfélállomány" FontSize="20"/>
             <RadioButton x:Name="összetett" Content="Összetett" FontSize="20"/>
-            <RadioButton x:Name="ügyfélállomány" Content="Ügyfélállomány" FontSize="20"/>
         </StackPanel>
         <Label Content="Mettől" HorizontalAlignment="Left" Margin="51,207,0,0" VerticalAlignment="Top" Width="221" Height="33"/>
         <DatePicker x:Name="kezdet" SelectedDate="2014.01.01" HorizontalAlignment="Left" Margin="51,240,0,0" VerticalAlignment="Top" Width="221" Height="34"/>

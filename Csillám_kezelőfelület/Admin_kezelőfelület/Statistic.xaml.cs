@@ -26,9 +26,29 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         {
             InitializeComponent();
             VM = vm;
-            IEnumerable stat_adatok = VM.Stat.Napok;
-            statgrid.ItemsSource =null;
-            statgrid.ItemsSource = stat_adatok;
+            List<object> statVM = new List<object>();
+            foreach (Statisztika_adatrecord akt in VM.Stat.Napok)
+            {
+                if (vm.Stat.Tipus == Statisztika_típus.adomány)
+                {
+                    statVM.Add(new { NAP = akt.Nap, befolytPenz = akt.befolytPenzadomany, befoyltEledel = akt.befolytEledelAdomany });
+                }
+                else if (vm.Stat.Tipus == Statisztika_típus.állatállomány)
+                {
+                    statVM.Add(new { NAP = akt.Nap, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat });
+                }
+                else if (vm.Stat.Tipus == Statisztika_típus.ügyfélállomány)
+                {
+                    statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab });
+                }
+                else//összetett
+                {
+                    statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat, befolytPenz = akt.befolytPenzadomany, befoyltEledel = akt.befolytEledelAdomany });
+                }
+            }
+            IEnumerable stat_adatok = statVM;
+            statgrid.ItemsSource = null;
+            statgrid.ItemsSource = stat_adatok;      
             
         }
 
