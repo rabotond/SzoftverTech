@@ -74,7 +74,9 @@ namespace AdatKezelő
 
         public  void makeXmlfromStat()
         {
-            List<XElement> elements = new List<XElement>();
+
+            XElement root = new XElement("root");
+
             foreach(Statisztika_adatrecord akt in napok)
             {
                 XElement e;
@@ -113,11 +115,10 @@ namespace AdatKezelő
                         );
                 }
 
-              
-                elements.Add(e);
+                root.Add(e);
 
             }
-            xdoc=new XDocument("statisztika",new XElement("root",elements));
+            xdoc=new XDocument(root);
 
         }
 
@@ -227,7 +228,11 @@ namespace AdatKezelő
             
             }
         }
-       
+
+        public void ExportToExcel(XDocument xml) //Luca
+        {
+
+        }
         
     }//end Statisztika
 
