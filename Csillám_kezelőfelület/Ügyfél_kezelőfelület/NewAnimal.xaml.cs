@@ -47,6 +47,8 @@ namespace Csillamponi_Allatmenhely
             var ügyfél = new Ügyfél_Kezelő();
             var kicsoda = new UGYFEL();
             var allat = new ALLAT();
+            string faj = "";
+
             /* if(this.Owner.GetType()==typeof(AdministrationPage))//ha az adminfelületről lett hívva a window----fanni's shit
             {
                 ALLAT ujallat = new ALLAT();
@@ -76,6 +78,7 @@ namespace Csillamponi_Allatmenhely
                 SaveClipboardImageToFile(képforrás);
                 allat.SZIN = VM.Szin;
                 allat.FAJTA = VM.Fajta;
+                faj = allat.FAJTA;
                 allat.SZULETESI_IDO = született.SelectedDate;
                 //allat.TOMEG = decimal.Parse(VM.Tomeg);
                 allat.BETEGSEGEK = VM.Betegség;
@@ -87,6 +90,7 @@ namespace Csillamponi_Allatmenhely
                 allat.IVARTALANITOTT = VM.Ivar == chip_es_elojegyez.igen;
                 allat.NOSTENY = VM.Fiulany != fiu_lany.hím;
                 allat.OLTVA = VM.Oltasok == oltas.igen;
+                KennelTablaKarbantartas(faj);
                 MessageBox.Show("Mentve");
             }
             else
@@ -96,13 +100,17 @@ namespace Csillamponi_Allatmenhely
             ügyfél.Örökbe_ad(allat, kicsoda);
             //allat.KENNEL = ""; //  ???????  nem értem , ez egy másik tábla nem is állat
             //allat.ELOZO_TULAJ = 12;  ?? GUID
-        }
 
+        }
+        private void KennelTablaKarbantartas(string allatfaj)
+        {
+            bl.KennelTablaHelyKarbanTartas(allatfaj);
+        }
        public void feltolt_adatokkal()
         {
             VM.Neve = név.ToString();
             VM.Kor = született.ToString();
-            VM.Fajta = fajta.ToString();
+            VM.Fajta = fajta.Text;
             VM.Tomeg = tomeg.ToString();
             VM.Szin = szin.ToString();
             VM.Megjegyzes = megjegyzes.ToString();

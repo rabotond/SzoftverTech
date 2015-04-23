@@ -168,6 +168,53 @@ using System.Xml.Linq;
                 Statisztika stat = new Statisztika(fajta, idoszak_kezdet, idoszak_vege);
                 return stat;
             }
+
+            public void KennelTablaSync() // készítette Kovács Luca
+            {
+                var allatokByFajta = from allat in db.ALLAT
+                                     group allat by allat.FAJTA into g
+                                     select g;
+
+                foreach (var item in allatokByFajta)
+                {
+                    var kennels = from actKennel in db.KENNEL
+                                  where actKennel.TIPUS == item.Key
+                                  select actKennel;
+
+                    if (kennels.Count() != 0)
+                    {
+                        var kennel = kennels.FirstOrDefault();
+
+                        kennel.FOGLALT = item.Count();
+
+                        kennel.SZABAD = kennel.MAXDARAB - kennel.FOGLALT;
+                    }
+                    else
+                    {
+                        KENNEL newKennel = new KENNEL() { FOGLALT = item.Count(), MAXDARAB = 100, SZABAD = 100 - item.Count(), TIPUS = item.Key };
+                    }
+
+                }
+                db.SaveChanges();
+            }
+
+            public void KennelTablaHelyKarbanTartas(string tipus)
+            {// készítette Kovács Luca
+                var q = from kennel in db.KENNEL
+                        where kennel.TIPUS == tipus
+                        select kennel;
+                if (q.Count() != 0)
+                {
+                    q.FirstOrDefault().SZABAD--;
+                    q.FirstOrDefault().FOGLALT++;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    this.KennelTablaSync();
+                }
+                
+            }
         
         }//end Admin_kezelő
 
