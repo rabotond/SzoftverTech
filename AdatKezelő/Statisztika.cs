@@ -84,7 +84,7 @@ namespace AdatKezelő
         {
 
             XElement root = new XElement("root");
-
+            xdoc = new XDocument(root);
             foreach (Statisztika_adatrecord akt in napok)
             {
                 XElement e;
@@ -107,7 +107,7 @@ namespace AdatKezelő
                 else if (tipus == Statisztika_típus.ügyfélállomány)
                 {
                         e = new XElement("nap",
-                        new XAttribute("dátum",akt.Nap),
+                        new XAttribute("datum",akt.Nap),
                         new XElement("regisztraltak",akt.regisztraltDarab)
                       );
                 }
@@ -123,9 +123,9 @@ namespace AdatKezelő
                         );
                 }
 
-
+                root.Add(e);
             }
-            xdoc = new XDocument(root);
+
 
         }
 
