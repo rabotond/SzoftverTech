@@ -9,7 +9,7 @@
         <Label Content="Ügyfelek" HorizontalAlignment="Left" Margin="217,279,0,0" VerticalAlignment="Top" Width="99" FontSize="16" Height="37"/>
         <Label Content="Állatok" HorizontalAlignment="Left" Margin="219,10,0,0" VerticalAlignment="Top" Width="99" Height="29" FontSize="16"/>
         <Button Content="Kimutatás Készítés" HorizontalAlignment="Left" Margin="10,433,0,0" VerticalAlignment="Top" Width="179" Height="47" Click="Kimutatas_Click" FontSize="18" TextOptions.TextFormattingMode="Display"/>
-        <Button Content="Eledelek Kezelése" HorizontalAlignment="Left" Margin="10,532,0,0" VerticalAlignment="Top" Width="179" Height="42" FontSize="18" TextOptions.TextFormattingMode="Display" Click="Eledelek_Click"/>
+        <Button Content="Eledelek / Kennelek" HorizontalAlignment="Left" Margin="10,532,0,0" VerticalAlignment="Top" Width="179" Height="42" FontSize="18" TextOptions.TextFormattingMode="Display" Click="Eledelek_Click"/>
         <Button Content="Új Ügyfél" HorizontalAlignment="Left" Margin="1024,287,0,0" VerticalAlignment="Top" Width="75" Click="Ujugyfel_Click" Height="29"/>
         <Button Content="Törlés" HorizontalAlignment="Left" Margin="864,287,0,0" VerticalAlignment="Top" Width="75" Click="UgyfeletTöröl_Click" Height="29"/>
         <Button Content="Módosítás" HorizontalAlignment="Left" Margin="944,287,0,0" VerticalAlignment="Top" Width="75" Click="uygfelmodosit_Click" Height="29"/>

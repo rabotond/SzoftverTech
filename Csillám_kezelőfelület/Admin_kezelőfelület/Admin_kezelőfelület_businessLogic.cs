@@ -8,10 +8,11 @@ using AdatKezelő;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
+using System.Collections;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
-   public  class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
+    public class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
     {
         Admin_kezelő kezelo;
 
@@ -38,7 +39,12 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
         {
-           return  kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
+            return kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
+        }
+
+        public IEnumerable FrissitEledel_kennel()
+        {
+            return kezelo.getAllEledel_kennel();
         }
         
         public List<AllatVM> FrissitAllat()
@@ -91,9 +97,9 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
              kezelo.Ügyfelet_töröl(ügyfél);
         }
 
-        public void Eledelt_hozzáad(ELEDEL e,int mennyit)
+        public void Eledelt_hozzáad(ELEDEL e, int mennyit)
         {
-            kezelo.Eledelt_hozzáad(e,mennyit);
+            kezelo.Eledelt_hozzáad(e, mennyit);
         }
     }
 }
