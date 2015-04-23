@@ -1,11 +1,14 @@
 ﻿
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
 using System.Xml.Linq;
 
 
@@ -13,7 +16,7 @@ namespace AdatKezelő
 {
     public class Statisztika
     {
-//adattagok
+        //adattagok
         private DateTime mettől;
         private DateTime meddig;
         private Statisztika_típus tipus;
@@ -22,7 +25,7 @@ namespace AdatKezelő
         List<Task> tasklist;
         XDocument xdoc;
 
-//tulajdonságok
+        //tulajdonságok
 
         public XDocument xDoc
         {
@@ -53,9 +56,14 @@ namespace AdatKezelő
             get { return tipus; }
             set { tipus = value; }
         }
- 
-        
-//konstruktor   
+
+
+        //konstruktor 
+
+        public Statisztika()
+        {
+
+        }
 
         public Statisztika(Statisztika_típus ujtipus, DateTime ujmettől, DateTime ujmeddig)
         {
@@ -70,68 +78,68 @@ namespace AdatKezelő
             MakeStatistic();
         }
 
-// stat készítő eljárás
+        // stat készítő eljárás
 
-        public  void makeXmlfromStat()
+        public void makeXmlfromStat()
         {
 
             XElement root = new XElement("root");
 
-            foreach(Statisztika_adatrecord akt in napok)
+            foreach (Statisztika_adatrecord akt in napok)
             {
                 XElement e;
                 if (tipus == Statisztika_típus.állatállomány)
                 {
-                        e = new XElement("nap",
-                        new XAttribute("datum",akt.Nap),
-                        new XElement("elvitt_allat",akt.elvittAllat), 
-                        new XElement("hozott_allat",akt.hozottAllat)
-                      );
+                    e = new XElement("nap",
+                    new XAttribute("datum", akt.Nap),
+                    new XElement("elvitt_allat", akt.elvittAllat),
+                    new XElement("hozott_allat", akt.hozottAllat)
+                  );
                 }
                 else if (tipus == Statisztika_típus.adomány)
                 {
-                        e = new XElement("nap",
-                        new XAttribute("datum",akt.Nap),
-                        new XElement("befolyt_penzadomany",akt.befolytPenzadomany), 
-                        new XElement("befolyt_eledeladomany",akt.befolytEledelAdomany)
-                      );
+                    e = new XElement("nap",
+                    new XAttribute("datum", akt.Nap),
+                    new XElement("befolyt_penzadomany", akt.befolytPenzadomany),
+                    new XElement("befolyt_eledeladomany", akt.befolytEledelAdomany)
+                  );
                 }
                 else if (tipus == Statisztika_típus.ügyfélállomány)
                 {
-                        e = new XElement("nap",
-                        new XAttribute("dátum",akt.Nap),
-                        new XElement("regisztraltak",akt.regisztraltDarab)
-                      );
+                    e = new XElement("nap",
+                    new XAttribute("dátum", akt.Nap),
+                    new XElement("regisztraltak", akt.regisztraltDarab)
+                  );
                 }
                 else
-                {  
-                        e=new XElement("nap",
-                        new XAttribute("datum",akt.Nap),
-                        new XElement("elvitt_allat",akt.elvittAllat), 
-                        new XElement("hozott_allat",akt.hozottAllat),
-                        new XElement("befolyt_penzadomany", akt.befolytPenzadomany),
-                        new XElement("befolyt_eledeladomany", akt.befolytEledelAdomany),
-                        new XElement("regisztraltak", akt.regisztraltDarab)
-                        );
+                {
+                    e = new XElement("nap",
+                    new XAttribute("datum", akt.Nap),
+                    new XElement("elvitt_allat", akt.elvittAllat),
+                    new XElement("hozott_allat", akt.hozottAllat),
+                    new XElement("befolyt_penzadomany", akt.befolytPenzadomany),
+                    new XElement("befolyt_eledeladomany", akt.befolytEledelAdomany),
+                    new XElement("regisztraltak", akt.regisztraltDarab)
+                    );
                 }
 
                 root.Add(e);
 
             }
-            xdoc=new XDocument(root);
+            xdoc = new XDocument(root);
 
         }
 
 
         public void MakeStatistic()// a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
-                                     //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
+        //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
         {
 
             if (tipus == Statisztika_típus.állatállomány)
             {
                 var elvittDarab = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
-                            group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
-                            select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
+                                   group a by new { a.OROKBEFOGADVA.Value.Year, a.OROKBEFOGADVA.Value.Month, a.OROKBEFOGADVA.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, count = g.Count() }).ToList()
                        .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.count });
 
                 var hozottDarab = (from a in db.ALLAT.Where(x => x.BEADVA != null && x.BEADVA >= mettől && x.BEADVA <= meddig)
@@ -149,20 +157,20 @@ namespace AdatKezelő
                          join c in hozottDarab on a.Nap equals c.date into h
                          from item1 in e.DefaultIfEmpty()
                          from item2 in h.DefaultIfEmpty()
-                         select new Statisztika_adatrecord(a.Nap) { elvittAllat = item1 == null ? 0 : item1.count ,hozottAllat=item2==null? 0 : item2.count}).ToList();
+                         select new Statisztika_adatrecord(a.Nap) { elvittAllat = item1 == null ? 0 : item1.count, hozottAllat = item2 == null ? 0 : item2.count }).ToList();
             }
 
             else if (tipus == Statisztika_típus.adomány)
             {
 
-                var befolytPenz = (from a in db.ADOMANY.Where(x => x.TIPUS=="PÉNZ" && x.DATUM >= mettől && x.DATUM <= meddig)
+                var befolytPenz = (from a in db.ADOMANY.Where(x => x.TIPUS == "PÉNZ" && x.DATUM >= mettől && x.DATUM <= meddig)
                                    group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
-                                    select new { g.Key.Year, g.Key.Month, g.Key.Day, Posszeg = g.Sum(x=>x.MENNYISEG) }).ToList()
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, Posszeg = g.Sum(x => x.MENNYISEG) }).ToList()
                    .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Posszeg });
 
                 var befolytEledel = (from a in db.ADOMANY.Where(x => x.TIPUS == "ELEDEL" && x.DATUM >= mettől && x.DATUM <= meddig)
                                      group a by new { a.DATUM.Value.Year, a.DATUM.Value.Month, a.DATUM.Value.Day } into g
-                                    select new { g.Key.Year, g.Key.Month, g.Key.Day, Eosszeg = g.Sum(x=>x.MENNYISEG) }).ToList()
+                                     select new { g.Key.Year, g.Key.Month, g.Key.Day, Eosszeg = g.Sum(x => x.MENNYISEG) }).ToList()
                    .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Eosszeg });
 
                 napok = (from a in napok
@@ -182,7 +190,7 @@ namespace AdatKezelő
                 // .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.regisztraltDB });
 
                 //var tamogatottE = (from a in db.UGYFEL.Where(x => x.regisztracio >= mettől && x.regisztracio <= meddig)
-                                   
+
                 //                  group a by new { a.regisztracio.Value.Year, a.regisztracio.Value.Month, a.regisztracio.Value.Day ,a.UGYFELID } into g
                 //                  select new { g.Key.Year, g.Key.Month, g.Key.Day,  tamogatott =where g.Key.UGYFELID==d ,id=g.Key.UGYFELID
                 //                  }).ToList()
@@ -225,15 +233,58 @@ namespace AdatKezelő
                 //         from item1 in p.DefaultIfEmpty()
                 //         from item2 in e.DefaultIfEmpty()
                 //         select new Statisztika_adatrecord(a.Nap) { befolytPenzaomany = (int)(item1 == null ? 0 : item1.Posszeg), befolytEledelAdomany = (int)(item2 == null ? 0 : item2.Eossze) }).ToList();
-            
+
             }
         }
 
-        public void ExportToExcel(XDocument xml) //Luca
+        public void ExportToExcel(XDocument xml, string fileName) //Luca
         {
+            Application excelapp = new Application();
+            Workbook wb = excelapp.Workbooks.Add(Type.Missing);
+            try
+            {
+                if (xml != null)
+                {
+                    Worksheet ws = wb.Sheets.get_Item(1);
 
+                    int lastUsedColumn = 2;
+                    int lastUsedRow = 1;
+                    bool first = true;
+                    foreach (var day in xml.Element("root").Elements("nap"))
+                    {
+                        ws.Cells[1, lastUsedColumn] = day.Attribute("datum").Value;
+                        if (first)
+                        {
+
+                            foreach (var elem in day.Elements())
+                            {
+                                ws.Cells[++lastUsedRow, 1] = elem.Name.ToString();
+                            }
+                            first = false;
+                        }
+                        lastUsedRow = 1;
+                        foreach (var item in day.Elements())
+                        {
+                            ws.Cells[++lastUsedRow, lastUsedColumn] = item.Value;
+                        }
+                        lastUsedColumn++;
+                    }
+
+                    wb.SaveAs(fileName);
+                    wb.Close();
+                }
+                else
+                {
+                    wb.Close();
+                    throw new Exception("Nem sikerült expotrálni az excel fájlt, győződjön meg róla, hogy ki legyen jelölve statisztika tipus!");
+                }
+            }
+            catch (Exception ex)
+            {
+                wb.Close();
+            }
         }
-        
+
     }//end Statisztika
 
 }//end namespace AdatKezelő

@@ -31,7 +31,7 @@ namespace Csillamponi_Allatmenhely
 
         private void statisztikaToXML_Click(object sender, RoutedEventArgs e)//kimutatás készítés xml
         {
-            Statisztika_típus fajta;
+           Statisztika_típus fajta;
             if (adomanyos.IsChecked == true)
             {
                 fajta = Statisztika_típus.adomány;
@@ -82,6 +82,29 @@ namespace Csillamponi_Allatmenhely
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void KimutatasMentes_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(textBoxPath.Text) && textBoxPath.Text != @"Pl.: D:\fileName.xlsx")
+            {
+                statisztikaToXML_Click(sender, e);
+                try
+                {
+                    bl.ExportToExcel(vm.Stat.xDoc, textBoxPath.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Az exportálás sikertelen volt, ellenőrizze a megadott útvonalat, illetve hogy rendelkezik-e megfelelő jogosultsággal a mappa szerkesztéséhez!");
+                }
+                MessageBox.Show("Mentés sikeres!");
+            }
+            else
+            {
+                MessageBox.Show("írja be az útvonalat!");
+            }
+
+            
         }
     }
 }

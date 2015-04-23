@@ -20,6 +20,12 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             kezelo = new Admin_kezelő();
         }
 
+        public void ExportToExcel(XDocument doc, string fileName)
+        {
+            Statisztika stat = new Statisztika();
+            stat.ExportToExcel(doc,fileName);
+        }
+
         public void KennelTablaHelyKarbanTartas(string faj)
         {
             kezelo.KennelTablaHelyKarbanTartas(faj);
