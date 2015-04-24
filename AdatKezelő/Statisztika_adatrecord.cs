@@ -23,7 +23,7 @@ namespace AdatKezelő
         public int befolytPenzadomany { get; set; }
 
         public int regisztraltDarab { get; set; }
-        public int tamogattaEmenhelyünket { get; set; }
+        public int tamogatasMennyisege { get; set; }
 
         public Statisztika_adatrecord(DateTime ujnap)
         {

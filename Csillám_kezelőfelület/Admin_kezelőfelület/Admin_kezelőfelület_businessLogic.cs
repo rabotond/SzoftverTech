@@ -8,6 +8,7 @@ using AdatKezelő;
 using System.Data;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity;
+using System.Collections;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
@@ -33,6 +34,11 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         public Statisztika Statisztikát_készít(Statisztika_típus fajta, DateTime idoszak_kezdet, DateTime idoszak_vege)
         {
            return  kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
+        }
+
+        public IEnumerable FrissitEledel_kennel()
+        {
+            return kezelo.getAllEledel_kennel();
         }
         
         public List<AllatVM> FrissitAllat()

@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -28,7 +29,20 @@ using System.Xml.Linq;
                 db = new csillamponimenhelyDBEntities();
             }
 
-            public List<AllatVM> getAllAllat()// datagrid megjelenítéshez
+            public IEnumerable getAllEledel_kennel()
+            {
+                lock (loadlock)
+                {
+                    var lista = from a in db.KENNEL
+                                join b in db.ELEDEL on a.TIPUS equals b.FAJTA
+                                select new { tipus = a.TIPUS, max = a.MAXDARAB, szabad = a.SZABAD, foglalt = a.FOGLALT, eledel_raktáron = b.RAKTARON };
+                    return lista.ToList();
+                }
+            }
+
+            
+
+            public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
             {
                 lock (loadlock)
                 {
@@ -48,13 +62,13 @@ using System.Xml.Linq;
                         OLTVA = x.OLTVA,
                         SZIN = x.SZIN,
                         SZULETESI_IDO = x.SZULETESI_IDO,
-                        TOMEG = x.TOMEG,
+                        TOMEG= x.TOMEG,
                         MERET = x.MERET
                     }).ToList();
                 }
             }
 
-            public List<UgyfelVM> getAllÜgyfél()//datagrid megjeleítéshez
+            public List<UgyfelVM> getAllÜgyfél() // datagrid megjeleítéshez
            {
                lock (loadlock)
                {

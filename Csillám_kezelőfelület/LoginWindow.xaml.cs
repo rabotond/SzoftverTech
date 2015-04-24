@@ -74,7 +74,6 @@ namespace Csillám_kezelőfelület
                 return loginWindowBusinessLogic.BelépésÜgyfél(this.username, this.jelszó, out felhasználó);
             }
         }
-
     }
     class LoginWindowBusinessLogic
     {

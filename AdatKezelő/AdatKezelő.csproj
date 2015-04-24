@@ -11,6 +11,7 @@
     <AssemblyName>AdatKezelő</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -72,20 +72,22 @@
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
     <Compile Include="AllatVM.cs" />
-    <Compile Include="csillámDb_model.Context.cs">
+    <Compile Include="csillámDb_model.Context.cs" />
+    <Compile Include="csillámDb_model.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>csillámDb_model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="csillámDb_model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="csillámDb_model.cs" />
     <Compile Include="csillámDb_model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>csillámDb_model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="csillámDb_model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
     <Compile Include="ELEDEL.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
@@ -126,6 +128,28 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="csillámDb_model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>csillámDb_model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="csillámDb_model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>csillámDb_model.Context1.cs</LastGenOutput>
+    </None>
+    <None Include="csillámDb_model.edmx.diagram">
+      <DependentUpon>csillámDb_model.edmx</DependentUpon>
+    </None>
+    <None Include="csillámDb_model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>csillámDb_model1.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="csillamponimenhelyDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -133,32 +157,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>csillamponimenhelyDB.mdf</DependentUpon>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="csillámDb_model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>csillámDb_model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="csillámDb_model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
-      <LastGenOutput>csillámDb_model.Context.cs</LastGenOutput>
-    </None>
-    <None Include="csillámDb_model.edmx.diagram">
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
-    </None>
-    <None Include="csillámDb_model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
-      <LastGenOutput>csillámDb_model.cs</LastGenOutput>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
