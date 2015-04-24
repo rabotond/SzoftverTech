@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.ComponentModel;
 using AdatKezelő;
+using  System.IO;
+using Path = System.IO.Path;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -65,13 +67,21 @@ namespace Csillamponi_Allatmenhely
         void KépBetöltés ()
         {
             BitmapImage bmi = new BitmapImage();
-            Uri uri = new Uri(allat.KEP);
+            Uri uri = new Uri(SaveClipboardImageToFile());
             bmi.BeginInit();
             bmi.UriSource = uri;
             bmi.EndInit();
             VM.Kép = bmi;
         }
-
+        public string SaveClipboardImageToFile()
+        {
+            string allatpath = @"állatok";
+            string currentdirectory = Environment.CurrentDirectory;
+            currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
+            string gesturefile =  Path.Combine(currentdirectory, allatpath);
+            gesturefile = gesturefile + allat.KEP;
+            return gesturefile;
+        }
        
     }
     class ReservationPageViewModel {
