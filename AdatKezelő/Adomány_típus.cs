@@ -9,7 +9,7 @@ namespace AdatKezelő
     public enum Adomány_típus : int
     {
         Pénz,
-        Étel,
+        Eledel,
 
     }//e
 }

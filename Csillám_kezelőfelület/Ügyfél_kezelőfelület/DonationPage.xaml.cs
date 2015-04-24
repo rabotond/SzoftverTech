@@ -19,6 +19,7 @@ namespace Csillamponi_Allatmenhely
             InitializeComponent();
             this.bejelentkezettFelhasználó = bejelentkezettFelhasználó;
             donationPageViewModel = new DonationPageViewModel();
+            this.DataContext = donationPageViewModel;
         }
 
         private void AdományozClick(object sender, RoutedEventArgs e)
@@ -28,7 +29,7 @@ namespace Csillamponi_Allatmenhely
                 donationPageViewModel.Username = this.bejelentkezettFelhasználó.USERNAME;
                 if (radioButtonÉtel.IsChecked == true)
                 {
-                    donationPageViewModel.Adományoz(Adomány_típus.Étel);
+                    donationPageViewModel.Adományoz(Adomány_típus.Eledel);
                 }
                 else if (radioButtonPénz.IsChecked == true)
                 {
@@ -52,12 +53,6 @@ namespace Csillamponi_Allatmenhely
             Close();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            var mennyiségBinding = new Binding("Mennyiség");
-            mennyiségBinding.Source = donationPageViewModel.Mennyiség;
-            textBoxMennyiség.SetBinding(TextBox.TextProperty, mennyiségBinding);
-        }
 
         private void textBoxMennyiség_PreviewKeyDown(object sender, KeyEventArgs e)
         {
@@ -90,7 +85,7 @@ namespace Csillamponi_Allatmenhely
     internal class DonationPageViewModel : INotifyPropertyChanged
     {
         private readonly DonationPageBusinessLogic donationPageBusinessLogic;
-        private int mennyiség;
+        private string mennyiség;
         private string username;
 
         public DonationPageViewModel()
@@ -110,7 +105,7 @@ namespace Csillamponi_Allatmenhely
             }
         }
 
-        public int Mennyiség
+        public string Mennyiség
         {
             get { return mennyiség; }
             set
@@ -132,7 +127,7 @@ namespace Csillamponi_Allatmenhely
 
         public void Adományoz(Adomány_típus típus)
         {
-            donationPageBusinessLogic.Adományoz(típus, mennyiség, username);
+            donationPageBusinessLogic.Adományoz(típus, int.Parse(mennyiség), username);
         }
     }
 }

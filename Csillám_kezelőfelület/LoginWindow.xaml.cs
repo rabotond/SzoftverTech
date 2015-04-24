@@ -85,13 +85,13 @@ namespace Csillám_kezelőfelület
         public bool BelépésAdmin(string username, string jelszó, out UGYFEL felhasználó)
         {
             var a = adminKezelő.Db.UGYFEL.Where(x => x.USERNAME == username);
-            felhasználó = a.First();
             if (a.Count() == 0)
             {
                 MessageBox.Show("Nincs ilyen felhasználó!");
+                felhasználó = null;
                 return false;
             }
-            
+            felhasználó = a.First();
             if (felhasználó.ISADMIN == false)
             {
                 MessageBox.Show("Ide csak adminisztrációs fiókkal léphet be!");
@@ -109,12 +109,13 @@ namespace Csillám_kezelőfelület
         public bool BelépésÜgyfél(string username, string jelszó, out UGYFEL felhasználó)
         {
             var a = adminKezelő.Db.UGYFEL.Where(x => x.USERNAME == username);
-            felhasználó = a.First();
             if (a.Count() == 0)
             {
                 MessageBox.Show("Nincs ilyen felhasználó!");
+                felhasználó = null;
                 return false;
             }
+            felhasználó = a.First();
             if (felhasználó.PASSWORD == jelszó)
             {
                 return true;

@@ -41,7 +41,7 @@ namespace AdatKezelő
             if (q.Count() != 0)
             {
                 Guid userGuid = q.First();
-                adminKezelő.Adományoz(userGuid, "wtf", mennyiség, típus);
+                adminKezelő.Adományoz(userGuid, "", mennyiség, típus);
             }
 
         }
