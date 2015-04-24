@@ -1,5 +1,5 @@
 ﻿
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -229,53 +229,53 @@ namespace AdatKezelő
             }
         }
 
-        public void ExportToExcel(XDocument xml, string fileName) //Luca
-        {
-            Application excelapp = new Application();
-            Workbook wb = excelapp.Workbooks.Add(Type.Missing);
-            try
-            {
-                if (xml != null)
-                {
-                    Worksheet ws = wb.Sheets.get_Item(1);
+        //public void ExportToExcel(XDocument xml, string fileName) //Luca
+        //{
+        //    Application excelapp = new Application();
+        //    Workbook wb = excelapp.Workbooks.Add(Type.Missing);
+        //    try
+        //    {
+        //        if (xml != null)
+        //        {
+        //            Worksheet ws = wb.Sheets.get_Item(1);
 
-                    int lastUsedColumn = 2;
-                    int lastUsedRow = 1;
-                    bool first = true;
-                    foreach (var day in xml.Element("root").Elements("nap"))
-                    {
-                        ws.Cells[1, lastUsedColumn] = day.Attribute("datum").Value;
-                        if (first)
-                        {
+        //            int lastUsedColumn = 2;
+        //            int lastUsedRow = 1;
+        //            bool first = true;
+        //            foreach (var day in xml.Element("root").Elements("nap"))
+        //            {
+        //                ws.Cells[1, lastUsedColumn] = day.Attribute("datum").Value;
+        //                if (first)
+        //                {
 
-                            foreach (var elem in day.Elements())
-                            {
-                                ws.Cells[++lastUsedRow, 1] = elem.Name.ToString();
-                            }
-                            first = false;
-                        }
-                        lastUsedRow = 1;
-                        foreach (var item in day.Elements())
-                        {
-                            ws.Cells[++lastUsedRow, lastUsedColumn] = item.Value;
-                        }
-                        lastUsedColumn++;
-                    }
+        //                    foreach (var elem in day.Elements())
+        //                    {
+        //                        ws.Cells[++lastUsedRow, 1] = elem.Name.ToString();
+        //                    }
+        //                    first = false;
+        //                }
+        //                lastUsedRow = 1;
+        //                foreach (var item in day.Elements())
+        //                {
+        //                    ws.Cells[++lastUsedRow, lastUsedColumn] = item.Value;
+        //                }
+        //                lastUsedColumn++;
+        //            }
 
-                    wb.SaveAs(fileName);
-                    wb.Close();
-                }
-                else
-                {
-                    wb.Close();
-                    throw new Exception("Nem sikerült expotrálni az excel fájlt, győződjön meg róla, hogy ki legyen jelölve statisztika tipus!");
-                }
-            }
-            catch (Exception ex)
-            {
-                wb.Close();
-            }
-        }
+        //            wb.SaveAs(fileName);
+        //            wb.Close();
+        //        }
+        //        else
+        //        {
+        //            wb.Close();
+        //            throw new Exception("Nem sikerült expotrálni az excel fájlt, győződjön meg róla, hogy ki legyen jelölve statisztika tipus!");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        wb.Close();
+        //    }
+        //}
         
     }//end Statisztika
 

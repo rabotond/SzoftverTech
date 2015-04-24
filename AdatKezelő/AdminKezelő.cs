@@ -39,13 +39,11 @@ namespace AdatKezelő
                 return lista.ToList();
             }
         }
-
-
-
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
             lock (loadlock)
             {
+                db = new csillamponimenhelyDBEntities();
                 return db.ALLAT.Where(x => x.NEV != null).Select(x => new AllatVM()
                 {
                     ALLATID = x.ALLATID,

@@ -90,7 +90,9 @@ namespace Csillamponi_Allatmenhely
                 allat.IVARTALANITOTT = VM.Ivar == chip_es_elojegyez.igen;
                 allat.NOSTENY = VM.Fiulany != fiu_lany.hím;
                 allat.OLTVA = VM.Oltasok == oltas.igen;
+                bl.Állatot_hozzáad(allat);
                 KennelTablaKarbantartas(faj);
+               
                 MessageBox.Show("Mentve");
             }
             else
@@ -100,6 +102,7 @@ namespace Csillamponi_Allatmenhely
             ügyfél.Örökbe_ad(allat, kicsoda);
             //allat.KENNEL = ""; //  ???????  nem értem , ez egy másik tábla nem is állat
             //allat.ELOZO_TULAJ = 12;  ?? GUID
+           
 
         }
         private void KennelTablaKarbantartas(string allatfaj)
