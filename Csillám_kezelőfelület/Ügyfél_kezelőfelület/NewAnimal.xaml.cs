@@ -83,7 +83,7 @@ namespace Csillamponi_Allatmenhely
                 //allat.TOMEG = decimal.Parse(VM.Tomeg);
                 allat.BETEGSEGEK = VM.Betegség;
               //  allat.MERET = decimal.Parse(VM.Méret);
-                allat.KEP = képforrás;
+                allat.KEP = trimfoto( képutja);
                 allat.NEV = VM.Neve;
                 allat.CHIPES = VM.Chip == chip_es_elojegyez.igen;
                 allat.ELOJEGYZETT = VM.Elojegyez == chip_es_elojegyez.igen;
@@ -155,6 +155,8 @@ namespace Csillamponi_Allatmenhely
             gesturefile = gesturefile + trimfoto(képutja);
             img.Save(gesturefile);
         }
+
+       
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
