@@ -97,7 +97,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
              kezelo.Ügyfelet_töröl(ügyfél);
         }
 
-        public void Eledelt_hozzáad(ELEDEL e, int mennyit)
+        public void Eledelt_kennelt_hozzáad(ELEDEL e, int mennyit)
         {
             kezelo.Eledelt_hozzáad(e, mennyit);
         }

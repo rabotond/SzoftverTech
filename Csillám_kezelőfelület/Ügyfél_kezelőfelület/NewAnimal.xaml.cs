@@ -150,6 +150,7 @@ namespace Csillamponi_Allatmenhely
 
         public static void SaveClipboardImageToFile(string picturepath)
         {
+            
             string allatpath = @"állatok";
             string currentdirectory = Environment.CurrentDirectory;
             currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);

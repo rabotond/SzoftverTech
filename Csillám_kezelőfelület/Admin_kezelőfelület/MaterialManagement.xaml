@@ -9,10 +9,10 @@
             <ColumnDefinition Width="283*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Hozzáad (kg)" HorizontalAlignment="Left" Margin="11,86,0,0" VerticalAlignment="Top" Height="28" Width="88" Grid.Column="2"/>
-        <Label Content="Felhasznál (kg)" HorizontalAlignment="Left" Margin="11,115,0,0" VerticalAlignment="Top" Height="28" Width="88" Grid.Column="2"/>
-        <TextBox Name="mennyitAD" HorizontalAlignment="Left" Height="25" Margin="113,90,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="79" Grid.Column="2"/>
-        <TextBox Name="mennyitVESZki" HorizontalAlignment="Left" Height="25" Margin="113,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="79" Grid.Column="2"/>
+        <Label Content="Hozzáad (kg)" HorizontalAlignment="Left" Margin="11,54,0,0" VerticalAlignment="Top" Height="28" Width="88" Grid.Column="2"/>
+        <Label Content="Felhasznál (kg)" HorizontalAlignment="Left" Margin="11,83,0,0" VerticalAlignment="Top" Height="28" Width="88" Grid.Column="2"/>
+        <TextBox Name="mennyitAD" HorizontalAlignment="Left" Height="25" Margin="113,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="79" Grid.Column="2"/>
+        <TextBox Name="mennyitVESZki" HorizontalAlignment="Left" Height="25" Margin="113,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="79" Grid.Column="2"/>
         <Button Content="Mentés" HorizontalAlignment="Left" Margin="212,22,0,0" VerticalAlignment="Top" Width="54" Click="Mentés_Click" Grid.Column="2" Height="246"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="20,22,0,0" VerticalAlignment="Top" Width="63" Click="Visssza_Click" Height="246" />
         <DataGrid x:Name="materialdata"  Grid.Column="1" HorizontalAlignment="Left" Margin="19,74,0,0" VerticalAlignment="Top" Height="194" Width="400"/>
@@ -21,8 +21,8 @@
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="72,222,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="72,245,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Label Content="Kennelek / Eledelek fajta szerint" Grid.Column="1" Margin="19,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Height="34" HorizontalAlignment="Left" Width="325"/>
-        <Label Content="Eledel" Grid.Column="2" HorizontalAlignment="Left" Margin="49,19,0,0" VerticalAlignment="Top"/>
-        <Label Content="Kennelek" Grid.Column="2" HorizontalAlignment="Left" Margin="15,177,0,0" VerticalAlignment="Top" Width="86"/>
+        <Label Content="Eledel" Grid.Column="2" HorizontalAlignment="Left" Margin="15,22,0,0" VerticalAlignment="Top" Width="84"/>
+        <Label Content="Kennelek" Grid.Column="2" HorizontalAlignment="Left" Margin="15,177,0,0" VerticalAlignment="Top" Width="84"/>
 
     </Grid>
 </Window>

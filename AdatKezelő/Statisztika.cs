@@ -184,7 +184,10 @@ namespace AdatKezelő
                                    select new { g.Key.Year, g.Key.Month, g.Key.Day, regisztraltDB = g.Count() }).ToList()
                  .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.regisztraltDB });
 
-                //var tamogatasa = (from a in db.UGYFEL.Where(x => x.regisztracio >= mettől && x.regisztracio <= meddig)
+                //var tamogatas_menny=(from ado in db.ADOMANY join ugyf in db.UGYFEL on ado.ADOMANYOZO equals ugyf.UGYFELID into v
+                //                             from item1 in v
+                //                         select new{ ugyfel=item1.UGYFELID, mit=item1.ADOMANY.}).ToList();
+                ////var tamogatasa = (from a in db.UGYFEL.Where(x => x.regisztracio >= mettől && x.regisztracio <= meddig)
                                    
                 //                  group a by new { a.regisztracio.Value.Year, a.regisztracio.Value.Month, a.regisztracio.Value.Day ,a.UGYFELID } into g
                 //                  select new { g.Key.Year, g.Key.Month, g.Key.Day,  tamogatott =where g.Key.UGYFELID==d ,id=g.Key.UGYFELID

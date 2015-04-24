@@ -23,7 +23,8 @@ namespace Csillamponi_Allatmenhely
     public partial class MaterialManagement : Window
     {
         Admin_kezelőfelület_businessLogic BL;
-
+        ELEDEL eledel;
+        KENNEL kennel;
 
         public MaterialManagement(Admin_kezelőfelület_businessLogic ujbl)
         {
@@ -40,10 +41,15 @@ namespace Csillamponi_Allatmenhely
 
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
-
-            //eledel = new ELEDEL();
-            //eledel.FAJTA = 
-            //BL.Eledelt_hozzáad(eledel);
+            if (int.Parse(mennyitAD.Text) > 0 || int.Parse(mennyitVESZki.Text) > 0)
+            {
+                //eledel = new ELEDEL();
+                //eledel.FAJTA= materialdata.
+            }
+            else 
+            { 
+            }
+            //BL.Eledelt_kennelt_hozzáad();
         }
     }
 }

@@ -97,7 +97,7 @@ namespace AdatKezelő
 
         }
 
-        public void Eledelt_hozzáad(ELEDEL e, int mennyit)
+        public void Eledelt_kennelt_hozzáad(ELEDEL e, int mennyit)
         {
             ELEDEL a = db.ELEDEL.Find(e.FAJTA);
             a.RAKTARON = a.RAKTARON + mennyit;

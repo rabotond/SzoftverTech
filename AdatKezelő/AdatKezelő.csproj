@@ -90,6 +90,7 @@
     <Compile Include="ELEDEL.cs">
       <DependentUpon>csillámDb_model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Eledel_kezelo.cs" />
     <Compile Include="IAdminKezelő.cs" />
     <Compile Include="IÜgyfélkezelő.cs" />
     <Compile Include="KENNEL.cs">
