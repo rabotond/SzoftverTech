@@ -23,15 +23,15 @@ namespace Csillamponi_Allatmenhely
     public partial class MaterialManagement : Window
     {
         Admin_kezelőfelület_businessLogic BL;
-        
-        
+
+
         public MaterialManagement(Admin_kezelőfelület_businessLogic ujbl)
         {
             InitializeComponent();
             BL = ujbl;
             IEnumerable mater_adatok = BL.FrissitEledel_kennel();
             materialdata.ItemsSource = null;
-            materialdata.ItemsSource = mater_adatok;    
+            materialdata.ItemsSource = mater_adatok;
         }
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {
@@ -40,7 +40,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Mentés_Click(object sender, RoutedEventArgs e)
         {
-            
+
             //eledel = new ELEDEL();
             //eledel.FAJTA = 
             //BL.Eledelt_hozzáad(eledel);
