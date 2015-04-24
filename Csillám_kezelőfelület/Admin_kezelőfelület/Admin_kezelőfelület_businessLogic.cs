@@ -99,7 +99,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         public void Eledelt_kennelt_hozzáad(ELEDEL e, int mennyit)
         {
-            kezelo.Eledelt_hozzáad(e, mennyit);
+            kezelo.Eledelt_kennelt_hozzáad(e, mennyit);
         }
     }
 }
