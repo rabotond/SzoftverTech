@@ -138,6 +138,19 @@ namespace AdatKezelő
             return allatok;
             
         }
+        public List<String> KennelListafeltolt()
+        {
+            List<String> tipusok = new List<String>();
+            var q = from x in adminKezelő.Db.KENNEL
+                    select x.TIPUS;
+            foreach (var item in q)
+            {
+                tipusok.Add(item);
+            }
+
+            return tipusok;
+
+        }
     }//end Ügyfél_Kezelő
 
 }//end namespace AdatKezelő
