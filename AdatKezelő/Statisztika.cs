@@ -1,5 +1,4 @@
-﻿
-//using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,10 +59,7 @@ namespace AdatKezelő
         
 //konstruktor   
 
-        public Statisztika()
-        {
-
-        }
+        public Statisztika() { }
 
         public Statisztika(Statisztika_típus ujtipus, DateTime ujmettől, DateTime ujmeddig)
         {
@@ -82,7 +78,6 @@ namespace AdatKezelő
 
         public void makeXmlfromStat()
         {
-
             XElement root = new XElement("root");
             xdoc = new XDocument(root);
             foreach (Statisztika_adatrecord akt in napok)
@@ -122,18 +117,14 @@ namespace AdatKezelő
                         new XElement("regisztraltak", akt.regisztraltDarab)
                         );
                 }
-
                 root.Add(e);
             }
-
-
         }
 
 
         public void MakeStatistic()// a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
                                      //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
         {
-
             if (tipus == Statisztika_típus.állatállomány)
             {
                 var elvittDarab = (from a in db.ALLAT.Where(x => x.OROKBEFOGADVA != null && x.OROKBEFOGADVA >= mettől && x.OROKBEFOGADVA <= meddig)
@@ -222,63 +213,82 @@ namespace AdatKezelő
                                      select new { g.Key.Year, g.Key.Month, g.Key.Day, Eosszeg = g.Sum(x => x.MENNYISEG) }).ToList()
                    .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.Eosszeg });
 
-                //napok = (from a in napok
-                //         join b in regisztralt on a.Nap equals b.date into p
-                //         join c in befolytEledel on a.Nap equals c.date into e
-                //         from item1 in p.DefaultIfEmpty()
-                //         from item2 in e.DefaultIfEmpty()
-                //         select new Statisztika_adatrecord(a.Nap) { befolytPenzaomany = (int)(item1 == null ? 0 : item1.Posszeg), befolytEledelAdomany = (int)(item2 == null ? 0 : item2.Eossze) }).ToList();
+                var regisztralt = (from a in db.UGYFEL.Where(x => x.REGDATUM >= mettől && x.REGDATUM <= meddig)
+                                   group a by new { a.REGDATUM.Value.Year, a.REGDATUM.Value.Month, a.REGDATUM.Value.Day } into g
+                                   select new { g.Key.Year, g.Key.Month, g.Key.Day, regisztraltDB = g.Count() }).ToList()
+                .ConvertAll(x => new { date = new DateTime(x.Year, x.Month, x.Day), x.regisztraltDB });
+
+
+                napok = (from a in napok
+                         join b in elvittDarab on a.Nap equals b.date into h
+                         join c in hozottDarab on a.Nap equals c.date into y
+                         join f in befolytPenz on a.Nap equals f.date into t
+                         join p in befolytEledel on a.Nap equals p.date into l
+                         join k in regisztralt on a.Nap equals k.date into e
+                         from item1 in h.DefaultIfEmpty()
+                         from item2 in y.DefaultIfEmpty()
+                         from item3 in t.DefaultIfEmpty()
+                         from item4 in l.DefaultIfEmpty()
+                         from item5 in e.DefaultIfEmpty()
+                         select new Statisztika_adatrecord(a.Nap)
+                         {
+                             elvittAllat = item1 == null ? 0 : item1.count,
+                             hozottAllat = item2 == null ? 0 : item2.count,
+                             befolytPenzadomany = (int)(item3 == null ? 0 : item3.Posszeg),
+                             befolytEledelAdomany = (int)(item4 == null ? 0 : item4.Eosszeg),
+                             regisztraltDarab = (int)(item5 == null ? 0 : item5.regisztraltDB)
+                         }).ToList();
             
             }
         }
 
-        //public void ExportToExcel(XDocument xml, string fileName) //Luca
-        //{
-        //    Application excelapp = new Application();
-        //    Workbook wb = excelapp.Workbooks.Add(Type.Missing);
-        //    try
-        //    {
-        //        if (xml != null)
-        //        {
-        //            Worksheet ws = wb.Sheets.get_Item(1);
+        public void ExportToExcel(XDocument xml, string fileName) //Luca
+        {
+            Application excelapp = new Application();
+            Workbook wb = excelapp.Workbooks.Add(Type.Missing);
+            try
+            {
+                if (xml != null)
+                {
+                    Worksheet ws = wb.Sheets.get_Item(1);
 
-        //            int lastUsedColumn = 2;
-        //            int lastUsedRow = 1;
-        //            bool first = true;
-        //            foreach (var day in xml.Element("root").Elements("nap"))
-        //            {
-        //                ws.Cells[1, lastUsedColumn] = day.Attribute("datum").Value;
-        //                if (first)
-        //                {
+                    int lastUsedColumn = 2;
+                    int lastUsedRow = 1;
+                    bool first = true;
+                    foreach (var day in xml.Element("root").Elements("nap"))
+                    {
+                        ws.Cells[1, lastUsedColumn] = day.Attribute("datum").Value;
+                        if (first)
+                        {
 
-        //                    foreach (var elem in day.Elements())
-        //                    {
-        //                        ws.Cells[++lastUsedRow, 1] = elem.Name.ToString();
-        //                    }
-        //                    first = false;
-        //                }
-        //                lastUsedRow = 1;
-        //                foreach (var item in day.Elements())
-        //                {
-        //                    ws.Cells[++lastUsedRow, lastUsedColumn] = item.Value;
-        //                }
-        //                lastUsedColumn++;
-        //            }
+                            foreach (var elem in day.Elements())
+                            {
+                                ws.Cells[++lastUsedRow, 1] = elem.Name.ToString();
+                            }
+                            first = false;
+                        }
+                        lastUsedRow = 1;
+                        foreach (var item in day.Elements())
+                        {
+                            ws.Cells[++lastUsedRow, lastUsedColumn] = item.Value;
+                        }
+                        lastUsedColumn++;
+                    }
 
-        //            wb.SaveAs(fileName);
-        //            wb.Close();
-        //        }
-        //        else
-        //        {
-        //            wb.Close();
-        //            throw new Exception("Nem sikerült expotrálni az excel fájlt, győződjön meg róla, hogy ki legyen jelölve statisztika tipus!");
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        wb.Close();
-        //    }
-        //}
+                    wb.SaveAs(fileName);
+                    wb.Close();
+                }
+                else
+                {
+                    wb.Close();
+                    throw new Exception("Nem sikerült expotrálni az excel fájlt, győződjön meg róla, hogy ki legyen jelölve statisztika tipus!");
+                }
+            }
+            catch (Exception ex)
+            {
+                wb.Close();
+            }
+        }
         
     }//end Statisztika
 

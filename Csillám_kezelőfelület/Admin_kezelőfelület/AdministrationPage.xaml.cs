@@ -80,12 +80,12 @@ namespace Csillamponi_Allatmenhely
 
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Állatot_töröl((ALLAT)állatgrid.SelectedItem);
+            BL.Állatot_töröl((AllatVM)állatgrid.SelectedItem);
             VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Ügyfelet_töröl((UGYFEL)ugyfelgrid.SelectedItem);
+            BL.Ügyfelet_töröl((UgyfelVM)ugyfelgrid.SelectedItem);
             VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
         }
 

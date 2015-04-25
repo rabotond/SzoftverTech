@@ -14,6 +14,10 @@ namespace AdatKezelő
         public string VAROS { get; set; }
         public string UTCA { get; set; }
         public Nullable<decimal> HAZSZAM { get; set; }
+        public Nullable<decimal> IRSZ { get; set; }
+        public string USERNAME { get; set; }
+        public string PASSWORD { get; set; }
+        public Nullable<bool> isadmin { get; set; }
         public Nullable<decimal> TELEFON { get; set; }
         public System.Guid UGYFELID { get; set; }
         public string EMAIL { get; set; }

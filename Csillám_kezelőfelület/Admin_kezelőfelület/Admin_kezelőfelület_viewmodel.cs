@@ -14,8 +14,8 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     {
         List<AllatVM> allatok;
         List<UgyfelVM> ugyfelek; // help Fanninak:  Ha ez UgyfelVM akkor hogyan lesz belőle Ugyfel amit átadsz majd mint válaszottugyfel a NewUsernek. Módosításra. Szerintem ezért Null a NewUser Konstruktora
-        ALLAT valasztottAllat;
-        UGYFEL valasztottUgyfel;
+        AllatVM valasztottAllat;
+        UgyfelVM valasztottUgyfel;
         Statisztika stat;
 
         public Statisztika Stat
@@ -24,13 +24,13 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             set { stat = value; onPropChanged("Stat"); }
         }
 
-        public ALLAT ValasztottAllat
+        public AllatVM ValasztottAllat
         {
             get { return valasztottAllat; }
             set { valasztottAllat = value; onPropChanged("ValasztottAllat"); }
         }
 
-        public UGYFEL ValasztottUgyfel
+        public UgyfelVM ValasztottUgyfel
         {
             get { return valasztottUgyfel; }
             set { valasztottUgyfel = value; onPropChanged("ValasztottUgyfel"); }

@@ -33,9 +33,11 @@ namespace AdatKezelő
         {
             lock (loadlock)
             {
-                var lista = from a in db.KENNEL
-                            join b in db.ELEDEL on a.TIPUS equals b.FAJTA
-                            select new { tipus = a.TIPUS, max = a.MAXDARAB, szabad = a.SZABAD, foglalt = a.FOGLALT, eledel_raktáron = b.RAKTARON };
+                db = new csillamponimenhelyDBEntities();
+                var lista = (from a in db.KENNEL
+                            join b in db.ELEDEL on a.TIPUS equals b.FAJTA into c
+                            from item in c
+                            select new { tipus = a.TIPUS, max = a.MAXDARAB, szabad = a.SZABAD, foglalt = a.FOGLALT, eledel_raktáron = item.RAKTARON });
                 return lista.ToList();
             }
         }
@@ -106,15 +108,16 @@ namespace AdatKezelő
 
         public void Előjegyzést_végez(ALLAT allat)
         {
-            ALLAT a = db.ALLAT.Find(allat.ALLATID);
+            ALLAT a=  db.ALLAT.Find(allat.ALLATID);
             a.ELOJEGYZETT = true;
-            Állatot_módosít(a);
+            db.SaveChanges();
         }
 
         public void Állatot_hozzáad(ALLAT állat)
         {
             try
             {
+                állat.ALLATID = Guid.NewGuid();
                 db.ALLAT.Add(állat);
                 db.SaveChanges();
             }
@@ -137,39 +140,43 @@ namespace AdatKezelő
 
         }
 
-        public void Állatot_módosít(ALLAT állat)//lecserélem az egészet..id marad
+        public void Állatot_módosít(AllatVM állat)//lecserélem az egészet..id marad
+        {
+         
+            db.ALLAT.Remove(db.ALLAT.Find(állat.ALLATID));
+            ALLAT a = (ALLAT)convert_vm_entity(állat, null);
+            db.ALLAT.Add(a);
+            db.SaveChanges();
+        }
+
+        public void Állatot_töröl(AllatVM állat)
         {
             ALLAT a = db.ALLAT.Find(állat.ALLATID);
             db.ALLAT.Remove(a);
-            db.ALLAT.Add(állat);
             db.SaveChanges();
         }
 
-        public void Állatot_töröl(ALLAT állat)
+        public void Ügyfelet_hozzáad(UgyfelVM ügyfél)
         {
-            ALLAT a = db.ALLAT.Find(állat);
-            db.ALLAT.Remove(a);
+            UGYFEL client = new UGYFEL();
+            client.UGYFELID = Guid.NewGuid();
+            client = (UGYFEL) convert_vm_entity(null,ügyfél);
+            db.UGYFEL.Add(client);
             db.SaveChanges();
         }
 
-        public void Ügyfelet_hozzáad(UGYFEL ügyfél)
+        public void Ügyfelet_töröl(UgyfelVM ügyfél)
         {
-            db.UGYFEL.Add(ügyfél);
-            db.SaveChanges();
-        }
-
-        public void Ügyfelet_töröl(UGYFEL ügyfél)
-        {
-            var a = db.UGYFEL.Where(x => x.UGYFELID == ügyfél.UGYFELID);
-            db.UGYFEL.Remove((UGYFEL)a);
-            db.SaveChanges();
-        }
-
-        public void Ügyfelet_módosít(UGYFEL ügyfél)
-        {
-            UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
+            UGYFEL a = db.UGYFEL.Find( ügyfél.UGYFELID);
             db.UGYFEL.Remove(a);
-            db.UGYFEL.Add(ügyfél);
+            db.SaveChanges();
+        }
+
+        public void Ügyfelet_módosít(UgyfelVM ügyfél)
+        {
+            db.UGYFEL.Remove(db.UGYFEL.Find(ügyfél.UGYFELID));
+            UGYFEL uj= (UGYFEL)convert_vm_entity(null, ügyfél);
+            db.UGYFEL.Add(uj);
             db.SaveChanges();
         }
 
@@ -226,6 +233,49 @@ namespace AdatKezelő
 
         }
 
+
+        private object convert_vm_entity(AllatVM a,UgyfelVM ügyfél)
+        {
+            if(a!=null)
+            {
+                ALLAT allat = new ALLAT();
+                allat.ALLATID = a.ALLATID;
+                allat.NEV = a.NEV;
+                allat.SZIN = a.SZIN;
+                allat.SZULETESI_IDO = a.SZULETESI_IDO;
+                allat.ELOJEGYZETT = a.ELOJEGYZETT;
+                allat.FAJTA = a.FAJTA;
+                allat.BEADVA = a.BEADVA;
+                allat.CHIPES = a.CHIPES;
+                allat.IVARTALANITOTT = a.IVARTALANITOTT;
+                allat.KEP = a.kep;
+                allat.OLTVA = a.OLTVA;
+                allat.NOSTENY = a.NOSTENY;
+                allat.BETEGSEGEK = a.BETEGSEGEK;
+                allat.MERET = a.MERET;
+                allat.TOMEG = a.TOMEG;
+                allat.OROKBEFOGADVA = a.OROKBEFOGADVA;
+                return allat;
+            }
+            else
+            {
+                UGYFEL client = new UGYFEL();
+                client.UGYFELID = ügyfél.UGYFELID;
+                client.EMAIL = ügyfél.EMAIL;
+                client.HAZSZAM = ügyfél.HAZSZAM;
+                client.IRSZ = ügyfél.IRSZ;
+                client.ISADMIN = ügyfél.isadmin;
+                client.KERESZTNEV = ügyfél.KERESZTNEV;
+                client.REGDATUM = DateTime.Now;
+                client.TELEFON = ügyfél.TELEFON;
+                client.VAROS = ügyfél.VAROS;
+                client.VEZETEKNEV = ügyfél.VEZETEKNEV;
+                client.USERNAME = ügyfél.USERNAME;
+                client.PASSWORD = ügyfél.PASSWORD;
+                client.UTCA = ügyfél.UTCA;
+                return client;
+            }
+        }
     }//end Admin_kezelő
 
 }//end namespace AdatKezelő

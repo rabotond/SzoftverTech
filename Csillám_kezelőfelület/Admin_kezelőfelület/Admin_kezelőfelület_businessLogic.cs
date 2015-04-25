@@ -72,27 +72,27 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
              kezelo.Állatot_hozzáad(állat);
         }
 
-        public void Állatot_módosít(ALLAT állat)
+        public void Állatot_módosít(AllatVM állat)
         {
              kezelo.Állatot_módosít(állat);
         }
 
-        public void Állatot_töröl(ALLAT állat)
+        public void Állatot_töröl(AllatVM állat)
         {
              kezelo.Állatot_töröl(állat);
         }
 
-        public void Ügyfelet_hozzáad(UGYFEL ügyfél)
+        public void Ügyfelet_hozzáad(UgyfelVM ügyfél)
         {
              kezelo.Ügyfelet_hozzáad(ügyfél);
         }
 
-        public void Ügyfelet_módosít(UGYFEL ügyfél)
+        public void Ügyfelet_módosít(UgyfelVM ügyfél)
         {
              kezelo.Ügyfelet_módosít(ügyfél);
         }
 
-        public void Ügyfelet_töröl(UGYFEL ügyfél)
+        public void Ügyfelet_töröl(UgyfelVM ügyfél)
         {
              kezelo.Ügyfelet_töröl(ügyfél);
         }
