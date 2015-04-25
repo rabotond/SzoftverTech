@@ -25,7 +25,7 @@ namespace Csillamponi_Allatmenhely
         private Admin_kezelőfelület_businessLogic bl;
         private string képforrás;
         private static string képutja;
-        public ALLAT modosítandoallat;
+        public AllatVM modosítandoallat;
         private bool uj_vagy_modositott = false;
 
         public NewAnimal(UGYFEL bennvan)
@@ -38,7 +38,7 @@ namespace Csillamponi_Allatmenhely
             uj_vagy_modositott = true;
         }
 
-        public NewAnimal(ALLAT modositando)
+        public NewAnimal(AllatVM modositando)
         {
             modosítandoallat = modositando;
             InitializeComponent();
@@ -46,21 +46,31 @@ namespace Csillamponi_Allatmenhely
             DataContext = VM;
             feltolt_adatokkal();
             uj_vagy_modositott = false;
+            bl = new Admin_kezelőfelület_businessLogic();
         }
 
         private void Mentes(object sender, RoutedEventArgs e)
         {
+            if (modosítandoallat==null)
+            {
+                Uj_allat_mentés();
+            }
+            else
+            {
+                Modositottmentés();
+            }
+        }
+
+        void Uj_allat_mentés()
+        {
             var ügyfél = new Ügyfél_Kezelő();
-            var kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();
-            allat.KENNEL= new KENNEL();
+            allat.KENNEL = new KENNEL();
             string faj = "";
 
-
-            
-            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != "" && VM.Méret != "" && képforrás!="" && VM.Neve!="")
+            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
             {
-                if (képutja!=null)
+                if (képutja != null)
                 {
                     SaveClipboardImageToFile(képforrás);
                     allat.KEP = trimfoto(képutja);
@@ -79,14 +89,49 @@ namespace Csillamponi_Allatmenhely
                 allat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
                 allat.BETEGSEGEK = this.Betegségek.Text;
                 allat.KENNEL.TIPUS = this.fajta.Text;
-                if (uj_vagy_modositott==true)
+                bl.Állatot_hozzáad(allat);
+
+                KennelTablaKarbantartas(faj);
+                MessageBox.Show("Mentve");
+            }
+            else
+            {
+                MessageBox.Show("Üres mező");
+            }
+            ügyfél.Örökbe_ad(allat, bejelentkezettUser);
+        }
+
+        void Modositottmentés()
+        {
+            var ügyfél = new Ügyfél_Kezelő();
+            var kicsoda = new UGYFEL();
+            ALLAT allat = new ALLAT();
+            allat.KENNEL = new KENNEL();
+            string faj = "";
+
+
+
+            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
+            {
+                if (képutja != null)
                 {
-                    bl.Állatot_hozzáad(allat);    
+                    SaveClipboardImageToFile(képforrás);
+                    modosítandoallat.kep = trimfoto(képutja);
                 }
-                else
-                {
-                    bl.Állatot_módosít(allat);    
-                }
+                    modosítandoallat.CHIPES = (this.chipes.Text == chip_es_elojegyez.igen.ToString());
+                    modosítandoallat.ELOJEGYZETT = (this.elojegyzett.Text == chip_es_elojegyez.igen.ToString());
+                    modosítandoallat.FAJTA = this.fajta.Text;
+                    modosítandoallat.MERET = int.Parse(this.Méret.Text);
+                    modosítandoallat.TOMEG = int.Parse(this.tomeg.Text);
+                    modosítandoallat.NEV = this.név.Text;
+                    modosítandoallat.NOSTENY = (this.nem.Text == fiu_lany.nőstény.ToString());
+                    modosítandoallat.OLTVA = this.oltott.IsChecked;
+                    modosítandoallat.SZIN = this.szin.Text;
+                    modosítandoallat.SZULETESI_IDO = this.született.SelectedDate;
+                    modosítandoallat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
+                    modosítandoallat.BETEGSEGEK = this.Betegségek.Text;
+                    bl.Állatot_módosít(modosítandoallat);
+                
                 KennelTablaKarbantartas(faj);
                 MessageBox.Show("Mentve");
             }
@@ -100,48 +145,48 @@ namespace Csillamponi_Allatmenhely
         {
             bl.KennelTablaHelyKarbanTartas(allatfaj);
         }
-       public void feltolt_adatokkal()
-       {
-           név.Text = modosítandoallat.NEV;
-           fajta.SelectedItem = modosítandoallat.FAJTA;
-           született.SelectedDate = modosítandoallat.SZULETESI_IDO;
-           if (modosítandoallat.NOSTENY==true)
-           {
-               nem.SelectedItem = fiu_lany.nőstény;
-           }
-           Méret.Text = Convert.ToString(modosítandoallat.MERET);
-           tomeg.Text = modosítandoallat.TOMEG.ToString();
-           szin.Text = modosítandoallat.SZIN;
-           if (modosítandoallat.ELOJEGYZETT== true)
-           {
-               elojegyzett.SelectedItem = chip_es_elojegyez.igen;
-           }
-           if (modosítandoallat.IVARTALANITOTT== true)
-           {
-               ivartalan.SelectedItem = chip_es_elojegyez.igen;
-           }
-           if (modosítandoallat.OLTVA == true)
-           {
-               oltott.IsChecked = true;
-           }
-           else
-           {
-               nemoltott.IsChecked = true;
-           }
-           Betegségek.Text = modosítandoallat.BETEGSEGEK;
+        public void feltolt_adatokkal()
+        {
+            név.Text = modosítandoallat.NEV;
+            fajta.SelectedItem = modosítandoallat.FAJTA;
+            született.SelectedDate = modosítandoallat.SZULETESI_IDO;
+            if (modosítandoallat.NOSTENY == true)
+            {
+                nem.SelectedItem = fiu_lany.nőstény;
+            }
+            Méret.Text = Convert.ToString(modosítandoallat.MERET);
+            tomeg.Text = modosítandoallat.TOMEG.ToString();
+            szin.Text = modosítandoallat.SZIN;
+            if (modosítandoallat.ELOJEGYZETT == true)
+            {
+                elojegyzett.SelectedItem = chip_es_elojegyez.igen;
+            }
+            if (modosítandoallat.IVARTALANITOTT == true)
+            {
+                ivartalan.SelectedItem = chip_es_elojegyez.igen;
+            }
+            if (modosítandoallat.OLTVA == true)
+            {
+                oltott.IsChecked = true;
+            }
+            else
+            {
+                nemoltott.IsChecked = true;
+            }
+            Betegségek.Text = modosítandoallat.BETEGSEGEK;
 
 
 
-           /*VM.Neve = név.ToString();
-            VM.Kor = született.ToString();
-            VM.Fajta = fajta.Text;
-            VM.Tomeg = tomeg.ToString();
-            VM.Szin = szin.ToString();
-            VM.Megjegyzes = megjegyzes.ToString();
-            VM.Betegség = Betegségek.ToString();
-            VM.Méret = Méret.ToString();
-            valszeg összes propertyvel együtt törlésre kerül*/
-       }
+            /*VM.Neve = név.ToString();
+             VM.Kor = született.ToString();
+             VM.Fajta = fajta.Text;
+             VM.Tomeg = tomeg.ToString();
+             VM.Szin = szin.ToString();
+             VM.Megjegyzes = megjegyzes.ToString();
+             VM.Betegség = Betegségek.ToString();
+             VM.Méret = Méret.ToString();
+             valszeg összes propertyvel együtt törlésre kerül*/
+        }
         private void Foto_feltolt(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
@@ -162,27 +207,27 @@ namespace Csillamponi_Allatmenhely
                 }
             }
         }
-      public static  string trimfoto(string képutja)
+        public static string trimfoto(string képutja)
         {
             string temp = képutja;
             int a = temp.LastIndexOf("\\");
-             temp =temp.Remove(0,a);
-             return temp;
+            temp = temp.Remove(0, a);
+            return temp;
         }
 
         public static void SaveClipboardImageToFile(string picturepath)
         {
-            
+
             string allatpath = @"állatok";
             string currentdirectory = Environment.CurrentDirectory;
             currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
-            string gesturefile = Path.Combine(currentdirectory, allatpath); 
+            string gesturefile = Path.Combine(currentdirectory, allatpath);
             Image img = Image.FromFile(picturepath);
             gesturefile = gesturefile + trimfoto(képutja);
             img.Save(gesturefile);
         }
 
-       
+
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
@@ -206,7 +251,7 @@ namespace Csillamponi_Allatmenhely
 
         public NewAnimalViewModel()
         {
-            KennelList= new List<string>();
+            KennelList = new List<string>();
             kennelfeltolt();
         }
 
@@ -230,9 +275,9 @@ namespace Csillamponi_Allatmenhely
 
         public void kennelfeltolt()
         {
-            Ügyfél_Kezelő ugy= new Ügyfél_Kezelő();
-            
-            
+            Ügyfél_Kezelő ugy = new Ügyfél_Kezelő();
+
+
             foreach (var VARIABLE in ugy.KennelListafeltolt())
             {
                 KennelList.Add(VARIABLE);
@@ -261,7 +306,7 @@ namespace Csillamponi_Allatmenhely
 
         public Array ChipLista
         {
-            get { return Enum.GetValues(typeof (chip_es_elojegyez)); }
+            get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
             set { }
         }
 
@@ -277,7 +322,7 @@ namespace Csillamponi_Allatmenhely
 
         public Array ElojegyezLista
         {
-            get { return Enum.GetValues(typeof (chip_es_elojegyez)); }
+            get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
             set { }
         }
 
@@ -293,7 +338,7 @@ namespace Csillamponi_Allatmenhely
 
         public Array IvarLista
         {
-            get { return Enum.GetValues(typeof (chip_es_elojegyez)); }
+            get { return Enum.GetValues(typeof(chip_es_elojegyez)); }
             set { }
         }
 
@@ -309,7 +354,7 @@ namespace Csillamponi_Allatmenhely
 
         public Array Fiulanylista
         {
-            get { return Enum.GetValues(typeof (fiu_lany)); }
+            get { return Enum.GetValues(typeof(fiu_lany)); }
             set { }
         }
 
@@ -362,7 +407,7 @@ namespace Csillamponi_Allatmenhely
 
         public Array Étellista
         {
-            get { return Enum.GetValues(typeof (ételek)); }
+            get { return Enum.GetValues(typeof(ételek)); }
             set { }
         }
 
@@ -416,5 +461,5 @@ namespace Csillamponi_Allatmenhely
         nőstény
     }
 
-   
+
 }
