@@ -35,11 +35,17 @@ namespace Csillamponi_Allatmenhely
             DataContext = VM;
         }
 
-        public NewAnimal(ALLAT modositando)
+        public NewAnimal(AllatVM modositando)
         {
             InitializeComponent();
-            VM = new NewAnimalViewModel();
-            DataContext = VM;
+            név.Text = modositando.NEV;
+            tomeg.Text = modositando.TOMEG.ToString();
+            Méret.Text = modositando.MERET.ToString();
+            oltott.IsChecked = modositando.OLTVA;
+            született.DisplayDate =(DateTime) modositando.SZULETESI_IDO;
+            Betegségek.Text = modositando.BETEGSEGEK;
+            
+           
         }
 
         private void Mentes(object sender, RoutedEventArgs e)
@@ -72,6 +78,7 @@ namespace Csillamponi_Allatmenhely
             }
             else
             {*/
+
             feltolt_adatokkal();
             if (VM.Szin != null && VM.Tomeg != null && VM.Fajta != null && VM.Betegség != null && képforrás != null && VM.Méret != null && képforrás!="" && VM.Neve!=null)
             {
@@ -102,13 +109,13 @@ namespace Csillamponi_Allatmenhely
             ügyfél.Örökbe_ad(allat, kicsoda);
             //allat.KENNEL = ""; //  ???????  nem értem , ez egy másik tábla nem is állat
             //allat.ELOZO_TULAJ = 12;  ?? GUID
-           
-
         }
+
         private void KennelTablaKarbantartas(string allatfaj)
         {
             bl.KennelTablaHelyKarbanTartas(allatfaj);
         }
+
        public void feltolt_adatokkal()
         {
             VM.Neve = név.ToString();
@@ -140,7 +147,7 @@ namespace Csillamponi_Allatmenhely
                 }
             }
         }
-      public static  string trimfoto(string képutja)
+        public static  string trimfoto(string képutja)
         {
             string temp = képutja;
             int a = temp.LastIndexOf("\\");
@@ -160,12 +167,8 @@ namespace Csillamponi_Allatmenhely
             img.Save(gesturefile);
         }
 
-       
-
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            var piaWindow = new PutInAnimal(bejelentkezettUser);
-            piaWindow.Show();
             Close();
         }
     }

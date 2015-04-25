@@ -22,7 +22,7 @@ namespace Csillamponi_Allatmenhely
     public partial class CreateUser : Window
     {
         CreateUserViewModel createUserViewModel;
-        UGYFEL módosítandó;
+        UgyfelVM módosítandó;
         UGYFEL bejelentkezettUser;
         public CreateUser(UGYFEL bejelentkezettUser)
         {
@@ -32,7 +32,7 @@ namespace Csillamponi_Allatmenhely
             this.DataContext = createUserViewModel;
             this.módosítandó = null;
         }
-        public CreateUser(UGYFEL modositando, UGYFEL bejelentkezettUser)
+        public CreateUser(UgyfelVM modositando, UGYFEL bejelentkezettUser)
         {
             // modosítandó null-al érkezik helyből ott a hiba. már hívásnál a ValaszottUgyfel Nem Ugyfel típusú vagy mi ezért null de nekem még nagyon idegen az adminkezelő sorry nem találtam meg hol a hiba :)
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
-            if (this.DataContext is UGYFEL)
+            if (this.DataContext is UgyfelVM)
             {
                 createUserViewModel.ÜgyfélMódosítás(this.módosítandó); //még nem jó
                 UGYFEL módosítandó = (UGYFEL)this.DataContext;
@@ -166,7 +166,7 @@ namespace Csillamponi_Allatmenhely
         }
         public bool ÚjÜgyfél()
         {
-            UGYFEL ügyfél = new UGYFEL();
+            UgyfelVM ügyfél = new UgyfelVM();
             ügyfél.EMAIL = this.EMAIL;
             ügyfél.HAZSZAM = decimal.Parse(this.HAZSZAM);
             ügyfél.IRSZ = decimal.Parse(this.IRSZ);
@@ -177,12 +177,12 @@ namespace Csillamponi_Allatmenhely
             ügyfél.VAROS = this.VAROS;
             ügyfél.USERNAME = this.username;
             ügyfél.PASSWORD = this.password;
-            ügyfél.REGDATUM = DateTime.Now;
             ügyfél.VEZETEKNEV = this.VEZETEKNEV;
-            ügyfél.ISADMIN = false;
+            ügyfél.isadmin = false;
             return createUserBusinessLogic.Mentés("új", ügyfél);
         }
-        public void ÜgyfélMódosítás(UGYFEL ügyfél)
+        
+        public void ÜgyfélMódosítás(UgyfelVM ügyfél)
         {
             createUserBusinessLogic.Mentés("módosít", ügyfél);
         }
@@ -196,7 +196,7 @@ namespace Csillamponi_Allatmenhely
             adminKezelő = new Admin_kezelő();
             dbCheck = new Admin_kezelő();
         }
-        public bool Mentés(string mit, UGYFEL ügyfél)
+        public bool Mentés(string mit, UgyfelVM ügyfél)
         {
             var a = dbCheck.Db.UGYFEL.Where(x => x.USERNAME == ügyfél.USERNAME);
             if (a.Count() == 0)
@@ -206,7 +206,6 @@ namespace Csillamponi_Allatmenhely
                     adminKezelő.Ügyfelet_hozzáad(ügyfél);
                     MessageBox.Show("Regisztráció kész!");
                     return true;
-                    
                 }
                 if (mit == "módosít")
                 {

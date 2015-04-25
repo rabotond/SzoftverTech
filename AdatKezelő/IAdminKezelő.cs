@@ -19,15 +19,15 @@ namespace AdatKezelő
         
         void Állatot_hozzáad(ALLAT állat);
 
-        void Állatot_módosít(ALLAT állat);
+        void Állatot_módosít(AllatVM állat);
 
-        void Állatot_töröl(ALLAT állat);
+        void Állatot_töröl(AllatVM állat);
 
-        void Ügyfelet_hozzáad(UGYFEL ügyfél);
+        void Ügyfelet_hozzáad(UgyfelVM ügyfél);
 
-        void Ügyfelet_módosít(UGYFEL ügyfél);
+        void Ügyfelet_módosít(UgyfelVM ügyfél);
 
-        void Ügyfelet_töröl(UGYFEL ügyfél);
+        void Ügyfelet_töröl(UgyfelVM ügyfél);
         
         void Adományoz(Guid ki, string mikor, int mennyit, Adomány_típus tipus);
 
