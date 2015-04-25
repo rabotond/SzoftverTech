@@ -25,6 +25,8 @@ namespace Csillamponi_Allatmenhely
         private Admin_kezelőfelület_businessLogic bl;
         private string képforrás;
         private static string képutja;
+        public ALLAT modosítandoallat;
+        private bool uj_vagy_modositott = false;
 
         public NewAnimal(UGYFEL bennvan)
         {
@@ -33,24 +35,29 @@ namespace Csillamponi_Allatmenhely
             VM = new NewAnimalViewModel();
             bl = new Admin_kezelőfelület_businessLogic();
             DataContext = VM;
+            uj_vagy_modositott = true;
         }
 
         public NewAnimal(ALLAT modositando)
         {
+            modosítandoallat = modositando;
             InitializeComponent();
             VM = new NewAnimalViewModel();
             DataContext = VM;
+            feltolt_adatokkal();
+            uj_vagy_modositott = false;
         }
 
         private void Mentes(object sender, RoutedEventArgs e)
         {
             var ügyfél = new Ügyfél_Kezelő();
             var kicsoda = new UGYFEL();
-            var allat = new ALLAT();
+            ALLAT allat = new ALLAT();
+            allat.KENNEL= new KENNEL();
             string faj = "";
 
 
-            feltolt_adatokkal();
+            
             if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != "" && VM.Méret != "" && képforrás!="" && VM.Neve!="")
             {
                 if (képutja!=null)
@@ -71,8 +78,15 @@ namespace Csillamponi_Allatmenhely
                 allat.SZULETESI_IDO = this.született.SelectedDate;
                 allat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
                 allat.BETEGSEGEK = this.Betegségek.Text;
-
-                bl.Állatot_hozzáad(allat);
+                allat.KENNEL.TIPUS = this.fajta.Text;
+                if (uj_vagy_modositott==true)
+                {
+                    bl.Állatot_hozzáad(allat);    
+                }
+                else
+                {
+                    bl.Állatot_módosít(allat);    
+                }
                 KennelTablaKarbantartas(faj);
                 MessageBox.Show("Mentve");
             }
@@ -87,8 +101,38 @@ namespace Csillamponi_Allatmenhely
             bl.KennelTablaHelyKarbanTartas(allatfaj);
         }
        public void feltolt_adatokkal()
-        {
-            VM.Neve = név.ToString();
+       {
+           név.Text = modosítandoallat.NEV;
+           fajta.SelectedItem = modosítandoallat.FAJTA;
+           született.SelectedDate = modosítandoallat.SZULETESI_IDO;
+           if (modosítandoallat.NOSTENY==true)
+           {
+               nem.SelectedItem = fiu_lany.nőstény;
+           }
+           Méret.Text = Convert.ToString(modosítandoallat.MERET);
+           tomeg.Text = modosítandoallat.TOMEG.ToString();
+           szin.Text = modosítandoallat.SZIN;
+           if (modosítandoallat.ELOJEGYZETT== true)
+           {
+               elojegyzett.SelectedItem = chip_es_elojegyez.igen;
+           }
+           if (modosítandoallat.IVARTALANITOTT== true)
+           {
+               ivartalan.SelectedItem = chip_es_elojegyez.igen;
+           }
+           if (modosítandoallat.OLTVA == true)
+           {
+               oltott.IsChecked = true;
+           }
+           else
+           {
+               nemoltott.IsChecked = true;
+           }
+           Betegségek.Text = modosítandoallat.BETEGSEGEK;
+
+
+
+           /*VM.Neve = név.ToString();
             VM.Kor = született.ToString();
             VM.Fajta = fajta.Text;
             VM.Tomeg = tomeg.ToString();
@@ -96,7 +140,8 @@ namespace Csillamponi_Allatmenhely
             VM.Megjegyzes = megjegyzes.ToString();
             VM.Betegség = Betegségek.ToString();
             VM.Méret = Méret.ToString();
-        }
+            valszeg összes propertyvel együtt törlésre kerül*/
+       }
         private void Foto_feltolt(object sender, RoutedEventArgs e)
         {
             var dlg = new OpenFileDialog();
@@ -157,6 +202,17 @@ namespace Csillamponi_Allatmenhely
         private chip_es_elojegyez ivar;
         private BitmapImage kép;
         private oltas oltasok;
+        public string _selectedKennel;
+
+        public NewAnimalViewModel()
+        {
+            KennelList= new List<string>();
+            kennelfeltolt();
+        }
+
+
+
+
         public string Méret { get; set; }
         public string Betegség { get; set; }
 
@@ -170,6 +226,18 @@ namespace Csillamponi_Allatmenhely
             }
         }
 
+        private List<string> _kennelList;
+
+        public void kennelfeltolt()
+        {
+            Ügyfél_Kezelő ugy= new Ügyfél_Kezelő();
+            
+            
+            foreach (var VARIABLE in ugy.KennelListafeltolt())
+            {
+                KennelList.Add(VARIABLE);
+            }
+        }
         public string Neve { get; set; }
         public string Kor { get; set; }
         public string Fajta { get; set; }
@@ -296,6 +364,18 @@ namespace Csillamponi_Allatmenhely
         {
             get { return Enum.GetValues(typeof (ételek)); }
             set { }
+        }
+
+        public List<string> KennelList
+        {
+            get { return _kennelList; }
+            set { _kennelList = value; OnPropertyChanged("KennelList"); }
+        }
+
+        public string SelectedKennel
+        {
+            get { return _selectedKennel; }
+            set { _selectedKennel = value; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
