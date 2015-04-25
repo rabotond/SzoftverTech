@@ -42,7 +42,7 @@
             <PropertyRef Name="FAJTA" />
           </Key>
           <Property Name="FAJTA" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="RAKTARON" Type="nchar" MaxLength="10" />
+          <Property Name="RAKTARON" Type="int" />
         </EntityType>
         <EntityType Name="KENNEL">
           <Key>
@@ -179,7 +179,7 @@
             <PropertyRef Name="FAJTA" />
           </Key>
           <Property Name="FAJTA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RAKTARON" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="RAKTARON" Type="Int32" />
         </EntityType>
         <EntityType Name="KENNEL">
           <Key>
@@ -334,14 +334,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ELEDEL">
-            <EntityTypeMapping TypeName="IsTypeOf(csillamponimenhelyDBModel.ELEDEL)">
-              <MappingFragment StoreEntitySet="ELEDEL">
-                <ScalarProperty Name="RAKTARON" ColumnName="RAKTARON" />
-                <ScalarProperty Name="FAJTA" ColumnName="FAJTA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="KENNEL">
             <EntityTypeMapping TypeName="IsTypeOf(csillamponimenhelyDBModel.KENNEL)">
               <MappingFragment StoreEntitySet="KENNEL">
@@ -358,6 +350,14 @@
                 <ScalarProperty Name="C_isadmin" ColumnName=" isadmin" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ELEDEL">
+            <EntityTypeMapping TypeName="IsTypeOf(csillamponimenhelyDBModel.ELEDEL)">
+              <MappingFragment StoreEntitySet="ELEDEL">
+                <ScalarProperty Name="RAKTARON" ColumnName="RAKTARON" />
+                <ScalarProperty Name="FAJTA" ColumnName="FAJTA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

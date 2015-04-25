@@ -110,7 +110,7 @@ namespace Csillamponi_Allatmenhely
 
         private void Eledelek_Click(object sender, RoutedEventArgs e)
         {
-            MaterialManagement page = new MaterialManagement(BL);
+            MaterialManagement page = new MaterialManagement(BL,VM);
             page.Owner = this;
             page.Show();
         }

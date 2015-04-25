@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AdatKezelő;
 using System.ComponentModel;
 using System.Data;
+using System.Collections;
 
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
@@ -14,7 +15,14 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
     {
         List<AllatVM> allatok;
         List<UgyfelVM> ugyfelek; // help Fanninak:  Ha ez UgyfelVM akkor hogyan lesz belőle Ugyfel amit átadsz majd mint válaszottugyfel a NewUsernek. Módosításra. Szerintem ezért Null a NewUser Konstruktora
-        AllatVM valasztottAllat;
+        IEnumerable eledel_kennel;
+
+        public IEnumerable Eledel_kennel
+        {
+            get { return eledel_kennel; }
+            set { eledel_kennel = value; onPropChanged("Eledel_kennel"); }
+        } 
+      AllatVM valasztottAllat;
         UgyfelVM valasztottUgyfel;
         Statisztika stat;
 

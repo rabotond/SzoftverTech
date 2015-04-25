@@ -42,7 +42,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             return kezelo.Statisztikát_készít(fajta, idoszak_kezdet, idoszak_vege);
         }
 
-        public IEnumerable FrissitEledel_kennel()
+        public List<eledel_kennel_VM> FrissitEledel_kennel()
         {
             return kezelo.getAllEledel_kennel();
         }

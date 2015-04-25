@@ -29,17 +29,16 @@ namespace AdatKezelő
             db = new csillamponimenhelyDBEntities();
         }
 
-        public IEnumerable getAllEledel_kennel()
+        public List<eledel_kennel_VM> getAllEledel_kennel()
         {
             lock (loadlock)
-            {
+            {     
                 db = new csillamponimenhelyDBEntities();
                 var lista = (from a in db.ELEDEL
-                             join b in db.KENNEL on a.FAJTA equals b.TIPUS into c
-                             from item in c.DefaultIfEmpty()
-                             select new { tipus = item.TIPUS, max = item.MAXDARAB, szabad = item.SZABAD, foglalt = item.FOGLALT, eledel_raktáron = a.RAKTARON });
+                             from b in db.KENNEL
+                             where a.FAJTA == b.TIPUS
+                             select new eledel_kennel_VM() { TIPUS = a.FAJTA, MAXkennel = b.MAXDARAB, SZABAD_kennelek = b.SZABAD, FOGLALT_kennelek = b.FOGLALT, RAKTARON_kg = (int)a.RAKTARON });
                 return lista.ToList();
-                
             }
         }
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
@@ -97,18 +96,39 @@ namespace AdatKezelő
             a.TIPUS = mit.ToString();
             db.ADOMANY.Add(a);
             db.SaveChanges();
-
         }
 
         public void Eledelt_kennelt_hozzáad(ELEDEL e,KENNEL k, int mennyit)
         {
             if(e!=null)
-            { 
-                db.ELEDEL.Find(e.FAJTA).RAKTARON+=mennyit;
+            {
+                var q = from eledel in db.ELEDEL
+                        where eledel.FAJTA == e.FAJTA
+                        select eledel;
+                if ((q.FirstOrDefault().RAKTARON+=mennyit)<=0)
+                {
+                    q.FirstOrDefault().RAKTARON = 0;
+                }
+                else
+                {
+                    q.FirstOrDefault().RAKTARON += mennyit;
+                }
+                
+                
             }
             else
             {
-                db.KENNEL.Find(k.TIPUS).MAXDARAB+=mennyit;
+                var q = from kennel in db.KENNEL
+                        where kennel.TIPUS == k.TIPUS
+                        select kennel;
+                if ((q.FirstOrDefault().MAXDARAB += mennyit) <= 0)
+                {
+                    q.FirstOrDefault().MAXDARAB = 0;
+                }
+                else
+                {
+                    q.FirstOrDefault().MAXDARAB += mennyit;
+                }
             }
             db.SaveChanges();
         }
@@ -239,7 +259,6 @@ namespace AdatKezelő
             }
 
         }
-
 
         private object convert_vm_entity(AllatVM a,UgyfelVM ügyfél)
         {

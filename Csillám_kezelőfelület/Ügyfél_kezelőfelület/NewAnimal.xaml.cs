@@ -148,7 +148,7 @@ namespace Csillamponi_Allatmenhely
         public void feltolt_adatokkal()
         {
             név.Text = modosítandoallat.NEV;
-            fajta.SelectedItem = modosítandoallat.FAJTA;
+            fajta.SelectedItem= modosítandoallat.FAJTA;
             született.SelectedDate = modosítandoallat.SZULETESI_IDO;
             if (modosítandoallat.NOSTENY == true)
             {
@@ -174,18 +174,6 @@ namespace Csillamponi_Allatmenhely
                 nemoltott.IsChecked = true;
             }
             Betegségek.Text = modosítandoallat.BETEGSEGEK;
-
-
-
-            /*VM.Neve = név.ToString();
-             VM.Kor = született.ToString();
-             VM.Fajta = fajta.Text;
-             VM.Tomeg = tomeg.ToString();
-             VM.Szin = szin.ToString();
-             VM.Megjegyzes = megjegyzes.ToString();
-             VM.Betegség = Betegségek.ToString();
-             VM.Méret = Méret.ToString();
-             valszeg összes propertyvel együtt törlésre kerül*/
         }
         private void Foto_feltolt(object sender, RoutedEventArgs e)
         {

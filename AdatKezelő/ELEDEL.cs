@@ -15,6 +15,6 @@ namespace AdatKezelő
     public partial class ELEDEL
     {
         public string FAJTA { get; set; }
-        public string RAKTARON { get; set; }
+        public Nullable<int> RAKTARON { get; set; }
     }
 }
