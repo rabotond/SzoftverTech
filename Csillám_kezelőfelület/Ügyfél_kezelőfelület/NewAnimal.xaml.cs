@@ -49,50 +49,31 @@ namespace Csillamponi_Allatmenhely
             var allat = new ALLAT();
             string faj = "";
 
-            /* if(this.Owner.GetType()==typeof(AdministrationPage))//ha az adminfelületről lett hívva a window----fanni's shit
-            {
-                ALLAT ujallat = new ALLAT();
-                ujallat.ALLATID = Guid.NewGuid();
-                ujallat.CHIPES = (this.chipes.Text == chip_es_elojegyez.igen.ToString());
-                ujallat.ELOJEGYZETT = (this.elojegyzett.Text == chip_es_elojegyez.igen.ToString());
-                ujallat.FAJTA = this.fajta.Text;
-                ujallat.MERET=int.Parse(this.Méret.Text);
-                ujallat.NEV = this.név.Text;
-                ujallat.NOSTENY = (this.nem.Text == fiu_lany.nőstény.ToString());
-                ujallat.OLTVA = this.oltott.IsChecked;
-                ujallat.SZIN = this.szin.Text;
-                ujallat.SZULETESI_IDO = this.született.SelectedDate;
-                ujallat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
-                ujallat.BETEGSEGEK = this.Betegségek.Text;
-                //ujallat.ELOZO_TULAJ
-               // ujallat.KEP = this.kép.Source.ToString();
-                ujallat.TOMEG = int.Parse(this.tomeg.Text);
-                bl.Állatot_hozzáad(ujallat);
-                
-            }
-            else
-            {*/
+
             feltolt_adatokkal();
-            if (VM.Szin != null && VM.Tomeg != null && VM.Fajta != null && VM.Betegség != null && képforrás != null && VM.Méret != null && képforrás!="" && VM.Neve!=null)
+            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != "" && VM.Méret != "" && képforrás!="" && VM.Neve!="")
             {
-                SaveClipboardImageToFile(képforrás);
-                allat.SZIN = VM.Szin;
-                allat.FAJTA = VM.Fajta;
-                faj = allat.FAJTA;
-                allat.SZULETESI_IDO = született.SelectedDate;
-                //allat.TOMEG = decimal.Parse(VM.Tomeg);
-                allat.BETEGSEGEK = VM.Betegség;
-              //  allat.MERET = decimal.Parse(VM.Méret);
-                allat.KEP = trimfoto( képutja);
-                allat.NEV = VM.Neve;
-                allat.CHIPES = VM.Chip == chip_es_elojegyez.igen;
-                allat.ELOJEGYZETT = VM.Elojegyez == chip_es_elojegyez.igen;
-                allat.IVARTALANITOTT = VM.Ivar == chip_es_elojegyez.igen;
-                allat.NOSTENY = VM.Fiulany != fiu_lany.hím;
-                allat.OLTVA = VM.Oltasok == oltas.igen;
+                if (képutja!=null)
+                {
+                    SaveClipboardImageToFile(képforrás);
+                    allat.KEP = trimfoto(képutja);
+                }
+                allat.ALLATID = Guid.NewGuid();
+                allat.CHIPES = (this.chipes.Text == chip_es_elojegyez.igen.ToString());
+                allat.ELOJEGYZETT = (this.elojegyzett.Text == chip_es_elojegyez.igen.ToString());
+                allat.FAJTA = this.fajta.Text;
+                allat.MERET = int.Parse(this.Méret.Text);
+                allat.TOMEG = int.Parse(this.tomeg.Text);
+                allat.NEV = this.név.Text;
+                allat.NOSTENY = (this.nem.Text == fiu_lany.nőstény.ToString());
+                allat.OLTVA = this.oltott.IsChecked;
+                allat.SZIN = this.szin.Text;
+                allat.SZULETESI_IDO = this.született.SelectedDate;
+                allat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
+                allat.BETEGSEGEK = this.Betegségek.Text;
+
                 bl.Állatot_hozzáad(allat);
                 KennelTablaKarbantartas(faj);
-               
                 MessageBox.Show("Mentve");
             }
             else
@@ -100,10 +81,6 @@ namespace Csillamponi_Allatmenhely
                 MessageBox.Show("Üres mező");
             }
             ügyfél.Örökbe_ad(allat, kicsoda);
-            //allat.KENNEL = ""; //  ???????  nem értem , ez egy másik tábla nem is állat
-            //allat.ELOZO_TULAJ = 12;  ?? GUID
-           
-
         }
         private void KennelTablaKarbantartas(string allatfaj)
         {
