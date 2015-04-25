@@ -27,12 +27,18 @@ namespace Csillamponi_Allatmenhely
         KENNEL kennel;
 
         public MaterialManagement(Admin_kezelőfelület_businessLogic ujbl)
-        {
+        { 
+          
             InitializeComponent();
-            BL = ujbl;
-            IEnumerable mater_adatok = BL.FrissitEledel_kennel();
+            BL = ujbl; 
             materialdata.ItemsSource = null;
-            materialdata.ItemsSource = mater_adatok;
+            Task.Factory.StartNew(() =>
+            {
+                IEnumerable mater_adatok = BL.FrissitEledel_kennel();
+                Dispatcher.Invoke(new Action(() => VM.eledel_kennel = mater_adatok; materialdata.ItemsSource = mater_adatok;);
+            });
+           
+           
         }
         private void Visssza_Click(object sender, RoutedEventArgs e)
         {

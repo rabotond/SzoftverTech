@@ -15,7 +15,7 @@ namespace AdatKezelő
 
         void KennelTablaHelyKarbanTartas(string tipus);
 
-        void Eledelt_kennelt_hozzáad(ELEDEL e, int mennyit);
+        void Eledelt_kennelt_hozzáad(ELEDEL e, KENNEL k, int mennyit);
         
         void Állatot_hozzáad(ALLAT állat);
 

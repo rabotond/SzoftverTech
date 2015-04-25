@@ -34,11 +34,12 @@ namespace AdatKezelő
             lock (loadlock)
             {
                 db = new csillamponimenhelyDBEntities();
-                var lista = (from a in db.KENNEL
-                            join b in db.ELEDEL on a.TIPUS equals b.FAJTA into c
-                            from item in c
-                            select new { tipus = a.TIPUS, max = a.MAXDARAB, szabad = a.SZABAD, foglalt = a.FOGLALT, eledel_raktáron = item.RAKTARON });
+                var lista = (from a in db.ELEDEL
+                             join b in db.KENNEL on a.FAJTA equals b.TIPUS into c
+                             from item in c.DefaultIfEmpty()
+                             select new { tipus = item.TIPUS, max = item.MAXDARAB, szabad = item.SZABAD, foglalt = item.FOGLALT, eledel_raktáron = a.RAKTARON });
                 return lista.ToList();
+                
             }
         }
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
@@ -99,10 +100,16 @@ namespace AdatKezelő
 
         }
 
-        public void Eledelt_kennelt_hozzáad(ELEDEL e, int mennyit)
+        public void Eledelt_kennelt_hozzáad(ELEDEL e,KENNEL k, int mennyit)
         {
-            ELEDEL a = db.ELEDEL.Find(e.FAJTA);
-            a.RAKTARON = a.RAKTARON + mennyit;
+            if(e!=null)
+            { 
+                db.ELEDEL.Find(e.FAJTA).RAKTARON+=mennyit;
+            }
+            else
+            {
+                db.KENNEL.Find(k.TIPUS).MAXDARAB+=mennyit;
+            }
             db.SaveChanges();
         }
 
