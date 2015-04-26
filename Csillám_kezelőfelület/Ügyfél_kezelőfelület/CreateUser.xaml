@@ -38,6 +38,7 @@
         <PasswordBox x:Name="passwordBoxPassword2" HorizontalAlignment="Left" Margin="176,389,0,0" VerticalAlignment="Top" Width="294" Height="34"/>
         <Label Content="Ügyfél adatok" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="352" FontSize="24"/>
         <Label Content="Minden adat kitöltése kötelező!" HorizontalAlignment="Left" Margin="10,423,0,0" VerticalAlignment="Top"/>
+        <StackPanel x:Name="stackPanelIsAdmin" HorizontalAlignment="Left" Height="66" Margin="288,226,0,0" VerticalAlignment="Top" Width="182"/>
 
     </Grid>
 </Window>

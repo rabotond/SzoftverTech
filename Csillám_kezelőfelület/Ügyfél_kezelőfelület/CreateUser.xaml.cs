@@ -24,6 +24,7 @@ namespace Csillamponi_Allatmenhely
         CreateUserViewModel createUserViewModel;
         UgyfelVM módosítandó;
         UGYFEL bejelentkezettUser;
+        CheckBox checkBoxIsAdmin;
         public CreateUser(UGYFEL bejelentkezettUser)
         {
             InitializeComponent();
@@ -34,34 +35,57 @@ namespace Csillamponi_Allatmenhely
         }
         public CreateUser(UgyfelVM modositando, UGYFEL bejelentkezettUser)
         {
-            // modosítandó null-al érkezik helyből ott a hiba. már hívásnál a ValaszottUgyfel Nem Ugyfel típusú vagy mi ezért null de nekem még nagyon idegen az adminkezelő sorry nem találtam meg hol a hiba :)
             InitializeComponent();
+            this.createUserViewModel = new CreateUserViewModel();
             this.bejelentkezettUser = bejelentkezettUser;
+            this.DataContext = modositando;
             this.módosítandó = modositando;
-            this.DataContext = módosítandó;
+            checkBoxIsAdmin = new CheckBox();
+            checkBoxIsAdmin.Content = "Adminisztrációs fiók";
+            stackPanelIsAdmin.Children.Add(checkBoxIsAdmin);
+        }
+
+        private bool MindenAdatMegadva()
+        {
+            return textBoxEmail.Text != "" &&
+                        textBoxHszam.Text != "" &&
+                        textBoxIrszám.Text != "" &&
+                        textBoxKeresztnév.Text != "" &&
+                        textBoxTelefon.Text != "" &&
+                        textBoxTelepülés.Text != "" &&
+                        textBoxUtca.Text != "" &&
+                        textBoxVezetéknév.Text != "" &&
+                        textBoxUsername.Text != "" &&
+                        passwordBoxPassword1.Password != "" &&
+                        passwordBoxPassword2.Password != "";
         }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
             if (this.DataContext is UgyfelVM)
             {
-                createUserViewModel.ÜgyfélMódosítás(this.módosítandó); //még nem jó
-                UGYFEL módosítandó = (UGYFEL)this.DataContext;
-                createUserViewModel.ÜgyfélMódosítás(this.módosítandó);
+                if (this.MindenAdatMegadva())
+                {
+                    if (passwordBoxPassword1.Password == passwordBoxPassword2.Password)
+                    {
+                        createUserViewModel.PASSWORD = passwordBoxPassword1.Password;
+                        this.módosítandó.PASSWORD = passwordBoxPassword1.Password;
+                        createUserViewModel.ÜgyfélMódosítás(this.módosítandó, this.checkBoxIsAdmin.IsChecked);
+                    }
+                    else
+                    {
+                        MessageBox.Show("A két jelszó mezőnek egyeznie kell!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Minden adatot meg kell adni!");
+                }
+                
             }
             if (this.DataContext is CreateUserViewModel)
             {
-                if (textBoxEmail.Text != "" &&
-                    textBoxHszam.Text != "" &&
-                    textBoxIrszám.Text != "" &&
-                    textBoxKeresztnév.Text != "" &&
-                    textBoxTelefon.Text != "" &&
-                    textBoxTelepülés.Text != "" &&
-                    textBoxUtca.Text != "" &&
-                    textBoxVezetéknév.Text != "" &&
-                    textBoxUsername.Text != "" &&
-                    passwordBoxPassword1.Password != "" &&
-                    passwordBoxPassword2.Password != "")
+                if (this.MindenAdatMegadva())
                 {
                     if (passwordBoxPassword1.Password == passwordBoxPassword2.Password)
                     {
@@ -166,24 +190,37 @@ namespace Csillamponi_Allatmenhely
         }
         public bool ÚjÜgyfél()
         {
-            UgyfelVM ügyfél = new UgyfelVM();
-            ügyfél.EMAIL = this.EMAIL;
-            ügyfél.HAZSZAM = decimal.Parse(this.HAZSZAM);
-            ügyfél.IRSZ = decimal.Parse(this.IRSZ);
-            ügyfél.KERESZTNEV = this.KERESZTNEV;
-            ügyfél.TELEFON = decimal.Parse(this.TELEFON);
-            ügyfél.UGYFELID = Guid.NewGuid();
-            ügyfél.UTCA = this.UTCA;
-            ügyfél.VAROS = this.VAROS;
-            ügyfél.USERNAME = this.username;
-            ügyfél.PASSWORD = this.password;
-            ügyfél.VEZETEKNEV = this.VEZETEKNEV;
-            ügyfél.isadmin = false;
-            return createUserBusinessLogic.Mentés("új", ügyfél);
+            try
+            {
+                UgyfelVM ügyfél = new UgyfelVM();
+                ügyfél.EMAIL = this.EMAIL;
+                ügyfél.HAZSZAM = decimal.Parse(this.HAZSZAM);
+                ügyfél.IRSZ = decimal.Parse(this.IRSZ);
+                ügyfél.KERESZTNEV = this.KERESZTNEV;
+                ügyfél.TELEFON = decimal.Parse(this.TELEFON);
+                ügyfél.UGYFELID = Guid.NewGuid();
+                ügyfél.UTCA = this.UTCA;
+                ügyfél.VAROS = this.VAROS;
+                ügyfél.USERNAME = this.username;
+                ügyfél.PASSWORD = this.password;
+                ügyfél.VEZETEKNEV = this.VEZETEKNEV;
+                ügyfél.isadmin = false;
+                return createUserBusinessLogic.Mentés("új", ügyfél);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Hibás adatok!");
+                return false;
+            }
+            
         }
         
-        public void ÜgyfélMódosítás(UgyfelVM ügyfél)
+        public void ÜgyfélMódosítás(UgyfelVM ügyfél, bool? admin)
         {
+            if (admin == true)
+            {
+                ügyfél.isadmin = true;
+            }
             createUserBusinessLogic.Mentés("módosít", ügyfél);
         }
     }
@@ -209,7 +246,9 @@ namespace Csillamponi_Allatmenhely
                 }
                 if (mit == "módosít")
                 {
+                    
                     adminKezelő.Ügyfelet_módosít(ügyfél);
+                    MessageBox.Show("Módosítások mentve!");
                     return true;
                 }
             }
