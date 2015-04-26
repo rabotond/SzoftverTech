@@ -64,7 +64,8 @@ namespace AdatKezelő
                     SZIN = x.SZIN,
                     SZULETESI_IDO = x.SZULETESI_IDO,
                     TOMEG = x.TOMEG,
-                    MERET = x.MERET
+                    MERET = x.MERET,
+                    kep=x.KEP
                 }).ToList();
             }
         }

@@ -23,8 +23,8 @@ namespace AdatKezelő
         public Nullable<bool> OLTVA { get; set; }
         public string BETEGSEGEK { get; set; }
         public Nullable<bool> NOSTENY { get; set; }
-        public Nullable<decimal> TOMEG { get; set; }
-        public Nullable<decimal> MERET { get; set; }
+        public Nullable<int> TOMEG { get; set; }
+        public Nullable<int> MERET { get; set; }
         public Nullable<bool> CHIPES { get; set; }
         public Nullable<bool> ELOJEGYZETT { get; set; }
         public Nullable<System.Guid> ELOZO_TULAJ { get; set; }

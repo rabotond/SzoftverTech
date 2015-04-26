@@ -15,15 +15,17 @@ namespace AdatKezelő
         public Nullable<bool> IVARTALANITOTT { get; set; }
         public string SZIN { get; set; }
         public Nullable<bool> OLTVA { get; set; }
-        public string kep { get; set; }
-        public string BETEGSEGEK { get; set; }
+        
         public Nullable<bool> NOSTENY { get; set; }
-        public Nullable<decimal> TOMEG { get; set; }
-        public Nullable<decimal> MERET { get; set; }
+        public Nullable<int> TOMEG { get; set; }
+        public Nullable<int> MERET { get; set; }
         public Nullable<bool> CHIPES { get; set; }
         public Nullable<bool> ELOJEGYZETT { get; set; }
-        public Nullable<System.Guid> ELOZO_TULAJ { get; set; }
-        public Nullable<System.DateTime> OROKBEFOGADVA { get; set; }
+        
+        public Nullable<System.DateTime> OROKBEFOGADVA { get; set; } 
+       public string BETEGSEGEK { get; set; }
         public Nullable<System.DateTime> BEADVA { get; set; }
+       public Nullable<System.Guid> ELOZO_TULAJ { get; set; }
+       public string kep { get; set; }
     }
 }

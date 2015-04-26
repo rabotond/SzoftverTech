@@ -28,12 +28,12 @@
           <Property Name="OLTVA" Type="bit" />
           <Property Name="BETEGSEGEK" Type="varchar" MaxLength="40" />
           <Property Name="NOSTENY" Type="bit" />
-          <Property Name="TOMEG" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="MERET" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="TOMEG" Type="int" />
+          <Property Name="MERET" Type="int" />
           <Property Name="CHIPES" Type="bit" />
           <Property Name="ELOJEGYZETT" Type="bit" />
           <Property Name="ELOZO_TULAJ" Type="uniqueidentifier" />
-          <Property Name="KEP" Type="varchar" MaxLength="50" />
+          <Property Name="KEP" Type="varchar(max)" />
           <Property Name="OROKBEFOGADVA" Type="date" />
           <Property Name="BEADVA" Type="date" />
         </EntityType>
@@ -163,12 +163,12 @@
           <Property Name="OLTVA" Type="Boolean" />
           <Property Name="BETEGSEGEK" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="NOSTENY" Type="Boolean" />
-          <Property Name="TOMEG" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="MERET" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TOMEG" Type="Int32" />
+          <Property Name="MERET" Type="Int32" />
           <Property Name="CHIPES" Type="Boolean" />
           <Property Name="ELOJEGYZETT" Type="Boolean" />
           <Property Name="ELOZO_TULAJ" Type="Guid" />
-          <Property Name="KEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KEP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="UGYFEL" Relationship="Self.ALLAT_FOR_KEY" FromRole="ALLAT" ToRole="UGYFEL" />
           <NavigationProperty Name="KENNEL" Relationship="Self.ALLAT_FOR_KEY1" FromRole="ALLAT" ToRole="KENNEL" />
           <Property Name="OROKBEFOGADVA" Type="DateTime" Precision="0" />
