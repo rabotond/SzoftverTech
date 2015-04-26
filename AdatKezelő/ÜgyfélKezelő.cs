@@ -46,6 +46,22 @@ namespace AdatKezelő
 
         }
 
+        public string GenerateAdvString()
+        {// Luca
+            var allatok = from allat in db.ALLAT
+                          where allat.ELOJEGYZETT == false
+                          select new { Név = allat.NEV, Fajta = allat.FAJTA};
+
+            string advString = "";
+
+            foreach (var item in allatok)
+            {
+                advString += string.Format("***Egy {1} keresi gazdáját, neve : {1}!",item.Név, item.Fajta);
+            }
+            return advString;
+
+        }
+
         public bool Előjegyeztet(ALLAT állat)
         {
             var q = from x in adminKezelő.Db.ALLAT
