@@ -17,7 +17,7 @@ namespace Csillamponi_Allatmenhely
 {
     /// <summary>
     ///     Interaction logic for NewAnimal.xaml
-    /// </summary>
+    /// </summary>//
     public partial class NewAnimal : Window
     {
         private readonly UGYFEL bejelentkezettUser;
