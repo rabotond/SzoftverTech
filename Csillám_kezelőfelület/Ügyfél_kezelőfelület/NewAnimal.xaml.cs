@@ -44,10 +44,10 @@ namespace Csillamponi_Allatmenhely
             VM = new NewAnimalViewModel(); 
             bl = new Admin_kezelőfelület_businessLogic();
             DataContext = VM;
+            képutja = modositando.kep;
             modosítandoallat = modositando;
             feltolt_adatokkal();
             ujallat = false;
-           
         }
 
         private void Mentes(object sender, RoutedEventArgs e)
@@ -150,31 +150,41 @@ namespace Csillamponi_Allatmenhely
             tomeg.Text = modosítandoallat.TOMEG.ToString();
             szin.Text = modosítandoallat.SZIN;
             Betegségek.Text = modosítandoallat.BETEGSEGEK;
-
+            if (modosítandoallat.CHIPES==true)
+            {
+                VM.Chip = chip_es_elojegyez.igen;    
+            }
+            else
+            {
+                VM.Chip = chip_es_elojegyez.nem;
+            }
             if (modosítandoallat.NOSTENY == true)
             {
-                VM.Fiulany= fiu_lany.nőstény;
+                VM.Fiulany = fiu_lany.nőstény;
             }
-            else { VM.Fiulany = fiu_lany.hím; }
+            else
+            {
+                VM.Fiulany = fiu_lany.hím;
+            }
 
             if (modosítandoallat.ELOJEGYZETT == true)
             {
-               VM.Elojegyez=chip_es_elojegyez.igen;
+                VM.Elojegyez = chip_es_elojegyez.igen;
             }
-            else 
+            else
             {
-                VM.Elojegyez = chip_es_elojegyez.nem; 
+                VM.Elojegyez = chip_es_elojegyez.nem;
             }
 
             if (modosítandoallat.IVARTALANITOTT == true)
             {
-               VM.Ivar = chip_es_elojegyez.igen;
+                VM.Ivar = chip_es_elojegyez.igen;
             }
-            else 
-            { 
-                VM.Ivar = chip_es_elojegyez.nem; 
+            else
+            {
+                VM.Ivar = chip_es_elojegyez.nem;
             }
-            
+
             if (modosítandoallat.OLTVA == true)
             {
                 VM.Oltasok = oltas.igen;
@@ -183,16 +193,7 @@ namespace Csillamponi_Allatmenhely
             {
                 VM.Oltasok = oltas.nem;
             }
-          
-            //var bi = new BitmapImage();
-            //képforrás = képutja = modosítandoallat.kep;
-            //bi.BeginInit();
-            //bi.UriSource = new Uri(képforrás, UriKind.RelativeOrAbsolute);
-            //bi.EndInit();
-            //if (bi != null)
-            //{
-            //    VM.Kép = bi;
-            //}
+          Modositott_allat_kép_feltöltés();
         }
 
         private void Foto_feltolt(object sender, RoutedEventArgs e)
@@ -230,10 +231,26 @@ namespace Csillamponi_Allatmenhely
             string allatpath = @"állatok";
             string currentdirectory = Environment.CurrentDirectory;
             currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
-            string gesturefile = Path.Combine(currentdirectory, allatpath);
+            currentdirectory = Path.Combine(currentdirectory, allatpath);
             Image img = Image.FromFile(picturepath);
-            gesturefile = gesturefile + trimfoto(képutja);
-            img.Save(gesturefile);
+            currentdirectory = currentdirectory+ trimfoto(képutja);
+            img.Save(currentdirectory);
+        }
+
+        public void Modositott_allat_kép_feltöltés()
+        {
+            string allatpath = @"állatok";
+            string currentdirectory = Environment.CurrentDirectory;
+            currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
+            currentdirectory = Path.Combine(currentdirectory, allatpath);
+            currentdirectory = currentdirectory+ trimfoto(képutja);
+
+
+            var bi = new BitmapImage();
+            bi.BeginInit();
+            bi.UriSource = new Uri(currentdirectory, UriKind.RelativeOrAbsolute);
+            bi.EndInit();
+            VM.Kép = bi;
         }
 
         private void BackClick(object sender, RoutedEventArgs e)
