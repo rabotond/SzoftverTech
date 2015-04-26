@@ -104,10 +104,10 @@ namespace Csillamponi_Allatmenhely
             var ügyfél = new Ügyfél_Kezelő();
             var kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();
-
+            /*
             if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
-            {
-                if (képutja != null)
+            {*/
+                if (képforrás != null)
                 {
                     SaveClipboardImageToFile(képforrás);
                     modosítandoallat.kep = trimfoto(képutja);
@@ -128,11 +128,7 @@ namespace Csillamponi_Allatmenhely
                     bl.Állatot_módosít(modosítandoallat);
                 
                 MessageBox.Show("Mentve");
-            }
-            else
-            {
-                MessageBox.Show("Üres mező");
-            }
+           
           
         }
         
