@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdatKezelő
 {
-    public class Eledel_kezelo
+    public class Eledel_kezelo // itt lenne háttérszálon az eledel fogyazstás
     {
         Thread t;
         csillamponimenhelyDBEntities db;

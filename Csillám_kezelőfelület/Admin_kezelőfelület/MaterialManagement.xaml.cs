@@ -49,7 +49,7 @@ namespace Csillamponi_Allatmenhely
         {
             if (materialdata.SelectedItem!=null)
             {
-                if (int.Parse(mennyitAD.Text) > 0 || int.Parse(mennyitVESZki.Text) > 0)
+                if (int.Parse(mennyitAD.Text) > 0 || int.Parse(mennyitVESZki.Text) > 0 )
                 {
                     eledel = new ELEDEL();
                     eledel.FAJTA = (materialdata.SelectedItem as eledel_kennel_VM).TIPUS;
@@ -77,5 +77,86 @@ namespace Csillamponi_Allatmenhely
                 MessageBox.Show("ERROR >>>>>>>>>>>>>>> nincs kijelölve rekord!!!"); 
             }
         }
+
+        private void mennyitAD_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
+                     || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                     || e.Key == Key.Back
+                     || e.Key == Key.Tab
+                     || e.Key == Key.Left
+                     || e.Key == Key.Right
+                     || e.Key == Key.Delete;
+            e.Handled = !jo;
+        }
+
+        private void mennyitVESZki_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
+                     || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                     || e.Key == Key.Back
+                     || e.Key == Key.Tab
+                     || e.Key == Key.Left
+                     || e.Key == Key.Right
+                     || e.Key == Key.Delete;
+            e.Handled = !jo;
+        }
+
+        private void bővít_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
+                     || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                     || e.Key == Key.Back
+                     || e.Key == Key.Tab
+                     || e.Key == Key.Left
+                     || e.Key == Key.Right
+                     || e.Key == Key.Delete;
+            e.Handled = !jo;
+        }
+
+        private void töröl_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
+                     || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+                     || e.Key == Key.Back
+                     || e.Key == Key.Tab
+                     || e.Key == Key.Left
+                     || e.Key == Key.Right
+                     || e.Key == Key.Delete;
+            e.Handled = !jo;
+        }
+
+        private void mennyitAD_TextChanged(object sender, TextChangedEventArgs e)
+        { 
+            if ((sender as TextBox).Text == "")
+            {
+                (sender as TextBox).Text = "0";
+            }
+        }
+
+        private void mennyitVESZki_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text == "")
+            {
+                (sender as TextBox).Text = "0";
+            }
+        }
+
+        private void bővít_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text == "")
+            {
+                (sender as TextBox).Text = "0";
+            }
+        }
+
+        private void töröl_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if ((sender as TextBox).Text == "")
+            {
+                (sender as TextBox).Text = "0";
+            }
+        }
+
     }
 }

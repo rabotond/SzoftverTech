@@ -11,15 +11,15 @@
         </Grid.ColumnDefinitions>
         <Label Content="Hozzáad (kg)" HorizontalAlignment="Left" Margin="14,55,0,0" VerticalAlignment="Top" Height="29" Width="107" Grid.Column="2"/>
         <Label Content="Felhasznál (kg)" HorizontalAlignment="Left" Margin="14,85,0,0" VerticalAlignment="Top" Height="30" Width="107" Grid.Column="2"/>
-        <TextBox Name="mennyitAD" HorizontalAlignment="Left" Height="26" Margin="121,57,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
-        <TextBox Name="mennyitVESZki" HorizontalAlignment="Left" Height="26" Margin="121,87,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="96" Grid.Column="2"/>
+        <TextBox Name="mennyitAD" HorizontalAlignment="Left" Height="26" Margin="121,57,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="96" Grid.Column="2" PreviewKeyDown="mennyitAD_PreviewKeyDown" TextChanged="mennyitAD_TextChanged"/>
+        <TextBox Name="mennyitVESZki" HorizontalAlignment="Left" Height="26" Margin="121,87,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="96" Grid.Column="2" PreviewKeyDown="mennyitVESZki_PreviewKeyDown" TextChanged="mennyitVESZki_TextChanged"/>
         <Button Content="Mentés" HorizontalAlignment="Left" Margin="263,22,0,0" VerticalAlignment="Top" Width="54" Click="Mentés_Click" Grid.Column="2" Height="246"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="20,22,0,0" VerticalAlignment="Top" Width="63" Click="Visssza_Click" Height="246" />
         <DataGrid x:Name="materialdata" ItemsSource="{Binding Eledel_kennel}" Grid.Column="1" HorizontalAlignment="Left" Margin="19,74,0,0" VerticalAlignment="Top" Height="194" Width="512"/>
         <Label Content="Bővít:" Grid.Column="2" HorizontalAlignment="Left" Margin="14,211,0,0" VerticalAlignment="Top" Width="75" Height="27"/>
         <Label Content="Töröl:" Grid.Column="2" HorizontalAlignment="Left" Margin="14,235,0,0" VerticalAlignment="Top" Width="75" Height="27"/>
-        <TextBox  Name="bővít" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="89,214,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="146"/>
-        <TextBox  Name="töröl" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="89,238,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="146"/>
+        <TextBox  Name="bővít" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="89,214,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="146" PreviewKeyDown="bővít_PreviewKeyDown" TextChanged="bővít_TextChanged"/>
+        <TextBox  Name="töröl" Grid.Column="2" HorizontalAlignment="Left" Height="24" Margin="89,238,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="146" PreviewKeyDown="töröl_PreviewKeyDown" TextChanged="töröl_TextChanged"/>
         <Label Content="Kennelek / Eledelek fajta szerint" Grid.Column="1" Margin="19,22,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="18" Height="34" HorizontalAlignment="Left" Width="325"/>
         <Label Content="Eledelek" Grid.Column="2" HorizontalAlignment="Left" Margin="14,22,0,0" VerticalAlignment="Top" Width="107" Height="27" FontSize="16"/>
         <Label Content="Kennelek" Grid.Column="2" HorizontalAlignment="Left" Margin="14,173,0,0" VerticalAlignment="Top" Width="107" Height="33" FontSize="16"/>
