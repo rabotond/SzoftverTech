@@ -80,13 +80,29 @@ namespace Csillamponi_Allatmenhely
 
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Állatot_töröl((AllatVM)állatgrid.SelectedItem);
-            VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
+            try
+            {
+                BL.Állatot_töröl((AllatVM)állatgrid.SelectedItem);
+                VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Ez egy üres rekord!");
+            }
+            
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
         {
-            BL.Ügyfelet_töröl((UgyfelVM)ugyfelgrid.SelectedItem);
-            VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
+            try
+            {
+                BL.Ügyfelet_töröl((UgyfelVM)ugyfelgrid.SelectedItem);
+                VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
+            }
+            catch (InvalidCastException)
+            {
+                MessageBox.Show("Ez egy üres rekord!");
+            }
+            
         }
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
@@ -96,9 +112,16 @@ namespace Csillamponi_Allatmenhely
         }
         private void allatmodosit_Click(object sender, RoutedEventArgs e)
         {
-            NewAnimal page = new NewAnimal(VM.ValasztottAllat);
-            page.Owner = this;
-            page.Show();
+            if (VM.ValasztottAllat != null)
+            {
+                NewAnimal page = new NewAnimal(VM.ValasztottAllat);
+                page.Owner = this;
+                page.Show();
+            }
+            else
+            {
+                MessageBox.Show("Ez egy üres rekord!");
+            }
         }
 
         private void Kimutatas_Click(object sender, RoutedEventArgs e)
