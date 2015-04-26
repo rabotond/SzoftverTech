@@ -13,7 +13,7 @@ namespace AdatKezelő
     {
         void KennelTablaSync();
 
-        void KennelTablaHelyKarbanTartas(string tipus);
+        bool KennelTablaHelyKarbanTartas(string tipus);
 
         void Eledelt_kennelt_hozzáad(ELEDEL e, KENNEL k, int mennyit);
         

@@ -130,7 +130,10 @@ namespace Csillamponi_Allatmenhely
         
         private void KennelTablaKarbantartas(string allatfaj)
         {
-            bl.KennelTablaHelyKarbanTartas(allatfaj);
+            if (!bl.KennelTablaHelyKarbanTartas(allatfaj))
+            {
+                MessageBox.Show("Sajnos nincs elérhető kennel az állat számára!");
+            }
         }
         
         public void feltolt_adatokkal()

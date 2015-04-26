@@ -220,7 +220,7 @@ namespace AdatKezelő
             Statisztika stat = new Statisztika(fajta, idoszak_kezdet, idoszak_vege);
             return stat;
         }
-
+        
         public void KennelTablaSync() // készítette Kovács Luca
         {
             var allatokByFajta = from allat in db.ALLAT
@@ -240,6 +240,7 @@ namespace AdatKezelő
                     kennel.FOGLALT = item.Count();
 
                     kennel.SZABAD = kennel.MAXDARAB - kennel.FOGLALT;
+                   // db.SaveChanges();
                 }
                 else
                 {
@@ -250,22 +251,25 @@ namespace AdatKezelő
             db.SaveChanges();
         }
 
-        public void KennelTablaHelyKarbanTartas(string tipus)
+        public bool KennelTablaHelyKarbanTartas(string tipus)
         {// készítette Kovács Luca
             var q = from kennel in db.KENNEL
                     where kennel.TIPUS == tipus
                     select kennel;
             if (q.Count() != 0)
             {
+                if (q.FirstOrDefault().SZABAD == 0)
+                    return false;
                 q.FirstOrDefault().SZABAD--;
                 q.FirstOrDefault().FOGLALT++;
                 db.SaveChanges();
+                return true;
             }
             else
             {
                 this.KennelTablaSync();
             }
-
+            return true;
         }
 
         private object convert_vm_entity(AllatVM a,UgyfelVM ügyfél)
