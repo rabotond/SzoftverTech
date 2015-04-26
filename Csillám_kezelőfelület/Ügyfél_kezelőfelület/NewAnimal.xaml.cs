@@ -183,16 +183,19 @@ namespace Csillamponi_Allatmenhely
             {
                 VM.Oltasok = oltas.nem;
             }
-          
-            //var bi = new BitmapImage();
-            //képforrás = képutja = modosítandoallat.kep;
-            //bi.BeginInit();
-            //bi.UriSource = new Uri(képforrás, UriKind.RelativeOrAbsolute);
-            //bi.EndInit();
-            //if (bi != null)
-            //{
-            //    VM.Kép = bi;
-            //}
+            var bi = new BitmapImage();
+            képforrás = modosítandoallat.kep;
+
+            var filename = modosítandoallat.kep;
+            képutja = modosítandoallat.kep;
+           
+            bi.BeginInit();
+            bi.UriSource = new Uri(filename, UriKind.RelativeOrAbsolute);
+            bi.EndInit();
+            if (bi != null)
+            {
+                VM.Kép = bi;
+            }
         }
 
         private void Foto_feltolt(object sender, RoutedEventArgs e)
