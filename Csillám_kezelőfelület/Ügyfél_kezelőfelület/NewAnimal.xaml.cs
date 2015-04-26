@@ -104,8 +104,6 @@ namespace Csillamponi_Allatmenhely
             var ügyfél = new Ügyfél_Kezelő();
             var kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();
-            allat.KENNEL = new KENNEL();
-            string faj = "";
 
             if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
             {
@@ -129,14 +127,13 @@ namespace Csillamponi_Allatmenhely
                     
                     bl.Állatot_módosít(modosítandoallat);
                 
-                KennelTablaKarbantartas(faj);
                 MessageBox.Show("Mentve");
             }
             else
             {
                 MessageBox.Show("Üres mező");
             }
-            ügyfél.Örökbe_ad(allat, kicsoda);
+          
         }
         
         private void KennelTablaKarbantartas(string allatfaj)
@@ -178,15 +175,15 @@ namespace Csillamponi_Allatmenhely
                 nemoltott.IsChecked = true;
             }
             Betegségek.Text = modosítandoallat.BETEGSEGEK;
-            var bi = new BitmapImage();
-            képforrás = képutja = modosítandoallat.kep;
-            bi.BeginInit();
-            bi.UriSource = new Uri(képforrás, UriKind.RelativeOrAbsolute);
-            bi.EndInit();
-            if (bi != null)
-            {
-                VM.Kép = bi;
-            }
+            //var bi = new BitmapImage();
+            //képforrás = képutja = modosítandoallat.kep;
+            //bi.BeginInit();
+            //bi.UriSource = new Uri(képforrás, UriKind.RelativeOrAbsolute);
+            //bi.EndInit();
+            //if (bi != null)
+            //{
+            //    VM.Kép = bi;
+            //}
         }
 
         private void Foto_feltolt(object sender, RoutedEventArgs e)
@@ -232,9 +229,8 @@ namespace Csillamponi_Allatmenhely
 
         private void BackClick(object sender, RoutedEventArgs e)
         {
-            var piaWindow = new PutInAnimal(bejelentkezettUser);
-            piaWindow.Show();
             Close();
+
         }
     }
 
