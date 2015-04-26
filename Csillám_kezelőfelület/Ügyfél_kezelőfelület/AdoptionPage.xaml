@@ -15,7 +15,7 @@
                 <Label Content="Szín:" HorizontalAlignment="Left" Margin="1,151,0,0" VerticalAlignment="Top" FontSize="18" Width="65"/>
                 <ComboBox ItemsSource="{Binding Path=Faj}" SelectedItem="{Binding Path=SelectedFaj}" HorizontalAlignment="Left" Margin="105,43,0,0" VerticalAlignment="Top" Width="157"/>
                 <TextBox x:Name="szin" HorizontalAlignment="Left" Height="28" Margin="83,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="188" FontSize="18"/>
-                <Label Content="Sex:" HorizontalAlignment="Left" Margin="1,106,0,0" VerticalAlignment="Top" FontSize="18" Width="65"/>
+                <Label Content="Nem:" HorizontalAlignment="Left" Margin="1,106,0,0" VerticalAlignment="Top" FontSize="18" Width="65"/>
                 <ComboBox ItemsSource="{Binding Path=Fiulany}" SelectedItem="{Binding Path=Fiu}" HorizontalAlignment="Left" Margin="105,110,0,0" VerticalAlignment="Top" Width="120"/>
 
             </Grid>

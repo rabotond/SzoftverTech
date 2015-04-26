@@ -103,6 +103,7 @@ namespace Csillám_kezelőfelület
             }
             else
             {
+                MessageBox.Show("Hibás jelszó!");
                 return false;
             }
         }
@@ -122,6 +123,7 @@ namespace Csillám_kezelőfelület
             }
             else
             {
+                MessageBox.Show("Hibás jelszó!");
                 return false;
             }
         }
