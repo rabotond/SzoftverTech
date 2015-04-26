@@ -41,6 +41,7 @@ namespace AdatKezelő
                 return lista.ToList();
             }
         }
+       
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
             lock (loadlock)
@@ -113,8 +114,6 @@ namespace AdatKezelő
                 {
                     q.FirstOrDefault().RAKTARON += mennyit;
                 }
-                
-                
             }
             else
             {
