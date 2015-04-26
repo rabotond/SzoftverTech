@@ -194,9 +194,17 @@ namespace AdatKezelő
 
         public void Ügyfelet_töröl(UgyfelVM ügyfél)
         {
-            UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
-            db.UGYFEL.Remove(a);
-            db.SaveChanges();
+            try
+            {
+                UGYFEL a = db.UGYFEL.Find(ügyfél.UGYFELID);
+                db.UGYFEL.Remove(a);
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                //magic
+            }
+            
         }
 
         public void Ügyfelet_módosít(UgyfelVM ügyfél)
