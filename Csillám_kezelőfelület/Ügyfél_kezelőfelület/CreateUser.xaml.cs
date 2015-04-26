@@ -38,7 +38,7 @@ namespace Csillamponi_Allatmenhely
             InitializeComponent();
             this.bejelentkezettUser = bejelentkezettUser;
             this.módosítandó = modositando;
-            this.DataContext = modositando;
+            this.DataContext = módosítandó;
         }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
