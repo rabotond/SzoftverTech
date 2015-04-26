@@ -54,28 +54,28 @@ namespace Csillamponi_Allatmenhely
                     eledel = new ELEDEL();
                     eledel.FAJTA = (materialdata.SelectedItem as eledel_kennel_VM).TIPUS;
                     BL.Eledelt_kennelt_hozzáad(eledel, null, int.Parse(mennyitAD.Text) + int.Parse(mennyitVESZki.Text)*-1);
+                    BL.KennelTablaHelyKarbanTartas(eledel.FAJTA);
                 }
                 if (int.Parse(töröl.Text) > 0 || int.Parse(bővít.Text) > 0)
                 {
                     kennel = new KENNEL();
                     kennel.TIPUS = (materialdata.SelectedItem as eledel_kennel_VM).TIPUS;
                     BL.Eledelt_kennelt_hozzáad(null, kennel, int.Parse(töröl.Text)*-1 + int.Parse(bővít.Text));
-
+                    BL.KennelTablaHelyKarbanTartas(kennel.TIPUS);
                 }
-                else
-                {
-                    MessageBox.Show("Nem történt módosítás!!!");
-                }
-                MessageBox.Show("táblák sikeresen módosítva!!!");
+               
+                MessageBox.Show("táblák sikeresen módosítva!!!");   
+               
                 Task.Factory.StartNew(() =>
                 {
                     List<eledel_kennel_VM> mater_adatok = BL.FrissitEledel_kennel();
                     Dispatcher.Invoke(new Action(() => { VM.Eledel_kennel = mater_adatok; }));
                 });
             }
-            else { MessageBox.Show("ERROR >>>>>>>>>>>>>>> nincs kijelölve rekord!!!"); }
-            
-          
+            else 
+            {
+                MessageBox.Show("ERROR >>>>>>>>>>>>>>> nincs kijelölve rekord!!!"); 
+            }
         }
     }
 }

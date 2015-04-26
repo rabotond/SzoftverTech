@@ -67,7 +67,7 @@ namespace Csillamponi_Allatmenhely
             var ügyfél = new Ügyfél_Kezelő();
             ALLAT allat = new ALLAT();
            
-            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
+            if (VM.Szin != null && VM.Tömeg != null && VM.Fajta != null  && VM.Méret != null && képforrás != null && VM.Neve != null)
             {
                 if (képutja != null)
                 {
@@ -104,9 +104,7 @@ namespace Csillamponi_Allatmenhely
             var ügyfél = new Ügyfél_Kezelő();
             var kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();
-            /*
-            if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
-            {*/
+           
                 if (képforrás != null)
                 {
                     SaveClipboardImageToFile(képforrás);
@@ -128,8 +126,6 @@ namespace Csillamponi_Allatmenhely
                     bl.Állatot_módosít(modosítandoallat);
                 
                 MessageBox.Show("Mentve");
-           
-          
         }
         
         private void KennelTablaKarbantartas(string allatfaj)
@@ -241,7 +237,6 @@ namespace Csillamponi_Allatmenhely
             currentdirectory = Path.Combine(currentdirectory, allatpath);
             currentdirectory = currentdirectory+ trimfoto(képutja);
 
-
             var bi = new BitmapImage();
             bi.BeginInit();
             bi.UriSource = new Uri(currentdirectory, UriKind.RelativeOrAbsolute);
@@ -255,17 +250,21 @@ namespace Csillamponi_Allatmenhely
         }
     }
 
-
     internal class NewAnimalViewModel : INotifyPropertyChanged
     {
-        private chip_es_elojegyez chip;
-        private chip_es_elojegyez elojegyez;
-        private ételek ételek;
-        private fiu_lany fiulany;
-        private chip_es_elojegyez ivar;
-        private BitmapImage kép;
-        private oltas oltasok;
-        public string _selectedKennel;
+         chip_es_elojegyez chip;
+         chip_es_elojegyez elojegyez;
+         ételek ételek;
+         fiu_lany fiulany;
+         chip_es_elojegyez ivar;
+         BitmapImage kép;
+         string tömeg;
+         string méret;
+         oltas oltasok;
+         string neve;
+         string szin;
+         string _selectedKennel;
+         List<string> _kennelList;
 
         public NewAnimalViewModel()
         {
@@ -273,7 +272,12 @@ namespace Csillamponi_Allatmenhely
             kennelfeltolt();
         }
 
-        public string Méret { get; set; }
+        public string Méret { get { return méret; } set{méret=value;OnPropertyChanged("Méret");}}
+        public string Tömeg { get { return tömeg; } set { tömeg = value; OnPropertyChanged("Tömeg"); } }
+        public string Szin { get { return szin; } set { szin = value; OnPropertyChanged("Szin"); } }
+
+        public string Neve { get { return neve; } set { neve = value; OnPropertyChanged("Neve"); } }
+
         public string Betegség { get; set; }
 
         public BitmapImage Kép
@@ -285,28 +289,11 @@ namespace Csillamponi_Allatmenhely
                 OnPropertyChanged("Kép");
             }
         }
-
-        private List<string> _kennelList;
-
-        public void kennelfeltolt()
-        {
-            Ügyfél_Kezelő ugy = new Ügyfél_Kezelő();
-
-            foreach (var VARIABLE in ugy.KennelListafeltolt())
-            {
-                KennelList.Add(VARIABLE);
-            }
-        }
-        public string Neve { get; set; }
-        public string Kor { get; set; }
         public string Fajta { get; set; }
         
         public List<string> Eledeltipus { get; set; }
         public string Elozotulaj { get; set; }
-        public string Eredet { get; set; }
-        public string Tomeg { get; set; }
-        public string Szin { get; set; }
-        public string Megjegyzes { get; set; }
+      
 
         public chip_es_elojegyez Chip
         {
@@ -389,6 +376,16 @@ namespace Csillamponi_Allatmenhely
                     Oltasok = oltas.nem; OnPropertyChanged("Nemkaptameg");
                 }
             } // if changes
+        }
+
+        public void kennelfeltolt()
+        {
+            Ügyfél_Kezelő ugy = new Ügyfél_Kezelő();
+
+            foreach (var VARIABLE in ugy.KennelListafeltolt())
+            {
+                KennelList.Add(VARIABLE);
+            }
         }
 
         public oltas Oltasok

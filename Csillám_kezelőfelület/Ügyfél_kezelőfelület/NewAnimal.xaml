@@ -4,12 +4,12 @@
         Title="NewAnimal" Height="617.181" Width="972.728"
         >
     <Grid>
-        <Label Content="Név:" HorizontalAlignment="Left" Margin="14,22,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
-        <TextBox Name="név" HorizontalAlignment="Left" Height="30" Margin="143,22,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" FontSize="18"/>
-        <Label Content="*Születési idő:" HorizontalAlignment="Left" Margin="14,69,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
+        <Label Content="*Név:" HorizontalAlignment="Left" Margin="14,22,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
+        <TextBox Name="név" HorizontalAlignment="Left" Height="30" Margin="143,22,0,0" TextWrapping="Wrap" Text="{Binding Path=Neve}" VerticalAlignment="Top" Width="132" FontSize="18"/>
+        <Label Content="Születési idő:" HorizontalAlignment="Left" Margin="14,69,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
         <Label Content="*Fajta:" HorizontalAlignment="Left" Margin="14,121,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
 
-        <Label Content="*Nem:" HorizontalAlignment="Left" Margin="14,164,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
+        <Label Content="Nem:" HorizontalAlignment="Left" Margin="14,164,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
         <StackPanel x:Name="oltasok" HorizontalAlignment="Left" Height="60" Margin="407,27,0,0" VerticalAlignment="Top" Width="160">
             <RadioButton x:Name="oltott" IsChecked="{Binding Megkapta}" Content="Megkapta" FontSize="18" Height="27"/>
             <RadioButton Name="nemoltott" IsChecked="{Binding Nemkaptameg}" Content="Nem kapta meg" FontSize="18" Height="33"/>
@@ -17,26 +17,26 @@
         <Label Content="Chippezett?" HorizontalAlignment="Left" Margin="37,438,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ComboBox Name="chipes" ItemsSource="{Binding Path=ChipLista}" SelectedItem="{Binding Path=Chip}" HorizontalAlignment="Left" Height="34" Margin="146,438,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
 
-        <Label Content="Tömeg(kg):" HorizontalAlignment="Left" Margin="11,248,0,0" VerticalAlignment="Top" FontSize="18" Width="122"/>
-        <TextBox Name="tomeg" HorizontalAlignment="Left" Height="34" Margin="143,248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" FontSize="18"/>
-        <Label Content="Szín:" HorizontalAlignment="Left" Margin="14,293,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
-        <TextBox  Name="szin" HorizontalAlignment="Left" Height="34" Margin="143,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" FontSize="18"/>
-        <Label Content="*Előjegyzett?" HorizontalAlignment="Left" Margin="14,345,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
+        <Label Content="*Tömeg(gramm):" HorizontalAlignment="Left" Margin="11,248,0,0" VerticalAlignment="Top" FontSize="18" Width="122"/>
+        <TextBox Name="tomeg" HorizontalAlignment="Left" Height="34" Margin="143,248,0,0" TextWrapping="Wrap" Text="{Binding Path=Tömeg}" VerticalAlignment="Top" Width="132" FontSize="18"/>
+        <Label Content="*Szín:" HorizontalAlignment="Left" Margin="14,293,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
+        <TextBox  Name="szin" HorizontalAlignment="Left" Height="34" Margin="143,293,0,0" TextWrapping="Wrap" Text="{Binding Path=Szin}" VerticalAlignment="Top" Width="132" FontSize="18"/>
+        <Label Content="Előjegyzett?" HorizontalAlignment="Left" Margin="14,345,0,0" VerticalAlignment="Top" FontSize="18" Width="119"/>
         <ComboBox x:Name="elojegyzett" ItemsSource="{Binding Path=ElojegyezLista}" SelectedItem="{Binding Path=Elojegyez}" HorizontalAlignment="Left" Height="34" Margin="143,345,0,0" VerticalAlignment="Top" Width="132" FontSize="18"/>
 
 
         <Image x:Name="kép" HorizontalAlignment="Left" Height="211" Margin="678,261,0,0" VerticalAlignment="Top" Width="277" Source="{Binding Path=Kép}" />
         <Button Content="Mentés" HorizontalAlignment="Left" Margin="14,530,0,0" VerticalAlignment="Top" Width="941" Height="34" FontSize="18" Click="Mentes"/>
-        <Label Content="*Oltások" HorizontalAlignment="Left" Margin="328,22,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Button Content="Fotó feltöltése" HorizontalAlignment="Left" Margin="755,477,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Click="Foto_feltolt" Height="40"/>
+        <Label Content="Oltások" HorizontalAlignment="Left" Margin="328,22,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Button Content="*Fotó feltöltése" HorizontalAlignment="Left" Margin="755,477,0,0" VerticalAlignment="Top" Width="200" FontSize="18" Click="Foto_feltolt" Height="40"/>
         <Label Content="Betegségek:" HorizontalAlignment="Left" Margin="328,98,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox Name="Betegségek" HorizontalAlignment="Left" Height="145" Margin="328,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239" FontSize="18"/>
-        <Label Content="*Ivartalanított?" HorizontalAlignment="Left" Margin="14,394,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <TextBox Name="Betegségek" HorizontalAlignment="Left" Height="145" Margin="328,137,0,0" TextWrapping="Wrap" Text="{Binding Path=Betegségek}" VerticalAlignment="Top" Width="239" FontSize="18"/>
+        <Label Content="Ivartalanított?" HorizontalAlignment="Left" Margin="14,394,0,0" VerticalAlignment="Top" FontSize="18"/>
         <ComboBox x:Name="ivartalan" ItemsSource="{Binding Path=IvarLista}" SelectedItem="{Binding Path=Ivar}" HorizontalAlignment="Left" Height="34" Margin="146,394,0,0" VerticalAlignment="Top" Width="129" FontSize="18"/>
-        <Label Content="Méret(cm):" HorizontalAlignment="Left" Margin="11,203,0,0" VerticalAlignment="Top" FontSize="18" Width="122"/>
-        <TextBox Name="Méret" HorizontalAlignment="Left" Height="34" Margin="143,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="132" FontSize="18"/>
+        <Label Content="*Méret(cm):" HorizontalAlignment="Left" Margin="11,203,0,0" VerticalAlignment="Top" FontSize="18" Width="122"/>
+        <TextBox Name="Méret" HorizontalAlignment="Left" Height="34" Margin="143,203,0,0" TextWrapping="Wrap" Text="{Binding Path=Méret}" VerticalAlignment="Top" Width="132" FontSize="18"/>
         <ComboBox x:Name="nem" ItemsSource="{Binding Path=Fiulanylista}" SelectedItem="{Binding Path=Fiulany}" HorizontalAlignment="Left" Height="34" Margin="143,164,0,0" VerticalAlignment="Top" Width="132" FontSize="18"/>
-        <DatePicker x:Name="született" HorizontalAlignment="Left" Margin="143,69,0,0" VerticalAlignment="Top" Width="132" Height="34"/>
+        <DatePicker x:Name="született" SelectedDate="{Binding Path=Született}" HorizontalAlignment="Left" Margin="143,69,0,0" VerticalAlignment="Top" Width="132" Height="34"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="880,10,0,0" VerticalAlignment="Top" Width="75" Click="BackClick"/>
         <Label Content="A * -gal megjelült elemek kitöltése kötelező" HorizontalAlignment="Left" Margin="14,499,0,0" VerticalAlignment="Top" Width="355"/>
         <ComboBox ItemsSource="{Binding Path=KennelList}" SelectedItem="{Binding Path=Fajta}" Name="fajta" HorizontalAlignment="Left" Margin="143,121,0,0" VerticalAlignment="Top" Width="132" Height="34"/>
