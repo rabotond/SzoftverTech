@@ -65,7 +65,6 @@ namespace Csillamponi_Allatmenhely
         {
             var ügyfél = new Ügyfél_Kezelő();
             ALLAT allat = new ALLAT();
-            allat.KENNEL = new KENNEL();
             string faj = "";
 
             if (VM.Szin != "" && VM.Tomeg != "" && VM.Fajta != "" && VM.Betegség != "" && képforrás != null && VM.Méret != "" && képforrás != "" && VM.Neve != "")
@@ -78,7 +77,7 @@ namespace Csillamponi_Allatmenhely
                 allat.ALLATID = Guid.NewGuid();
                 allat.CHIPES = (this.chipes.Text == chip_es_elojegyez.igen.ToString());
                 allat.ELOJEGYZETT = (this.elojegyzett.Text == chip_es_elojegyez.igen.ToString());
-                allat.FAJTA = this.fajta.Text;
+                allat.FAJTA =faj= this.fajta.Text;
                 allat.MERET = int.Parse(this.Méret.Text);
                 allat.TOMEG = int.Parse(this.tomeg.Text);
                 allat.NEV = this.név.Text;
@@ -88,9 +87,8 @@ namespace Csillamponi_Allatmenhely
                 allat.SZULETESI_IDO = this.született.SelectedDate;
                 allat.IVARTALANITOTT = this.ivartalan.Text == chip_es_elojegyez.igen.ToString();
                 allat.BETEGSEGEK = this.Betegségek.Text;
-                allat.KENNEL.TIPUS = this.fajta.Text;
                 bl.Állatot_hozzáad(allat);
-
+                
                 KennelTablaKarbantartas(faj);
                 MessageBox.Show("Mentve");
             }
