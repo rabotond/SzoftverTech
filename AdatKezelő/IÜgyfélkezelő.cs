@@ -12,7 +12,7 @@ namespace AdatKezelő
 {
     public interface IÜgyfél_kezelő
     {
-
+        string GenerateAdvString();
         /// 
         /// <param name="adomány"></param>
         void Adományoz(Adomány_típus típus, int mennyiség, string ki);
