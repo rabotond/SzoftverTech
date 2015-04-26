@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using AdatKezelő;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -17,6 +19,7 @@ namespace Csillamponi_Allatmenhely
         private readonly AdaptionPageViewModel VM;
         private ALLAT atadommajdallat;
         private UGYFEL bejelentkezettUser;
+        Thread t;
 
         public AdoptionPage(UGYFEL bejelentkezettUser)
         {
@@ -24,7 +27,37 @@ namespace Csillamponi_Allatmenhely
             atadommajdallat = new ALLAT();
             DataContext = VM;
             this.bejelentkezettUser = bejelentkezettUser;
+            
             InitializeComponent();
+            StartAdvTask();
+        }
+
+        private void StartAdvTask()
+        {
+            t = new Thread(new ThreadStart(MoveLabel));
+            t.IsBackground = true;
+            t.Start();
+        }
+
+        
+
+        private void MoveLabel()
+        {
+            string tempString= "";
+
+                    int count = VM.AvdString.Length - 3;
+                    while (true)
+                    {
+                        tempString = VM.AvdString.Substring(count);
+                        
+                        tempString = tempString + VM.AvdString.Substring(0, count);
+
+                        VM.AvdString = tempString;
+
+                        count -= 3;
+                        Thread.Sleep(5000);
+                    }
+              
         }
 
         private void Keresés(object sender, RoutedEventArgs e)
@@ -89,6 +122,11 @@ namespace Csillamponi_Allatmenhely
             //MessageBox.Show("végén ha lesz authentikáció akkor cooomment out");
             this.Close();
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            t.Abort();
+        }
     }
 
     internal class AdaptionPageViewModel : INotifyPropertyChanged
@@ -102,7 +140,20 @@ namespace Csillamponi_Allatmenhely
             Fiulany = new List<string>();
             Fiulany.Add("hím");
             Fiulany.Add("nőstény");
+            ugyfelKezelo = new Ügyfél_Kezelő();
+            avdString = ugyfelKezelo.GenerateAdvString();
         }
+        private Ügyfél_Kezelő ugyfelKezelo;
+        string avdString ;
+        public string AvdString
+        {
+            get { return avdString; }
+            set{
+              avdString = value;
+              OnPropertyChanged("AvdString");
+            }
+        }
+
 
         public ALLAT Selectedallat { get; set; }
         public List<ALLAT> Allatok { get; set; }
