@@ -127,5 +127,12 @@ namespace Csillamponi_Allatmenhely
                 MessageBox.Show("Nem sikerült szinkronizálni a kennel táblát. \n Hiba részletei: " + ex.ToString());
             }
         }
+
+        private void VisszaClick(object sender, RoutedEventArgs e)
+        {
+            LoginPage loginPage = new LoginPage();
+            loginPage.Show();
+            this.Close();
+        }
     }
 }

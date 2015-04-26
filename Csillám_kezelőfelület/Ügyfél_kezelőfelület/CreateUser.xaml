@@ -24,7 +24,7 @@
         <Label Content="Felhasználónév:" HorizontalAlignment="Left" Margin="10,300,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Jelszó:" HorizontalAlignment="Left" Margin="10,343,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Jelszó mégegyszer:" HorizontalAlignment="Left" Margin="10,389,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="textBoxUsername" HorizontalAlignment="Left" Height="34" Margin="177,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294" Text="{Binding USERNAME}" RenderTransformOrigin="0.5,0.5">
+        <TextBox x:Name="textBoxUsername" HorizontalAlignment="Left" Height="34" Margin="177,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294" Text="{Binding USERNAME}" RenderTransformOrigin="0.5,0.5" FontSize="18">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
