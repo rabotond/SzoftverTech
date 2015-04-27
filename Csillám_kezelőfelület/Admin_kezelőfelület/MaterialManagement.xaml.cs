@@ -24,8 +24,8 @@ namespace Csillamponi_Allatmenhely
     {
         Admin_kezelőfelület_businessLogic BL;
         Admin_kezelőfelület_viewmodel VM;
-        ELEDEL eledel;
-        KENNEL kennel;
+        ELEDEL eledel=null;
+        KENNEL kennel=null;
 
         public MaterialManagement(Admin_kezelőfelület_businessLogic ujbl,Admin_kezelőfelület_viewmodel vm)
         {       
@@ -54,7 +54,7 @@ namespace Csillamponi_Allatmenhely
                     eledel = new ELEDEL();
                     eledel.FAJTA = (materialdata.SelectedItem as eledel_kennel_VM).TIPUS;
                     BL.Eledelt_kennelt_hozzáad(eledel, null, int.Parse(mennyitAD.Text) + int.Parse(mennyitVESZki.Text)*-1);
-                    BL.KennelTablaHelyKarbanTartas(eledel.FAJTA);
+                    
                 }
                 if (int.Parse(töröl.Text) > 0 || int.Parse(bővít.Text) > 0)
                 {

@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Xml.Linq;
 
-namespace AdatKezelő
+namespace AdatKezelő//készítette Molnár Fanni
 {
     public class Admin_kezelő : IAdmin_kezelő
     {
@@ -111,10 +111,7 @@ namespace AdatKezelő
                 {
                     q.FirstOrDefault().RAKTARON = 0;
                 }
-                else
-                {
-                    q.FirstOrDefault().RAKTARON += mennyit;
-                }
+               
             }
             else
             {
@@ -125,10 +122,7 @@ namespace AdatKezelő
                 {
                     q.FirstOrDefault().MAXDARAB = 0;
                 }
-                else
-                {
-                    q.FirstOrDefault().MAXDARAB += mennyit;
-                }
+                
             }
             db.SaveChanges();
         }
