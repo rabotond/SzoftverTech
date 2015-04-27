@@ -24,12 +24,12 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         public void ExportToExcel(XDocument doc, string fileName)
         {
             Statisztika stat = new Statisztika();
-            //stat.ExportToExcel(doc,fileName);
+            stat.ExportToExcel(doc,fileName);
         }
 
-        public void KennelTablaHelyKarbanTartas(string faj)
+        public bool KennelTablaHelyKarbanTartas(string faj)
         {
-            kezelo.KennelTablaHelyKarbanTartas(faj);
+            return  kezelo.KennelTablaHelyKarbanTartas(faj);
         }
 
         public void KennelTablaSync()
