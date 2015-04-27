@@ -62,17 +62,18 @@ namespace Csillamponi_Allatmenhely
 
         private void Keresés(object sender, RoutedEventArgs e)
         {
-            if (ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString()).Any())
+            if (ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
+                    Ivartalanított(), Beteg()).Any())
             {
-                VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj,
-                    név.ToString());
+                VM.Allatok = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
+                    Ivartalanított(), Beteg());
             }
             else
             {
                 MessageBox.Show("Nincs ilyen állat. Kérlek adj meg más feltételeket");
             }
-            VM.Allatok = ügyfél.Összetett_keresés(steril(), fiuvagylany(), szin.ToString(), VM.SelectedFaj,
-                név.ToString());
+            VM.Allatok = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
+                    Ivartalanított(), Beteg());
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -106,7 +107,25 @@ namespace Csillamponi_Allatmenhely
             return false;
         }
 
-        private bool steril()
+        private bool Beteg()
+        {
+            if (checkBoxBeteg.IsChecked == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool Ivartalanított()
+        {
+            if (checkBoxIvartalanított.IsChecked == true)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool Oltasok()
         {
             if (oltas.IsChecked == true)
             {

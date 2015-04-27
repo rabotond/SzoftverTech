@@ -39,7 +39,7 @@ namespace AdatKezelő
         void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda);
 
       // változtatva
-        List< ALLAT> Összetett_keresés(bool sterilizált, bool nem, string szín, string fajta,string név);
+        List<ALLAT> Összetett_keresés(bool oltva, bool nem, string szín, string fajta, string név, bool ivartalanított, bool beteg);
 
         /// 
         /// <param name="szín"></param>

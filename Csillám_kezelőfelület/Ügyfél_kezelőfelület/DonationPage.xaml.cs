@@ -57,7 +57,7 @@ namespace Csillamponi_Allatmenhely
         private void textBoxMennyiség_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             var jo = (e.Key >= Key.D0 && e.Key <= Key.D9)
-                     ||(e.Key>=Key.NumPad0 && e.Key<=Key.NumPad9)
+                     ||(e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
                      || e.Key == Key.Back
                      || e.Key == Key.Tab
                      || e.Key == Key.Left
