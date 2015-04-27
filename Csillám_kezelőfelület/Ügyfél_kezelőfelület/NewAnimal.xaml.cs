@@ -138,13 +138,13 @@ namespace Csillamponi_Allatmenhely
         
         public void feltolt_adatokkal()
         {
-            név.Text = modosítandoallat.NEV;
+            VM.Neve = modosítandoallat.NEV;
             VM.Fajta= modosítandoallat.FAJTA;
-            született.SelectedDate = modosítandoallat.SZULETESI_IDO;  
-            Méret.Text = Convert.ToString(modosítandoallat.MERET);
-            tomeg.Text = modosítandoallat.TOMEG.ToString();
-            szin.Text = modosítandoallat.SZIN;
-            Betegségek.Text = modosítandoallat.BETEGSEGEK;
+           VM.Született= (DateTime)modosítandoallat.SZULETESI_IDO;  
+            VM.Méret = Convert.ToString(modosítandoallat.MERET);
+            VM.Tömeg = modosítandoallat.TOMEG.ToString();
+            VM.Szin = modosítandoallat.SZIN;
+            VM.Betegség= modosítandoallat.BETEGSEGEK;
             if (modosítandoallat.CHIPES==true)
             {
                 VM.Chip = chip_es_elojegyez.igen;    
@@ -261,12 +261,17 @@ namespace Csillamponi_Allatmenhely
          fiu_lany fiulany;
          chip_es_elojegyez ivar;
          BitmapImage kép;
+         DateTime született;
+
+         
          string tömeg;
          string méret;
          oltas oltasok;
          string neve;
          string szin;
          string _selectedKennel;
+        string betegség;
+        string fajta;
          List<string> _kennelList;
 
         public NewAnimalViewModel()
@@ -275,24 +280,18 @@ namespace Csillamponi_Allatmenhely
             kennelfeltolt();
         }
 
+        public DateTime Született
+        { get { return született; } set { született = value; OnPropertyChanged("Született"); } }
         public string Méret { get { return méret; } set{méret=value;OnPropertyChanged("Méret");}}
         public string Tömeg { get { return tömeg; } set { tömeg = value; OnPropertyChanged("Tömeg"); } }
         public string Szin { get { return szin; } set { szin = value; OnPropertyChanged("Szin"); } }
 
         public string Neve { get { return neve; } set { neve = value; OnPropertyChanged("Neve"); } }
 
-        public string Betegség { get; set; }
+        public string Betegség { get { return betegség; } set { betegség = value; OnPropertyChanged("Betegség"); } }
 
-        public BitmapImage Kép
-        {
-            get { return kép; }
-            set
-            {
-                kép = value;
-                OnPropertyChanged("Kép");
-            }
-        }
-        public string Fajta { get; set; }
+        public BitmapImage Kép{  get { return kép; } set{  kép = value; OnPropertyChanged("Kép");  } }
+        public string Fajta { get { return fajta; } set { fajta = value; OnPropertyChanged("Fajta"); } }
         
         public List<string> Eledeltipus { get; set; }
         public string Elozotulaj { get; set; }
