@@ -81,7 +81,7 @@ namespace Csillamponi_Allatmenhely
 
         private void feltolt()
         {
-            var db = new csillamponimenhelyDBEntities();
+            var db = new csillamponiDBEntities();
             var lekerdezettFajok = from allat in db.ALLAT
                 select allat.FAJTA;
 

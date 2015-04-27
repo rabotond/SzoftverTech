@@ -67,48 +67,48 @@
   <ItemGroup>
     <Compile Include="AdminKezelő.cs" />
     <Compile Include="ADOMANY.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Adomány_típus.cs" />
     <Compile Include="ALLAT.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="AllatVM.cs" />
-    <Compile Include="csillámDb_model.Context.cs">
+    <Compile Include="csillamponimenhelyDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>csillámDb_model.Context.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="csillámDb_model.cs">
+    <Compile Include="csillamponimenhelyDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="csillámDb_model.Designer.cs">
+    <Compile Include="csillamponimenhelyDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="ELEDEL.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="eledel_kennel_VM.cs" />
     <Compile Include="Eledel_kezelo.cs" />
     <Compile Include="IAdminKezelő.cs" />
     <Compile Include="IÜgyfélkezelő.cs" />
     <Compile Include="KENNEL.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Statisztika.cs" />
     <Compile Include="Statisztika_adatrecord.cs" />
     <Compile Include="Statisztika_típus.cs" />
     <Compile Include="UGYFEL.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="UgyfelVM.cs" />
     <Compile Include="user.cs">
-      <DependentUpon>csillámDb_model.tt</DependentUpon>
+      <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="ÜgyfélKezelő.cs" />
   </ItemGroup>
@@ -130,25 +130,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="csillámDb_model.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>csillámDb_model.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="csillámDb_model.Context.tt">
+    <EntityDeploy Include="csillamponimenhelyDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>csillamponimenhelyDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="csillamponimenhelyDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
-      <LastGenOutput>csillámDb_model.Context.cs</LastGenOutput>
+      <DependentUpon>csillamponimenhelyDB.edmx</DependentUpon>
+      <LastGenOutput>csillamponimenhelyDB.Context.cs</LastGenOutput>
     </None>
-    <None Include="csillámDb_model.edmx.diagram">
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
+    <None Include="csillamponimenhelyDB.edmx.diagram">
+      <DependentUpon>csillamponimenhelyDB.edmx</DependentUpon>
     </None>
-    <None Include="csillámDb_model.tt">
+    <None Include="csillamponimenhelyDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>csillámDb_model.edmx</DependentUpon>
-      <LastGenOutput>csillámDb_model.cs</LastGenOutput>
+      <DependentUpon>csillamponimenhelyDB.edmx</DependentUpon>
+      <LastGenOutput>csillamponimenhelyDB.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -186,15 +184,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="csillamponimenhelyDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="csillamponimenhelyDB_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>csillamponimenhelyDB.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

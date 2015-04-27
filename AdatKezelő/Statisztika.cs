@@ -20,7 +20,7 @@ namespace AdatKezelő
         private DateTime meddig;
         private Statisztika_típus tipus;
         List<Statisztika_adatrecord> napok; //ide fog elkészülni az egész statisztika, minden elem, egy adatsor, a típus szerint lekért stzatisztikai információkkal
-        csillamponimenhelyDBEntities db;
+        csillamponiDBEntities db;
         List<Task> tasklist;
         XDocument xdoc;
 
@@ -65,7 +65,7 @@ namespace AdatKezelő
         {
             mettől = ujmettől; meddig = ujmeddig; tipus = ujtipus;
             napok = new List<Statisztika_adatrecord>();
-            db = new csillamponimenhelyDBEntities();
+            db = new csillamponiDBEntities();
             tasklist = new List<Task>();
             for (int i = 0; i < (meddig - mettől).TotalDays; i++)
             {

@@ -7,7 +7,7 @@
         <Button Content="Ok" HorizontalAlignment="Left" Margin="120,61,0,0" VerticalAlignment="Top" Width="75" Click="BackClick"/>
         <Button Content="Új lekérdezés" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top" Width="91" Click="QueueButtonClick"/>
         <Label Name="DbLabel" Content="{Binding Path=EmptySpaces}"  HorizontalAlignment="Left" Margin="23,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.392,1.567"/>
-        <Label Content="darab szabad kernel van!" HorizontalAlignment="Left" Margin="52,25,0,0" VerticalAlignment="Top"/>
+        <Label Content="darab szabad kennel van!" HorizontalAlignment="Left" Margin="52,25,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

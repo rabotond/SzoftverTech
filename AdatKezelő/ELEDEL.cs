@@ -16,5 +16,7 @@ namespace AdatKezelő
     {
         public string FAJTA { get; set; }
         public Nullable<int> RAKTARON { get; set; }
+    
+        public virtual KENNEL KENNEL { get; set; }
     }
 }

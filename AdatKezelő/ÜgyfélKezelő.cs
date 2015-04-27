@@ -13,15 +13,15 @@ namespace AdatKezelő
     public class Ügyfél_Kezelő : IÜgyfél_kezelő
     {
         Admin_kezelő adminKezelő;
-        csillamponimenhelyDBEntities db;
+        csillamponiDBEntities db;
         
         public Admin_kezelő AdminKezelő
         {
             get { return adminKezelő; }
             set { adminKezelő = value; }
-        }     
+        }
 
-        public csillamponimenhelyDBEntities Db
+        public csillamponiDBEntities Db
         {
             get { return db; }
             set { db = value; }
@@ -30,7 +30,7 @@ namespace AdatKezelő
         public Ügyfél_Kezelő()
         {
             adminKezelő = new Admin_kezelő();
-            db = new csillamponimenhelyDBEntities();
+            db = new csillamponiDBEntities();
         }
 
         public void Adományoz(Adomány_típus típus, int mennyiség, string ki)

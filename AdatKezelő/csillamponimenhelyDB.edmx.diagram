@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c3de1dc38038443c8f838ee88a22ff17" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="csillamponiModel.ADOMANY" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponiModel.ALLAT" Width="1.5" PointX="4.875" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponiModel.ELEDEL" Width="1.5" PointX="2.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponiModel.KENNEL" Width="1.5" PointX="2.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponiModel.UGYFEL" Width="1.5" PointX="7.875" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="csillamponiModel.user" Width="1.5" PointX="10.5" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="csillamponiModel.ALLAT_FOR_KEY1" ManuallyRouted="false" />
+        <AssociationConnector Association="csillamponiModel.eledel_FOR_KEY1" />
+        <AssociationConnector Association="csillamponiModel.Ado_FOR_KEY1" />
+        <AssociationConnector Association="csillamponiModel.ALLAT_FOR_KEY2" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

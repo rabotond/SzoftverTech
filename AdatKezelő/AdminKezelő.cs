@@ -15,10 +15,10 @@ namespace AdatKezelő
 {
     public class Admin_kezelő : IAdmin_kezelő
     {
-        csillamponimenhelyDBEntities db;
+        csillamponiDBEntities db;
         static readonly object loadlock = new object();
 
-        public csillamponimenhelyDBEntities Db
+        public csillamponiDBEntities Db
         {
             get { return db; }
             set { db = value; }
@@ -26,14 +26,14 @@ namespace AdatKezelő
 
         public Admin_kezelő()
         {
-            db = new csillamponimenhelyDBEntities();
+            db = new csillamponiDBEntities();
         }
 
         public List<eledel_kennel_VM> getAllEledel_kennel()
         {
             lock (loadlock)
-            {     
-                db = new csillamponimenhelyDBEntities();
+            {
+                db = new csillamponiDBEntities();
                 var lista = (from a in db.ELEDEL
                              from b in db.KENNEL
                              where a.FAJTA == b.TIPUS
@@ -46,7 +46,7 @@ namespace AdatKezelő
         {
             lock (loadlock)
             {
-                db = new csillamponimenhelyDBEntities();
+                db = new csillamponiDBEntities();
                 return db.ALLAT.Where(x => x.NEV != null).Select(x => new AllatVM()
                 {
                     ALLATID = x.ALLATID,

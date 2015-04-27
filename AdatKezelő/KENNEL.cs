@@ -25,5 +25,6 @@ namespace AdatKezelő
         public int MAXDARAB { get; set; }
     
         public virtual ICollection<ALLAT> ALLAT { get; set; }
+        public virtual ELEDEL ELEDEL { get; set; }
     }
 }

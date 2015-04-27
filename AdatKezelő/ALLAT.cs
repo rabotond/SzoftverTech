@@ -32,7 +32,7 @@ namespace AdatKezelő
         public Nullable<System.DateTime> OROKBEFOGADVA { get; set; }
         public Nullable<System.DateTime> BEADVA { get; set; }
     
-        public virtual UGYFEL UGYFEL { get; set; }
         public virtual KENNEL KENNEL { get; set; }
+        public virtual UGYFEL UGYFEL { get; set; }
     }
 }
