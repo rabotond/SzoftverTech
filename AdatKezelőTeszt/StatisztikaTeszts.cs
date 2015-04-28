@@ -16,7 +16,7 @@ namespace AdatKezelőTeszt
 
             XDocument doc = MakeFakeXML();
 
-            stat.ExportToExcel(doc, @"D:\valami1.xlsx");
+            //stat.ExportToExcel(doc, @"D:\valami1.xlsx");
         }
 
         public XDocument MakeFakeXML()

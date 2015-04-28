@@ -24,6 +24,9 @@ namespace Csillamponi_Allatmenhely
         public LoginPage()
         {
             InitializeComponent();
+
+            Eledel_kezelo kezelo = new Eledel_kezelo();
+            kezelo.eledelt_fogyaszt();
         }
 
         private void AdminClick(object sender, RoutedEventArgs e)

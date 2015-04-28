@@ -43,7 +43,6 @@ namespace AdatKezelő
                 Guid userGuid = q.First();
                 adminKezelő.Adományoz(userGuid, "", mennyiség, típus);
             }
-
         }
 
         public string GenerateAdvString()
@@ -59,7 +58,6 @@ namespace AdatKezelő
                 advString += string.Format("***Egy {1} keresi gazdáját, neve : {1}!",item.Név, item.Fajta);
             }
             return advString;
-
         }
 
         public bool Előjegyeztet(ALLAT állat)
@@ -67,20 +65,18 @@ namespace AdatKezelő
             var q = from x in adminKezelő.Db.ALLAT
                     where x == állat
                     select x.ELOJEGYZETT==true;
-
             return true;
         }
 
-        public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)
+        public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)//srácok ez mért nincs implementálva,---fanni
         {
 
         }
 
-        public void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda)
+        public void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda)//srácok ez mért nincs implementálva,---fanni
         {
 
         }
-
 
         public int Van_e_üres_kennel(string allatfaj)
         {
@@ -108,7 +104,6 @@ namespace AdatKezelő
             {
                 allatok.Add(item);
             }
-
             return allatok;
         }
 
@@ -122,7 +117,6 @@ namespace AdatKezelő
             {
                 allatok.Add(item);
             }
-
             return allatok;
         }
 
@@ -161,9 +155,6 @@ namespace AdatKezelő
                     allatok.Add(item);
                 }
             }
-            
-            
-
             return allatok;
         }
 
@@ -178,9 +169,9 @@ namespace AdatKezelő
                 allatok.Add(item);
             }
 
-            return allatok;
-            
+            return allatok;  
         }
+
         public List<String> KennelListafeltolt()
         {
             List<String> tipusok = new List<String>();
@@ -190,9 +181,7 @@ namespace AdatKezelő
             {
                 tipusok.Add(item);
             }
-
             return tipusok;
-
         }
     }//end Ügyfél_Kezelő
 

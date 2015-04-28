@@ -39,8 +39,6 @@ namespace Csillamponi_Allatmenhely
             t.Start();
         }
 
-        
-
         private void MoveLabel()
         {
             string tempString= "";
@@ -55,7 +53,7 @@ namespace Csillamponi_Allatmenhely
                         VM.AvdString = tempString;
 
                         count -= 3;
-                        Thread.Sleep(5000);
+                        Thread.Sleep(100);
                     }
               
         }
