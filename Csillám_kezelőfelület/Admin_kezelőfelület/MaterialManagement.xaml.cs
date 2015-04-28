@@ -61,7 +61,7 @@ namespace Csillamponi_Allatmenhely
                     kennel = new KENNEL();
                     kennel.TIPUS = (materialdata.SelectedItem as eledel_kennel_VM).TIPUS;
                     BL.Eledelt_kennelt_hozzáad(null, kennel, int.Parse(töröl.Text)*-1 + int.Parse(bővít.Text));
-                    BL.KennelTablaHelyKarbanTartas(kennel.TIPUS);
+                   
                 }
                
                 MessageBox.Show("táblák sikeresen módosítva!!!");   

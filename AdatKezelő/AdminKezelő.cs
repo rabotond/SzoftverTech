@@ -124,6 +124,7 @@ namespace AdatKezelő//készítette Molnár Fanni
                 }
                 
             }
+            
             db.SaveChanges();
         }
 
