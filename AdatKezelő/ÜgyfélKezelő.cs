@@ -126,16 +126,43 @@ namespace AdatKezelő
             return allatok;
         }
 
-        List< ALLAT> IÜgyfél_kezelő.Összetett_keresés(bool sterilizált, bool nem, string szín, string fajta,string név)
+        List<ALLAT> IÜgyfél_kezelő.Összetett_keresés(bool oltva, bool nem, string szín, string fajta, string név, bool ivartalanított, bool beteg)
         {
             List<ALLAT> allatok = new List<ALLAT>();
-            var q = from x in adminKezelő.Db.ALLAT
-                    where x.NEV == név.ToUpper() && x.SZIN == szín.ToUpper() && x.FAJTA == fajta.ToUpper() && x.NOSTENY == nem && x.OLTVA == sterilizált
-                    select x;
-            foreach (var item in q)
+            
+            if (!beteg)
             {
-                allatok.Add(item);
+                var q = from x in adminKezelő.Db.ALLAT
+                        where x.NEV == név.ToUpper() &&
+                        x.SZIN == szín.ToUpper() &&
+                        x.FAJTA == fajta.ToUpper() &&
+                        x.NOSTENY == nem &&
+                        x.OLTVA == oltva &&
+                        x.IVARTALANITOTT == ivartalanított &&
+                        string.IsNullOrEmpty(x.BETEGSEGEK)
+                        select x;
+                foreach (var item in q)
+                {
+                    allatok.Add(item);
+                }
             }
+            else
+            {
+                var q = from x in adminKezelő.Db.ALLAT
+                        where x.NEV == név.ToUpper() &&
+                        x.SZIN == szín.ToUpper() &&
+                        x.FAJTA == fajta.ToUpper() &&
+                        x.NOSTENY == nem &&
+                        x.OLTVA == oltva &&
+                        x.IVARTALANITOTT == ivartalanított
+                        select x;
+                foreach (var item in q)
+                {
+                    allatok.Add(item);
+                }
+            }
+            
+            
 
             return allatok;
         }

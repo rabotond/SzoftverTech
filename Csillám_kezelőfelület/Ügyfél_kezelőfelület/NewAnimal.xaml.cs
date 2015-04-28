@@ -105,7 +105,7 @@ namespace Csillamponi_Allatmenhely
             var kicsoda = new UGYFEL();
             ALLAT allat = new ALLAT();
            
-                if (képforrás != null)
+                if (képutja != null)
                 {
                     SaveClipboardImageToFile(képforrás);
                     modosítandoallat.kep = trimfoto(képutja);
@@ -188,7 +188,10 @@ namespace Csillamponi_Allatmenhely
             {
                 VM.Oltasok = oltas.nem;
             }
-          Modositott_allat_kép_feltöltés();
+            if (képutja != null)
+            {
+                Modositott_allat_kép_feltöltés();
+            }
         }
 
         private void Foto_feltolt(object sender, RoutedEventArgs e)
