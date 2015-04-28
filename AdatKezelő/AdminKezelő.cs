@@ -123,6 +123,7 @@ namespace AdatKezelő//készítette Molnár Fanni
                     q.FirstOrDefault().MAXDARAB = 0;
                 }  
             }
+            
             db.SaveChanges();
         }
 
