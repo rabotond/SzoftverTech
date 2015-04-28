@@ -29,23 +29,23 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             List<object> statVM = new List<object>();
             foreach (Statisztika_adatrecord akt in VM.Stat.Napok)
             {
-                if (vm.Stat.Tipus == Statisztika_típus.adomány && (akt.befolytEledelAdomany!=0 || akt.befolytPenzadomany!=0))
+                if (vm.Stat.Tipus == Statisztika_típus.adomány && (akt.befolytEledelAdomany_kg!=0 || akt.befolytPenzadomany_huf!=0))
                 {
-                     statVM.Add(new { NAP = akt.Nap, befolytPenz = akt.befolytPenzadomany, befoyltEledel = akt.befolytEledelAdomany });
+                     statVM.Add(new { NAP = akt.Nap, befolytPenz = akt.befolytPenzadomany_huf, befoyltEledel = akt.befolytEledelAdomany_kg });
                 }
                 else if (vm.Stat.Tipus == Statisztika_típus.állatállomány && (akt.hozottAllat != 0 || akt.elvittAllat != 0))
                 {
                     statVM.Add(new { NAP = akt.Nap, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat });
                 }
-                else if (vm.Stat.Tipus == Statisztika_típus.ügyfélállomány && (akt.regisztraltDarab != 0))//todo betenni hogy mennyit adományozott az illető
+                else if (vm.Stat.Tipus == Statisztika_típus.ügyfélállomány && (akt.regisztraltDarab != 0))
                 {
                     statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab });
                 }
                 else//összetett
                 {
-                    if (akt.befolytEledelAdomany != 0 || akt.befolytPenzadomany != 0 || akt.hozottAllat != 0 || akt.elvittAllat != 0 || akt.regisztraltDarab != 0)
+                    if (akt.befolytEledelAdomany_kg != 0 || akt.befolytPenzadomany_huf != 0 || akt.hozottAllat != 0 || akt.elvittAllat != 0 || akt.regisztraltDarab != 0)
                     {
-                        statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat, befolytPenz = akt.befolytPenzadomany, befoyltEledel = akt.befolytEledelAdomany });
+                        statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat, befolytPenz = akt.befolytPenzadomany_huf, befoyltEledel = akt.befolytEledelAdomany_kg });
                     }
                 }
             }

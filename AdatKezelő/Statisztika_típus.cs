@@ -11,6 +11,7 @@ namespace AdatKezelő
         adomány,
         állatállomány,
         ügyfélállomány,
-        összetett
+        összetett,
+        ugyfeladatok
     }
 }

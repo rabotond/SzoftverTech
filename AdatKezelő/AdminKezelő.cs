@@ -1,5 +1,6 @@
 ﻿
 
+using AdatKezelő.csillamService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -111,7 +112,6 @@ namespace AdatKezelő//készítette Molnár Fanni
                 {
                     q.FirstOrDefault().RAKTARON = 0;
                 }
-               
             }
             else
             {
@@ -121,8 +121,7 @@ namespace AdatKezelő//készítette Molnár Fanni
                 if ((q.FirstOrDefault().MAXDARAB += mennyit) <= 0)
                 {
                     q.FirstOrDefault().MAXDARAB = 0;
-                }
-                
+                }  
             }
             
             db.SaveChanges();
@@ -145,6 +144,8 @@ namespace AdatKezelő//készítette Molnár Fanni
             }
             catch (DbEntityValidationException ex)
             {
+                IcsillamServiceClient client = new IcsillamServiceClient();
+                bool res =client.SendMail("fanfan@gmail.com","hiba","hiba van");
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)
@@ -159,7 +160,6 @@ namespace AdatKezelő//készítette Molnár Fanni
                 // Throw a new DbEntityValidationException with the improved exception message.
                 throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
             }
-
         }
 
         public void Állatot_módosít(AllatVM állat)//lecserélem az egészet..id marad
@@ -198,15 +198,13 @@ namespace AdatKezelő//készítette Molnár Fanni
             catch (Exception e)
             {
                 //magic
-            }
-            
+            }       
         }
 
         public void Ügyfelet_módosít(UgyfelVM ügyfél)
         {
-            db.UGYFEL.Remove(db.UGYFEL.Find(ügyfél.UGYFELID));
-            UGYFEL uj= (UGYFEL)convert_vm_entity(null, ügyfél);
-            db.UGYFEL.Add(uj);
+           UGYFEL orig= db.UGYFEL.Find(ügyfél.UGYFELID);
+            orig= (UGYFEL)convert_vm_entity(null, ügyfél);     
             db.SaveChanges();
         }
 
@@ -241,7 +239,6 @@ namespace AdatKezelő//készítette Molnár Fanni
                 {
                     KENNEL newKennel = new KENNEL() { FOGLALT = item.Count(), MAXDARAB = 100, SZABAD = 100 - item.Count(), TIPUS = item.Key };
                 }
-
             }
             db.SaveChanges();
         }
