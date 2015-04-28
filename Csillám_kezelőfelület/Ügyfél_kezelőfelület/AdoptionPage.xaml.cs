@@ -6,6 +6,7 @@ using System.Windows.Input;
 using AdatKezelő;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -46,32 +47,39 @@ namespace Csillamponi_Allatmenhely
                     int count = VM.AvdString.Length - 3;
                     while (true)
                     {
-                        tempString = VM.AvdString.Substring(count);
-                        
-                        tempString = tempString + VM.AvdString.Substring(0, count);
+                        while (count > 0)
+                        {
+                            tempString = VM.AvdString.Substring(count);
 
-                        VM.AvdString = tempString;
+                            tempString = tempString + VM.AvdString.Substring(0, count);
 
-                        count -= 3;
-                        Thread.Sleep(100);
+                            VM.AvdString = tempString;
+
+                            count -= 3;
+                            Thread.Sleep(100);
+                        }
+                        count = VM.AvdString.Length - 3;
                     }
               
         }
 
         private void Keresés(object sender, RoutedEventArgs e)
         {
-            if (ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
-                    Ivartalanított(), Beteg()).Any())
-            {
-                VM.Allatok = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
+               var allatkak = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.Text, VM.SelectedFaj, név.Text,
                     Ivartalanított(), Beteg());
-            }
-            else
-            {
+
+               foreach (var item in allatkak)
+               {
+                   VM.Allatok.Add(item);
+               }
+
+            if(allatkak.Count == 0)
                 MessageBox.Show("Nincs ilyen állat. Kérlek adj meg más feltételeket");
-            }
-            VM.Allatok = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
-                    Ivartalanított(), Beteg());
+
+            //var allatList = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.ToString(), VM.SelectedFaj, név.ToString(),
+            //        Ivartalanított(), Beteg());
+
+           
         }
 
         private void ListBox_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -152,7 +160,7 @@ namespace Csillamponi_Allatmenhely
 
         public AdaptionPageViewModel()
         {
-            Allatok = new List<ALLAT>();
+            Allatok = new ObservableCollection<ALLAT>();
             faj = new List<string>();
             Fiulany = new List<string>();
             Fiulany.Add("hím");
@@ -173,7 +181,7 @@ namespace Csillamponi_Allatmenhely
 
 
         public ALLAT Selectedallat { get; set; }
-        public List<ALLAT> Allatok { get; set; }
+        public ObservableCollection<ALLAT> Allatok { get; set; }
 
         public List<string> Faj
         {
