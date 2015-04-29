@@ -31,6 +31,11 @@ namespace AdatKezelő
         public string KEP { get; set; }
         public Nullable<System.DateTime> OROKBEFOGADVA { get; set; }
         public Nullable<System.DateTime> BEADVA { get; set; }
+       
+        public override string ToString()
+        {
+            return String.Format("Név : {0} ** Faj : {1}", NEV, FAJTA);
+        }
     
         public virtual KENNEL KENNEL { get; set; }
         public virtual UGYFEL UGYFEL { get; set; }

@@ -121,40 +121,51 @@ namespace AdatKezelő
         }
 
         List<ALLAT> IÜgyfél_kezelő.Összetett_keresés(bool oltva, bool nem, string szín, string fajta, string név, bool ivartalanított, bool beteg)
-        {
+        {// Luca
+         //(bocsi de módosítottam a keresést mert nem nagyon akart visszaadni állatot ha nem tudtam az összes property-jét)
             List<ALLAT> allatok = new List<ALLAT>();
+
+
+
+            var allatQuery = db.ALLAT.Where(x => (!string.IsNullOrEmpty(név) ? x.NEV == név : true) && (oltva != null ? x.OLTVA == oltva : true) && (!string.IsNullOrEmpty(szín) ? x.SZIN == szín : true) && (nem != null ? x.NOSTENY == nem : true) && (!string.IsNullOrEmpty(fajta) ? x.FAJTA == fajta : true) && (ivartalanított != null ? x.IVARTALANITOTT == ivartalanított : true) && ((beteg != null && beteg == true) ? string.IsNullOrEmpty(x.BETEGSEGEK) : !string.IsNullOrEmpty(x.BETEGSEGEK)));
+
+
+            foreach (var item in allatQuery)
+            {
+                allatok.Add(item);
+            }
             
-            if (!beteg)
-            {
-                var q = from x in adminKezelő.Db.ALLAT
-                        where x.NEV == név.ToUpper() &&
-                        x.SZIN == szín.ToUpper() &&
-                        x.FAJTA == fajta.ToUpper() &&
-                        x.NOSTENY == nem &&
-                        x.OLTVA == oltva &&
-                        x.IVARTALANITOTT == ivartalanított &&
-                        string.IsNullOrEmpty(x.BETEGSEGEK)
-                        select x;
-                foreach (var item in q)
-                {
-                    allatok.Add(item);
-                }
-            }
-            else
-            {
-                var q = from x in adminKezelő.Db.ALLAT
-                        where x.NEV == név.ToUpper() &&
-                        x.SZIN == szín.ToUpper() &&
-                        x.FAJTA == fajta.ToUpper() &&
-                        x.NOSTENY == nem &&
-                        x.OLTVA == oltva &&
-                        x.IVARTALANITOTT == ivartalanított
-                        select x;
-                foreach (var item in q)
-                {
-                    allatok.Add(item);
-                }
-            }
+            //if (!beteg)
+            //{
+            //    var q = from x in adminKezelő.Db.ALLAT
+            //            where x.NEV == név.ToUpper() &&
+            //            x.SZIN == szín.ToUpper() &&
+            //            x.FAJTA == fajta.ToUpper() &&
+            //            x.NOSTENY == nem &&
+            //            x.OLTVA == oltva &&
+            //            x.IVARTALANITOTT == ivartalanított &&
+            //            string.IsNullOrEmpty(x.BETEGSEGEK)
+            //            select x;
+            //    foreach (var item in q)
+            //    {
+            //        allatok.Add(item);
+            //    }
+            //}
+            //else
+            //{
+            //    var q = from x in adminKezelő.Db.ALLAT
+            //            where x.NEV == név.ToUpper() &&
+            //            x.SZIN == szín.ToUpper() &&
+            //            x.FAJTA == fajta.ToUpper() &&
+            //            x.NOSTENY == nem &&
+            //            x.OLTVA == oltva &&
+            //            x.IVARTALANITOTT == ivartalanított
+            //            select x;
+            //    foreach (var item in q)
+            //    {
+            //        allatok.Add(item);
+            //    }
+            //}
             return allatok;
         }
 
