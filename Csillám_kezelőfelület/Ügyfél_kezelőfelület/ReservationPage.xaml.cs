@@ -66,12 +66,19 @@ namespace Csillamponi_Allatmenhely
         }
         void KépBetöltés ()
         {
-            BitmapImage bmi = new BitmapImage();
-            Uri uri = new Uri(SaveClipboardImageToFile());
-            bmi.BeginInit();
-            bmi.UriSource = uri;
-            bmi.EndInit();
-            VM.Kép = bmi;
+            try
+            {
+                BitmapImage bmi = new BitmapImage();
+                Uri uri = new Uri(SaveClipboardImageToFile());
+                bmi.BeginInit();
+                bmi.UriSource = uri;
+                bmi.EndInit();
+                VM.Kép = bmi;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hiba történt az adatok feldolgozása közben!");
+            }
         }
         public string SaveClipboardImageToFile()
         {
@@ -81,6 +88,13 @@ namespace Csillamponi_Allatmenhely
             string gesturefile =  Path.Combine(currentdirectory, allatpath);
             gesturefile = gesturefile + allat.KEP;
             return gesturefile;
+        }
+
+        private void VisszaClick(object sender, RoutedEventArgs e)
+        {
+            AdoptionPage adoptionPage = new AdoptionPage(null);
+            adoptionPage.Show();
+            this.Close();
         }
        
     }

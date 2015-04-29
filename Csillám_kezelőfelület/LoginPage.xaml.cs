@@ -27,7 +27,7 @@ namespace Csillamponi_Allatmenhely
         {
             InitializeComponent();
             AdatKezelő.csillamService.IcsillamServiceClient client = new AdatKezelő.csillamService.IcsillamServiceClient();
-            client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
+            //client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
             Eledel_kezelo kezelo = new Eledel_kezelo();
             kezelo.eledelt_fogyaszt();
         }
