@@ -31,8 +31,8 @@ namespace AdatKezelő
                 ELEDEL ele = db.ELEDEL.Where(x => x.FAJTA == "wombat").FirstOrDefault();
                 if (--ele.RAKTARON==0)
                 {
-                    csillamService.IcsillamServiceClient client = new csillamService.IcsillamServiceClient();
-                    client.SendMail("a.lynxie@gmail.com","eledel elfogyott", "azonnal kurvagyorsan vegyél wombiknak kaját");
+                    //csillamService.IcsillamServiceClient client = new csillamService.IcsillamServiceClient();
+                    //client.sendEmail("a.lynxie@gmail.com","eledel elfogyott", "azonnal kurvagyorsan vegyél wombiknak kaját");
                 }
                 db.SaveChanges();
             } 

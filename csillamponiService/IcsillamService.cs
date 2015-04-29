@@ -13,7 +13,9 @@ namespace csillamponiService
     {
         [OperationContract]
         void DoWork();
+
         [OperationContract]
-        bool SendMail(string toaddress, string subject, string body);
+         void sendEmail( string to_address, string subject, string bodey );
+
     }
 }

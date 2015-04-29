@@ -37,20 +37,20 @@
   <wsdl:message name="IcsillamService_DoWork_OutputMessage">
     <wsdl:part name="parameters" element="tns:DoWorkResponse" />
   </wsdl:message>
-  <wsdl:message name="IcsillamService_SendMail_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendMail" />
+  <wsdl:message name="IcsillamService_sendEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:sendEmail" />
   </wsdl:message>
-  <wsdl:message name="IcsillamService_SendMail_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendMailResponse" />
+  <wsdl:message name="IcsillamService_sendEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:sendEmailResponse" />
   </wsdl:message>
   <wsdl:portType name="IcsillamService">
     <wsdl:operation name="DoWork">
       <wsdl:input wsaw:Action="http://tempuri.org/IcsillamService/DoWork" message="tns:IcsillamService_DoWork_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IcsillamService/DoWorkResponse" message="tns:IcsillamService_DoWork_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SendMail">
-      <wsdl:input wsaw:Action="http://tempuri.org/IcsillamService/SendMail" message="tns:IcsillamService_SendMail_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IcsillamService/SendMailResponse" message="tns:IcsillamService_SendMail_OutputMessage" />
+    <wsdl:operation name="sendEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IcsillamService/sendEmail" message="tns:IcsillamService_sendEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IcsillamService/sendEmailResponse" message="tns:IcsillamService_sendEmail_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IcsillamService" type="tns:IcsillamService">
@@ -64,8 +64,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendMail">
-      <soap:operation soapAction="http://tempuri.org/IcsillamService/SendMail" style="document" />
+    <wsdl:operation name="sendEmail">
+      <soap:operation soapAction="http://tempuri.org/IcsillamService/sendEmail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -86,8 +86,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="SendMail">
-      <soap:operation soapAction="http://tempuri.org/IcsillamService/SendMail" style="document" />
+    <wsdl:operation name="sendEmail">
+      <soap:operation soapAction="http://tempuri.org/IcsillamService/sendEmail" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

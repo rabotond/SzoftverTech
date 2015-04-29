@@ -45,6 +45,8 @@ namespace AdatKezelő//készítette Molnár Fanni
        
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
+            IcsillamServiceClient client = new IcsillamServiceClient();
+            client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
             lock (loadlock)
             {
                 db = new csillamponiDBEntities();
@@ -145,7 +147,7 @@ namespace AdatKezelő//készítette Molnár Fanni
             catch (DbEntityValidationException ex)
             {
                 IcsillamServiceClient client = new IcsillamServiceClient();
-                bool res =client.SendMail("fanfan@gmail.com","hiba","hiba van");
+                client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)

@@ -73,7 +73,6 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\PublishProfiles\csillamponiservice - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\csillamponiservice - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

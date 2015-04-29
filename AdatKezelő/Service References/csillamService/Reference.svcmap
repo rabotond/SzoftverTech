@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b6add04e-7e4f-42e9-a2d6-7a769caadffc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e0e2f700-20e9-4e35-a49b-406e7df86bf4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://csillamponiservice.azurewebsites.net/csillamservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="csillamService1.xsd" MetadataType="Schema" ID="92d5fbca-5d8e-435c-ba51-0a9bb64d6904" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?xsd=xsd1" />
-    <MetadataFile FileName="csillamService.wsdl" MetadataType="Wsdl" ID="6f79bfbb-dc74-4484-bf0b-1fde6a0937bf" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?wsdl" />
-    <MetadataFile FileName="csillamService.xsd" MetadataType="Schema" ID="2851c1a2-75f8-4f59-a3ce-1f48d4685518" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?xsd=xsd0" />
-    <MetadataFile FileName="csillamService.disco" MetadataType="Disco" ID="c8ab19dc-5a5f-4c3b-8165-86a8505a1409" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?disco" />
+    <MetadataFile FileName="csillamService.xsd" MetadataType="Schema" ID="669f1f10-9910-405c-8cfd-74465ac3eaff" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?xsd=xsd1" />
+    <MetadataFile FileName="csillamService.wsdl" MetadataType="Wsdl" ID="efc6c089-7b60-420c-a126-a23b63b3dde0" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?wsdl" />
+    <MetadataFile FileName="csillamService1.xsd" MetadataType="Schema" ID="219d2af0-de16-4aed-a10e-4b56e6f89597" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?xsd=xsd0" />
+    <MetadataFile FileName="csillamService.disco" MetadataType="Disco" ID="43761b93-02e7-4361-aab3-60808e51f4ec" SourceId="1" SourceUrl="http://csillamponiservice.azurewebsites.net/csillamService.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
