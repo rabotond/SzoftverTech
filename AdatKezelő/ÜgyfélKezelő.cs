@@ -14,7 +14,7 @@ namespace AdatKezelő
     {
         Admin_kezelő adminKezelő;
         csillamponiDBEntities db;
-        
+       // List<ALLAT> allatok = new List<ALLAT>();
         public Admin_kezelő AdminKezelő
         {
             get { return adminKezelő; }
@@ -119,25 +119,39 @@ namespace AdatKezelő
             }
             return allatok;
         }
-
+        List<ALLAT> IÜgyfél_kezelő.Színre_keres(string szín)
+        {
+            List<ALLAT> allatok = new List<ALLAT>();
+            var q = from x in adminKezelő.Db.ALLAT
+                    where x.SZIN == szín.ToUpper()
+                    select x;
+            foreach (var item in q)
+            {
+                allatok.Add(item);
+            }
+            return allatok;
+        }
         List<ALLAT> IÜgyfél_kezelő.Összetett_keresés(bool oltva, bool nem, string szín, string fajta, string név, bool ivartalanított, bool beteg)
         {// Luca
          //(bocsi de módosítottam a keresést mert nem nagyon akart visszaadni állatot ha nem tudtam az összes property-jét)
             List<ALLAT> allatok = new List<ALLAT>();
 
 
-
-            var allatQuery = db.ALLAT.Where(x => (!string.IsNullOrEmpty(név) ? x.NEV == név : true) && (oltva != null ? x.OLTVA == oltva : true) && (!string.IsNullOrEmpty(szín) ? x.SZIN == szín : true) && (nem != null ? x.NOSTENY == nem : true) && (!string.IsNullOrEmpty(fajta) ? x.FAJTA == fajta : true) && (ivartalanított != null ? x.IVARTALANITOTT == ivartalanított : true) && ((beteg != null && beteg == true) ? string.IsNullOrEmpty(x.BETEGSEGEK) : !string.IsNullOrEmpty(x.BETEGSEGEK)));
+            var allatQuery = db.ALLAT.Where(x => (!string.IsNullOrEmpty(név) ? x.NEV == név : true) && (oltva != null ? x.OLTVA == oltva : true)
+                 && (nem != null ? x.NOSTENY == nem : true) && (!string.IsNullOrEmpty(fajta) ? x.FAJTA == fajta : true)
+                && (ivartalanított != null ? x.IVARTALANITOTT == ivartalanított : true) && (!string.IsNullOrEmpty(szín) ? x.SZIN == szín : true)
+                && ((beteg != null && beteg == false) ? string.IsNullOrEmpty(x.BETEGSEGEK) : !string.IsNullOrEmpty(x.BETEGSEGEK)));
             //a kereséssel van még némi probléma
-
+            
             foreach (var item in allatQuery)
             {
                 if (item.ELOJEGYZETT == false) //a már előjegyzett állatokat ne listázza örökbefogadásra
                 {
+                    Console.WriteLine(item.ToString());
                     allatok.Add(item);
                 }
             }
-            
+            return allatok;
             //if (!beteg)
             //{
             //    var q = from x in adminKezelő.Db.ALLAT
@@ -169,22 +183,13 @@ namespace AdatKezelő
             //        allatok.Add(item);
             //    }
             //}
-            return allatok;
+            //return allatok;
         }
 
-        List<ALLAT> IÜgyfél_kezelő.Színre_keres(string szín)
-        {
-            List<ALLAT> allatok = new List<ALLAT>();
-            var q = from x in adminKezelő.Db.ALLAT
-                    where x.SZIN == szín.ToUpper()
-                    select x;
-            foreach (var item in q)
-            {
-                allatok.Add(item);
-            }
+       
 
-            return allatok;  
-        }
+           
+        
 
         public List<String> KennelListafeltolt()
         {
