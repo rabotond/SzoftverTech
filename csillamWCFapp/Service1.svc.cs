@@ -36,7 +36,7 @@ namespace csillamWCFapp
                 smtpClient.Credentials = credentials;
 
                 smtpClient.Send(mailMsg); 
-                return "siekres küldés";
+                return "sikeres küldés";
               }
                 catch (Exception ex)
               {
