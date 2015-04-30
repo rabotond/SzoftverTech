@@ -25,7 +25,7 @@ namespace Csillamponi_Allatmenhely
     
     
     public partial class ReservationPage : Window
-    {
+    {//Service1Client régi helyett
         ReservationPageViewModel VM;
         ALLAT allat = new ALLAT();
         Ügyfél_Kezelő kezelo;
