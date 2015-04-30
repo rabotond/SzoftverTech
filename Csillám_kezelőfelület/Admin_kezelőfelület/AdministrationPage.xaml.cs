@@ -98,7 +98,7 @@ namespace Csillamponi_Allatmenhely
             }
             else
             {
-                MessageBox.Show("Ez egy üres rekord!");
+                MessageBox.Show("Nincs kiválasztva rekord!");
             }   
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
@@ -107,6 +107,7 @@ namespace Csillamponi_Allatmenhely
             {
                 BL.Ügyfelet_töröl((UgyfelVM)ugyfelgrid.SelectedItem);
                 VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
+                Frissit();
             }
             catch (InvalidCastException)
             {
