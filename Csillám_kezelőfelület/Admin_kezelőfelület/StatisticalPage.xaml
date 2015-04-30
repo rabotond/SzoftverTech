@@ -1,13 +1,14 @@
 ﻿<Window x:Class="Csillamponi_Allatmenhely.StatisticalPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="StatisticalPage" Height="400.848" Width="585">
+        Title="StatisticalPage" Height="472.848" Width="585">
     <Grid>
-        <StackPanel HorizontalAlignment="Left" Height="156" Margin="51,37,0,0" VerticalAlignment="Top" Width="221">
+        <StackPanel HorizontalAlignment="Left" Height="210" Margin="51,37,0,0" VerticalAlignment="Top" Width="221">
             <Label Content="Kimutatás Típusa:" FontSize="20"/>
-            <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20" IsChecked="True"/>
+            <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20"/>
             <RadioButton x:Name="állományos" Content="Állatállomány" FontSize="20"/>
             <RadioButton x:Name="ügyféles" Content="Ügyfélállomány" FontSize="20"/>
+            <RadioButton  x:Name="ügyfél_adomany" Content="Ügyfél hozzájárulások" Height="32" FontSize="20"/>
             <RadioButton x:Name="összetett" Content="Összetett" FontSize="20"/>
         </StackPanel>
         <Label Content="Mettől" HorizontalAlignment="Left" Margin="51,207,0,0" VerticalAlignment="Top" Width="221" Height="33"/>
@@ -17,10 +18,9 @@
         <Button Content="Kimutatás Készítés xml" HorizontalAlignment="Left" Margin="320,153,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="statisztikaToXML_Click"/>
         <Button Content="Kimutatás megtekintése" HorizontalAlignment="Left" Margin="320,218,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="statisztikaOnGUI_Click"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="320,283,0,0" VerticalAlignment="Top" Width="247" Height="56" Click="Visssza_Click"/>
-        <TextBox Text="Pl.: D:\" Name="textBoxPath" HorizontalAlignment="Left" Height="23" Margin="412,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <TextBox Text="Pl.: D:\fileName.xlsx" Name="textBoxPath" HorizontalAlignment="Left" Height="23" Margin="412,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
         <Label Content="Mentés helye :" HorizontalAlignment="Left" Margin="325,57,0,0" VerticalAlignment="Top"/>
         <Button Content="Kimutatás Mentése (.xlsx)" HorizontalAlignment="Left" Margin="320,88,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="KimutatasMentes_Click"/>
-        <Button x:Name="Talloz_btn" Content="Tallózás" HorizontalAlignment="Left" Margin="320,21,0,0" VerticalAlignment="Top" Width="247" Click="Talloz_btn_Click"/>
 
     </Grid>
 </Window>
