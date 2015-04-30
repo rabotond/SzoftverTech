@@ -13,14 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AdatKezelő;
 using Csillám_kezelőfelület.Admin_kezelőfelület;
+using System.IO;
 
 namespace Csillamponi_Allatmenhely
 {
    
     public partial class StatisticalPage : Window
     {
+        string path = "c:";
         Admin_kezelőfelület_businessLogic bl;
         Admin_kezelőfelület_viewmodel vm;
+        
         public StatisticalPage( Admin_kezelőfelület_viewmodel ujvm)
         {
             InitializeComponent();
@@ -50,7 +53,7 @@ namespace Csillamponi_Allatmenhely
             }
             vm.Stat = bl.Statisztikát_készít(fajta, (DateTime)kezdet.SelectedDate, (DateTime)vege.SelectedDate);
             vm.Stat.makeXmlfromStat();
-            vm.Stat.xDoc.Save("statisztika.xml");
+            vm.Stat.xDoc.Save(path+@"\statisztika.xml");
             MessageBox.Show("az xml fájl elkészült statisztika néven");
         }
 
@@ -86,12 +89,12 @@ namespace Csillamponi_Allatmenhely
 
         private void KimutatasMentes_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxPath.Text) && textBoxPath.Text != @"Pl.: D:\fileName.xlsx")
+            if (!string.IsNullOrEmpty(textBoxPath.Text) && textBoxPath.Text != @"Pl.: D:\")
             {
                 statisztikaToXML_Click(sender, e);
                 try
                 {
-                    bl.ExportToExcel(vm.Stat.xDoc, textBoxPath.Text);
+                    bl.ExportToExcel(vm.Stat.xDoc, textBoxPath.Text+@"\statisztika.xlsx");
                 }
                 catch (Exception)
                 {
@@ -105,6 +108,19 @@ namespace Csillamponi_Allatmenhely
             }
 
             
+        }
+
+        private void Talloz_btn_Click(object sender, RoutedEventArgs e)
+        {
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = dialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                
+                path = dialog.SelectedPath;
+                textBoxPath.Text = path;
+            }
         }
     }
 }
