@@ -62,9 +62,9 @@ namespace AdatKezelő
 
         public bool Előjegyeztet(ALLAT állat)
         {
-            var q = from x in adminKezelő.Db.ALLAT
-                    where x == állat
-                    select x.ELOJEGYZETT==true;
+            ALLAT orig = db.ALLAT.Find(állat.ALLATID);
+            orig.ELOJEGYZETT = true;
+            db.SaveChanges();
             return true;
         }
 
@@ -128,11 +128,14 @@ namespace AdatKezelő
 
 
             var allatQuery = db.ALLAT.Where(x => (!string.IsNullOrEmpty(név) ? x.NEV == név : true) && (oltva != null ? x.OLTVA == oltva : true) && (!string.IsNullOrEmpty(szín) ? x.SZIN == szín : true) && (nem != null ? x.NOSTENY == nem : true) && (!string.IsNullOrEmpty(fajta) ? x.FAJTA == fajta : true) && (ivartalanított != null ? x.IVARTALANITOTT == ivartalanított : true) && ((beteg != null && beteg == true) ? string.IsNullOrEmpty(x.BETEGSEGEK) : !string.IsNullOrEmpty(x.BETEGSEGEK)));
-
+            //a kereséssel van még némi probléma
 
             foreach (var item in allatQuery)
             {
-                allatok.Add(item);
+                if (item.ELOJEGYZETT == false) //a már előjegyzett állatokat ne listázza örökbefogadásra
+                {
+                    allatok.Add(item);
+                }
             }
             
             //if (!beteg)

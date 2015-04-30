@@ -93,7 +93,7 @@ namespace Csillamponi_Allatmenhely
                 {
                     bl.ExportToExcel(vm.Stat.xDoc, textBoxPath.Text);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Az exportálás sikertelen volt, ellenőrizze a megadott útvonalat, illetve hogy rendelkezik-e megfelelő jogosultsággal a mappa szerkesztéséhez!");
                 }

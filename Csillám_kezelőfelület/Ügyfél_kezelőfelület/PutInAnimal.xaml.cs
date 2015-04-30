@@ -37,7 +37,7 @@ namespace Csillamponi_Allatmenhely
         private void Adatfelvétel(object sender, RoutedEventArgs e)
         {
             NewAnimal other = new NewAnimal(bejelentkezettUser);
-            this.Close();
+           // this.Close();
             other.Show();
         }
 

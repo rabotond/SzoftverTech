@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="ReservationPage" Height="432.15" Width="557">
     <Grid>
-        <Button Content="Előjegyzés" HorizontalAlignment="Left" Margin="401,296,0,0" VerticalAlignment="Top" Width="138" FontSize="18" Height="25" Click="Előjegyzés"/>
-        <Button Content="Regisztráció" HorizontalAlignment="Left" Margin="461,326,0,0" VerticalAlignment="Top" Width="78" Height="20" Click="Regisztráció"/>
+        <Button Content="Előjegyzés" HorizontalAlignment="Left" Margin="401,296,0,0" VerticalAlignment="Top" Width="138" FontSize="18" Height="41" Click="Előjegyzés"/>
         <Image HorizontalAlignment="Left" Height="210" Margin="289,25,0,0" VerticalAlignment="Top" Source="{Binding Path=Kép}" Width="239"/>
         <Label Content="Az állat adatai:" HorizontalAlignment="Left" Margin="11,6,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Name="adatok"  HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" FontSize="18" Height="256" Width="257"/>
-        <Label Content="csak regisztrált felhasználó tud előjegyezni ha még nem tette meg itt regisztrálhat" HorizontalAlignment="Left" Margin="11,325,0,0" VerticalAlignment="Top" FontSize="11"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="464,342,0,0" VerticalAlignment="Top" Width="75" Click="VisszaClick"/>
 
     </Grid>
 </Window>

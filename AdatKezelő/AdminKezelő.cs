@@ -1,6 +1,4 @@
-﻿
-
-
+﻿using AdatKezelő.csillamService;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Xml.Linq;
 
@@ -45,11 +44,10 @@ namespace AdatKezelő//készítette Molnár Fanni
        
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
-            
+            IcsillamServiceClient client = new IcsillamServiceClient();
+            //client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
             lock (loadlock)
             {
-                csillamRef.Service1Client cl = new csillamRef.Service1Client();
-                cl.sendEmail("fannimolnr@gmail.com", "hiba", "getallallat");
                 db = new csillamponiDBEntities();
                 return db.ALLAT.Where(x => x.NEV != null).Select(x => new AllatVM()
                 {
@@ -147,8 +145,8 @@ namespace AdatKezelő//készítette Molnár Fanni
             }
             catch (DbEntityValidationException ex)
             {
-                //IcsillamServiceClient client = new IcsillamServiceClient();
-                //client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
+                IcsillamServiceClient client = new IcsillamServiceClient();
+                client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)
@@ -185,7 +183,7 @@ namespace AdatKezelő//készítette Molnár Fanni
         {
             UGYFEL client = new UGYFEL();
             client.UGYFELID = Guid.NewGuid();
-            client = (UGYFEL) convert_vm_entity(null,ügyfél);
+            client = (UGYFEL)convert_vm_entity(null, ügyfél);
             db.UGYFEL.Add(client);
             db.SaveChanges();
         }
@@ -198,9 +196,9 @@ namespace AdatKezelő//készítette Molnár Fanni
                 db.UGYFEL.Remove(a);
                 db.SaveChanges();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                //magic
+                MessageBox.Show("Hiba történt az ügyfél törlése közben!");
             }       
         }
 

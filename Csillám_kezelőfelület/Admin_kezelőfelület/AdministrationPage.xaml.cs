@@ -47,10 +47,8 @@ namespace Csillamponi_Allatmenhely
 
             });
         }
-
-        private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a datagrideket a friss adatbázis adatokkal
-        {
-            Task.Factory.StartNew(() =>
+        private void Frissit()
+            {     Task.Factory.StartNew(() =>
             {
 
                 var allatok = BL.FrissitAllat();
@@ -62,7 +60,11 @@ namespace Csillamponi_Allatmenhely
                 var ugyfelek = BL.FrissitÜgyfel();
                 Dispatcher.Invoke(new Action(() => VM.Ügyfelek = ugyfelek));
 
-            });
+            });}
+
+        private void Frissit_Click(object sender, RoutedEventArgs e)//frissíti a datagrideket a friss adatbázis adatokkal
+        {
+            Frissit();
         }
 
         private void UjallatClick(object sender, RoutedEventArgs e)
@@ -80,16 +82,24 @@ namespace Csillamponi_Allatmenhely
 
         private void AllatTöröl_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (VM.ValasztottAllat != null)
             {
-                BL.Állatot_töröl((AllatVM)állatgrid.SelectedItem);
-                VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
+                try
+                {
+                    BL.Állatot_töröl((AllatVM)állatgrid.SelectedItem);
+                    VM.Allatok.Remove((AllatVM)állatgrid.SelectedItem);
+                    MessageBox.Show("Törölve!");
+                    Frissit();
+                }
+                catch (InvalidCastException)
+                {
+                    MessageBox.Show("Ez egy üres rekord!");
+                }
             }
-            catch (InvalidCastException)
+            else
             {
-                MessageBox.Show("Ez egy üres rekord!");
-            }
-            
+                MessageBox.Show("Nincs kiválasztva rekord!");
+            }   
         }
         private void UgyfeletTöröl_Click(object sender, RoutedEventArgs e)
         {
@@ -97,6 +107,7 @@ namespace Csillamponi_Allatmenhely
             {
                 BL.Ügyfelet_töröl((UgyfelVM)ugyfelgrid.SelectedItem);
                 VM.Ügyfelek.Remove((UgyfelVM)ugyfelgrid.SelectedItem);
+                Frissit();
             }
             catch (InvalidCastException)
             {

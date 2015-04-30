@@ -87,7 +87,7 @@ namespace Csillamponi_Allatmenhely
             if (VM.Selectedallat != null)
             {
                 atadommajdallat = VM.Selectedallat;
-                var other = new ReservationPage(atadommajdallat);
+                var other = new ReservationPage(atadommajdallat, this.bejelentkezettUser);
                 Close();
                 other.Show();
             }
