@@ -15,7 +15,7 @@ using System.ComponentModel;
 using AdatKezelő;
 using  System.IO;
 using Path = System.IO.Path;
-using AdatKezelő.csillamService;
+using AdatKezelő.csillamRef;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -29,11 +29,11 @@ namespace Csillamponi_Allatmenhely
         ReservationPageViewModel VM;
         ALLAT allat = new ALLAT();
         Ügyfél_Kezelő kezelo;
-        IcsillamServiceClient client;
+        Service1Client client;
         UGYFEL bejelentkezettUser;
         public ReservationPage(ALLAT kapottallat, UGYFEL bejelentkezettUser)
         {
-            client = new IcsillamServiceClient();
+            client = new Service1Client();
             kezelo = new Ügyfél_Kezelő();
             VM = new ReservationPageViewModel();
             allat = kapottallat;

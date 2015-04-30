@@ -18,7 +18,7 @@ namespace AdatKezelő
         {
             t = new Thread(()=> eledelt_fogyaszt());
             timer = new System.Timers.Timer();
-            timer.Interval=1000;
+            timer.Interval=10000*6;
             timer.Elapsed += timer_Elapsed;
         }
 
@@ -27,12 +27,16 @@ namespace AdatKezelő
             lock(lockobj)
             {
                 csillamponiDBEntities db = new csillamponiDBEntities();
-                Debug.WriteLine("cicacica" + DateTime.Now);
-                ELEDEL ele = db.ELEDEL.Where(x => x.FAJTA == "wombat").FirstOrDefault();
-                if (--ele.RAKTARON==0)
-                {
-                    //csillamService.IcsillamServiceClient client = new csillamService.IcsillamServiceClient();
-                    //client.sendEmail("a.lynxie@gmail.com","eledel elfogyott", "azonnal kurvagyorsan vegyél wombiknak kaját");
+
+                var eledelek = db.ELEDEL.Where(x => x.FAJTA != null);
+                foreach(ELEDEL ele in eledelek)
+                { 
+                    if (--ele.RAKTARON<=0)
+                    {
+                        ele.RAKTARON = 0;
+                        Service1Client client = new Service1Client();
+                        client.sendEmail("a.lynxie@gmail.com", ele.FAJTA+ " eledele elfogyott", "azonnal kurvagyorsan vegyél nekik kaját");
+                    }
                 }
                 db.SaveChanges();
             } 

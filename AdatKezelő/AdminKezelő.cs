@@ -1,4 +1,4 @@
-﻿using AdatKezelő.csillamService;
+﻿using AdatKezelő.csillamRef;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -44,7 +44,7 @@ namespace AdatKezelő//készítette Molnár Fanni
        
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
-            IcsillamServiceClient client = new IcsillamServiceClient();
+            Service1Client client = new Service1Client();
             //client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
             lock (loadlock)
             {
@@ -85,7 +85,9 @@ namespace AdatKezelő//készítette Molnár Fanni
                     UTCA = x.UTCA,
                     HAZSZAM = x.HAZSZAM,
                     EMAIL = x.EMAIL,
-                    TELEFON = x.TELEFON
+                    TELEFON = x.TELEFON,
+                    USERNAME=x.USERNAME,
+                    isadmin=x.ISADMIN
                 }).ToList();
             }
         }
@@ -145,7 +147,7 @@ namespace AdatKezelő//készítette Molnár Fanni
             }
             catch (DbEntityValidationException ex)
             {
-                IcsillamServiceClient client = new IcsillamServiceClient();
+                Service1Client client = new Service1Client();
                 client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
