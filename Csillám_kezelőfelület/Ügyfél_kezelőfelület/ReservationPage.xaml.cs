@@ -15,6 +15,7 @@ using System.ComponentModel;
 using AdatKezelő;
 using  System.IO;
 using Path = System.IO.Path;
+using AdatKezelő.csillamService;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -28,20 +29,38 @@ namespace Csillamponi_Allatmenhely
         ReservationPageViewModel VM;
         ALLAT allat = new ALLAT();
         Ügyfél_Kezelő kezelo;
-        public ReservationPage(ALLAT kapottallat)
+        IcsillamServiceClient client;
+        UGYFEL bejelentkezettUser;
+        public ReservationPage(ALLAT kapottallat, UGYFEL bejelentkezettUser)
         {
+            client = new IcsillamServiceClient();
             kezelo = new Ügyfél_Kezelő();
-            VM = new ReservationPageViewModel(); 
+            VM = new ReservationPageViewModel();
             allat = kapottallat;
             InitializeComponent();
-            Adatfeltölt();
-            DataContext = VM;
-            KépBetöltés();
+            try
+            {
+                allat = kapottallat;
+                //InitializeComponent();
+                Adatfeltölt();
+                DataContext = VM;
+                adatok.Content = Adatfeltölt();
+                KépBetöltés();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Hiba történt az adatok feldolgozása közben!");
+            }
+            
         }
 
         private void Előjegyzés(object sender, RoutedEventArgs e)
         {
             kezelo.Előjegyeztet(allat);
+            //Előjegyzéskor küldjön egy emailt az adminnak, hogy vegye fel a kapcsolatot az ügyféllel
+            //client.sendEmail("email@email.com", "Állat előjegyzés",
+            //    String.Format("{0} {1} előjegyezte örökbefogadásra {2} nevű állatot, kérlek vedd fel az ügyféllel a kapcsolatot!",
+            //    this.bejelentkezettUser.VEZETEKNEV, this.bejelentkezettUser.KERESZTNEV, this.allat.NEV));
             MessageBox.Show("Az állatodat sikeresen előjegyeztük örökbefogadáshoz. A staff felfogja feled venni a kapcsolatot a részletekkel kapcsolatban");
         }
 
@@ -77,7 +96,7 @@ namespace Csillamponi_Allatmenhely
             }
             catch (Exception)
             {
-                MessageBox.Show("Hiba történt az adatok feldolgozása közben!");
+                MessageBox.Show("A kép betöltése sikertelen!");
             }
         }
         public string SaveClipboardImageToFile()
@@ -92,7 +111,7 @@ namespace Csillamponi_Allatmenhely
 
         private void VisszaClick(object sender, RoutedEventArgs e)
         {
-            AdoptionPage adoptionPage = new AdoptionPage(null);
+            AdoptionPage adoptionPage = new AdoptionPage(this.bejelentkezettUser);
             adoptionPage.Show();
             this.Close();
         }
