@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
+using AdatKezelő.csillamRef;
 namespace AdatKezelő
 {
     public class Eledel_kezelo // itt lenne háttérszálon az eledel fogyazstás

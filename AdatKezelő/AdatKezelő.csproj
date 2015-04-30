@@ -101,7 +101,7 @@
       <DependentUpon>csillamponimenhelyDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\csillamService\Reference.cs">
+    <Compile Include="Service References\csillamRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -155,11 +155,11 @@
       <LastGenOutput>csillamponimenhelyDB.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Service References\csillamService\csillamService.wsdl" />
-    <None Include="Service References\csillamService\csillamService.xsd">
+    <None Include="Service References\csillamRef\Service1.wsdl" />
+    <None Include="Service References\csillamRef\Service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\csillamService\csillamService1.xsd">
+    <None Include="Service References\csillamRef\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -199,22 +199,22 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\csillamService\" />
+    <WCFMetadataStorage Include="Service References\csillamRef\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\csillamService\csillamService.disco" />
+    <None Include="Service References\csillamRef\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\csillamService\configuration91.svcinfo" />
+    <None Include="Service References\csillamRef\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\csillamService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\csillamService\Reference.svcmap">
+    <None Include="Service References\csillamRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\csillamRef\Service1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

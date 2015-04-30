@@ -13,8 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Csillám_kezelőfelület;
 using AdatKezelő;
-using System.Net;
-using System.Net.Mail;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -26,8 +24,8 @@ namespace Csillamponi_Allatmenhely
         public LoginPage()
         {
             InitializeComponent();
-            AdatKezelő.csillamService.IcsillamServiceClient client = new AdatKezelő.csillamService.IcsillamServiceClient();
-            client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
+          AdatKezelő.csillamRef.Service1Client client = new AdatKezelő.csillamRef.Service1Client();
+          string res = client.sendEmail("fannimolnr@gmail.com", "error", "felület betöltött");
             Eledel_kezelo kezelo = new Eledel_kezelo();
             kezelo.eledelt_fogyaszt();
         }

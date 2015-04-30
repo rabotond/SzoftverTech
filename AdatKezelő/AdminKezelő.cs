@@ -1,6 +1,6 @@
 ﻿
 
-using AdatKezelő.csillamService;
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -45,10 +45,11 @@ namespace AdatKezelő//készítette Molnár Fanni
        
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
-            IcsillamServiceClient client = new IcsillamServiceClient();
-            client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
+            
             lock (loadlock)
             {
+                csillamRef.Service1Client cl = new csillamRef.Service1Client();
+                cl.sendEmail("fannimolnr@gmail.com", "hiba", "getallallat");
                 db = new csillamponiDBEntities();
                 return db.ALLAT.Where(x => x.NEV != null).Select(x => new AllatVM()
                 {
@@ -146,8 +147,8 @@ namespace AdatKezelő//készítette Molnár Fanni
             }
             catch (DbEntityValidationException ex)
             {
-                IcsillamServiceClient client = new IcsillamServiceClient();
-                client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
+                //IcsillamServiceClient client = new IcsillamServiceClient();
+                //client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)
