@@ -7,7 +7,6 @@ using System.ServiceModel.Web;
 using System.Text;
 using System.Net;
 using System.Net.Mail;
-using SendGridMail;
 using System.Net.Mime;
 
 namespace csillamWCFapp

@@ -44,7 +44,6 @@ namespace AdatKezelő//készítette Molnár Fanni
        
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
-            
             Service1Client client = new Service1Client();
             //client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
             lock (loadlock)
@@ -86,7 +85,9 @@ namespace AdatKezelő//készítette Molnár Fanni
                     UTCA = x.UTCA,
                     HAZSZAM = x.HAZSZAM,
                     EMAIL = x.EMAIL,
-                    TELEFON = x.TELEFON
+                    TELEFON = x.TELEFON,
+                    USERNAME=x.USERNAME,
+                    isadmin=x.ISADMIN
                 }).ToList();
             }
         }
