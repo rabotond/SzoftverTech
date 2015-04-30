@@ -41,11 +41,19 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
                 {
                     statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab });
                 }
+                else if (vm.Stat.Tipus == Statisztika_típus.ugyfeladatok && (akt.pénztAdomanyozott_huf != 0 || akt.eledeltAdomanyozott_kg !=0 ))
+                {
+                    statVM.Add(new { ÜGYFÉL = akt.Ugyfel.UGYFELID, pénztAdomanyozott_huf = akt.pénztAdomanyozott_huf, eledeltAdomanyozott_kg=akt.eledeltAdomanyozott_kg });
+                }
                 else//összetett
                 {
                     if (akt.befolytEledelAdomany_kg != 0 || akt.befolytPenzadomany_huf != 0 || akt.hozottAllat != 0 || akt.elvittAllat != 0 || akt.regisztraltDarab != 0)
                     {
-                        statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab, hozott_Állatok_száma = akt.hozottAllat, elvitt_állatok_száma = akt.elvittAllat, befolytPenz = akt.befolytPenzadomany_huf, befoyltEledel = akt.befolytEledelAdomany_kg });
+                        statVM.Add(new { NAP = akt.Nap, Regisztraltak = akt.regisztraltDarab,
+                            hozott_Állatok_száma = akt.hozottAllat, 
+                            elvitt_állatok_száma = akt.elvittAllat, 
+                            befolytPenz = akt.befolytPenzadomany_huf, 
+                            befoyltEledel = akt.befolytEledelAdomany_kg });
                     }
                 }
             }
