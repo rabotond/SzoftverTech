@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>MicrosoftSQLServerSMO2014Wmi</id>
+    <version>1.0.1</version>
+    <title>Microsoft SQL Server SMO 2014 with Wmi</title>
+    <authors>Rafael</authors>
+    <owners>Rafael</owners>
+    <iconUrl>http://www.vircom.com/security/wp-content/uploads/2013/12/Microsoft_SQL_Server.jpg</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Microsoft Sql Server Shared Management Objects 2014 Complete</description>
+  </metadata>
+</package>

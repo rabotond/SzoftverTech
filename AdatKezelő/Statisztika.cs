@@ -189,7 +189,7 @@ namespace AdatKezelő
 
                 var eledeladomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
                                    group a by a.UGYFELID into b
-                                   select new { id=b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList();;
+                                   select new { id=b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList();
               //  var allatai_db=;
 
 

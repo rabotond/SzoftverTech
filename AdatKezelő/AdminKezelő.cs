@@ -10,7 +10,8 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Xml.Linq;
-using ReklamServiceLibrary;
+//using ReklamServiceLibrary;
+
 namespace AdatKezelő//készítette Molnár Fanni
 {
     public class Admin_kezelő : IAdmin_kezelő
