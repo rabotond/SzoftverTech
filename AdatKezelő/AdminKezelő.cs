@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Xml.Linq;
-
+using ReklamServiceLibrary;
 namespace AdatKezelő//készítette Molnár Fanni
 {
     public class Admin_kezelő : IAdmin_kezelő
@@ -148,7 +148,9 @@ namespace AdatKezelő//készítette Molnár Fanni
             catch (DbEntityValidationException ex)
             {
                 Service1Client client = new Service1Client();
-                client.sendEmail("fannimolnr@gmail.com","hiba","hiba van");
+                client.sendEmail("csillamponiproject@gmail.com", "hiba", "Adatbázis hiba AdminKezelőben ! " + ex.Message);
+          //   Reklam_Hibalog.ServiceReklamClient kliens = new Reklam_Hibalog.ServiceReklamClient();
+         //    kliens.Hibalog("Adatbázis hiba AdminKezelőben ! " + ex.Message);
                 // Retrieve the error messages as a list of strings.
                 var errorMessages = ex.EntityValidationErrors
                         .SelectMany(x => x.ValidationErrors)
@@ -198,9 +200,14 @@ namespace AdatKezelő//készítette Molnár Fanni
                 db.UGYFEL.Remove(a);
                 db.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Hiba történt az ügyfél törlése közben!");
+                Service1Client client = new Service1Client();
+                client.sendEmail("csillamponiproject@gmail.com", "hiba", "Hiba történt az ügyfél törlése közben! ! " + ex.Message);
+            //    Reklam_Hibalog.ServiceReklamClient kliens = new Reklam_Hibalog.ServiceReklamClient();
+             //   kliens.Hibalog("Hiba történt az ügyfél törlése közben! " + ex.Message);
+            
             }       
         }
 

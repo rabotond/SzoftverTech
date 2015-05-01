@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b7f6ee6a-78c6-4c08-94f3-abad27c7b64d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/ReklamServiceLibrary/Service1/" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ServiceReklam.wsdl" MetadataType="Wsdl" ID="557833e6-746c-4f29-a6bf-7edb5db0cb21" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ReklamServiceLibrary/Service1/?wsdl" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="78aaeda5-26ca-46dd-bba2-840a981748c7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ReklamServiceLibrary/Service1/?xsd=xsd0" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="904f766f-fc13-43a7-83b2-7a62e3d97761" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ReklamServiceLibrary/Service1/?disco" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="3690fedf-bb2a-40f9-bd71-c586a2c30d83" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ReklamServiceLibrary/Service1/?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

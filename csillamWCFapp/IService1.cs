@@ -14,9 +14,15 @@ namespace csillamWCFapp
     {
         [OperationContract]
         void DoWork();
+        
 
         [OperationContract]
         string sendEmail(string to_address, string subject, string body);
 
+        
+
+        
+            
+        
     }
 }

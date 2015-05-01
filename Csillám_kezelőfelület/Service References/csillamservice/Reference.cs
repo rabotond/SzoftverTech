@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Csillám_kezelőfelület.ServiceReference1 {
+namespace Csillám_kezelőfelület.csillamservice {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="csillamservice.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DoWork", ReplyAction="http://tempuri.org/IService1/DoWorkResponse")]
@@ -29,12 +29,12 @@ namespace Csillám_kezelőfelület.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : Csillám_kezelőfelület.ServiceReference1.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : Csillám_kezelőfelület.csillamservice.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<Csillám_kezelőfelület.ServiceReference1.IService1>, Csillám_kezelőfelület.ServiceReference1.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<Csillám_kezelőfelület.csillamservice.IService1>, Csillám_kezelőfelület.csillamservice.IService1 {
         
         public Service1Client() {
         }

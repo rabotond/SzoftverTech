@@ -107,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\Reklam_Hibalog\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Statisztika.cs" />
     <Compile Include="Statisztika_adatrecord.cs" />
     <Compile Include="Statisztika_típus.cs" />
@@ -163,6 +168,13 @@
     <None Include="Service References\csillamRef\Service11.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Reklam_Hibalog\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Reklam_Hibalog\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Reklam_Hibalog\ServiceReklam.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -201,6 +213,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\csillamRef\" />
+    <WCFMetadataStorage Include="Service References\Reklam_Hibalog\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\csillamRef\configuration91.svcinfo" />
@@ -216,6 +229,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\csillamRef\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Reklam_Hibalog\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Reklam_Hibalog\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Reklam_Hibalog\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Reklam_Hibalog\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReklamHost\ReklamHost.csproj">
+      <Project>{bce93c56-35f8-4a13-8cdc-b80a378d8e83}</Project>
+      <Name>ReklamHost</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReklamServiceLibrary\ReklamServiceLibrary.csproj">
+      <Project>{4d954d3f-2da8-4508-915f-23f037d5a3af}</Project>
+      <Name>ReklamServiceLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
