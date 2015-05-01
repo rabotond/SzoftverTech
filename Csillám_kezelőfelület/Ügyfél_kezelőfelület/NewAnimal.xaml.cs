@@ -145,9 +145,9 @@ namespace Csillamponi_Allatmenhely
             VM.Tömeg = modosítandoallat.TOMEG.ToString();
             VM.Szin = modosítandoallat.SZIN;
             VM.Betegség= modosítandoallat.BETEGSEGEK;
-            if (modosítandoallat.CHIPES==true)
+            if (modosítandoallat.CHIPES == true)
             {
-                VM.Chip = chip_es_elojegyez.igen;    
+                VM.Chip = chip_es_elojegyez.igen;
             }
             else
             {
@@ -238,16 +238,33 @@ namespace Csillamponi_Allatmenhely
         public void Modositott_allat_kép_feltöltés()
         {
             string allatpath = @"állatok";
-            string currentdirectory = Environment.CurrentDirectory;
-            currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
-            currentdirectory = Path.Combine(currentdirectory, allatpath);
-            currentdirectory = currentdirectory+ trimfoto(képutja);
-
-            var bi = new BitmapImage();
-            bi.BeginInit();
-            bi.UriSource = new Uri(currentdirectory, UriKind.RelativeOrAbsolute);
-            bi.EndInit();
-            VM.Kép = bi;
+          
+            try
+            {
+                string currentdirectory = Environment.CurrentDirectory;
+                currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
+                currentdirectory = Path.Combine(currentdirectory, allatpath);
+                var bi = new BitmapImage();
+                currentdirectory = currentdirectory + trimfoto(képutja);
+                bi.BeginInit();
+                bi.UriSource = new Uri(currentdirectory, UriKind.RelativeOrAbsolute);
+                bi.EndInit();
+                VM.Kép = bi;
+            }
+            catch (Exception e)
+            {
+                string currentdirectory = Environment.CurrentDirectory;
+                currentdirectory = currentdirectory.Remove(currentdirectory.Length - 31);
+                currentdirectory = Path.Combine(currentdirectory, allatpath);
+                var ei = new BitmapImage();
+                képutja = "\\missing.jpg";
+                currentdirectory = currentdirectory + trimfoto(képutja);
+                ei.BeginInit();
+                ei.UriSource = new Uri(currentdirectory, UriKind.RelativeOrAbsolute);
+                ei.EndInit();
+                VM.Kép = ei;
+            }
+            
         }
 
         private void BackClick(object sender, RoutedEventArgs e)
