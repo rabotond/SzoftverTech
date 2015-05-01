@@ -24,7 +24,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
         public void ExportToExcel(XDocument doc, string fileName)
         {
             Statisztika stat = new Statisztika();
-           // stat.ExportToExcel(doc,fileName);
+            stat.ExportToExcel(doc,fileName);
         }
 
         public bool KennelTablaHelyKarbanTartas(string faj)

@@ -26,17 +26,19 @@ namespace Csillamponi_Allatmenhely
     
     public partial class ReservationPage : Window
     {//Service1Client régi helyett
+        
         ReservationPageViewModel VM;
         ALLAT allat = new ALLAT();
         Ügyfél_Kezelő kezelo;
         Service1Client client;
-        UGYFEL bejelentkezettUser;
-        public ReservationPage(ALLAT kapottallat, UGYFEL bejelentkezettUser)
+       UGYFEL bejelentkezettUser;
+        public ReservationPage(ALLAT kapottallat, UGYFEL kapottbejelentkezettUser)
         {
             client = new Service1Client();
             kezelo = new Ügyfél_Kezelő();
             VM = new ReservationPageViewModel();
             allat = kapottallat;
+            bejelentkezettUser = kapottbejelentkezettUser;
             InitializeComponent();
             try
             {
@@ -56,12 +58,21 @@ namespace Csillamponi_Allatmenhely
 
         private void Előjegyzés(object sender, RoutedEventArgs e)
         {
-            kezelo.Előjegyeztet(allat);
+           // MessageBox.Show(this.bejelentkezettUser.ToString());
+           // MessageBox.Show(this.bejelentkezettUser.KERESZTNEV.ToString());
+          //  MessageBox.Show(this.allat.NEV.ToString());
+            
             //Előjegyzéskor küldjön egy emailt az adminnak, hogy vegye fel a kapcsolatot az ügyféllel
-            //client.sendEmail("email@email.com", "Állat előjegyzés",
-            //    String.Format("{0} {1} előjegyezte örökbefogadásra {2} nevű állatot, kérlek vedd fel az ügyféllel a kapcsolatot!",
-            //    this.bejelentkezettUser.VEZETEKNEV, this.bejelentkezettUser.KERESZTNEV, this.allat.NEV));
+          
+            // client.sendEmail("rohodi@hotmail.com", "Állat előjegyzés",
+           //   this.bejelentkezettUser.VEZETEKNEV.ToString()+" "+ this.bejelentkezettUser.KERESZTNEV +" "+ "előjegyezte örökbefogadásra"+
+           //   " "+ this.allat.NEV.ToString()+" "+ " nevű állatot, kérlek vedd fel az ügyféllel a kapcsolatot!");
+            
+            client.sendEmail("rohodi@hotmail.com", "Állat előjegyzés",
+             String.Format("{0} {1} előjegyezte örökbefogadásra {2} nevű állatot, kérlek vedd fel az ügyféllel a kapcsolatot!",
+             this.bejelentkezettUser.VEZETEKNEV ,this.bejelentkezettUser.KERESZTNEV, this.allat.NEV));
             MessageBox.Show("Az állatodat sikeresen előjegyeztük örökbefogadáshoz. A staff felfogja feled venni a kapcsolatot a részletekkel kapcsolatban");
+            kezelo.Előjegyeztet(allat);
         }
 
         private void Regisztráció(object sender, RoutedEventArgs e)

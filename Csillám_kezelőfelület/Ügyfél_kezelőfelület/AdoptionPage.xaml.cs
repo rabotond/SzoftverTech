@@ -65,7 +65,8 @@ namespace Csillamponi_Allatmenhely
 
         private void Keresés(object sender, RoutedEventArgs e)
         {
-               var allatkak = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.Text, VM.SelectedFaj, név.Text,
+            VM.Allatok.Clear();   
+            var allatkak = ügyfél.Összetett_keresés(Oltasok(), fiuvagylany(), szin.Text, VM.SelectedFaj, név.Text,
                     Ivartalanított(), Beteg());
 
                foreach (var item in allatkak)
