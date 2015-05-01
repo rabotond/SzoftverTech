@@ -18,7 +18,7 @@ namespace AdatKezelő
         {
             t = new Thread(()=> eledelt_fogyaszt());
             timer = new System.Timers.Timer();
-            timer.Interval=10000*6;
+            timer.Interval=10000*600;
             timer.Elapsed += timer_Elapsed;
         }
 
