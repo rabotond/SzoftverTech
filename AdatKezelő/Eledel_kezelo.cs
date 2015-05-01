@@ -35,7 +35,12 @@ namespace AdatKezelő
                     {
                         ele.RAKTARON = 0;
                         Service1Client client = new Service1Client();
-                        client.sendEmail("a.lynxie@gmail.com", ele.FAJTA+ " eledele elfogyott", "azonnal kurvagyorsan vegyél nekik kaját");
+                        client.sendEmail("csillamponiproject@gmail.com", ele.FAJTA + " eledele elfogyott", "azonnal kurvagyorsan vegyél nekik kaját");
+                        
+                      
+                    //    Reklam_Hibalog.ServiceReklamClient kliens = new Reklam_Hibalog.ServiceReklamClient();
+                     //   kliens.Hibalog("eledele elfogyott azonnal kurvagyorsan vegyél nekik kaját " );
+                    
                     }
                 }
                 db.SaveChanges();

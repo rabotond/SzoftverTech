@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AdatKezelő;
 using Csillám_kezelőfelület.Admin_kezelőfelület;
+using Csillám_kezelőfelület.csillamservice;
 
 namespace Csillamponi_Allatmenhely
 {
@@ -158,6 +159,8 @@ namespace Csillamponi_Allatmenhely
             }
             catch (Exception ex)
             {
+                Service1Client client = new Service1Client();
+                client.sendEmail("csillamponiproject@gmail.com", "hiba", "Nem sikerült szinkronizálni a kennel táblát. \n Hiba részletei:  ! " + ex.Message);
                 MessageBox.Show("Nem sikerült szinkronizálni a kennel táblát. \n Hiba részletei: " + ex.ToString());
             }
         }

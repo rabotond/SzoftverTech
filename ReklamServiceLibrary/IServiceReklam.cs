@@ -15,7 +15,8 @@ namespace ReklamServiceLibrary
         [OperationContract]
         bool ReklamEmail(string adat);
 
-
+        [OperationContract]
+        bool Hibalog(string adat);
     }
 
     [DataContract]

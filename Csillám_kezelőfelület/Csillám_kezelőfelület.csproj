@@ -140,6 +140,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\csillamservice\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Ügyfél_kezelőfelület\AdoptionPage.xaml.cs">
       <DependentUpon>AdoptionPage.xaml</DependentUpon>
     </Compile>
@@ -269,6 +274,13 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ReklamService\ServiceReklam.wsdl" />
+    <None Include="Service References\csillamservice\Service1.wsdl" />
+    <None Include="Service References\csillamservice\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\csillamservice\Service11.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -288,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\ReklamService\" />
+    <WCFMetadataStorage Include="Service References\csillamservice\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ReklamService\item.disco" />
@@ -300,6 +313,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ReklamService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\csillamservice\Service1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\csillamservice\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\csillamservice\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\csillamservice\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

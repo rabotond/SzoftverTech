@@ -33,7 +33,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         string path = System.IO.Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName, 
             @"SzoftverTech\ReklamHost\bin\Debug\ReklamHost.exe");
-       
+        
         public Extra(UGYFEL bejelentkezettUser)
         {
             this.bejelentkezettUser = bejelentkezettUser;
@@ -53,15 +53,17 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
         private void Reklam_Click(object sender, RoutedEventArgs e)
         {
+            
             if ((VM.ValasztottAllat != null )&& VM.ValasztottAllat.ELOJEGYZETT!=true)            {
 
                 Process proc = new Process();
-                MessageBox.Show(path);
+                //MessageBox.Show(path);
                 if (File.Exists(path))
                 {
                     proc.StartInfo.FileName = path;
                     proc.Start();
                     ReklamService.ServiceReklamClient cliens = new ReklamService.ServiceReklamClient();
+                  //  cliens.Hibalog("Megy");
                     List<ALLAT> kivalsztottak = new List<ALLAT>();
 
                     allat = VM.ValasztottAllat;
@@ -90,6 +92,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
                     catch (Exception ex)
                     {
                         cliens.ReklamEmail("Nem áll le a host csinálja valamit! " + ex.Message );
+                        cliens.Hibalog("Nem áll le a host csinálja valamit! " + ex.Message);
                     }
 
 
@@ -99,6 +102,13 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
             }
             else { MessageBox.Show("Nincs sor kijelölve! vagy Előjegyzett állatot reklámoznál!"); }
            
+        }
+
+        private void Log_Click(object sender, RoutedEventArgs e)
+        {
+            Process proc = new Process();
+            proc.StartInfo.FileName="HibaLog.xml";
+            proc.Start();
         }
     }
 }

@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Csillám_kezelőfelület.ReklamService {
+namespace AdatKezelő.Reklam_Hibalog {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ReklamService.IServiceReklam")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Reklam_Hibalog.IServiceReklam")]
     public interface IServiceReklam {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceReklam/ReklamEmail", ReplyAction="http://tempuri.org/IServiceReklam/ReklamEmailResponse")]
@@ -29,12 +29,12 @@ namespace Csillám_kezelőfelület.ReklamService {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceReklamChannel : Csillám_kezelőfelület.ReklamService.IServiceReklam, System.ServiceModel.IClientChannel {
+    public interface IServiceReklamChannel : AdatKezelő.Reklam_Hibalog.IServiceReklam, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceReklamClient : System.ServiceModel.ClientBase<Csillám_kezelőfelület.ReklamService.IServiceReklam>, Csillám_kezelőfelület.ReklamService.IServiceReklam {
+    public partial class ServiceReklamClient : System.ServiceModel.ClientBase<AdatKezelő.Reklam_Hibalog.IServiceReklam>, AdatKezelő.Reklam_Hibalog.IServiceReklam {
         
         public ServiceReklamClient() {
         }

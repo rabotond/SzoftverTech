@@ -5,5 +5,6 @@
     <Grid Margin="-394,0,21,-30">
         <DataGrid x:Name="állatgrid" ItemsSource="{Binding Allatok}"  SelectedItem="{Binding ValasztottAllat}" Margin="402,10,227,76" />
         <Button Content="Kijelölt állatok reklámozása" HorizontalAlignment="Left" Margin="1594,10,0,0" VerticalAlignment="Top" Width="176" Height="35" Click="Reklam_Click"/>
+        <Button Content="HibaLog file megynyitás" HorizontalAlignment="Left" Margin="1594,72,0,0" VerticalAlignment="Top" Width="176" Height="35" Click="Log_Click"/>
     </Grid>
 </Window>
