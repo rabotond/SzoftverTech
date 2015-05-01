@@ -24,8 +24,6 @@ namespace Csillamponi_Allatmenhely
         public LoginPage()
         {
             InitializeComponent();
-          AdatKezelő.csillamRef.Service1Client client = new AdatKezelő.csillamRef.Service1Client();
-          string res = client.sendEmail("fannimolnr@gmail.com", "error", "felület betöltött");
             Eledel_kezelo kezelo = new Eledel_kezelo();
             kezelo.eledelt_fogyaszt();
         }
