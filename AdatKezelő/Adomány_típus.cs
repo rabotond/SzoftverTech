@@ -10,6 +10,6 @@ namespace AdatKezelő
     {
         Pénz,
         Eledel,
-
+        
     }//e
 }
