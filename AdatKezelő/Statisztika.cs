@@ -66,6 +66,11 @@ namespace AdatKezelő
             {
                 napok.Add(new Statisztika_adatrecord(mettől.AddDays(i)));
             }
+            var clients = db.UGYFEL.Where(x =>(db.ADOMANY.GroupBy(y=>y.ADOMANYOZO).Select(y=>y.Key).ToList()).Contains(x.UGYFELID)).ToList();
+            foreach(UGYFEL akt in clients)
+            {
+                ugyfelek.Add(new Statisztika_adatrecord(akt));
+            }
             MakeStatistic();
         }
 
@@ -180,26 +185,23 @@ namespace AdatKezelő
             {
                 var penzadomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
                                    group a by a.UGYFELID into b
-                                   select new { b.Key,  penz_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="pénz").Sum(x=>x.MENNYISEG)}).ToList();
-;
+                                   select new {id= b.Key,  penz_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="pénz").Sum(x=>x.MENNYISEG)}).ToList();
+
                 var eledeladomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
                                    group a by a.UGYFELID into b
-                                   select new { b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList();;
+                                   select new { id=b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList();;
               //  var allatai_db=;
 
 
                 ugyfelek=(from a in ugyfelek
-                         join b in penzadomanyai on a.Ugyfel.UGYFELID equals b.Key into h
-                          join c in eledeladomanyai on a.Ugyfel.UGYFELID equals c.Key into y
-                        // join f in allatai_db on a.Nap equals f.date into t
+                         join b in penzadomanyai on a.Ugyfel.UGYFELID equals b.id into h
+                          join c in eledeladomanyai on a.Ugyfel.UGYFELID equals c.id into y
                            from item1 in h.DefaultIfEmpty()
                          from item2 in y.DefaultIfEmpty()
-                       //  from item3 in t.DefaultIfEmpty()
-                          select new Statisztika_adatrecord(a.Nap)
+                          select new Statisztika_adatrecord(a.Ugyfel)
                          {
-                             pénztAdomanyozott_huf = item1 == null ? 0 :(int) item1.penz_sum,
-                             eledeltAdomanyozott_kg = item2 == null ? 0 : (int)item2.eledel_sum
-                            // befolytPenzadomany_huf = (int)(item3 == null ? 0 : item3.Posszeg)
+                             pénztAdomanyozott_huf = (int)(item1 == null ? 0 : item1.penz_sum),
+                             eledeltAdomanyozott_kg = (int)(item2 == null ? 0 : item2.eledel_sum)
                          }).ToList();
             }
             else//összetettbe mindent

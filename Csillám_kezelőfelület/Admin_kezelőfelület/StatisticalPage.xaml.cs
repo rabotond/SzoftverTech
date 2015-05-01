@@ -47,6 +47,10 @@ namespace Csillamponi_Allatmenhely
             {
                 fajta = Statisztika_típus.ügyfélállomány;
             }
+            else if (ügyfél_adomany.IsChecked == true)
+            {
+                fajta = Statisztika_típus.ugyfeladatok;
+            }
             else
             {
                 fajta = Statisztika_típus.összetett;
@@ -71,6 +75,11 @@ namespace Csillamponi_Allatmenhely
             else if (ügyféles.IsChecked == true)
             {
                 fajta = Statisztika_típus.ügyfélállomány;
+            }
+
+            else if (ügyfél_adomany.IsChecked == true)
+            {
+                fajta = Statisztika_típus.ugyfeladatok;
             }
             else
             {
