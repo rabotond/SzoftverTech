@@ -171,7 +171,9 @@ namespace Csillamponi_Allatmenhely
 
         private void extra_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Extra page = new Extra(bejelentkezettUser);
+            page.Owner = this;
+            page.Show();
         }
     }
 }

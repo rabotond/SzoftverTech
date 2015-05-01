@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
 
-namespace csillamWCFapp
+namespace ReklamServiceLibrary
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
-    public interface IService1
+    public interface IServiceReklam
     {
-        [OperationContract]
-        void DoWork();
-        
 
         [OperationContract]
-        string sendEmail(string to_address, string subject, string body);
+        bool ReklamEmail(string adat);
 
-        
 
-        
-            
-        
+    }
+
+    [DataContract]
+    public class CompositeType
+    {
+        string adat;
+
+        [DataMember]
+        public string Adat
+        {
+            get { return adat; }
+            set { adat = value; }
+        }
     }
 }

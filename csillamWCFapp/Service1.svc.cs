@@ -21,10 +21,11 @@ namespace csillamWCFapp
 
         public string sendEmail(string toaddress, string ujsubject, string ujbody)
         {
-           try{
+            try
+            {
                 MailMessage mailMsg = new MailMessage();
 
-                mailMsg.To.Add(new MailAddress(toaddress,"admin"));
+                mailMsg.To.Add(new MailAddress(toaddress, "admin"));
 
                 mailMsg.From = new MailAddress("azure_a308ac4719fc68b2129b6ca372127220@azure.com", "menhely ADMIN");
 
@@ -35,15 +36,17 @@ namespace csillamWCFapp
                 System.Net.NetworkCredential credentials = new System.Net.NetworkCredential("azure_a308ac4719fc68b2129b6ca372127220@azure.com", "3eNj74ybVPfCd2a");
                 smtpClient.Credentials = credentials;
 
-                smtpClient.Send(mailMsg); 
+                smtpClient.Send(mailMsg);
                 return "sikeres küldés";
-              }
-                catch (Exception ex)
-              {
+            }
+            catch (Exception ex)
+            {
                 return ex.ToString();
 
-              }
+            }
         }
-       
-    }
-}
+        
+
+            }
+        }
+   
