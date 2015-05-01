@@ -168,5 +168,10 @@ namespace Csillamponi_Allatmenhely
             loginPage.Show();
             this.Close();
         }
+
+        private void extra_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

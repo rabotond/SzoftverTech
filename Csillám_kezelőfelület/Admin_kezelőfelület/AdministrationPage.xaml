@@ -19,6 +19,7 @@
         <Button Content="Frissítés" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="179" Height="399" Click="Frissit_Click" FontSize="36" FontFamily="Segoe UI Semibold"/>
         <Button Content="Kennel Szinkronizálás" HorizontalAlignment="Left" Margin="10,485,0,0" VerticalAlignment="Top" Width="179" Height="42" FontSize="18" Click="KennelSyn_Click" RenderTransformOrigin="0.5,0.5"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="1024,-35,0,0" VerticalAlignment="Top" Width="75" Click="VisszaClick"/>
+        <Button x:Name="extra_btn" Content="Extra" HorizontalAlignment="Left" Margin="912,-35,0,0" VerticalAlignment="Top" Width="75" Click="extra_btn_Click"/>
 
     </Grid>
 </Window>

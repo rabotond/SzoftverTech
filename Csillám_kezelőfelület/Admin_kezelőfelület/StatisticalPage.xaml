@@ -5,7 +5,7 @@
     <Grid>
         <StackPanel HorizontalAlignment="Left" Height="210" Margin="51,37,0,0" VerticalAlignment="Top" Width="221">
             <Label Content="Kimutatás Típusa:" FontSize="20"/>
-            <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20"/>
+            <RadioButton x:Name="adomanyos" Content="Adomány" FontSize="20" IsChecked="True"/>
             <RadioButton x:Name="állományos" Content="Állatállomány" FontSize="20"/>
             <RadioButton x:Name="ügyféles" Content="Ügyfélállomány" FontSize="20"/>
             <RadioButton  x:Name="ügyfél_adomany" Content="Ügyfél hozzájárulások" Height="32" FontSize="20"/>
@@ -18,9 +18,10 @@
         <Button Content="Kimutatás Készítés xml" HorizontalAlignment="Left" Margin="320,153,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="statisztikaToXML_Click"/>
         <Button Content="Kimutatás megtekintése" HorizontalAlignment="Left" Margin="320,218,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="statisztikaOnGUI_Click"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="320,283,0,0" VerticalAlignment="Top" Width="247" Height="56" Click="Visssza_Click"/>
-        <TextBox Text="Pl.: D:\fileName.xlsx" Name="textBoxPath" HorizontalAlignment="Left" Height="23" Margin="412,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+        <TextBox Text="Pl.: D:" Name="textBoxPath" HorizontalAlignment="Left" Height="23" Margin="412,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
         <Label Content="Mentés helye :" HorizontalAlignment="Left" Margin="325,57,0,0" VerticalAlignment="Top"/>
         <Button Content="Kimutatás Mentése (.xlsx)" HorizontalAlignment="Left" Margin="320,88,0,0" VerticalAlignment="Top" Width="247" Height="60" Click="KimutatasMentes_Click"/>
+        <Button x:Name="Talloz_btn" Content="Tallóz" HorizontalAlignment="Left" Margin="325,25,0,0" VerticalAlignment="Top" Width="242" Click="Talloz_btn_Click_1"/>
 
     </Grid>
 </Window>

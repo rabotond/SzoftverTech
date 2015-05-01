@@ -89,7 +89,7 @@ namespace Csillamponi_Allatmenhely
 
         private void KimutatasMentes_Click(object sender, RoutedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxPath.Text) && textBoxPath.Text != @"Pl.: D:\")
+            if (!string.IsNullOrEmpty(textBoxPath.Text) && textBoxPath.Text != @"Pl.: D:")
             {
                 statisztikaToXML_Click(sender, e);
                 try
@@ -110,14 +110,15 @@ namespace Csillamponi_Allatmenhely
             
         }
 
-        private void Talloz_btn_Click(object sender, RoutedEventArgs e)
+        
+        private void Talloz_btn_Click_1(object sender, RoutedEventArgs e)
         {
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
             System.Windows.Forms.DialogResult result = dialog.ShowDialog();
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                
+
                 path = dialog.SelectedPath;
                 textBoxPath.Text = path;
             }
