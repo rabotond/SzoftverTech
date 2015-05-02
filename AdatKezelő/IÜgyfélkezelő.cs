@@ -35,8 +35,7 @@ namespace AdatKezelő
         /// <param name="ki"></param>
         void Örökbe_ad(ALLAT allat,UGYFEL kicsoda);
 
-       // változtattam
-        void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda);
+        
 
       // változtatva
         List<ALLAT> Összetett_keresés(bool oltva, bool nem, string szín, string fajta, string név, bool ivartalanított, bool beteg);

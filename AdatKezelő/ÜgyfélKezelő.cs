@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdatKezelő.csillamRef;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,15 +69,15 @@ namespace AdatKezelő
             return true;
         }
 
-        public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)//srácok ez mért nincs implementálva,---fanni
+        public void Örökbe_ad(ALLAT allat, UGYFEL kicsoda)
         {
-
+            Service1Client client = new Service1Client();
+            if (kicsoda.ISADMIN == false)
+            {
+                client.sendEmail("csillamponiproject@gmail.com", "Örökbeadás", kicsoda.VEZETEKNEV + " " + kicsoda.KERESZTNEV + " új állatot vett fel az adatbázisba. Kérlek szólj az illetékeseknek, hogy új állat érkezik!");
+            }
         }
 
-        public void Örökbe_fogad(ALLAT allat, UGYFEL kicsoda)//srácok ez mért nincs implementálva,---fanni
-        {
-
-        }
 
         public int Van_e_üres_kennel(string allatfaj)
         {
