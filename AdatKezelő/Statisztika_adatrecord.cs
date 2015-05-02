@@ -41,6 +41,7 @@ namespace AdatKezelő
         public Statisztika_adatrecord(UGYFEL uju)
         {
             ugyfel = uju;
+            nap = DateTime.Now;
         }
 
         public int eledeltAdomanyozott_kg { get; set; }

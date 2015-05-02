@@ -185,11 +185,13 @@ namespace AdatKezelő
             {
                 var penzadomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
                                    group a by a.UGYFELID into b
-                                   select new {id= b.Key,  penz_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="pénz").Sum(x=>x.MENNYISEG)}).ToList();
+                                   select new {b.Key,  penz_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="pénz").Sum(x=>x.MENNYISEG)}).ToList()
+                                    .ConvertAll(x => new {id=x.Key,penz_sum=x.penz_sum});
 
                 var eledeladomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
                                    group a by a.UGYFELID into b
-                                   select new { id=b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList();
+                                   select new { b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList()
+                                    .ConvertAll(x => new { id = x.Key, eledel_sum = x.eledel_sum }); ;
               //  var allatai_db=;
 
 
