@@ -46,7 +46,7 @@ namespace AdatKezelő//készítette Molnár Fanni
         public List<AllatVM> getAllAllat() // datagrid megjelenítéshez
         {
             Service1Client client = new Service1Client();
-            //client.sendEmail("fannimolnr@gmail.com", "hiba", "hiba van");
+            client.sendEmail("csillamponiproject@gmail.com", "hiba", "datagrid hiba van");
             lock (loadlock)
             {
                 db = new csillamponiDBEntities();

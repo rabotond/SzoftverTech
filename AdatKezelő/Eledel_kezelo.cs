@@ -22,6 +22,8 @@ namespace AdatKezelő
             timer.Elapsed += timer_Elapsed;
         }
 
+        
+        
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             lock(lockobj)
@@ -31,6 +33,7 @@ namespace AdatKezelő
                 var eledelek = db.ELEDEL.Where(x => x.FAJTA != null);
                 foreach(ELEDEL ele in eledelek)
                 { 
+                    
                     if (--ele.RAKTARON<=0)
                     {
                         ele.RAKTARON = 0;

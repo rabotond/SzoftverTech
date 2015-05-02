@@ -54,11 +54,18 @@
   <ItemGroup>
     <Compile Include="StatisztikaTeszts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EnumTeszt.cs" />
+    <Compile Include="HibalogTeszt.cs" />
+    <Compile Include="Hostletezik.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdatKezelő\AdatKezelő.csproj">
       <Project>{bcd42cec-40d4-4155-bf50-53ca11492262}</Project>
       <Name>AdatKezelő</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Csillám_kezelőfelület\Csillám_kezelőfelület.csproj">
+      <Project>{d1e9b1c7-fd02-43de-a3cf-5130376ff0bd}</Project>
+      <Name>Csillám_kezelőfelület</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
