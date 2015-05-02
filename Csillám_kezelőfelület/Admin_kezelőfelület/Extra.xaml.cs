@@ -63,7 +63,6 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
 
                 }
 
-
                 Process proc = new Process();
                 //MessageBox.Show(path);
                 if (File.Exists(path))
