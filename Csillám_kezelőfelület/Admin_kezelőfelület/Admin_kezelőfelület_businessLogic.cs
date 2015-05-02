@@ -12,7 +12,7 @@ using System.Collections;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
-    public class Admin_kezelőfelület_businessLogic : IAdmin_kezelő
+    public class Admin_kezelőfelület_businessLogic : IAdmin_kezelő //Molnár Fanni
     {
         Admin_kezelő kezelo;
 

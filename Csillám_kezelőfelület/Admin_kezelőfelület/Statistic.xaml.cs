@@ -43,7 +43,7 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
                 }
                 else if (vm.Stat.Tipus == Statisztika_típus.ugyfeladatok && (akt.pénztAdomanyozott_huf != 0 || akt.eledeltAdomanyozott_kg !=0 ))
                 {
-                    statVM.Add(new { ÜGYFÉL = akt.Ugyfel.UGYFELID, pénztAdomanyozott_huf = akt.pénztAdomanyozott_huf, eledeltAdomanyozott_kg=akt.eledeltAdomanyozott_kg });
+                    statVM.Add(new { ÜGYFÉL = akt.Ugyfelid, pénztAdomanyozott_huf = akt.pénztAdomanyozott_huf, eledeltAdomanyozott_kg=akt.eledeltAdomanyozott_kg });
                 }
                 else//összetett
                 {

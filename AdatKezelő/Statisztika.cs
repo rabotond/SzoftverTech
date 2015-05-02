@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace AdatKezelő
 {
-    public class Statisztika
+    public class Statisztika //készítette Molnár fanni és Kovács Luca
     {
 //adattagok
         private DateTime mettől;
@@ -62,19 +62,25 @@ namespace AdatKezelő
             ugyfelek = new List<Statisztika_adatrecord>();
             db = new csillamponiDBEntities();
             tasklist = new List<Task>();
-            for (int i = 0; i < (meddig - mettől).TotalDays; i++)
+            switch(ujtipus)
             {
-                napok.Add(new Statisztika_adatrecord(mettől.AddDays(i)));
-            }
-            var clients = db.UGYFEL.Where(x =>(db.ADOMANY.GroupBy(y=>y.ADOMANYOZO).Select(y=>y.Key).ToList()).Contains(x.UGYFELID)).ToList();
-            foreach(UGYFEL akt in clients)
-            {
-                ugyfelek.Add(new Statisztika_adatrecord(akt));
+               case Statisztika_típus.ugyfeladatok: 
+                    List<UGYFEL> clients = db.UGYFEL.Where(x => (db.ADOMANY.GroupBy(y => y.ADOMANYOZO).Select(y => y.Key).ToList()).Contains(x.UGYFELID)).ToList();
+                    foreach (UGYFEL akt in clients)
+                    {
+                        ugyfelek.Add(new Statisztika_adatrecord(akt.UGYFELID));
+                    }
+               break;
+
+               default:
+                    for (int i = 0; i < (meddig - mettől).TotalDays; i++)
+                    {
+                        napok.Add(new Statisztika_adatrecord(mettől.AddDays(i)));
+                    }
+               break;
             }
             MakeStatistic();
         }
-
-// stat készítő eljárás
 
         public void makeXmlfromStat()
         {
@@ -121,9 +127,10 @@ namespace AdatKezelő
             }
         }
 
-
-        public void MakeStatistic()// a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
-                                     //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
+// stat készítő eljárás
+        public void MakeStatistic()// FAnni
+            //a convertAll azért kellett, mert select után névtelen osztály felépítésénél nem adhatok meg oylan adattagot, 
+           //aminek a konstruktorában még paramétert is rakok, viszont a "date" adattag az ilyen, mert 3 elemből építettem fel
         {
             if (tipus == Statisztika_típus.állatállomány)
             {
@@ -181,29 +188,35 @@ namespace AdatKezelő
                          select new Statisztika_adatrecord(a.Nap) { regisztraltDarab = (int)(item1 == null ? 0 : item1.regisztraltDB) }).ToList();
 
             }
+                //EZ AZ EGÉSZ EGY NAGY SZ.R, funkció nem működik.
             else if (tipus == Statisztika_típus.ugyfeladatok)//ide megírom az ügyfelenkénti ugyfelek lista feltöltést
             {
-                var penzadomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
+                var penzadomanyai = (from a in db.UGYFEL.Where(x => x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig && x.ADOMANY.Count() != 0)
                                    group a by a.UGYFELID into b
-                                   select new {b.Key,  penz_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="pénz").Sum(x=>x.MENNYISEG)}).ToList()
-                                    .ConvertAll(x => new {id=x.Key,penz_sum=x.penz_sum});
+                                   select new { b.Key, penz_sum = db.ADOMANY.Where(x => x.ADOMANYOZO == b.Key && x.TIPUS == "pénz").Sum(x => x.MENNYISEG) }).ToList()
+                                    .ConvertAll(x => new {id=(Guid)x.Key,penz_sum=x.penz_sum});
 
-                var eledeladomanyai=(from a in db.UGYFEL.Where(x=> x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig)
+                var eledeladomanyai = (from a in db.UGYFEL.Where(x => x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig && x.ADOMANY.Count() != 0)
                                    group a by a.UGYFELID into b
-                                   select new { b.Key,  eledel_sum = db.ADOMANY.Where(x=>x.ADOMANYOZO==b.Key && x.TIPUS=="eledel").Sum(x=>x.MENNYISEG)}).ToList()
-                                    .ConvertAll(x => new { id = x.Key, eledel_sum = x.eledel_sum }); ;
-              //  var allatai_db=;
+                                   select new { b.Key, eledel_sum =b.Select(x=>x.ADOMANY.Where(y=> y.TIPUS=="eledel").Sum(y=>y.MENNYISEG))
+                                   }).ToList()
+                                    .ConvertAll(x => new { id = (Guid)x.Key, eledel_sum = x.eledel_sum }); 
+                 
+                //var eledeladomanyai=from a in db.UGYFEL.Where(x=>x.ADOMANY!=null)
+                //                    select new {a.UGYFELID,tipus= a.ADOMANY.Select(x=>x.TIPUS) ,menny= a.ADOMANY.Select(x=>x.MENNYISEG)} into b
+                //                   group b by b.tipus into c
+                //                   select new{id=c.Select(x=>x.UGYFELID),tip=c.Select(x=>x.tipus), eledel=c.Where(x=>x.tipus=="eledel").Sum(x=>x.menny)}
 
-
+                                
                 ugyfelek=(from a in ugyfelek
-                         join b in penzadomanyai on a.Ugyfel.UGYFELID equals b.id into h
-                          join c in eledeladomanyai on a.Ugyfel.UGYFELID equals c.id into y
+                         join b in penzadomanyai on a.Ugyfelid equals b.id into h
+                          join c in eledeladomanyai on a.Ugyfelid equals c.id into y
                            from item1 in h.DefaultIfEmpty()
                          from item2 in y.DefaultIfEmpty()
-                          select new Statisztika_adatrecord(a.Ugyfel)
+                          select new Statisztika_adatrecord(a.Ugyfelid)
                          {
                              pénztAdomanyozott_huf = (int)(item1 == null ? 0 : item1.penz_sum),
-                             eledeltAdomanyozott_kg = (int)(item2 == null ? 0 : item2.eledel_sum)
+                            // eledeltAdomanyozott_kg = (int)(item2 == null ? 0 : item2.eledel_sum)
                          }).ToList();
             }
             else//összetettbe mindent

@@ -9,12 +9,12 @@ namespace AdatKezelő
     public class Statisztika_adatrecord
     {
         DateTime nap;
-        UGYFEL ugyfel;
+        Guid ugyfelid;
 
-        public UGYFEL Ugyfel
+        public Guid Ugyfelid
         {
-            get { return ugyfel; }
-            set { ugyfel = value; }
+            get { return ugyfelid; }
+            set { ugyfelid = value; }
         }
 
         public DateTime Nap
@@ -38,10 +38,9 @@ namespace AdatKezelő
 
 
 //>>>>>>>>>>>>>>>> ugyfelekre vonatkozó statisztikai adatok
-        public Statisztika_adatrecord(UGYFEL uju)
+        public Statisztika_adatrecord(Guid uju)
         {
-            ugyfel = uju;
-            nap = DateTime.Now;
+            ugyfelid = uju;
         }
 
         public int eledeltAdomanyozott_kg { get; set; }

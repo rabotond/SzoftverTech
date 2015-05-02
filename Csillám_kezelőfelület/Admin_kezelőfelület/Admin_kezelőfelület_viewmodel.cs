@@ -11,21 +11,21 @@ using System.Collections;
 
 namespace Csillám_kezelőfelület.Admin_kezelőfelület
 {
-  public  class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged
+  public  class Admin_kezelőfelület_viewmodel:INotifyPropertyChanged //Molnár Fanni
     {
         List<AllatVM> allatok;
         List<UgyfelVM> ugyfelek; // help Fanninak:  Ha ez UgyfelVM akkor hogyan lesz belőle Ugyfel amit átadsz majd mint válaszottugyfel a NewUsernek. Módosításra. Szerintem ezért Null a NewUser Konstruktora
         IEnumerable eledel_kennel;
-
+        AllatVM valasztottAllat;
+        UgyfelVM valasztottUgyfel;
+        Statisztika stat;
+        
         public IEnumerable Eledel_kennel
         {
             get { return eledel_kennel; }
             set { eledel_kennel = value; onPropChanged("Eledel_kennel"); }
         } 
-      AllatVM valasztottAllat;
-        UgyfelVM valasztottUgyfel;
-        Statisztika stat;
-
+    
         public Statisztika Stat
         {
             get { return stat; }
