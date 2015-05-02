@@ -59,8 +59,10 @@ namespace Csillám_kezelőfelület.Admin_kezelőfelület
                 List<AllatVM> kivalsztottak = new List<AllatVM>();
                 for (int i = 0; i < állatgrid.SelectedItems.Count; i++)
                 {
-                    kivalsztottak.Add((AllatVM)állatgrid.SelectedItems[i]);
-
+                    AllatVM kivalasztott = (AllatVM)állatgrid.SelectedItems[i];
+                   if (kivalasztott.ELOJEGYZETT != true)
+                       kivalsztottak.Add((AllatVM)állatgrid.SelectedItems[i]);
+                   else MessageBox.Show(kivalasztott.NEV + " nevű állatot kihagytuk mert már előjegyzett!");
                 }
 
                 Process proc = new Process();
