@@ -188,7 +188,7 @@ namespace AdatKezelő
                          select new Statisztika_adatrecord(a.Nap) { regisztraltDarab = (int)(item1 == null ? 0 : item1.regisztraltDB) }).ToList();
 
             }
-                //EZ AZ EGÉSZ EGY NAGY SZ.R, funkció nem működik.
+                
             else if (tipus == Statisztika_típus.ugyfeladatok)//ide megírom az ügyfelenkénti ugyfelek lista feltöltést
             {
                 var penzadomanyai = (from a in db.UGYFEL.Where(x => x.REGDATUM != null && x.REGDATUM >= mettől && x.REGDATUM <= meddig && x.ADOMANY.Count() != 0)

@@ -53,7 +53,7 @@ namespace Csillamponi_Allatmenhely
             LoginPage qpWindow = new LoginPage();
             qpWindow.Show();
             this.Close();
-            //MessageBox.Show("ha lesz authentikáció akkor uncomment");
+            
         }
     }
 }

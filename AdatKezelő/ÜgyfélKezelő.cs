@@ -142,7 +142,7 @@ namespace AdatKezelő
                  && (nem != null ? x.NOSTENY == nem : true) && (!string.IsNullOrEmpty(fajta) ? x.FAJTA == fajta : true)
                 && (ivartalanított != null ? x.IVARTALANITOTT == ivartalanított : true) && (!string.IsNullOrEmpty(szín) ? x.SZIN == szín : true)
                 && ((beteg != null && beteg == false) ? string.IsNullOrEmpty(x.BETEGSEGEK) : !string.IsNullOrEmpty(x.BETEGSEGEK)));
-            //a kereséssel van még némi probléma
+            
             
             foreach (var item in allatQuery)
             {

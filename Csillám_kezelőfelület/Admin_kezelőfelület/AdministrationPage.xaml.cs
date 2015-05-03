@@ -119,7 +119,7 @@ namespace Csillamponi_Allatmenhely
 
         private void uygfelmodosit_Click(object sender, RoutedEventArgs e)
         {
-            CreateUser page = new CreateUser(VM.ValasztottUgyfel, this.bejelentkezettUser); // Viewmodelben Fanni egy kis ötlet, help neked
+            CreateUser page = new CreateUser(VM.ValasztottUgyfel, this.bejelentkezettUser); 
             page.Show();
         }
         private void allatmodosit_Click(object sender, RoutedEventArgs e)

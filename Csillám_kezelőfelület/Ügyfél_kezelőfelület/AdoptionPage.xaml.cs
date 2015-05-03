@@ -145,7 +145,7 @@ namespace Csillamponi_Allatmenhely
         {
             LoginPage piaWindow = new LoginPage();
             piaWindow.Show();
-            //MessageBox.Show("végén ha lesz authentikáció akkor cooomment out");
+            
             this.Close();
         }
 
